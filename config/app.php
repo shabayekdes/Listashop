@@ -176,9 +176,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Modules Service Providers...
          */
-        Shop\Providers\ShopServiceProvider::class
+        Shop\Providers\ShopServiceProvider::class,
+        Category\Providers\CategoryServiceProvider::class,
+
 
     ],
 
