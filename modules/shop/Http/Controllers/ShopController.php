@@ -2,6 +2,7 @@
 
 namespace Shop\Http\Controllers;
 
+use Category\Models\Category;
 use App\Http\Controllers\Controller;
 
 /**
@@ -28,7 +29,10 @@ class ShopController extends Controller
 
     public function index()
     {
-        return view($this->_config['view']);
+
+        $categories = Category::all();
+
+        return view($this->_config['view'])->with('categories', $categories);
 
     }
 

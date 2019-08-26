@@ -6,8 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="col d-flex flex-row">
-                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="frontend/images/phone.png" alt=""></div>+38 068 005 3570</div>
-                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="frontend/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                    <div class="top_bar_contact_item">
+                        <div class="top_bar_icon"><img src="frontend/images/phone.png" alt=""></div>+38 068 005 3570
+                    </div>
+                    <div class="top_bar_contact_item">
+                        <div class="top_bar_icon"><img src="frontend/images/mail.png" alt=""></div><a
+                            href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                    </div>
                     <div class="top_bar_content ml-auto">
                         <div class="top_bar_menu">
                             <ul class="standard_dropdown top_bar_dropdown">
@@ -59,7 +64,8 @@
                         <div class="header_search_content">
                             <div class="header_search_form_container">
                                 <form action="#" class="header_search_form clearfix">
-                                    <input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+                                    <input type="search" required="required" class="header_search_input"
+                                        placeholder="Search for products...">
                                     <div class="custom_dropdown">
                                         <div class="custom_dropdown_list">
                                             <span class="custom_dropdown_placeholder clc">All Categories</span>
@@ -74,7 +80,8 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <button type="submit" class="header_search_button trans_300" value="Submit"><img src="frontend/images/search.png" alt=""></button>
+                                    <button type="submit" class="header_search_button trans_300" value="Submit"><img
+                                            src="frontend/images/search.png" alt=""></button>
                                 </form>
                             </div>
                         </div>
@@ -129,31 +136,9 @@
                             </div>
 
                             <ul class="cat_menu">
-                                <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                                <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                                <li class="hassubs">
-                                    <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                    <ul>
-                                        <li class="hassubs">
-                                            <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                            <ul>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                                <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                                <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                                <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                                @foreach ($categories as $category)
+                                <li><a class="clc" href="#">{{ $category->name }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
 
@@ -200,8 +185,10 @@
                                         <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
                                         <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
                                         <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                        <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-                                        <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
+                                        <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a>
+                                        </li>
+                                        <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a>
+                                        </li>
                                         <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
                                         <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
                                     </ul>
@@ -217,7 +204,8 @@
                             <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
                                 <div class="menu_burger">
                                     <div class="menu_trigger_text">menu</div>
-                                    <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
+                                    <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +227,8 @@
 
                         <div class="page_menu_search">
                             <form action="#">
-                                <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
+                                <input type="search" required="required" class="page_menu_search_input"
+                                    placeholder="Search for products...">
                             </form>
                         </div>
                         <ul class="page_menu_nav">
@@ -301,12 +290,19 @@
                                 </ul>
                             </li>
                             <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
-                            <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
+                            <li class="page_menu_item"><a href="contact.html">contact<i
+                                        class="fa fa-angle-down"></i></a></li>
                         </ul>
 
                         <div class="menu_contact">
-                            <div class="menu_contact_item"><div class="menu_contact_icon"><img src="frontend/images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-                            <div class="menu_contact_item"><div class="menu_contact_icon"><img src="frontend/images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                            <div class="menu_contact_item">
+                                <div class="menu_contact_icon"><img src="frontend/images/phone_white.png" alt=""></div>
+                                +38 068 005 3570
+                            </div>
+                            <div class="menu_contact_item">
+                                <div class="menu_contact_icon"><img src="frontend/images/mail_white.png" alt=""></div><a
+                                    href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                            </div>
                         </div>
                     </div>
                 </div>
