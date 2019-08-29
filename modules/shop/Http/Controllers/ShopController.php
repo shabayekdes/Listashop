@@ -2,8 +2,10 @@
 
 namespace Shop\Http\Controllers;
 
+use Product\Models\Product;
 use Category\Models\Category;
 use App\Http\Controllers\Controller;
+use Product\Repositories\ProductRepositoryInterface;
 
 /**
  * Home page controller
@@ -22,18 +24,22 @@ class ShopController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ProductRepositoryInterface $product)
     {
         $this->_config = request('_config');
     }
 
     public function index()
     {
+        $product = Product::latest();
 
-        $categories = Category::all();
+        $products = $product->get();
 
-        return view($this->_config['view'])->with('categories', $categories);
+        $saleProducts = Product::onsale()->get();
 
+        $featuredProducts = Product::featured()->get();
+
+        return view($this->_config['view'], compact('featuredProducts', 'saleProducts', 'products'));
     }
 
 }

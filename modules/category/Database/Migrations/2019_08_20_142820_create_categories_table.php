@@ -19,6 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->string('image')->nullable();
             $table->boolean('status')->default(0);
 
+            $table->boolean('popular')->default(0);
+
             // transfer
             $table->text('name');
             $table->string('slug');

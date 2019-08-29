@@ -44,4 +44,11 @@ interface ProductRepositoryInterface
      * @param int
      */
     public function delete($product_id);
+
+    /**
+     * Returns featured product
+     *
+     * @return Collection
+     */
+    public function getFeaturedProducts();
 }

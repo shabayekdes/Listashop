@@ -18,7 +18,7 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => '1',
                 'position' => '1',
-                'image' => NULL,
+                'image' => 'popular_1.png',
                 'status' => '1',
                 'name' => 'Laptops',
                 'slug' => 'laptops',
@@ -32,7 +32,7 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => '2',
                 'position' => '1',
-                'image' => NULL,
+                'image' => 'popular_2.png',
                 'status' => '1',
                 'name' => 'Desktops',
                 'slug' => 'desktops',
@@ -46,7 +46,7 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => '3',
                 'position' => '1',
-                'image' => NULL,
+                'image' => 'popular_3.png',
                 'status' => '1',
                 'name' => 'Tablets',
                 'slug' => 'tablets',
@@ -60,7 +60,7 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => '4',
                 'position' => '1',
-                'image' => NULL,
+                'image' => 'popular_4.png',
                 'status' => '1',
                 'name' => 'TVs',
                 'slug' => 'tvs',
@@ -74,7 +74,7 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => '5',
                 'position' => '1',
-                'image' => NULL,
+                'image' => 'popular_5.png',
                 'status' => '1',
                 'name' => 'Appliances',
                 'slug' => 'appliances',
@@ -88,7 +88,7 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => '6',
                 'position' => '1',
-                'image' => NULL,
+                'image' => 'popular_1.png',
                 'status' => '1',
                 'name' => 'Digital Cameras',
                 'slug' => 'digital-cameras',
@@ -102,7 +102,7 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => '7',
                 'position' => '1',
-                'image' => NULL,
+                'image' => 'popular_2.png',
                 'status' => '1',
                 'name' => 'Mobile Phones',
                 'slug' => 'mobile-phones',

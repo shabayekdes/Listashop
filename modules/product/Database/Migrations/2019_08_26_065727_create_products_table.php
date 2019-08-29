@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
 
             $table->boolean('new')->nullable();
             $table->boolean('featured')->nullable();
-            $table->string('thumbnail')->nullable();
+            $table->string('thumbnail')->default();
             $table->decimal('special_price', 12, 4)->nullable();
             $table->date('special_price_from')->nullable();
             $table->date('special_price_to')->nullable();
@@ -33,14 +33,17 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();
 
-            $table->decimal('weight', 12, 4)->nullable();
-            $table->decimal('width', 12, 4)->nullable();
-            $table->decimal('height', 12, 4)->nullable();
-            $table->decimal('depth', 12, 4)->nullable();
+            // $table->decimal('weight', 12, 4)->nullable();
+            // $table->decimal('width', 12, 4)->nullable();
+            // $table->decimal('height', 12, 4)->nullable();
+            // $table->decimal('depth', 12, 4)->nullable();
 
-            $table->text('meta_title')->nullable();
-            $table->text('meta_keywords')->nullable();
-            $table->text('meta_description')->nullable();
+            // $table->text('meta_title')->nullable();
+            // $table->text('meta_keywords')->nullable();
+            // $table->text('meta_description')->nullable();
+
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->timestamps();
         });

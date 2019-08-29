@@ -2,6 +2,7 @@
 
 namespace Shop\Providers;
 
+use Category\Models\Category;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -30,6 +31,7 @@ class ShopServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'shop');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
+        $this->composeView();
 
     }
     /**
@@ -42,6 +44,20 @@ class ShopServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/menu.php', 'menu.shop'
         );
+    }
+
+    /**
+     * Bind the the data to the views
+     *
+     * @return void
+     */
+    protected function composeView()
+    {
+        view()->composer('shop::layouts.header.*', function ($view) {
+            $categories = Category::all();
+
+            $view->with('categories', $categories);
+        });
     }
 
 }

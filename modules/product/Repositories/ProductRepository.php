@@ -2,6 +2,8 @@
 
 namespace Product\Repositories;
 
+use Product\Models\Product;
+
 
 /**
  * Product Repository
@@ -58,6 +60,16 @@ class ProductRepository implements ProductRepositoryInterface
     public function delete($product_id)
     {
 
+    }
+
+    /**
+     * Returns featured product
+     *
+     * @return Collection
+     */
+    public function getFeaturedProducts()
+    {
+        return Product::featured()->get();
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Product\Database\Seeders\ProductTableSeeder;
 use Category\Database\Seeders\CategoryTableSeeder as CategorySeeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,5 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(CategorySeeder::class);
+        $this->call(ProductTableSeeder::class);
     }
 }
