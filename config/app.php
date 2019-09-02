@@ -181,6 +181,7 @@ return [
         Shop\Providers\ShopServiceProvider::class,
         Category\Providers\CategoryServiceProvider::class,
         Product\Providers\ProductServiceProvider::class,
+        Admin\Providers\AdminServiceProvider::class,
 
 
     ],

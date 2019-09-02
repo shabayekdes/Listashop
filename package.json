@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "dev-all": "npm --section=admin run dev",
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
@@ -20,6 +21,16 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
-        "vue": "^2.5.17"
+        "vue": "^2.5.17",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.10.1",
+        "admin-lte": "3.0.0-beta.2",
+        "black-dashboard": "^1.0.0",
+        "concurrently": "^4.1.2",
+        "laravel-mix-merge-manifest": "^0.1.2",
+        "vue-router": "^3.1.2",
+        "vuex": "^3.1.1"
     }
 }

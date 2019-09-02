@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Admin\Database\Seeders\RolesTableSeeder;
 use Product\Database\Seeders\ProductTableSeeder;
 use Category\Database\Seeders\CategoryTableSeeder as CategorySeeder;
 
@@ -15,5 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CategorySeeder::class);
         $this->call(ProductTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
     }
 }
