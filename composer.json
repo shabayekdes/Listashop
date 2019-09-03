@@ -38,7 +38,9 @@
             "Shop\\": "modules/shop",
             "Category\\": "modules/category",
             "Product\\": "modules/product",
-            "Admin\\": "modules/admin"
+            "Admin\\": "modules/admin",
+            "User\\": "modules/user",
+            "Core\\": "modules/core"
         },
         "classmap": [
             "database/seeds",

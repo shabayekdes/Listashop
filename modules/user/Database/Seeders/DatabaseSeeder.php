@@ -1,7 +1,8 @@
 <?php
 
+namespace User\Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use Admin\Database\Seeders\DatabaseSeeder as ListashopDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ListashopDatabaseSeeder::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(AdminsTableSeeder::class);
     }
 }

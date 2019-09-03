@@ -182,6 +182,8 @@ return [
         Category\Providers\CategoryServiceProvider::class,
         Product\Providers\ProductServiceProvider::class,
         Admin\Providers\AdminServiceProvider::class,
+        User\Providers\UserServiceProvider::class,
+
 
 
     ],

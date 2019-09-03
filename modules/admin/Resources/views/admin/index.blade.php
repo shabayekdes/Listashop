@@ -183,6 +183,33 @@
                                 </p>
                             </router-link>
                         </li>
+                        {{-- User --}}
+                        <li class="nav-item">
+                            <router-link to="/admin/users" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    User
+                                </p>
+                            </router-link>
+                        </li>
+                        {{-- Category --}}
+                        <li class="nav-item">
+                            <router-link to="/admin/categories" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Category
+                                </p>
+                            </router-link>
+                        </li>
+                        {{-- Product --}}
+                        <li class="nav-item">
+                            <router-link to="/admin/products" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Product
+                                </p>
+                            </router-link>
+                        </li>
                         {{-- Logout --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

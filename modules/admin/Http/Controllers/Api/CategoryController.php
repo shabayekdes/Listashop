@@ -4,21 +4,21 @@ namespace Admin\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use User\Repositories\UserRepository;
-use User\Http\Resources\UserResource;
+use Category\Http\Resources\CategoryResource;
+use Category\Repositories\CategoryRepository;
 
-class UserController extends Controller
+class CategoryController extends Controller
 {
-    protected $user;
+    protected $category;
 
     /**
-     * User Controller constructor.
+     * Category Controller constructor.
      *
-     * @param UserRepositoryInterface $user
+     * @param CategoryRepositoryInterface $category
      */
-    public function __construct(UserRepository $user)
+    public function __construct(CategoryRepository $category)
     {
-        $this->user = $user;
+        $this->category = $category;
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection($this->user->paginate());
+        return CategoryResource::collection($this->category->paginate());
     }
 
     /**

@@ -17,11 +17,11 @@ class CreateAdminsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('password');
             $table->string('avatar')->default('user.svg');
             $table->boolean('status')->default(1);
             $table->unsignedInteger('role_id')->default(2);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
 

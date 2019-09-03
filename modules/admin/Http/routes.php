@@ -2,12 +2,13 @@
 
 
 Route::group([
-    'middleware' => ['auth:api-admin', 'admin']
+    // 'middleware' => ['auth:api-admin', 'admin']
 ], function () {
 
-    Route::namespace('Admin\Http\Controllers')->prefix('admin')->group(function () {
+    Route::namespace('Admin\Http\Controllers\Api')->prefix('api/admin')->group(function () {
 
         Route::resource('user', 'UserController');
+        Route::resource('category', 'CategoryController');
 
     });
 

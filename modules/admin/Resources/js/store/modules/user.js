@@ -20,7 +20,7 @@ const actions = {
 
 const mutations = {
     showListUsers: (state, data) => {
-        state.users = data;
+        state.users = data.data;
     }
 };
 

@@ -31,6 +31,7 @@ class ShopController extends Controller
 
     public function index()
     {
+
         $product = Product::latest();
 
         $products = $product->get();
