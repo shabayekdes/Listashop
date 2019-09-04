@@ -460,6 +460,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./modules/admin/resources/js/pages/product/Edit.vue":
+/*!***********************************************************!*\
+  !*** ./modules/admin/resources/js/pages/product/Edit.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_df3b892a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=df3b892a& */ "./modules/admin/resources/js/pages/product/Edit.vue?vue&type=template&id=df3b892a&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./modules/admin/resources/js/pages/product/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_df3b892a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_df3b892a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "modules/admin/resources/js/pages/product/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./modules/admin/resources/js/pages/product/Edit.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./modules/admin/resources/js/pages/product/Edit.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./modules/admin/resources/js/pages/product/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./modules/admin/resources/js/pages/product/Edit.vue?vue&type=template&id=df3b892a&":
+/*!******************************************************************************************!*\
+  !*** ./modules/admin/resources/js/pages/product/Edit.vue?vue&type=template&id=df3b892a& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_df3b892a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=df3b892a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./modules/admin/resources/js/pages/product/Edit.vue?vue&type=template&id=df3b892a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_df3b892a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_df3b892a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./modules/admin/resources/js/pages/product/Lists.vue":
+/*!************************************************************!*\
+  !*** ./modules/admin/resources/js/pages/product/Lists.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Lists_vue_vue_type_template_id_b457e5f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Lists.vue?vue&type=template&id=b457e5f8& */ "./modules/admin/resources/js/pages/product/Lists.vue?vue&type=template&id=b457e5f8&");
+/* harmony import */ var _Lists_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Lists.vue?vue&type=script&lang=js& */ "./modules/admin/resources/js/pages/product/Lists.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Lists_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Lists_vue_vue_type_template_id_b457e5f8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Lists_vue_vue_type_template_id_b457e5f8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "modules/admin/resources/js/pages/product/Lists.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./modules/admin/resources/js/pages/product/Lists.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./modules/admin/resources/js/pages/product/Lists.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Lists_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Lists.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./modules/admin/resources/js/pages/product/Lists.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Lists_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./modules/admin/resources/js/pages/product/Lists.vue?vue&type=template&id=b457e5f8&":
+/*!*******************************************************************************************!*\
+  !*** ./modules/admin/resources/js/pages/product/Lists.vue?vue&type=template&id=b457e5f8& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Lists_vue_vue_type_template_id_b457e5f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Lists.vue?vue&type=template&id=b457e5f8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./modules/admin/resources/js/pages/product/Lists.vue?vue&type=template&id=b457e5f8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Lists_vue_vue_type_template_id_b457e5f8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Lists_vue_vue_type_template_id_b457e5f8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./modules/admin/resources/js/pages/user/Users.vue":
 /*!*********************************************************!*\
   !*** ./modules/admin/resources/js/pages/user/Users.vue ***!
@@ -542,7 +680,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_dashboard_Dashboard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pages/dashboard/Dashboard.vue */ "./modules/admin/resources/js/pages/dashboard/Dashboard.vue");
 /* harmony import */ var _pages_user_Users_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/user/Users.vue */ "./modules/admin/resources/js/pages/user/Users.vue");
 /* harmony import */ var _pages_category_Categories_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/category/Categories.vue */ "./modules/admin/resources/js/pages/category/Categories.vue");
-/* harmony import */ var _views_NotFound_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/NotFound.vue */ "./modules/admin/resources/js/views/NotFound.vue");
+/* harmony import */ var _pages_product_Lists_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/product/Lists.vue */ "./modules/admin/resources/js/pages/product/Lists.vue");
+/* harmony import */ var _pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/product/Edit.vue */ "./modules/admin/resources/js/pages/product/Edit.vue");
+/* harmony import */ var _views_NotFound_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/NotFound.vue */ "./modules/admin/resources/js/views/NotFound.vue");
+
+
 
 
 
@@ -560,8 +702,16 @@ var routes = [{
   name: "Categories.index",
   component: _pages_category_Categories_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
+  path: "/admin/products",
+  name: "Products.index",
+  component: _pages_product_Lists_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+}, {
+  path: "/admin/product/create",
+  name: "Products.create",
+  component: _pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
   path: "/admin/*",
-  component: _views_NotFound_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _views_NotFound_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }];
 
 /***/ }),
@@ -580,6 +730,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/user */ "./modules/admin/resources/js/store/modules/user.js");
 /* harmony import */ var _modules_category__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/category */ "./modules/admin/resources/js/store/modules/category.js");
+/* harmony import */ var _modules_product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/product */ "./modules/admin/resources/js/store/modules/product.js");
+
 
 
 
@@ -607,7 +759,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   },
   modules: {
     User: _modules_user__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Category: _modules_category__WEBPACK_IMPORTED_MODULE_3__["default"]
+    Category: _modules_category__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Product: _modules_product__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }));
 
@@ -686,6 +839,90 @@ var actions = {
 var mutations = {
   showListCategories: function showListCategories(state, data) {
     state.categories = data.data;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./modules/admin/resources/js/store/modules/product.js":
+/*!*************************************************************!*\
+  !*** ./modules/admin/resources/js/store/modules/product.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var state = {
+  products: []
+};
+var getters = {
+  getAllProducts: function getAllProducts(state) {
+    return state.products;
+  }
+};
+var actions = {
+  fetchListProducts: function () {
+    var _fetchListProducts = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+      var commit,
+          paged,
+          query,
+          response,
+          _args = arguments;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              paged = _args.length > 1 && _args[1] !== undefined ? _args[1] : null;
+              query = paged !== null ? "?page=".concat(paged) : "";
+              _context.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat(urlApi, "product").concat(query));
+
+            case 5:
+              response = _context.sent;
+              commit("showListProducts", response.data);
+              commit("setMetaData", response.data, {
+                root: true
+              });
+
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    function fetchListProducts(_x) {
+      return _fetchListProducts.apply(this, arguments);
+    }
+
+    return fetchListProducts;
+  }()
+};
+var mutations = {
+  showListProducts: function showListProducts(state, data) {
+    state.products = data.data;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3011,6 +3248,582 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log("Hello World");
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./modules/admin/resources/js/pages/product/Edit.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./modules/admin/resources/js/pages/product/Edit.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Pagination.vue */ "./modules/admin/resources/js/components/Pagination.vue");
+/* harmony import */ var _components_DataTable_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/DataTable.vue */ "./modules/admin/resources/js/components/DataTable.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Users",
+  components: {
+    pagination: _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    datatable: _components_DataTable_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      columns: [{
+        width: "2%",
+        label: "#",
+        name: "id",
+        active: true
+      }, {
+        width: "30%",
+        label: "Name",
+        name: "name",
+        active: true
+      }, {
+        width: "30%",
+        label: "Description",
+        name: "description",
+        active: true
+      }, {
+        width: "20%",
+        label: "Status",
+        name: "status",
+        active: true
+      }, {
+        width: "18%",
+        label: "Action",
+        name: "action",
+        active: false
+      }]
+    };
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListProducts"])),
+  created: function created() {
+    this.fetchListProducts();
+  },
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getAllProducts", "getMetaData"])
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./modules/admin/resources/js/pages/product/Lists.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./modules/admin/resources/js/pages/product/Lists.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Pagination.vue */ "./modules/admin/resources/js/components/Pagination.vue");
+/* harmony import */ var _components_DataTable_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/DataTable.vue */ "./modules/admin/resources/js/components/DataTable.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Users",
+  components: {
+    pagination: _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    datatable: _components_DataTable_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      columns: [{
+        width: "2%",
+        label: "#",
+        name: "id",
+        active: true
+      }, {
+        width: "30%",
+        label: "Name",
+        name: "name",
+        active: true
+      }, {
+        width: "30%",
+        label: "Description",
+        name: "description",
+        active: true
+      }, {
+        width: "20%",
+        label: "Status",
+        name: "status",
+        active: true
+      }, {
+        width: "18%",
+        label: "Action",
+        name: "action",
+        active: false
+      }]
+    };
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListProducts"])),
+  created: function created() {
+    this.fetchListProducts();
+  },
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getAllProducts", "getMetaData"])
 });
 
 /***/ }),
@@ -40425,6 +41238,3714 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content-wrapper" }, [
       _c("div", { staticClass: "content" }, [_vm._v("Hi there, Admin")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./modules/admin/resources/js/pages/product/Edit.vue?vue&type=template&id=df3b892a&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./modules/admin/resources/js/pages/product/Edit.vue?vue&type=template&id=df3b892a& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "content-wrapper",
+        staticStyle: { "min-height": "971.94px" }
+      },
+      [
+        _c("section", { staticClass: "content-header" }, [
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "row mb-2" }, [
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("h1", [_vm._v("DataTables")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "breadcrumb-item active" }, [
+                    _vm._v("DataTables")
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("section", { staticClass: "content" }, [
+          _c(
+            "form",
+            {
+              staticClass: "product_form create",
+              attrs: {
+                method: "POST",
+                action: "https://pos.ultimatefosters.com/products",
+                "accept-charset": "UTF-8",
+                id: "product_add_form",
+                enctype: "multipart/form-data"
+              }
+            },
+            [
+              _c("input", {
+                attrs: {
+                  name: "_token",
+                  type: "hidden",
+                  value: "BtQqvIEZrRqL81e1YkIxntSSsoA9HSD5IBSo1ozk"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "box box-primary" }, [
+                _c("div", { staticClass: "box-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "name" } }, [
+                          _vm._v("Product Name:*")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            required: "",
+                            placeholder: "Product Name",
+                            name: "name",
+                            type: "text",
+                            id: "name"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "sku" } }, [
+                          _vm._v("SKU:")
+                        ]),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass:
+                            "fa fa-info-circle text-info hover-q no-print ",
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-container": "body",
+                            "data-toggle": "popover",
+                            "data-placement": "auto bottom",
+                            "data-content":
+                              "Unique product id or Stock Keeping Unit <br><br>Keep it blank to automatically generate sku.<br><small class='text-muted'>You can modify sku prefix in Business settings.</small>",
+                            "data-html": "true",
+                            "data-trigger": "hover",
+                            "data-original-title": "",
+                            title: ""
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "SKU",
+                            name: "sku",
+                            type: "text",
+                            id: "sku"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "barcode_type" } }, [
+                          _vm._v("Barcode Type:*")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "form-control select2 select2-hidden-accessible",
+                            attrs: {
+                              required: "",
+                              id: "barcode_type",
+                              name: "barcode_type",
+                              tabindex: "-1",
+                              "aria-hidden": "true"
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              {
+                                attrs: { value: "C128", selected: "selected" }
+                              },
+                              [_vm._v("Code 128 (C128)")]
+                            ),
+                            _c("option", { attrs: { value: "C39" } }, [
+                              _vm._v("Code 39 (C39)")
+                            ]),
+                            _c("option", { attrs: { value: "EAN13" } }, [
+                              _vm._v("EAN-13")
+                            ]),
+                            _c("option", { attrs: { value: "EAN8" } }, [
+                              _vm._v("EAN-8")
+                            ]),
+                            _c("option", { attrs: { value: "UPCA" } }, [
+                              _vm._v("UPC-A")
+                            ]),
+                            _c("option", { attrs: { value: "UPCE" } }, [
+                              _vm._v("UPC-E")
+                            ])
+                          ]
+                        ),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "select2 select2-container select2-container--default",
+                            staticStyle: { width: "498px" },
+                            attrs: { dir: "ltr" }
+                          },
+                          [
+                            _c("span", { staticClass: "selection" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "select2-selection select2-selection--single",
+                                  attrs: {
+                                    role: "combobox",
+                                    "aria-haspopup": "true",
+                                    "aria-expanded": "false",
+                                    tabindex: "0",
+                                    "aria-labelledby":
+                                      "select2-barcode_type-container"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "select2-selection__rendered",
+                                      attrs: {
+                                        id: "select2-barcode_type-container",
+                                        title: "Code 128 (C128)"
+                                      }
+                                    },
+                                    [_vm._v("Code 128 (C128)")]
+                                  ),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "select2-selection__arrow",
+                                      attrs: { role: "presentation" }
+                                    },
+                                    [
+                                      _c("b", {
+                                        attrs: { role: "presentation" }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _c("span", {
+                              staticClass: "dropdown-wrapper",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "unit_id" } }, [
+                          _vm._v("Unit:*")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group" }, [
+                          _c(
+                            "select",
+                            {
+                              staticClass:
+                                "form-control select2 select2-hidden-accessible",
+                              attrs: {
+                                required: "",
+                                id: "unit_id",
+                                name: "unit_id",
+                                tabindex: "-1",
+                                "aria-hidden": "true"
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { value: "", selected: "selected" } },
+                                [_vm._v("Please Select")]
+                              ),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Pieces (Pc(s))")
+                              ]),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Packets (packets)")
+                              ]),
+                              _c("option", { attrs: { value: "3" } }, [
+                                _vm._v("Grams (g)")
+                              ])
+                            ]
+                          ),
+                          _c(
+                            "span",
+                            {
+                              staticClass:
+                                "select2 select2-container select2-container--default",
+                              staticStyle: { width: "456px" },
+                              attrs: { dir: "ltr" }
+                            },
+                            [
+                              _c("span", { staticClass: "selection" }, [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "select2-selection select2-selection--single",
+                                    attrs: {
+                                      role: "combobox",
+                                      "aria-haspopup": "true",
+                                      "aria-expanded": "false",
+                                      tabindex: "0",
+                                      "aria-labelledby":
+                                        "select2-unit_id-container"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "select2-selection__rendered",
+                                        attrs: {
+                                          id: "select2-unit_id-container",
+                                          title: "Please Select"
+                                        }
+                                      },
+                                      [_vm._v("Please Select")]
+                                    ),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "select2-selection__arrow",
+                                        attrs: { role: "presentation" }
+                                      },
+                                      [
+                                        _c("b", {
+                                          attrs: { role: "presentation" }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _c("span", {
+                                staticClass: "dropdown-wrapper",
+                                attrs: { "aria-hidden": "true" }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-default bg-white btn-flat btn-modal",
+                                attrs: {
+                                  type: "button",
+                                  "data-href":
+                                    "https://pos.ultimatefosters.com/units/create?quick_add=1",
+                                  title: "Add Unit",
+                                  "data-container": ".view_modal"
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass:
+                                    "fa fa-plus-circle text-primary fa-lg"
+                                })
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4  hide " }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "sub_unit_ids" } }, [
+                          _vm._v("Related Sub Units:")
+                        ]),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass:
+                            "fa fa-info-circle text-info hover-q no-print ",
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-container": "body",
+                            "data-toggle": "popover",
+                            "data-placement": "auto bottom",
+                            "data-content":
+                              "Based on selected Unit it will show sub units for it. Select the sub-unit applicable. Leave blank if all sub-units are applicable for the product.",
+                            "data-html": "true",
+                            "data-trigger": "hover"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("select", {
+                          staticClass:
+                            "form-control select2 select2-hidden-accessible",
+                          attrs: {
+                            multiple: "",
+                            id: "sub_unit_ids",
+                            name: "sub_unit_ids[]",
+                            tabindex: "-1",
+                            "aria-hidden": "true"
+                          }
+                        }),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "select2 select2-container select2-container--default",
+                            staticStyle: { width: "100px" },
+                            attrs: { dir: "ltr" }
+                          },
+                          [
+                            _c("span", { staticClass: "selection" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "select2-selection select2-selection--multiple",
+                                  attrs: {
+                                    role: "combobox",
+                                    "aria-haspopup": "true",
+                                    "aria-expanded": "false",
+                                    tabindex: "-1"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "ul",
+                                    {
+                                      staticClass: "select2-selection__rendered"
+                                    },
+                                    [
+                                      _c(
+                                        "li",
+                                        {
+                                          staticClass:
+                                            "select2-search select2-search--inline"
+                                        },
+                                        [
+                                          _c("input", {
+                                            staticClass:
+                                              "select2-search__field",
+                                            staticStyle: { width: "0.75em" },
+                                            attrs: {
+                                              type: "search",
+                                              tabindex: "0",
+                                              autocomplete: "off",
+                                              autocorrect: "off",
+                                              autocapitalize: "off",
+                                              spellcheck: "false",
+                                              role: "textbox",
+                                              "aria-autocomplete": "list",
+                                              placeholder: ""
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _c("span", {
+                              staticClass: "dropdown-wrapper",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4 " }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "brand_id" } }, [
+                          _vm._v("Brand:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group" }, [
+                          _c(
+                            "select",
+                            {
+                              staticClass:
+                                "form-control select2 select2-hidden-accessible",
+                              attrs: {
+                                id: "brand_id",
+                                name: "brand_id",
+                                tabindex: "-1",
+                                "aria-hidden": "true"
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { selected: "selected", value: "" } },
+                                [_vm._v("Please Select")]
+                              ),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Levis")
+                              ]),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Espirit")
+                              ]),
+                              _c("option", { attrs: { value: "3" } }, [
+                                _vm._v("U.S. Polo Assn.")
+                              ]),
+                              _c("option", { attrs: { value: "4" } }, [
+                                _vm._v("Nike")
+                              ]),
+                              _c("option", { attrs: { value: "5" } }, [
+                                _vm._v("Puma")
+                              ]),
+                              _c("option", { attrs: { value: "6" } }, [
+                                _vm._v("Adidas")
+                              ]),
+                              _c("option", { attrs: { value: "7" } }, [
+                                _vm._v("Samsung")
+                              ]),
+                              _c("option", { attrs: { value: "8" } }, [
+                                _vm._v("Apple")
+                              ]),
+                              _c("option", { attrs: { value: "9" } }, [
+                                _vm._v("Acer")
+                              ]),
+                              _c("option", { attrs: { value: "10" } }, [
+                                _vm._v("Bowflex")
+                              ]),
+                              _c("option", { attrs: { value: "11" } }, [
+                                _vm._v("Oreo")
+                              ]),
+                              _c("option", { attrs: { value: "12" } }, [
+                                _vm._v("Sharewood")
+                              ]),
+                              _c("option", { attrs: { value: "13" } }, [
+                                _vm._v("Barilla")
+                              ]),
+                              _c("option", { attrs: { value: "14" } }, [
+                                _vm._v("Lipton")
+                              ])
+                            ]
+                          ),
+                          _c(
+                            "span",
+                            {
+                              staticClass:
+                                "select2 select2-container select2-container--default",
+                              staticStyle: { width: "456px" },
+                              attrs: { dir: "ltr" }
+                            },
+                            [
+                              _c("span", { staticClass: "selection" }, [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "select2-selection select2-selection--single",
+                                    attrs: {
+                                      role: "combobox",
+                                      "aria-haspopup": "true",
+                                      "aria-expanded": "false",
+                                      tabindex: "0",
+                                      "aria-labelledby":
+                                        "select2-brand_id-container"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "select2-selection__rendered",
+                                        attrs: {
+                                          id: "select2-brand_id-container",
+                                          title: "Please Select"
+                                        }
+                                      },
+                                      [_vm._v("Please Select")]
+                                    ),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "select2-selection__arrow",
+                                        attrs: { role: "presentation" }
+                                      },
+                                      [
+                                        _c("b", {
+                                          attrs: { role: "presentation" }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _c("span", {
+                                staticClass: "dropdown-wrapper",
+                                attrs: { "aria-hidden": "true" }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-default bg-white btn-flat btn-modal",
+                                attrs: {
+                                  type: "button",
+                                  "data-href":
+                                    "https://pos.ultimatefosters.com/brands/create?quick_add=1",
+                                  title: "Add brand",
+                                  "data-container": ".view_modal"
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass:
+                                    "fa fa-plus-circle text-primary fa-lg"
+                                })
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4 " }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "category_id" } }, [
+                          _vm._v("Category:")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "form-control select2 select2-hidden-accessible",
+                            attrs: {
+                              id: "category_id",
+                              name: "category_id",
+                              tabindex: "-1",
+                              "aria-hidden": "true"
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "selected", value: "" } },
+                              [_vm._v("Please Select")]
+                            ),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Men's")
+                            ]),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Women's")
+                            ]),
+                            _c("option", { attrs: { value: "3" } }, [
+                              _vm._v("Accessories")
+                            ]),
+                            _c("option", { attrs: { value: "12" } }, [
+                              _vm._v("Electronics")
+                            ]),
+                            _c("option", { attrs: { value: "15" } }, [
+                              _vm._v("Sports")
+                            ]),
+                            _c("option", { attrs: { value: "18" } }, [
+                              _vm._v("Books")
+                            ]),
+                            _c("option", { attrs: { value: "21" } }, [
+                              _vm._v("Food & Grocery")
+                            ])
+                          ]
+                        ),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "select2 select2-container select2-container--default",
+                            staticStyle: { width: "498px" },
+                            attrs: { dir: "ltr" }
+                          },
+                          [
+                            _c("span", { staticClass: "selection" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "select2-selection select2-selection--single",
+                                  attrs: {
+                                    role: "combobox",
+                                    "aria-haspopup": "true",
+                                    "aria-expanded": "false",
+                                    tabindex: "0",
+                                    "aria-labelledby":
+                                      "select2-category_id-container"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "select2-selection__rendered",
+                                      attrs: {
+                                        id: "select2-category_id-container",
+                                        title: "Please Select"
+                                      }
+                                    },
+                                    [_vm._v("Please Select")]
+                                  ),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "select2-selection__arrow",
+                                      attrs: { role: "presentation" }
+                                    },
+                                    [
+                                      _c("b", {
+                                        attrs: { role: "presentation" }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _c("span", {
+                              staticClass: "dropdown-wrapper",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4 " }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "sub_category_id" } }, [
+                          _vm._v("Sub category:")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "form-control select2 select2-hidden-accessible",
+                            attrs: {
+                              id: "sub_category_id",
+                              name: "sub_category_id",
+                              tabindex: "-1",
+                              "aria-hidden": "true"
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "selected", value: "" } },
+                              [_vm._v("Please Select")]
+                            )
+                          ]
+                        ),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "select2 select2-container select2-container--default",
+                            staticStyle: { width: "498px" },
+                            attrs: { dir: "ltr" }
+                          },
+                          [
+                            _c("span", { staticClass: "selection" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "select2-selection select2-selection--single",
+                                  attrs: {
+                                    role: "combobox",
+                                    "aria-haspopup": "true",
+                                    "aria-expanded": "false",
+                                    tabindex: "0",
+                                    "aria-labelledby":
+                                      "select2-sub_category_id-container"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "select2-selection__rendered",
+                                      attrs: {
+                                        id: "select2-sub_category_id-container",
+                                        title: "Please Select"
+                                      }
+                                    },
+                                    [_vm._v("Please Select")]
+                                  ),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "select2-selection__arrow",
+                                      attrs: { role: "presentation" }
+                                    },
+                                    [
+                                      _c("b", {
+                                        attrs: { role: "presentation" }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _c("span", {
+                              staticClass: "dropdown-wrapper",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "icheckbox_square-blue checked",
+                              staticStyle: { position: "relative" },
+                              attrs: {
+                                "aria-checked": "false",
+                                "aria-disabled": "false"
+                              }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "input-icheck",
+                                staticStyle: {
+                                  position: "absolute",
+                                  opacity: "0"
+                                },
+                                attrs: {
+                                  id: "enable_stock",
+                                  checked: "checked",
+                                  name: "enable_stock",
+                                  type: "checkbox",
+                                  value: "1"
+                                }
+                              }),
+                              _c("ins", {
+                                staticClass: "iCheck-helper",
+                                staticStyle: {
+                                  position: "absolute",
+                                  top: "0%",
+                                  left: "0%",
+                                  display: "block",
+                                  width: "100%",
+                                  height: "100%",
+                                  margin: "0px",
+                                  padding: "0px",
+                                  background: "rgb(255, 255, 255)",
+                                  border: "0px",
+                                  opacity: "0"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Manage Stock?")])
+                        ]),
+                        _c("i", {
+                          staticClass:
+                            "fa fa-info-circle text-info hover-q no-print ",
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-container": "body",
+                            "data-toggle": "popover",
+                            "data-placement": "auto bottom",
+                            "data-content":
+                              "Enable or disable stock management for a product. <br><br><small class='text-muted'>Stock Management should be disable mostly for services. Example: Hair-Cutting, Repairing, etc.</small>",
+                            "data-html": "true",
+                            "data-trigger": "hover"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "help-block" }, [
+                          _c("i", [
+                            _vm._v("Enable stock management at product level")
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-sm-4 ",
+                        attrs: { id: "alert_quantity_div" }
+                      },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "alert_quantity" } }, [
+                            _vm._v("Alert quantity:*")
+                          ]),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass:
+                              "fa fa-info-circle text-info hover-q no-print ",
+                            attrs: {
+                              "aria-hidden": "true",
+                              "data-container": "body",
+                              "data-toggle": "popover",
+                              "data-placement": "auto bottom",
+                              "data-content":
+                                "Get alert when product stock reaches or goes below the specified quantity.<br><br><small class='text-muted'>Products with low stock will be displayed in dashboard - Product Stock Alert section.</small>",
+                              "data-html": "true",
+                              "data-trigger": "hover"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: {
+                              required: "",
+                              placeholder: "Alert quantity",
+                              min: "0",
+                              name: "alert_quantity",
+                              type: "number",
+                              id: "alert_quantity"
+                            }
+                          })
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-8" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "product_description" } }, [
+                          _vm._v("Product Description:")
+                        ]),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          staticClass: "form-control",
+                          staticStyle: {
+                            visibility: "hidden",
+                            display: "none"
+                          },
+                          attrs: {
+                            name: "product_description",
+                            cols: "50",
+                            rows: "10",
+                            id: "product_description"
+                          }
+                        }),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "cke_1 cke cke_reset cke_chrome cke_editor_product_description cke_ltr cke_browser_webkit",
+                            attrs: {
+                              id: "cke_product_description",
+                              dir: "ltr",
+                              lang: "en",
+                              role: "application",
+                              "aria-labelledby":
+                                "cke_product_description_arialbl"
+                            }
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "cke_voice_label",
+                                attrs: { id: "cke_product_description_arialbl" }
+                              },
+                              [_vm._v("Rich Text Editor, product_description")]
+                            ),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "cke_inner cke_reset",
+                                attrs: { role: "presentation" }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "cke_top cke_reset_all",
+                                    staticStyle: {
+                                      height: "auto",
+                                      "user-select": "none"
+                                    },
+                                    attrs: {
+                                      id: "cke_1_top",
+                                      role: "presentation"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "cke_voice_label",
+                                        attrs: { id: "cke_12" }
+                                      },
+                                      [_vm._v("Editor toolbars")]
+                                    ),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "cke_toolbox",
+                                        attrs: {
+                                          id: "cke_1_toolbox",
+                                          role: "group",
+                                          "aria-labelledby": "cke_12",
+                                          onmousedown: "return false;"
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass: "cke_toolbar_break"
+                                        }),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "cke_toolbar",
+                                            attrs: {
+                                              id: "cke_17",
+                                              "aria-labelledby": "cke_17_label",
+                                              role: "toolbar"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_voice_label",
+                                                attrs: { id: "cke_17_label" }
+                                              },
+                                              [_vm._v("Basic Styles")]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_start"
+                                            }),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_toolgroup",
+                                                attrs: { role: "presentation" }
+                                              },
+                                              [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__bold cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_18",
+                                                      href:
+                                                        "javascript:void('Bold')",
+                                                      title: "Bold (Ctrl+B)",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_18_label",
+                                                      "aria-describedby":
+                                                        "cke_18_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(2,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(3,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(4,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__bold_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -24px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__bold_label",
+                                                        attrs: {
+                                                          id: "cke_18_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Bold")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label",
+                                                        attrs: {
+                                                          id:
+                                                            "cke_18_description",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "Keyboard shortcut Ctrl+B"
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__italic cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_19",
+                                                      href:
+                                                        "javascript:void('Italic')",
+                                                      title: "Italic (Ctrl+I)",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_19_label",
+                                                      "aria-describedby":
+                                                        "cke_19_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(5,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(6,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(7,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__italic_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -48px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__italic_label",
+                                                        attrs: {
+                                                          id: "cke_19_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Italic")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label",
+                                                        attrs: {
+                                                          id:
+                                                            "cke_19_description",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "Keyboard shortcut Ctrl+I"
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__underline cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_20",
+                                                      href:
+                                                        "javascript:void('Underline')",
+                                                      title:
+                                                        "Underline (Ctrl+U)",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_20_label",
+                                                      "aria-describedby":
+                                                        "cke_20_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(8,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(9,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(10,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__underline_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -144px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__underline_label",
+                                                        attrs: {
+                                                          id: "cke_20_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Underline")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label",
+                                                        attrs: {
+                                                          id:
+                                                            "cke_20_description",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "Keyboard shortcut Ctrl+U"
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__strike cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_21",
+                                                      href:
+                                                        "javascript:void('Strikethrough')",
+                                                      title: "Strikethrough",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_21_label",
+                                                      "aria-describedby":
+                                                        "cke_21_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(11,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(12,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(13,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__strike_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -72px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__strike_label",
+                                                        attrs: {
+                                                          id: "cke_21_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Strikethrough")]
+                                                    ),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_label",
+                                                      attrs: {
+                                                        id:
+                                                          "cke_21_description",
+                                                        "aria-hidden": "false"
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_end"
+                                            })
+                                          ]
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "cke_toolbar",
+                                            attrs: {
+                                              id: "cke_22",
+                                              "aria-labelledby": "cke_22_label",
+                                              role: "toolbar"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_voice_label",
+                                                attrs: { id: "cke_22_label" }
+                                              },
+                                              [_vm._v("Paragraph")]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_start"
+                                            }),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_toolgroup",
+                                                attrs: { role: "presentation" }
+                                              },
+                                              [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__justifyleft cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_23",
+                                                      href:
+                                                        "javascript:void('Align Left')",
+                                                      title: "Align Left",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_23_label",
+                                                      "aria-describedby":
+                                                        "cke_23_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(14,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(15,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(16,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__justifyleft_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -1152px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__justifyleft_label",
+                                                        attrs: {
+                                                          id: "cke_23_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Align Left")]
+                                                    ),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_label",
+                                                      attrs: {
+                                                        id:
+                                                          "cke_23_description",
+                                                        "aria-hidden": "false"
+                                                      }
+                                                    })
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__justifycenter cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_24",
+                                                      href:
+                                                        "javascript:void('Center')",
+                                                      title: "Center",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_24_label",
+                                                      "aria-describedby":
+                                                        "cke_24_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(17,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(18,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(19,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__justifycenter_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -1128px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__justifycenter_label",
+                                                        attrs: {
+                                                          id: "cke_24_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Center")]
+                                                    ),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_label",
+                                                      attrs: {
+                                                        id:
+                                                          "cke_24_description",
+                                                        "aria-hidden": "false"
+                                                      }
+                                                    })
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__justifyright cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_25",
+                                                      href:
+                                                        "javascript:void('Align Right')",
+                                                      title: "Align Right",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_25_label",
+                                                      "aria-describedby":
+                                                        "cke_25_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(20,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(21,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(22,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__justifyright_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -1176px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__justifyright_label",
+                                                        attrs: {
+                                                          id: "cke_25_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Align Right")]
+                                                    ),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_label",
+                                                      attrs: {
+                                                        id:
+                                                          "cke_25_description",
+                                                        "aria-hidden": "false"
+                                                      }
+                                                    })
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__justifyblock cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_26",
+                                                      href:
+                                                        "javascript:void('Justify')",
+                                                      title: "Justify",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_26_label",
+                                                      "aria-describedby":
+                                                        "cke_26_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(23,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(24,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(25,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__justifyblock_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -1104px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__justifyblock_label",
+                                                        attrs: {
+                                                          id: "cke_26_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Justify")]
+                                                    ),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_label",
+                                                      attrs: {
+                                                        id:
+                                                          "cke_26_description",
+                                                        "aria-hidden": "false"
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_end"
+                                            })
+                                          ]
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "cke_toolbar",
+                                            attrs: {
+                                              id: "cke_27",
+                                              "aria-labelledby": "cke_27_label",
+                                              role: "toolbar"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_voice_label",
+                                                attrs: { id: "cke_27_label" }
+                                              },
+                                              [_vm._v("Insert")]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_start"
+                                            }),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_toolgroup",
+                                                attrs: { role: "presentation" }
+                                              },
+                                              [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__horizontalrule cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_28",
+                                                      href:
+                                                        "javascript:void('Insert Horizontal Line')",
+                                                      title:
+                                                        "Insert Horizontal Line",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_28_label",
+                                                      "aria-describedby":
+                                                        "cke_28_description",
+                                                      "aria-haspopup": "false",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(26,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(27,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(28,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__horizontalrule_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -912px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__horizontalrule_label",
+                                                        attrs: {
+                                                          id: "cke_28_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "Insert Horizontal Line"
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_label",
+                                                      attrs: {
+                                                        id:
+                                                          "cke_28_description",
+                                                        "aria-hidden": "false"
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_end"
+                                            })
+                                          ]
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "cke_toolbar",
+                                            attrs: {
+                                              id: "cke_29",
+                                              "aria-labelledby": "cke_29_label",
+                                              role: "toolbar"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_voice_label",
+                                                attrs: { id: "cke_29_label" }
+                                              },
+                                              [_vm._v("Styles")]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_start"
+                                            }),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "cke_combo cke_combo__styles cke_combo_off",
+                                                attrs: {
+                                                  id: "cke_13",
+                                                  role: "presentation"
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "cke_combo_label",
+                                                    attrs: {
+                                                      id: "cke_13_label"
+                                                    }
+                                                  },
+                                                  [_vm._v("Styles")]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_combo_button",
+                                                    attrs: {
+                                                      title:
+                                                        "Formatting Styles",
+                                                      tabindex: "-1",
+                                                      href:
+                                                        "javascript:void('Formatting Styles')",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_13_label",
+                                                      "aria-haspopup": "true",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(30,event,this);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(31,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(29,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_combo_text cke_combo_inlinelabel",
+                                                        attrs: {
+                                                          id: "cke_13_text"
+                                                        }
+                                                      },
+                                                      [_vm._v("Styles")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_combo_open"
+                                                      },
+                                                      [
+                                                        _c("span", {
+                                                          staticClass:
+                                                            "cke_combo_arrow"
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "cke_combo cke_combo__format cke_combo_off",
+                                                attrs: {
+                                                  id: "cke_14",
+                                                  role: "presentation"
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "cke_combo_label",
+                                                    attrs: {
+                                                      id: "cke_14_label"
+                                                    }
+                                                  },
+                                                  [_vm._v("Format")]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_combo_button",
+                                                    attrs: {
+                                                      title: "Paragraph Format",
+                                                      tabindex: "-1",
+                                                      href:
+                                                        "javascript:void('Paragraph Format')",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_14_label",
+                                                      "aria-haspopup": "true",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(33,event,this);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(34,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(32,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_combo_text cke_combo_inlinelabel",
+                                                        attrs: {
+                                                          id: "cke_14_text"
+                                                        }
+                                                      },
+                                                      [_vm._v("Format")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_combo_open"
+                                                      },
+                                                      [
+                                                        _c("span", {
+                                                          staticClass:
+                                                            "cke_combo_arrow"
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "cke_combo cke_combo__font cke_combo_off",
+                                                attrs: {
+                                                  id: "cke_15",
+                                                  role: "presentation"
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "cke_combo_label",
+                                                    attrs: {
+                                                      id: "cke_15_label"
+                                                    }
+                                                  },
+                                                  [_vm._v("Font")]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_combo_button",
+                                                    attrs: {
+                                                      title: "Font Name",
+                                                      tabindex: "-1",
+                                                      href:
+                                                        "javascript:void('Font Name')",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_15_label",
+                                                      "aria-haspopup": "true",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(36,event,this);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(37,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(35,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_combo_text cke_combo_inlinelabel",
+                                                        attrs: {
+                                                          id: "cke_15_text"
+                                                        }
+                                                      },
+                                                      [_vm._v("Font")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_combo_open"
+                                                      },
+                                                      [
+                                                        _c("span", {
+                                                          staticClass:
+                                                            "cke_combo_arrow"
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "cke_combo cke_combo__fontsize cke_combo_off",
+                                                attrs: {
+                                                  id: "cke_16",
+                                                  role: "presentation"
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "cke_combo_label",
+                                                    attrs: {
+                                                      id: "cke_16_label"
+                                                    }
+                                                  },
+                                                  [_vm._v("Size")]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_combo_button",
+                                                    attrs: {
+                                                      title: "Font Size",
+                                                      tabindex: "-1",
+                                                      href:
+                                                        "javascript:void('Font Size')",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_16_label",
+                                                      "aria-haspopup": "true",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(39,event,this);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(40,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(38,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_combo_text cke_combo_inlinelabel",
+                                                        attrs: {
+                                                          id: "cke_16_text"
+                                                        }
+                                                      },
+                                                      [_vm._v("Size")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_combo_open"
+                                                      },
+                                                      [
+                                                        _c("span", {
+                                                          staticClass:
+                                                            "cke_combo_arrow"
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_end"
+                                            })
+                                          ]
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "cke_toolbar",
+                                            attrs: {
+                                              id: "cke_30",
+                                              "aria-labelledby": "cke_30_label",
+                                              role: "toolbar"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_voice_label",
+                                                attrs: { id: "cke_30_label" }
+                                              },
+                                              [_vm._v("Colors")]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_start"
+                                            }),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "cke_toolgroup",
+                                                attrs: { role: "presentation" }
+                                              },
+                                              [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__textcolor cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_31",
+                                                      href:
+                                                        "javascript:void('Text Color')",
+                                                      title: "Text Color",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_31_label",
+                                                      "aria-describedby":
+                                                        "cke_31_description",
+                                                      "aria-haspopup": "true",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(41,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(42,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(43,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__textcolor_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -408px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__textcolor_label",
+                                                        attrs: {
+                                                          id: "cke_31_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [_vm._v("Text Color")]
+                                                    ),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_label",
+                                                      attrs: {
+                                                        id:
+                                                          "cke_31_description",
+                                                        "aria-hidden": "false"
+                                                      }
+                                                    }),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_arrow"
+                                                    })
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "cke_button cke_button__bgcolor cke_button_off",
+                                                    attrs: {
+                                                      id: "cke_32",
+                                                      href:
+                                                        "javascript:void('Background Color')",
+                                                      title: "Background Color",
+                                                      tabindex: "-1",
+                                                      hidefocus: "true",
+                                                      role: "button",
+                                                      "aria-labelledby":
+                                                        "cke_32_label",
+                                                      "aria-describedby":
+                                                        "cke_32_description",
+                                                      "aria-haspopup": "true",
+                                                      onkeydown:
+                                                        "return CKEDITOR.tools.callFunction(44,event);",
+                                                      onfocus:
+                                                        "return CKEDITOR.tools.callFunction(45,event);",
+                                                      onclick:
+                                                        "CKEDITOR.tools.callFunction(46,this);return false;"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_icon cke_button__bgcolor_icon",
+                                                        staticStyle: {
+                                                          "background-image":
+                                                            "url('https://pos.ultimatefosters.com/AdminLTE/plugins/ckeditor/plugins/icons.png?t=HBDD')",
+                                                          "background-position":
+                                                            "0 -384px",
+                                                          "background-size":
+                                                            "auto"
+                                                        }
+                                                      },
+                                                      [_vm._v(" ")]
+                                                    ),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "cke_button_label cke_button__bgcolor_label",
+                                                        attrs: {
+                                                          id: "cke_32_label",
+                                                          "aria-hidden": "false"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "Background Color"
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_label",
+                                                      attrs: {
+                                                        id:
+                                                          "cke_32_description",
+                                                        "aria-hidden": "false"
+                                                      }
+                                                    }),
+                                                    _c("span", {
+                                                      staticClass:
+                                                        "cke_button_arrow"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _c("span", {
+                                              staticClass: "cke_toolbar_end"
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "cke_contents cke_reset",
+                                    staticStyle: { height: "120px" },
+                                    attrs: {
+                                      id: "cke_1_contents",
+                                      role: "presentation"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "cke_voice_label",
+                                        attrs: { id: "cke_37" }
+                                      },
+                                      [_vm._v("Press ALT 0 for help")]
+                                    ),
+                                    _c("iframe", {
+                                      staticClass:
+                                        "cke_wysiwyg_frame cke_reset",
+                                      staticStyle: {
+                                        width: "100%",
+                                        height: "100%"
+                                      },
+                                      attrs: {
+                                        src: "",
+                                        frameborder: "0",
+                                        title:
+                                          "Rich Text Editor, product_description",
+                                        "aria-describedby": "cke_37",
+                                        tabindex: "0",
+                                        allowtransparency: "true"
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "cke_bottom cke_reset_all",
+                                    staticStyle: { "user-select": "none" },
+                                    attrs: {
+                                      id: "cke_1_bottom",
+                                      role: "presentation"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "cke_resizer cke_resizer_vertical cke_resizer_ltr",
+                                        attrs: {
+                                          id: "cke_1_resizer",
+                                          title: "Resize",
+                                          onmousedown:
+                                            "CKEDITOR.tools.callFunction(0, event)"
+                                        }
+                                      },
+                                      [_vm._v("◢")]
+                                    ),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "cke_voice_label",
+                                        attrs: { id: "cke_1_path_label" }
+                                      },
+                                      [_vm._v("Elements path")]
+                                    ),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "cke_path",
+                                        attrs: {
+                                          id: "cke_1_path",
+                                          role: "group",
+                                          "aria-labelledby": "cke_1_path_label"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "span",
+                                          { staticClass: "cke_path_empty" },
+                                          [_vm._v(" ")]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "image" } }, [
+                          _vm._v("Product image:")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "file-input file-input-new" },
+                          [
+                            _c("div", { staticClass: "file-preview " }, [
+                              _c(
+                                "div",
+                                { staticClass: "close fileinput-remove" },
+                                [_vm._v("×")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "file-drop-disabled" }, [
+                                _c("div", {
+                                  staticClass: "file-preview-thumbnails"
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "clearfix" }),
+                                _vm._v(" "),
+                                _c("div", {
+                                  staticClass:
+                                    "file-preview-status text-center text-success"
+                                }),
+                                _vm._v(" "),
+                                _c("div", {
+                                  staticClass:
+                                    "kv-fileinput-error file-error-message",
+                                  staticStyle: { display: "none" }
+                                })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "kv-upload-progress hide" },
+                              [
+                                _c("div", { staticClass: "progress" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "progress-bar progress-bar-success progress-bar-striped active",
+                                      staticStyle: { width: "0%" },
+                                      attrs: {
+                                        role: "progressbar",
+                                        "aria-valuenow": "0",
+                                        "aria-valuemin": "0",
+                                        "aria-valuemax": "100"
+                                      }
+                                    },
+                                    [_vm._v("\n        0%\n     ")]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "input-group file-caption-main" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "form-control file-caption  kv-fileinput-caption",
+                                    attrs: { tabindex: "500" }
+                                  },
+                                  [
+                                    _c("div", {
+                                      staticClass: "file-caption-name"
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "input-group-btn" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-default fileinput-remove fileinput-remove-button",
+                                      attrs: {
+                                        type: "button",
+                                        tabindex: "500",
+                                        title: "Clear selected files"
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "glyphicon glyphicon-trash"
+                                      }),
+                                      _vm._v(" "),
+                                      _c("span", { staticClass: "hidden-xs" }, [
+                                        _vm._v("Remove")
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-default hide fileinput-cancel fileinput-cancel-button",
+                                      attrs: {
+                                        type: "button",
+                                        tabindex: "500",
+                                        title: "Abort ongoing upload"
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass:
+                                          "glyphicon glyphicon-ban-circle"
+                                      }),
+                                      _vm._v(" "),
+                                      _c("span", { staticClass: "hidden-xs" }, [
+                                        _vm._v("Cancel")
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "btn btn-primary btn-file",
+                                      attrs: { tabindex: "500" }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass:
+                                          "glyphicon glyphicon-folder-open"
+                                      }),
+                                      _vm._v("   "),
+                                      _c("span", { staticClass: "hidden-xs" }, [
+                                        _vm._v("Browse..")
+                                      ]),
+                                      _c("input", {
+                                        attrs: {
+                                          id: "upload_image",
+                                          accept: "image/*",
+                                          name: "image",
+                                          type: "file"
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("small", [
+                          _c("p", { staticClass: "help-block" }, [
+                            _vm._v("Max File size: 1MB "),
+                            _c("br"),
+                            _vm._v(" Aspect ratio should be 1:1")
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "box box-primary" }, [
+                _c("div", { staticClass: "box-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "icheckbox_square-blue",
+                              staticStyle: { position: "relative" },
+                              attrs: {
+                                "aria-checked": "false",
+                                "aria-disabled": "false"
+                              }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "input-icheck",
+                                staticStyle: {
+                                  position: "absolute",
+                                  opacity: "0"
+                                },
+                                attrs: {
+                                  name: "enable_sr_no",
+                                  type: "checkbox",
+                                  value: "1"
+                                }
+                              }),
+                              _c("ins", {
+                                staticClass: "iCheck-helper",
+                                staticStyle: {
+                                  position: "absolute",
+                                  top: "0%",
+                                  left: "0%",
+                                  display: "block",
+                                  width: "100%",
+                                  height: "100%",
+                                  margin: "0px",
+                                  padding: "0px",
+                                  background: "rgb(255, 255, 255)",
+                                  border: "0px",
+                                  opacity: "0"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("strong", [
+                            _vm._v(
+                              "Enable Product description, IMEI or Serial Number"
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass:
+                            "fa fa-info-circle text-info hover-q no-print ",
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-container": "body",
+                            "data-toggle": "popover",
+                            "data-placement": "auto bottom",
+                            "data-content":
+                              "Enable or disable adding product description, IMEI or Serial number while selling products in POS screen",
+                            "data-html": "true",
+                            "data-trigger": "hover"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "icheckbox_square-blue",
+                              staticStyle: { position: "relative" },
+                              attrs: {
+                                "aria-checked": "false",
+                                "aria-disabled": "false"
+                              }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "input-icheck",
+                                staticStyle: {
+                                  position: "absolute",
+                                  opacity: "0"
+                                },
+                                attrs: {
+                                  name: "not_for_selling",
+                                  type: "checkbox",
+                                  value: "1"
+                                }
+                              }),
+                              _c("ins", {
+                                staticClass: "iCheck-helper",
+                                staticStyle: {
+                                  position: "absolute",
+                                  top: "0%",
+                                  left: "0%",
+                                  display: "block",
+                                  width: "100%",
+                                  height: "100%",
+                                  margin: "0px",
+                                  padding: "0px",
+                                  background: "rgb(255, 255, 255)",
+                                  border: "0px",
+                                  opacity: "0"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Not for selling")])
+                        ]),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass:
+                            "fa fa-info-circle text-info hover-q no-print ",
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-container": "body",
+                            "data-toggle": "popover",
+                            "data-placement": "auto bottom",
+                            "data-content":
+                              "If checked, product will not be displayed in sales screen for selling purposes.",
+                            "data-html": "true",
+                            "data-trigger": "hover"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "weight" } }, [
+                          _vm._v("Weight:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "Weight",
+                            name: "weight",
+                            type: "text",
+                            id: "weight"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-3" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          { attrs: { for: "product_custom_field1" } },
+                          [_vm._v("Custom Field1:")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "Custom Field1",
+                            name: "product_custom_field1",
+                            type: "text",
+                            id: "product_custom_field1"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-3" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          { attrs: { for: "product_custom_field2" } },
+                          [_vm._v("Custom Field2:")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "Custom Field2",
+                            name: "product_custom_field2",
+                            type: "text",
+                            id: "product_custom_field2"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-3" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          { attrs: { for: "product_custom_field3" } },
+                          [_vm._v("Custom Field3:")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "Custom Field3",
+                            name: "product_custom_field3",
+                            type: "text",
+                            id: "product_custom_field3"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-3" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          { attrs: { for: "product_custom_field4" } },
+                          [_vm._v("Custom Field4:")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "Custom Field4",
+                            name: "product_custom_field4",
+                            type: "text",
+                            id: "product_custom_field4"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-3" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", [
+                          _c("input", {
+                            attrs: {
+                              type: "hidden",
+                              name: "woocommerce_disable_sync",
+                              value: "0"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "icheckbox_square-blue",
+                              staticStyle: { position: "relative" },
+                              attrs: {
+                                "aria-checked": "false",
+                                "aria-disabled": "false"
+                              }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "input-icheck",
+                                staticStyle: {
+                                  position: "absolute",
+                                  opacity: "0"
+                                },
+                                attrs: {
+                                  name: "woocommerce_disable_sync",
+                                  type: "checkbox",
+                                  value: "1"
+                                }
+                              }),
+                              _c("ins", {
+                                staticClass: "iCheck-helper",
+                                staticStyle: {
+                                  position: "absolute",
+                                  top: "0%",
+                                  left: "0%",
+                                  display: "block",
+                                  width: "100%",
+                                  height: "100%",
+                                  margin: "0px",
+                                  padding: "0px",
+                                  background: "rgb(255, 255, 255)",
+                                  border: "0px",
+                                  opacity: "0"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Disable Woocommerce Sync")])
+                        ]),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass:
+                            "fa fa-info-circle text-info hover-q no-print ",
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-container": "body",
+                            "data-toggle": "popover",
+                            "data-placement": "auto bottom",
+                            "data-content":
+                              "If checked this product will not be synced with woocommerce",
+                            "data-html": "true",
+                            "data-trigger": "hover"
+                          }
+                        })
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "box box-primary" }, [
+                _c("div", { staticClass: "box-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-sm-4 " }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "tax" } }, [
+                          _vm._v("Applicable Tax:")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "form-control select2 select2-hidden-accessible",
+                            attrs: {
+                              id: "tax",
+                              name: "tax",
+                              tabindex: "-1",
+                              "aria-hidden": "true"
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "selected", value: "" } },
+                              [_vm._v("Please Select")]
+                            ),
+                            _c(
+                              "option",
+                              { attrs: { value: "", selected: "selected" } },
+                              [_vm._v("None")]
+                            ),
+                            _c(
+                              "option",
+                              { attrs: { value: "1", "data-rate": "10" } },
+                              [_vm._v("VAT@10%")]
+                            ),
+                            _c(
+                              "option",
+                              { attrs: { value: "2", "data-rate": "10" } },
+                              [_vm._v("CGST@10%")]
+                            ),
+                            _c(
+                              "option",
+                              { attrs: { value: "3", "data-rate": "8" } },
+                              [_vm._v("SGST@8%")]
+                            ),
+                            _c(
+                              "option",
+                              { attrs: { value: "4", "data-rate": "18" } },
+                              [_vm._v("GST@18%")]
+                            )
+                          ]
+                        ),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "select2 select2-container select2-container--default",
+                            staticStyle: { width: "498px" },
+                            attrs: { dir: "ltr" }
+                          },
+                          [
+                            _c("span", { staticClass: "selection" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "select2-selection select2-selection--single",
+                                  attrs: {
+                                    role: "combobox",
+                                    "aria-haspopup": "true",
+                                    "aria-expanded": "false",
+                                    tabindex: "0",
+                                    "aria-labelledby": "select2-tax-container"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "select2-selection__rendered",
+                                      attrs: {
+                                        id: "select2-tax-container",
+                                        title: "None"
+                                      }
+                                    },
+                                    [_vm._v("None")]
+                                  ),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "select2-selection__arrow",
+                                      attrs: { role: "presentation" }
+                                    },
+                                    [
+                                      _c("b", {
+                                        attrs: { role: "presentation" }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _c("span", {
+                              staticClass: "dropdown-wrapper",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4 " }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "tax_type" } }, [
+                          _vm._v("Selling Price Tax Type:*")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "form-control select2 select2-hidden-accessible",
+                            attrs: {
+                              required: "",
+                              id: "tax_type",
+                              name: "tax_type",
+                              tabindex: "-1",
+                              "aria-hidden": "true"
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "inclusive" } }, [
+                              _vm._v("Inclusive")
+                            ]),
+                            _c(
+                              "option",
+                              {
+                                attrs: {
+                                  value: "exclusive",
+                                  selected: "selected"
+                                }
+                              },
+                              [_vm._v("Exclusive")]
+                            )
+                          ]
+                        ),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "select2 select2-container select2-container--default",
+                            staticStyle: { width: "498px" },
+                            attrs: { dir: "ltr" }
+                          },
+                          [
+                            _c("span", { staticClass: "selection" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "select2-selection select2-selection--single",
+                                  attrs: {
+                                    role: "combobox",
+                                    "aria-haspopup": "true",
+                                    "aria-expanded": "false",
+                                    tabindex: "0",
+                                    "aria-labelledby":
+                                      "select2-tax_type-container"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "select2-selection__rendered",
+                                      attrs: {
+                                        id: "select2-tax_type-container",
+                                        title: "Exclusive"
+                                      }
+                                    },
+                                    [_vm._v("Exclusive")]
+                                  ),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "select2-selection__arrow",
+                                      attrs: { role: "presentation" }
+                                    },
+                                    [
+                                      _c("b", {
+                                        attrs: { role: "presentation" }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _c("span", {
+                              staticClass: "dropdown-wrapper",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "type" } }, [
+                          _vm._v("Product Type:*")
+                        ]),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass:
+                            "fa fa-info-circle text-info hover-q no-print ",
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-container": "body",
+                            "data-toggle": "popover",
+                            "data-placement": "auto bottom",
+                            "data-content":
+                              "<b>Single product</b>: Product with no variations.\n    <br><b>Variable product</b>: Product with variations such as size, color etc.\n    <br><b>Combo product</b>: A combination of multiple products, also called bundle product",
+                            "data-html": "true",
+                            "data-trigger": "hover"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "form-control select2 select2-hidden-accessible",
+                            attrs: {
+                              required: "",
+                              "data-action": "add",
+                              "data-product_id": "0",
+                              id: "type",
+                              name: "type",
+                              tabindex: "-1",
+                              "aria-hidden": "true"
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "single" } }, [
+                              _vm._v("Single")
+                            ]),
+                            _c("option", { attrs: { value: "variable" } }, [
+                              _vm._v("Variable")
+                            ])
+                          ]
+                        ),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "select2 select2-container select2-container--default",
+                            staticStyle: { width: "498px" },
+                            attrs: { dir: "ltr" }
+                          },
+                          [
+                            _c("span", { staticClass: "selection" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "select2-selection select2-selection--single",
+                                  attrs: {
+                                    role: "combobox",
+                                    "aria-haspopup": "true",
+                                    "aria-expanded": "false",
+                                    tabindex: "0",
+                                    "aria-labelledby": "select2-type-container"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "select2-selection__rendered",
+                                      attrs: {
+                                        id: "select2-type-container",
+                                        title: "Single"
+                                      }
+                                    },
+                                    [_vm._v("Single")]
+                                  ),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "select2-selection__arrow",
+                                      attrs: { role: "presentation" }
+                                    },
+                                    [
+                                      _c("b", {
+                                        attrs: { role: "presentation" }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _c("span", {
+                              staticClass: "dropdown-wrapper",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-group col-sm-12",
+                        attrs: { id: "product_form_part" }
+                      },
+                      [
+                        _c("div", { staticClass: "table-responsive" }, [
+                          _c(
+                            "table",
+                            {
+                              staticClass:
+                                "table table-bordered add-product-price-table table-condensed "
+                            },
+                            [
+                              _c("tbody", [
+                                _c("tr", [
+                                  _c("th", [_vm._v("Default Purchase Price")]),
+                                  _vm._v(" "),
+                                  _c("th", [
+                                    _vm._v("x Margin(%) "),
+                                    _c("i", {
+                                      staticClass:
+                                        "fa fa-info-circle text-info hover-q no-print ",
+                                      attrs: {
+                                        "aria-hidden": "true",
+                                        "data-container": "body",
+                                        "data-toggle": "popover",
+                                        "data-placement": "auto bottom",
+                                        "data-content":
+                                          "Default profit margin for the product. <br><small class='text-muted'>(<i>You can manage default profit margin in Business Settings.</i>)</small>",
+                                        "data-html": "true",
+                                        "data-trigger": "hover"
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Default Selling Price")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Product image")])
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", [
+                                    _c("div", { staticClass: "col-sm-6" }, [
+                                      _c(
+                                        "label",
+                                        { attrs: { for: "single_dpp" } },
+                                        [_vm._v("Exc. tax:*")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        staticClass:
+                                          "form-control input-sm dpp input_number",
+                                        attrs: {
+                                          placeholder: "Exc. tax",
+                                          required: "",
+                                          name: "single_dpp",
+                                          type: "text",
+                                          id: "single_dpp"
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-sm-6" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          attrs: { for: "single_dpp_inc_tax" }
+                                        },
+                                        [_vm._v("Inc. tax:*")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        staticClass:
+                                          "form-control input-sm dpp_inc_tax input_number",
+                                        attrs: {
+                                          placeholder: "Inc. tax",
+                                          required: "",
+                                          name: "single_dpp_inc_tax",
+                                          type: "text",
+                                          id: "single_dpp_inc_tax"
+                                        }
+                                      })
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass:
+                                        "form-control input-sm input_number",
+                                      attrs: {
+                                        id: "profit_percent",
+                                        required: "",
+                                        name: "profit_percent",
+                                        type: "text",
+                                        value: "25.00"
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c("label", [
+                                      _c("span", { staticClass: "dsp_label" }, [
+                                        _vm._v("Exc. Tax")
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass:
+                                        "form-control input-sm dsp input_number",
+                                      attrs: {
+                                        placeholder: "Exc. tax",
+                                        id: "single_dsp",
+                                        required: "",
+                                        name: "single_dsp",
+                                        type: "text"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass:
+                                        "form-control input-sm hide input_number",
+                                      attrs: {
+                                        placeholder: "Inc. tax",
+                                        id: "single_dsp_inc_tax",
+                                        required: "",
+                                        name: "single_dsp_inc_tax",
+                                        type: "text"
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c("div", { staticClass: "form-group" }, [
+                                      _c(
+                                        "label",
+                                        { attrs: { for: "variation_images" } },
+                                        [_vm._v("Product image:")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        staticClass: "variation_images",
+                                        attrs: {
+                                          accept: "image/*",
+                                          multiple: "",
+                                          name: "variation_images[]",
+                                          type: "file"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("small", [
+                                        _c("p", { staticClass: "help-block" }, [
+                                          _vm._v("Max File size: 1MB "),
+                                          _c("br"),
+                                          _vm._v(" Aspect ratio should be 1:1")
+                                        ])
+                                      ])
+                                    ])
+                                  ])
+                                ])
+                              ])
+                            ]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "hidden",
+                        id: "variation_counter",
+                        value: "1"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "hidden",
+                        id: "default_profit_percent",
+                        value: "25"
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-12" }, [
+                  _c("input", {
+                    attrs: {
+                      type: "hidden",
+                      name: "submit_type",
+                      id: "submit_type"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-center" }, [
+                    _c("div", { staticClass: "btn-group" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn bg-purple submit_product_form",
+                          attrs: {
+                            id: "opening_stock_button",
+                            type: "submit",
+                            value: "submit_n_add_opening_stock"
+                          }
+                        },
+                        [_vm._v("Save & Add Opening Stock")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn bg-maroon submit_product_form",
+                          attrs: { type: "submit", value: "save_n_add_another" }
+                        },
+                        [_vm._v("Save And Add Another")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary submit_product_form",
+                          attrs: { type: "submit", value: "submit" }
+                        },
+                        [_vm._v("Save")]
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./modules/admin/resources/js/pages/product/Lists.vue?vue&type=template&id=b457e5f8&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./modules/admin/resources/js/pages/product/Lists.vue?vue&type=template&id=b457e5f8& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "content-wrapper",
+      staticStyle: { "min-height": "971.94px" }
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("section", { staticClass: "content" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "dataTables_wrapper dt-bootstrap4",
+                    attrs: { id: "example1_wrapper" }
+                  },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-12" },
+                        [
+                          _c(
+                            "datatable",
+                            { attrs: { columns: _vm.columns } },
+                            _vm._l(_vm.getAllProducts, function(product) {
+                              return _c(
+                                "tr",
+                                {
+                                  key: product.id,
+                                  staticClass: "odd",
+                                  attrs: { role: "row" }
+                                },
+                                [
+                                  _c("td", { staticClass: "sorting_1" }, [
+                                    _vm._v(_vm._s(product.id))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(product.name))]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(_vm._s(product.description))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass: "project-state text-center"
+                                    },
+                                    [
+                                      _c(
+                                        "span",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: product.status,
+                                              expression: "product.status"
+                                            }
+                                          ],
+                                          staticClass: "badge badge-success"
+                                        },
+                                        [_vm._v("Active")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: !product.status,
+                                              expression: "!product.status"
+                                            }
+                                          ],
+                                          staticClass: "badge badge-warning"
+                                        },
+                                        [_vm._v("Non-Active")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass: "project-actions text-right"
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-primary btn-sm",
+                                          attrs: { href: "#" }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-folder"
+                                          }),
+                                          _vm._v(
+                                            "\n                          View\n                        "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-info btn-sm",
+                                          attrs: { href: "#" }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-pencil-alt"
+                                          }),
+                                          _vm._v(
+                                            "\n                          Edit\n                        "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-danger btn-sm",
+                                          attrs: { href: "#" }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-trash"
+                                          }),
+                                          _vm._v(
+                                            "\n                          Delete\n                        "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("pagination", {
+                      attrs: { meta_data: _vm.getMetaData },
+                      on: { next: _vm.fetchListProducts }
+                    })
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", [_vm._v("DataTables")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("DataTables")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _vm._v("DataTable with default features")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+        _c(
+          "div",
+          {
+            staticClass: "dataTables_length",
+            attrs: { id: "example1_length" }
+          },
+          [
+            _c("label", [
+              _vm._v(
+                "\n                      Show entries\n                      "
+              ),
+              _c(
+                "select",
+                {
+                  staticClass:
+                    "custom-select custom-select-sm form-control form-control-sm",
+                  attrs: {
+                    name: "example1_length",
+                    "aria-controls": "example1"
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
+                ]
+              )
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+        _c(
+          "div",
+          {
+            staticClass: "dataTables_filter float-right",
+            attrs: { id: "example1_filter" }
+          },
+          [
+            _c("label", [
+              _vm._v("\n                      Search:\n                      "),
+              _c("input", {
+                staticClass: "form-control form-control-sm",
+                attrs: {
+                  type: "search",
+                  placeholder: "",
+                  "aria-controls": "example1"
+                }
+              })
+            ])
+          ]
+        )
+      ])
     ])
   }
 ]

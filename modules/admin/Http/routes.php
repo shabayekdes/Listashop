@@ -9,6 +9,7 @@ Route::group([
 
         Route::resource('user', 'UserController');
         Route::resource('category', 'CategoryController');
+        Route::resource('product', 'ProductController');
 
     });
 
