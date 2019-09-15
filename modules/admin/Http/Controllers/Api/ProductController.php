@@ -2,8 +2,10 @@
 
 namespace Admin\Http\Controllers\Api;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Product\Http\Requests\ProductRequest;
 use Product\Http\Resources\ProductResource;
 use Product\Repositories\ProductRepository;
 
@@ -37,8 +39,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
+        return $this->product->create(array_merge($request->all(), ['sku'=> Str::random(10)]));
     }
 
     /**

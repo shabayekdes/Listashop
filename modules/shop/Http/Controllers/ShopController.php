@@ -5,7 +5,7 @@ namespace Shop\Http\Controllers;
 use Product\Models\Product;
 use Category\Models\Category;
 use App\Http\Controllers\Controller;
-use Product\Repositories\ProductRepositoryInterface;
+use Product\Repositories\ProductRepository;
 
 /**
  * Home page controller
@@ -24,7 +24,7 @@ class ShopController extends Controller
      *
      * @return void
      */
-    public function __construct(ProductRepositoryInterface $product)
+    public function __construct(ProductRepository $product)
     {
         $this->_config = request('_config');
     }

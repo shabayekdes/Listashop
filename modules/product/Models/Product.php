@@ -14,7 +14,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['sku', 'name', 'slug', 'new','featured','status', 'special_price'];
+    protected $fillable = ['sku', 'name', 'slug', 'price', 'cost','category_id','status'];
 
     /**
      * The attributes that should be cast to native types.

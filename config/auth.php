@@ -49,6 +49,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'api-admin' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
 
     /*

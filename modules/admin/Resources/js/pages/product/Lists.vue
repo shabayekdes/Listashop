@@ -25,8 +25,22 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">DataTable with default features</h3>
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <h3 class="card-title">Trips Lists</h3>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <router-link
+                    :to="{ name: 'product.create',  params: { editMode: false } }"
+                    class="btn btn-success float-right"
+                  >
+                    Add New
+                    <i class="fas fa-plane"></i>
+                  </router-link>
+                </div>
+              </div>
             </div>
+
             <!-- /.card-header -->
             <div class="card-body">
               <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -72,7 +86,7 @@
                         :key="product.id"
                       >
                         <td class="sorting_1">{{ product.id }}</td>
-                        <td>{{ product.name }}</td>
+                        <td>{{ product.name | slug }}</td>
                         <td>{{ product.description }}</td>
                         <td class="project-state text-center">
                           <span v-show="product.status" class="badge badge-success">Active</span>

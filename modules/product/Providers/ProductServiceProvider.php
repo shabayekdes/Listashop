@@ -25,9 +25,6 @@ class ProductServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            'Product\Repositories\ProductRepositoryInterface',
-            'Product\Repositories\ProductRepository'
-        );
+        
     }
 }

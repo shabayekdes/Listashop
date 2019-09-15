@@ -30,7 +30,7 @@ export const routes = [
     },
     {
         path: "/admin/product/create",
-        name: "Products.create",
+        name: "product.create",
         component: EditProducts
     },
     {

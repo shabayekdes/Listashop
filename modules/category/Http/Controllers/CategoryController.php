@@ -3,33 +3,34 @@
 namespace Category\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Category\Http\Resources\CategoryResource;
+use Category\Repositories\CategoryRepository;
 
 /**
  * Category page controller
  */
 class CategoryController extends Controller
 {
-    /**
-     * Contains route related configuration
-     *
-     * @var array
-     */
-    protected $_config;
+    protected $category;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CategoryRepository $category)
     {
-        $this->_config = request('_config');
+        $this->category = $category;
     }
 
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all()
     {
-        return view($this->_config['view']);
-
+        return CategoryResource::collection($this->category->all());
     }
 
 

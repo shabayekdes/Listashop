@@ -10,6 +10,17 @@ Route::group([
         Route::resource('user', 'UserController');
         Route::resource('category', 'CategoryController');
         Route::resource('product', 'ProductController');
+    });
+
+    Route::namespace('Product\Http\Controllers')->prefix('api/admin')->group(function () {
+
+        // Route::get('product/show/all', 'ProductController@all');
+
+    });
+
+    Route::namespace('Category\Http\Controllers')->prefix('api/admin')->group(function () {
+
+        Route::get('category/show/all', 'CategoryController@all');
 
     });
 

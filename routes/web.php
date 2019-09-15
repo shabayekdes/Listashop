@@ -21,7 +21,9 @@ Auth::routes();
 Route::group(['middleware' => 'auth:admin'], function () {
         Route::get('admin/{path?}', '\Admin\Http\Controllers\HomeController@index')->name('admin')->where( 'path', '.*' );
     });
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/test', 'TestController@index');
 
 Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('login.admin');
 Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm')->name('register.admin');

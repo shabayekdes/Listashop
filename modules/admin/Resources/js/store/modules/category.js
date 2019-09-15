@@ -10,11 +10,16 @@ const getters = {
 
 const actions = {
     async fetchListCategories({ commit }, paged = null) {
-        let query = paged !== null ? `?page=${paged}` : "";
-        const response = await axios.get(`${urlApi}category${query}`);
+        let response = "";
+        if (paged == "all") {
+            response = await axios.get(`${urlApi}category?show=all`);
+        } else {
+            let query = paged !== null ? `?page=${paged}` : "";
+            response = await axios.get(`${urlApi}category${query}`);
+            commit("setMetaData", response.data, { root: true });
+        }
 
         commit("showListCategories", response.data);
-        commit("setMetaData", response.data, { root: true });
     }
 };
 

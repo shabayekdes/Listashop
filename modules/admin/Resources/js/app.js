@@ -7,10 +7,19 @@ import { routes } from "./routes";
 
 Vue.use(VueRouter);
 
-
 Vue.component("not-found", require("./views/NotFound.vue"));
 Vue.component("loading", require("./views/Loading.vue"));
 
+Vue.filter("slug", function(value) {
+    if (!value) return "";
+
+    value = value.toString();
+
+    return value
+        .toLowerCase()
+        .replace(/[^\w ]+/g, "")
+        .replace(/ +/g, "-");
+});
 
 const router = new VueRouter({
     routes,
