@@ -14,7 +14,7 @@
 
 Route::namespace('Shop\Http\Controllers')->group(function(){
 
-    Route::get('/', 'ShopController@index')->defaults('_config', [
+    Route::get('/', 'HomeController@index')->defaults('_config', [
         'view' => 'shop::home.index'
     ]);
 
@@ -22,4 +22,3 @@ Route::namespace('Shop\Http\Controllers')->group(function(){
         'view' => 'shop::category.index'
     ]);
 });
-

@@ -1,7 +1,7 @@
 import Dashboard from "./pages/dashboard/Dashboard.vue";
 
 import Users from "./pages/user/Users.vue";
-import Categories from "./pages/category/Categories.vue";
+import ListCategories from "./pages/category/Lists.vue";
 import ListProducts from "./pages/product/Lists.vue";
 import EditProducts from "./pages/product/Edit.vue";
 
@@ -21,7 +21,7 @@ export const routes = [
     {
         path: "/admin/categories",
         name: "Categories.index",
-        component: Categories
+        component: ListCategories
     },
     {
         path: "/admin/products",

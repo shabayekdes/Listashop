@@ -5,14 +5,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>Categories</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                <a href="#">Home</a>
+                <a href="/admin">Admin</a>
               </li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item active">Categories</li>
             </ol>
           </div>
         </div>
@@ -22,10 +22,20 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-12">
+        <div class="col-4">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Create New Category</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form-category />
+          </div>
+        </div>
+        <div class="col-8">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">DataTable with default features</h3>
+              <h3 class="card-title">List Categories</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -65,34 +75,35 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <datatable :columns="columns">
-                      <tr
-                        role="row"
-                        class="odd"
-                        v-for="category in getAllCategories"
-                        :key="category.id"
-                      >
-                        <td class="sorting_1">{{ category.id }}</td>
-                        <td>{{ category.name }}</td>
-                        <td>{{ category.description }}</td>
-                        <td class="project-state text-center">
-                          <span v-show="category.status" class="badge badge-success">Active</span>
-                          <span v-show="!category.status" class="badge badge-warning">Non-Active</span>
-                        </td>
-                        <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder"></i>
-                            View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"></i>
-                            Delete
-                          </a>
-                        </td>
-                      </tr>
+                      <tbody>
+                        <tr role="row" v-for="category in getAllCategories" :key="category.id">
+                          <td class="sorting_1">{{ category.id }}</td>
+                          <td>{{ category.name }}</td>
+                          <td>{{ category.description }}</td>
+                          <td class="project-state text-center">
+                            <span v-show="category.status" class="badge badge-success">Active</span>
+                            <span v-show="!category.status" class="badge badge-warning">Non-Active</span>
+                          </td>
+                          <td class="project-actions text-right">
+                            <a class="btn btn-primary btn-sm" href="#">
+                              <i class="fas fa-folder"></i>
+                              View
+                            </a>
+                            <a class="btn btn-info btn-sm" @click="editModel(category)" href="#">
+                              <i class="fas fa-pencil-alt"></i>
+                              Edit
+                            </a>
+                            <a
+                              class="btn btn-danger btn-sm"
+                              @click="deleteCategory(category.id)"
+                              href="#"
+                            >
+                              <i class="fas fa-trash"></i>
+                              Delete
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
                     </datatable>
                   </div>
                 </div>
@@ -108,6 +119,10 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
+    <!-- Modal -->
+    <model title="Update Category">
+      <form-category :mode="editMode" />
+    </model>
   </div>
 </template>
 
@@ -115,36 +130,54 @@
 import { mapGetters, mapActions } from "vuex";
 import pagination from "@/components/Pagination.vue";
 import datatable from "@/components/DataTable.vue";
+import model from "@/components/Model.vue";
+import formCategory from "@/pages/category/Form.vue";
 
 export default {
   name: "Users",
   components: {
     pagination,
-    datatable
+    datatable,
+    model,
+    formCategory
   },
   data() {
     return {
       columns: [
         { width: "2%", label: "#", name: "id", active: true },
-        { width: "30%", label: "Name", name: "name", active: true },
+        { width: "15%", label: "Name", name: "name", active: true },
         {
-          width: "30%",
+          width: "25%",
           label: "Description",
           name: "description",
           active: true
         },
-        { width: "20%", label: "Status", name: "status", active: true },
+        { width: "15%", label: "Status", name: "status", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
-      ]
+      ],
+      editMode: false
     };
   },
   methods: {
-    ...mapActions(["fetchListCategories"])
+    ...mapActions([
+      "fetchListCategories",
+      "storeCategory",
+      "setCategory",
+      "resetCategory",
+      "deleteCategory"
+    ]),
+    editModel(category) {
+      this.editMode = true;
+      $("#addNew").modal("show");
+      this.setCategory(category);
+    }
   },
   created() {
     this.fetchListCategories();
   },
-  computed: mapGetters(["getAllCategories", "getMetaData"])
+  mounted() {
+    this.resetCategory();
+  },
+  computed: mapGetters(["getAllCategories", "getNewCategory", "getMetaData"])
 };
 </script>
-

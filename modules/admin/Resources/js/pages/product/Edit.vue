@@ -48,7 +48,7 @@
                 <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">Slug</label>
                 <div class="input-group mb-2 col-sm-10">
                   <div class="input-group-prepend">
-                    <div class="input-group-text">http://shabayekdes.com/product/</div>
+                    <div class="input-group-text">product/</div>
                   </div>
                   <input
                     type="text"
@@ -231,7 +231,6 @@ export default {
     this.fetchListCategories("all");
   },
   watch: {
-    // whenever question changes, this function will run
     getNewProduct: {
       handler: function(val, oldVal) {
         this.getNewProduct.slug = val.name

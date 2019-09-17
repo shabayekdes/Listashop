@@ -4,6 +4,7 @@ namespace Admin\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Category\Http\Requests\CategoryRequest;
 use Category\Http\Resources\CategoryResource;
 use Category\Repositories\CategoryRepository;
 
@@ -39,8 +40,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
+
+        if($request->image){
+            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            \Image::make($request->image)->save(public_path('img/category/').$name);
+            $request->merge(['image' => $name]);
+        }
+
+        return $this->category->create($request->all());
+
     }
 
     /**
@@ -60,8 +70,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
+        return $this->category->updateById($id, $request->all());
     }
 
     /**
@@ -72,6 +83,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->category->deleteById($id);
+        return ["message" => "Category delete!!"];
     }
 }

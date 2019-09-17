@@ -10,7 +10,7 @@ use Product\Repositories\ProductRepository;
 /**
  * Home page controller
  */
-class ShopController extends Controller
+class HomeController extends Controller
 {
     /**
      * Contains route related configuration
@@ -31,7 +31,6 @@ class ShopController extends Controller
 
     public function index()
     {
-
         $product = Product::latest();
 
         $products = $product->get();
