@@ -67,23 +67,20 @@
                     <datatable :columns="columns">
                       <tr role="row" class="odd" v-for="user in getAllUsers" :key="user.id">
                         <td class="sorting_1">{{ user.id }}</td>
-                        <td>
-                          <img
-                            v-bind:src="user.avatar"
-                            border="0"
-                            width="100"
-                            class="img-rounded"
-                            align="center"
-                          />
-                        </td>
                         <td>{{ user.name }}</td>
                         <td>{{ user.email }}</td>
-                        <td>
-                          <a href="#" class="gray-txt btn btn-warning btn-sm">
-                            <i class="fas fa-edit"></i>
+                        <td class="project-actions text-right">
+                          <a class="btn btn-primary btn-sm" href="#">
+                            <i class="fas fa-folder"></i>
+                            View
                           </a>
-                          <a href="#" class="gray-txt btn btn-danger btn-sm">
+                          <a class="btn btn-info btn-sm" href="#">
+                            <i class="fas fa-pencil-alt"></i>
+                            Edit
+                          </a>
+                          <a class="btn btn-danger btn-sm" href="#">
                             <i class="fas fa-trash"></i>
+                            Delete
                           </a>
                         </td>
                       </tr>
@@ -119,10 +116,10 @@ export default {
   data() {
     return {
       columns: [
-        { width: "5%", label: "#", name: "id", active: true },
-        { width: "15%", label: "Name", name: "name", active: true },
-        { width: "20%", label: "Email", name: "email", active: true },
-        { width: "20%", label: "Action", name: "action", active: false }
+        { width: "2%", label: "#", name: "id", active: true },
+        { width: "40%", label: "Name", name: "name", active: true },
+        { width: "40%", label: "Email", name: "email", active: true },
+        { width: "18%", label: "Action", name: "action", active: false }
       ]
     };
   },

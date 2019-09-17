@@ -4,6 +4,8 @@ namespace Admin\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use User\Repositories\UserRepository;
+use User\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -14,7 +16,7 @@ class UserController extends Controller
      *
      * @param UserRepositoryInterface $user
      */
-    public function __construct(UserRepositoryInterface $user)
+    public function __construct(UserRepository $user)
     {
         $this->user = $user;
     }
@@ -25,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-
+        return UserResource::collection($this->user->paginate());
     }
 
     /**
@@ -46,7 +48,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return new UserResource($this->user->get(auth()->user()->id));
     }
 
     /**

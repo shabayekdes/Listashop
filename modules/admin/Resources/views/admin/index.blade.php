@@ -183,6 +183,33 @@
                                 </p>
                             </router-link>
                         </li>
+                        {{-- User --}}
+                        <li class="nav-item">
+                            <router-link to="/admin/users" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    User
+                                </p>
+                            </router-link>
+                        </li>
+                        {{-- Category --}}
+                        <li class="nav-item">
+                            <router-link to="/admin/categories" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Category
+                                </p>
+                            </router-link>
+                        </li>
+                        {{-- Product --}}
+                        <li class="nav-item">
+                            <router-link to="/admin/products" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Product
+                                </p>
+                            </router-link>
+                        </li>
                         {{-- Logout --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -208,10 +235,10 @@
 
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+            <strong>Copyright &copy; 2014-2019 <a href="#">Shabayekdes</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.0.0-beta.2
+                <b>Version</b> 1.0.0-beta.1
             </div>
         </footer>
 

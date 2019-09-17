@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Admin\Database\Seeders\RolesTableSeeder;
-use Product\Database\Seeders\ProductTableSeeder;
-use Category\Database\Seeders\CategoryTableSeeder as CategorySeeder;
+use Admin\Database\Seeders\DatabaseSeeder as ListashopDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,8 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CategorySeeder::class);
-        $this->call(ProductTableSeeder::class);
-        $this->call(RolesTableSeeder::class);
+        $this->call(ListashopDatabaseSeeder::class);
     }
 }

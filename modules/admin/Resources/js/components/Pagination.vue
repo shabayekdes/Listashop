@@ -8,7 +8,7 @@
         aria-live="polite"
       >Showing {{ meta_data.current_page }} to {{ meta_data.to }} of {{ meta_data.total }} entries</div>
     </div>
-    <div class="col-sm-12 col-md-7">
+    <div class="col-sm-12 col-md-7" v-if="meta_data.last_page > 1">
       <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
         <ul class="pagination pagination-sm m-0 float-right">
           <li class="page-item" :class="{ 'disabled': meta_data.prev_page_url === null }">
