@@ -11,12 +11,14 @@ const state = {
         cost: "",
         thumbnail: "",
         category_id: ""
-    }
+    },
+    status: "none"
 };
 
 const getters = {
     getAllProducts: state => state.products,
-    getNewProduct: state => state.product
+    getNewProduct: state => state.product,
+    getStatus: state => state.status
 };
 
 const actions = {
@@ -32,7 +34,8 @@ const actions = {
             const response = await axios.post(`${urlApi}product`, data);
 
             commit("newProduct", response.data);
-            commit("setErrors", {});
+            commit("resetNewProduct");
+            commit("resetImage");
         } catch (e) {
             commit("setErrors", e.response.data.errors);
         }
@@ -45,6 +48,7 @@ const mutations = {
     },
     newProduct: (state, data) => {
         state.products.unshift(data);
+        state.status = "ok";
     },
     resetNewProduct: state => {
         state.product = {

@@ -42,7 +42,13 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">Product Name</label>
-                <input type="text" v-model="getNewProduct.name" id="inputName" class="form-control" />
+                <input
+                  type="text"
+                  @change="setSlug"
+                  v-model="getNewProduct.name"
+                  id="inputName"
+                  class="form-control"
+                />
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">Slug</label>
@@ -55,7 +61,7 @@
                     v-model="getNewProduct.slug"
                     class="form-control"
                     id="inlineFormInputGroup"
-                    placeholder="Username"
+                    placeholder="Link to product"
                   />
                 </div>
               </div>
@@ -257,7 +263,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapState } from "vuex";
 
 export default {
   name: "ProductEdit",
@@ -273,21 +279,30 @@ export default {
     ]),
     createProduct() {
       this.storeProduct(this.getNewProduct);
+    },
+    setSlug() {
+      this.getNewProduct.slug = this.getNewProduct.name
+        .toLowerCase()
+        .replace(/[^\w ]+/g, "")
+        .replace(/ +/g, "-");
     }
   },
   created() {
     this.fetchListProducts();
     this.fetchListCategories("all");
+    console.log(this.getStatus);
   },
   watch: {
-    getNewProduct: {
+    getImage: {
       handler: function(val, oldVal) {
-        this.getNewProduct.slug = val.name
-          .toLowerCase()
-          .replace(/[^\w ]+/g, "")
-          .replace(/ +/g, "-");
+        this.getNewProduct.thumbnail = val.url;
       },
       deep: true
+    },
+    getStatus(val, oldVal) {
+      if (val == "ok") {
+        this.$router.push({ path: "/admin/products" });
+      }
     }
   },
   computed: mapGetters([
@@ -295,7 +310,8 @@ export default {
     "getNewProduct",
     "getAllCategories",
     "getMetaData",
-    "getImage"
+    "getImage",
+    "getStatus"
   ])
 };
 </script>

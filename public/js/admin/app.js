@@ -1306,7 +1306,8 @@ var state = {
     cost: "",
     thumbnail: "",
     category_id: ""
-  }
+  },
+  status: "none"
 };
 var getters = {
   getAllProducts: function getAllProducts(state) {
@@ -1314,6 +1315,9 @@ var getters = {
   },
   getNewProduct: function getNewProduct(state) {
     return state.product;
+  },
+  getStatus: function getStatus(state) {
+    return state.status;
   }
 };
 var actions = {
@@ -1374,21 +1378,22 @@ var actions = {
             case 4:
               response = _context2.sent;
               commit("newProduct", response.data);
-              commit("setErrors", {});
-              _context2.next = 12;
+              commit("resetNewProduct");
+              commit("resetImage");
+              _context2.next = 13;
               break;
 
-            case 9:
-              _context2.prev = 9;
+            case 10:
+              _context2.prev = 10;
               _context2.t0 = _context2["catch"](1);
               commit("setErrors", _context2.t0.response.data.errors);
 
-            case 12:
+            case 13:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 9]]);
+      }, _callee2, null, [[1, 10]]);
     }));
 
     function storeProduct(_x2, _x3) {
@@ -1404,6 +1409,7 @@ var mutations = {
   },
   newProduct: function newProduct(state, data) {
     state.products.unshift(data);
+    state.status = "ok";
   },
   resetNewProduct: function resetNewProduct(state) {
     state.product = {
@@ -4251,6 +4257,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductEdit",
@@ -4260,21 +4272,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListProducts", "storeProduct", "fetchListCategories", "uploadImage"]), {
     createProduct: function createProduct() {
       this.storeProduct(this.getNewProduct);
+    },
+    setSlug: function setSlug() {
+      this.getNewProduct.slug = this.getNewProduct.name.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
     }
   }),
   created: function created() {
     this.fetchListProducts();
     this.fetchListCategories("all");
+    console.log(this.getStatus);
   },
   watch: {
-    getNewProduct: {
+    getImage: {
       handler: function handler(val, oldVal) {
-        this.getNewProduct.slug = val.name.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
+        this.getNewProduct.thumbnail = val.url;
       },
       deep: true
+    },
+    getStatus: function getStatus(val, oldVal) {
+      if (val == "ok") {
+        this.$router.push({
+          path: "/admin/products"
+        });
+      }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getAllProducts", "getNewProduct", "getAllCategories", "getMetaData", "getImage"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getAllProducts", "getNewProduct", "getAllCategories", "getMetaData", "getImage", "getStatus"])
 });
 
 /***/ }),
@@ -42506,6 +42529,7 @@ var render = function() {
                     attrs: { type: "text", id: "inputName" },
                     domProps: { value: _vm.getNewProduct.name },
                     on: {
+                      change: _vm.setSlug,
                       input: function($event) {
                         if ($event.target.composing) {
                           return
@@ -42542,7 +42566,7 @@ var render = function() {
                       attrs: {
                         type: "text",
                         id: "inlineFormInputGroup",
-                        placeholder: "Username"
+                        placeholder: "Link to product"
                       },
                       domProps: { value: _vm.getNewProduct.slug },
                       on: {
@@ -43266,7 +43290,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-5" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Trips Lists")])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("List Products")])
     ])
   },
   function() {

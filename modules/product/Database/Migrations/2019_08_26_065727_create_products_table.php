@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
 
             $table->boolean('new')->nullable();
             $table->boolean('featured')->nullable();
-            $table->string('thumbnail')->default();
+            $table->string('thumbnail')->nullable();
             $table->decimal('special_price', 12, 4)->nullable();
             $table->date('special_price_from')->nullable();
             $table->date('special_price_to')->nullable();

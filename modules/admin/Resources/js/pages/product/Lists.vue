@@ -27,7 +27,7 @@
             <div class="card-header">
               <div class="row">
                 <div class="col-sm-12 col-md-5">
-                  <h3 class="card-title">Trips Lists</h3>
+                  <h3 class="card-title">List Products</h3>
                 </div>
                 <div class="col-sm-12 col-md-7">
                   <router-link
