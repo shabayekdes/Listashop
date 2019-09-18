@@ -42,15 +42,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-
-        if($request->image){
-            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-            \Image::make($request->image)->save(public_path('img/category/').$name);
-            $request->merge(['image' => $name]);
-        }
-
         return $this->category->create($request->all());
-
     }
 
     /**
@@ -72,6 +64,12 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
+        if($request->image){
+            $name = $request->slug.'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            \Image::make($request->image)->save(public_path('img/category/').$name);
+            $request->merge(['image' => $name]);
+        }
+
         return $this->category->updateById($id, $request->all());
     }
 

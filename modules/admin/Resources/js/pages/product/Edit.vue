@@ -203,6 +203,50 @@
             </div>
             <!-- /.card-body -->
           </div>
+          <div class="card card-outline card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Categories</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-md-4 offset-md-4">
+                  <img
+                    class="img-thumbnail mx-auto"
+                    width="200"
+                    height="200"
+                    :src="getImage.url"
+                    alt="user image"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <label
+                      class="custom-file-label"
+                      for="inputGroupFile02"
+                      aria-describedby="inputGroupFileAddon02"
+                    >{{ getImage.name }}</label>
+                    <input
+                      type="file"
+                      @change="uploadImage"
+                      class="custom-file-input"
+                      id="inputGroupFile02"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
 
           <!-- /.card -->
         </div>
@@ -221,7 +265,12 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(["fetchListProducts", "storeProduct", "fetchListCategories"]),
+    ...mapActions([
+      "fetchListProducts",
+      "storeProduct",
+      "fetchListCategories",
+      "uploadImage"
+    ]),
     createProduct() {
       this.storeProduct(this.getNewProduct);
     }
@@ -245,8 +294,14 @@ export default {
     "getAllProducts",
     "getNewProduct",
     "getAllCategories",
-    "getMetaData"
+    "getMetaData",
+    "getImage"
   ])
 };
 </script>
 
+<style scoped>
+.custom-file-label {
+  font-size: 14px;
+}
+</style>

@@ -7,11 +7,14 @@ use Core\Eloquent\BaseRepository;
 
 class ProductRepository extends BaseRepository
 {
+
     /**
-     * @return string
+     * UserRepository constructor.
+     *
+     * @param  User  $model
      */
-    public function model()
+    public function __construct(Product $model)
     {
-        return Product::class;
+        $this->model = $model;
     }
 }

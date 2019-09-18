@@ -6,6 +6,7 @@
         <input
           type="text"
           v-model="getNewCategory.name"
+          @change="setSlug"
           id="inputName"
           class="form-control"
           placeholder="Enter name of category ..."
@@ -25,6 +26,22 @@
             placeholder="Enter slug name ..."
           />
         </div>
+      </div>
+      <div class="form-group">
+        <label>Categories</label>
+        <select
+          v-model="getNewCategory.parent_id"
+          name="category_id"
+          id="category_id"
+          class="form-control"
+        >
+          <option value>Select category parent</option>
+          <option
+            v-for="category in getAllCategories"
+            :value="category.id"
+            :key="category.id"
+          >{{ category.name }}</option>
+        </select>
       </div>
       <div class="row mb-3">
         <div class="col-md-4 offset-md-4">
@@ -56,7 +73,12 @@
       </div>
       <div class="form-group">
         <label for="inputDescription">Description</label>
-        <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+        <textarea
+          id="inputDescription"
+          v-model="getNewCategory.description"
+          class="form-control"
+          rows="4"
+        ></textarea>
       </div>
     </div>
     <!-- /.card-body -->
@@ -76,40 +98,34 @@ export default {
   name: "form-category",
   props: ["mode"],
   methods: {
-    ...mapActions(["storeCategory", "updateCategory"]),
+    ...mapActions([
+      "storeCategory",
+      "updateCategory",
+      "uploadImage",
+      "fetchListCategories"
+    ]),
     createCategory() {
       this.storeCategory(this.getNewCategory);
     },
     patchCategory() {
       this.updateCategory(this.getNewCategory);
     },
-    uploadImage(e) {
-      let file = e.target.files[0];
-      this.getImage.name = file.name;
-      let reader = new FileReader();
-      let limit = 1024 * 1024 * 2;
-      if (file["size"] > limit) {
-        return false;
-      }
-      reader.onloadend = file => {
-        this.getNewCategory.image = reader.result;
-        this.getImage.url = reader.result;
-      };
-      reader.readAsDataURL(file);
+    setSlug() {
+      this.getNewCategory.slug = this.getNewCategory.name
+        .toLowerCase()
+        .replace(/[^\w ]+/g, "")
+        .replace(/ +/g, "-");
     }
   },
   watch: {
-    getNewCategory: {
+    getImage: {
       handler: function(val, oldVal) {
-        this.getNewCategory.slug = val.name
-          .toLowerCase()
-          .replace(/[^\w ]+/g, "")
-          .replace(/ +/g, "-");
+        this.getNewCategory.image = val.url;
       },
       deep: true
     }
   },
-  computed: mapGetters(["getNewCategory", "getImage"])
+  computed: mapGetters(["getNewCategory", "getAllCategories", "getImage"])
 };
 </script>
 

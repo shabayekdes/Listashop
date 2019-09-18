@@ -13,7 +13,11 @@ export default new Vuex.Store({
             current_page: 1,
             prev_page_url: null
         },
-        errors: {}
+        errors: {},
+        image: {
+            name: "Choose Image ...",
+            url: "/img/img-placeholder.png"
+        }
     },
     getters: {
         getMetaData: state => state.meta_data,
@@ -24,6 +28,25 @@ export default new Vuex.Store({
         },
         hasError: state => field => {
             return state.errors.hasOwnProperty(field);
+        },
+        getImage: state => state.image
+    },
+    actions: {
+        uploadImage({ commit }, e) {
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            let limit = 1024 * 1024 * 2;
+            if (file["size"] > limit) {
+                return false;
+            }
+            reader.onloadend = f => {
+                let image = {
+                    name: file.name,
+                    url: reader.result
+                };
+                commit("setImage", image);
+            };
+            reader.readAsDataURL(file);
         }
     },
     mutations: {
@@ -34,6 +57,18 @@ export default new Vuex.Store({
         },
         setErrors: (state, data) => {
             state.errors = data;
+        },
+        setImage: (state, image) => {
+            state.image = {
+                name: image.name,
+                url: image.url
+            };
+        },
+        resetImage: state => {
+            state.image = {
+                name: "Choose Image ...",
+                url: "/img/img-placeholder.png"
+            };
         }
     },
     modules: {

@@ -9,6 +9,7 @@ const state = {
         slug: "",
         price: "",
         cost: "",
+        thumbnail: "",
         category_id: ""
     }
 };
@@ -44,9 +45,17 @@ const mutations = {
     },
     newProduct: (state, data) => {
         state.products.unshift(data);
-        Object.keys(state.product).forEach(key => {
-            state.product[key] = "";
-        });
+    },
+    resetNewProduct: state => {
+        state.product = {
+            name: "",
+            sku: "",
+            slug: "",
+            price: "",
+            cost: "",
+            thumbnail: "",
+            category_id: ""
+        };
     }
 };
 

@@ -7,17 +7,12 @@ const state = {
         name: "",
         slug: "",
         image: ""
-    },
-    image: {
-        name: "Choose Image ...",
-        url: "/img/img-placeholder.png"
     }
 };
 
 const getters = {
     getAllCategories: state => state.categories,
-    getNewCategory: state => state.category,
-    getImage: state => state.image
+    getNewCategory: state => state.category
 };
 
 const actions = {
@@ -39,6 +34,7 @@ const actions = {
 
             commit("newCategory", response.data);
             commit("resetNewCategory");
+            commit("resetImage");
             commit("setErrors", {});
         } catch (e) {
             commit("setErrors", e.response.data.errors);
@@ -53,6 +49,7 @@ const actions = {
 
             commit("putCategory", response.data);
             commit("resetNewCategory");
+            commit("resetImage");
 
             commit("setErrors", {});
             $("#addNew").modal("hide");
@@ -61,19 +58,27 @@ const actions = {
         }
     },
     async deleteCategory({ commit }, id) {
-        const response = await axios.delete(`${urlApi}category/${id}`);
-
-        console.log(response);
-
+        await axios.delete(`${urlApi}category/${id}`);
         commit("removeCategory", id);
     },
 
     setCategory({ commit }, oldCategory) {
         commit("setCategory", oldCategory);
+        if (oldCategory.image != null) {
+            commit(
+                "setImage",
+                {
+                    name: oldCategory.image,
+                    url: "/img/category/" + oldCategory.image
+                },
+                { root: true }
+            );
+        }
     },
     resetCategory({ commit }) {
         $("#addNew").on("hide.bs.modal", function(e) {
             commit("resetNewCategory");
+            commit("resetImage");
         });
     }
 };
@@ -99,20 +104,12 @@ const mutations = {
         )),
     setCategory: (state, oldCategory) => {
         state.category = oldCategory;
-        if (oldCategory.image != null) {
-            state.image.name = oldCategory.image;
-            state.image.url = "/img/category/" + oldCategory.image;
-        }
     },
     resetNewCategory: state => {
         state.category = {
             name: "",
             slug: "",
             image: ""
-        };
-        state.image = {
-            name: "Choose Image ...",
-            url: "/img/img-placeholder.png"
         };
     }
 };

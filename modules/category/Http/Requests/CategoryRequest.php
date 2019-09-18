@@ -30,7 +30,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:categories',
         ];
     }
 

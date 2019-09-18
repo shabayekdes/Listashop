@@ -23,7 +23,7 @@ class CreateCategoriesTable extends Migration
 
             // transfer
             $table->text('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->text('meta_title')->nullable();
             $table->text('meta_description')->nullable();

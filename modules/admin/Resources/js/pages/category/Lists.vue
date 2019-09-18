@@ -80,10 +80,33 @@
                           <td class="sorting_1">{{ category.id }}</td>
                           <td>{{ category.name }}</td>
                           <td>{{ category.description }}</td>
-                          <td class="project-state text-center">
+                          <td>
+                            <div class="form-group">
+                              <div class="custom-control custom-switch custom-switch-on-success">
+                                <input
+                                  type="checkbox"
+                                  v-model="category.status"
+                                  @change="changeStatus(category)"
+                                  class="custom-control-input"
+                                  :id="category.slug"
+                                />
+                                <label
+                                  v-show="category.status"
+                                  class="custom-control-label"
+                                  :for="category.slug"
+                                >Active</label>
+                                <label
+                                  v-show="!category.status"
+                                  class="custom-control-label"
+                                  :for="category.slug"
+                                >Non-Active</label>
+                              </div>
+                            </div>
+                          </td>
+                          <!-- <td class="project-state text-center">
                             <span v-show="category.status" class="badge badge-success">Active</span>
                             <span v-show="!category.status" class="badge badge-warning">Non-Active</span>
-                          </td>
+                          </td>-->
                           <td class="project-actions text-right">
                             <a class="btn btn-primary btn-sm" href="#">
                               <i class="fas fa-folder"></i>
@@ -162,6 +185,7 @@ export default {
     ...mapActions([
       "fetchListCategories",
       "storeCategory",
+      "updateCategory",
       "setCategory",
       "resetCategory",
       "deleteCategory"
@@ -170,6 +194,9 @@ export default {
       this.editMode = true;
       $("#addNew").modal("show");
       this.setCategory(category);
+    },
+    changeStatus(category) {
+      this.updateCategory(category);
     }
   },
   created() {
