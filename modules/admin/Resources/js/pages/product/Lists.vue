@@ -97,10 +97,13 @@
                             <i class="fas fa-folder"></i>
                             View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <router-link
+                            :to="{ name: 'product.create',  params: { product, editMode: true } }"
+                            class="btn btn-info btn-sm"
+                          >
                             <i class="fas fa-pencil-alt"></i>
                             Edit
-                          </a>
+                          </router-link>
                           <a class="btn btn-danger btn-sm" href="#">
                             <i class="fas fa-trash"></i>
                             Delete
@@ -131,7 +134,7 @@ import pagination from "@/components/Pagination.vue";
 import datatable from "@/components/DataTable.vue";
 
 export default {
-  name: "Users",
+  name: "ProductList",
   components: {
     pagination,
     datatable

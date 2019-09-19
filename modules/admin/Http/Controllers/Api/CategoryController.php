@@ -3,6 +3,7 @@
 namespace Admin\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Category\Models\Category;
 use App\Http\Controllers\Controller;
 use Category\Http\Requests\CategoryRequest;
 use Category\Http\Resources\CategoryResource;
@@ -62,15 +63,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        if($request->image){
-            $name = $request->slug.'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-            \Image::make($request->image)->save(public_path('img/category/').$name);
-            $request->merge(['image' => $name]);
-        }
-
-        return $this->category->updateById($id, $request->all());
+        return $this->category->update($id, $request->all());
     }
 
     /**

@@ -36,4 +36,27 @@ class CategoryRepository extends BaseRepository
         return $this->model->create($data);
     }
 
+        /**
+     * @param User  $user
+     * @param array $data
+     *
+     * @throws GeneralException
+     * @throws \Exception
+     * @throws \Throwable
+     * @return User
+     */
+    public function update($id, array $data) : Category
+    {
+        $category = $this->getById($id);
+        // dd($data['image']);
+        if($data['image']){
+            $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['image'], 0, strpos($data['image'], ';')))[1])[1];
+            \Image::make($data['image'])->save(public_path('img/category/').$name);
+
+            $data['image'] = $name;
+        }
+        $category->update($data);
+        return $category;
+    }
+
 }

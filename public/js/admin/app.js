@@ -1401,7 +1401,20 @@ var actions = {
     }
 
     return storeProduct;
-  }()
+  }(),
+  setCategory: function setCategory(_ref3, oldProduct) {
+    var commit = _ref3.commit;
+    commit("setProduct", oldProduct);
+
+    if (oldProduct.thumbnail != null) {
+      commit("setImage", {
+        name: oldProduct.thumbnail,
+        url: "/img/category/" + oldProduct.thumbnail
+      }, {
+        root: true
+      });
+    }
+  }
 };
 var mutations = {
   showListProducts: function showListProducts(state, data) {
@@ -1410,6 +1423,9 @@ var mutations = {
   newProduct: function newProduct(state, data) {
     state.products.unshift(data);
     state.status = "ok";
+  },
+  setProduct: function setProduct(state, oldProduct) {
+    state.product = oldProduct;
   },
   resetNewProduct: function resetNewProduct(state) {
     state.product = {
@@ -4266,10 +4282,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductEdit",
+  props: {
+    product: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    },
+    editMode: {
+      type: Boolean,
+      "default": false
+    }
+  },
   data: function data() {
     return {};
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListProducts", "storeProduct", "fetchListCategories", "uploadImage"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "setProduct", "fetchListCategories", "uploadImage"]), {
     createProduct: function createProduct() {
       this.storeProduct(this.getNewProduct);
     },
@@ -4278,9 +4306,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.fetchListProducts();
     this.fetchListCategories("all");
-    console.log(this.getStatus);
+
+    if (this.editMode == true) {
+      this.setProduct(this.product);
+    }
   },
   watch: {
     getImage: {
@@ -4447,11 +4477,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Users",
+  name: "ProductList",
   components: {
     pagination: _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     datatable: _components_DataTable_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -43201,10 +43234,18 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _c(
-                                        "a",
+                                        "router-link",
                                         {
                                           staticClass: "btn btn-info btn-sm",
-                                          attrs: { href: "#" }
+                                          attrs: {
+                                            to: {
+                                              name: "product.create",
+                                              params: {
+                                                product: product,
+                                                editMode: true
+                                              }
+                                            }
+                                          }
                                         },
                                         [
                                           _c("i", {
@@ -43231,7 +43272,8 @@ var render = function() {
                                           )
                                         ]
                                       )
-                                    ]
+                                    ],
+                                    1
                                   )
                                 ]
                               )

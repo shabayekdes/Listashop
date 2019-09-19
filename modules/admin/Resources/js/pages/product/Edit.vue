@@ -267,13 +267,25 @@ import { mapGetters, mapActions, mapState } from "vuex";
 
 export default {
   name: "ProductEdit",
+  props: {
+    product: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    },
+    editMode: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {};
   },
   methods: {
     ...mapActions([
-      "fetchListProducts",
       "storeProduct",
+      "setProduct",
       "fetchListCategories",
       "uploadImage"
     ]),
@@ -288,9 +300,10 @@ export default {
     }
   },
   created() {
-    this.fetchListProducts();
     this.fetchListCategories("all");
-    console.log(this.getStatus);
+    if (this.editMode == true) {
+      this.setProduct(this.product);
+    }
   },
   watch: {
     getImage: {

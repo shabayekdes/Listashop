@@ -39,6 +39,19 @@ const actions = {
         } catch (e) {
             commit("setErrors", e.response.data.errors);
         }
+    },
+    setCategory({ commit }, oldProduct) {
+        commit("setProduct", oldProduct);
+        if (oldProduct.thumbnail != null) {
+            commit(
+                "setImage",
+                {
+                    name: oldProduct.thumbnail,
+                    url: "/img/category/" + oldProduct.thumbnail
+                },
+                { root: true }
+            );
+        }
     }
 };
 
@@ -49,6 +62,9 @@ const mutations = {
     newProduct: (state, data) => {
         state.products.unshift(data);
         state.status = "ok";
+    },
+    setProduct: (state, oldProduct) => {
+        state.product = oldProduct;
     },
     resetNewProduct: state => {
         state.product = {
