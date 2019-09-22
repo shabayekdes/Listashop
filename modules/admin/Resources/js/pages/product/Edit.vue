@@ -175,9 +175,16 @@
             <div class="card-body">
               <button
                 type="button"
+                v-show="!editMode"
                 @click="createProduct"
                 class="btn btn-block bg-gradient-primary btn-lg"
               >Save</button>
+              <button
+                type="button"
+                v-show="editMode"
+                @click="patchProduct"
+                class="btn btn-block bg-gradient-success btn-lg"
+              >Update</button>
             </div>
             <!-- /.card-body -->
           </div>
@@ -285,12 +292,16 @@ export default {
   methods: {
     ...mapActions([
       "storeProduct",
+      "updateProduct",
       "setProduct",
       "fetchListCategories",
       "uploadImage"
     ]),
     createProduct() {
       this.storeProduct(this.getNewProduct);
+    },
+    patchProduct() {
+      this.updateProduct(this.getNewProduct);
     },
     setSlug() {
       this.getNewProduct.slug = this.getNewProduct.name
@@ -319,7 +330,6 @@ export default {
     }
   },
   computed: mapGetters([
-    "getAllProducts",
     "getNewProduct",
     "getAllCategories",
     "getMetaData",

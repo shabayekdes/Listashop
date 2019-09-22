@@ -3,6 +3,7 @@
 namespace Admin\Http\Controllers\Api;
 
 use Illuminate\Support\Str;
+use Product\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Product\Http\Requests\ProductRequest;
@@ -61,8 +62,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\Product\Models\Product $product)
     {
+        dd($product);
+        return $this->product->update($id, array_merge($request->all(), ['sku'=> Str::random(10)]));
     }
 
     /**
@@ -73,6 +76,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->product->deleteById($user->id);
+
     }
 }

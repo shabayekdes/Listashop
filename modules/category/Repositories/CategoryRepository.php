@@ -36,7 +36,7 @@ class CategoryRepository extends BaseRepository
         return $this->model->create($data);
     }
 
-        /**
+    /**
      * @param User  $user
      * @param array $data
      *

@@ -154,7 +154,7 @@ import { mapGetters, mapActions } from "vuex";
 import pagination from "@/components/Pagination.vue";
 import datatable from "@/components/DataTable.vue";
 import model from "@/components/Model.vue";
-import formCategory from "@/pages/category/Form.vue";
+import formCategory from "@/views/forms/CategoryForm.vue";
 
 export default {
   name: "Users",

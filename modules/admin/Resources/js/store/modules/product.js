@@ -11,14 +11,12 @@ const state = {
         cost: "",
         thumbnail: "",
         category_id: ""
-    },
-    status: "none"
+    }
 };
 
 const getters = {
     getAllProducts: state => state.products,
-    getNewProduct: state => state.product,
-    getStatus: state => state.status
+    getNewProduct: state => state.product
 };
 
 const actions = {
@@ -29,18 +27,38 @@ const actions = {
         commit("showListProducts", response.data);
         commit("setMetaData", response.data, { root: true });
     },
-    async storeProduct({ commit }, data) {
+    async storeProduct({ commit, rootState }, data) {
         try {
             const response = await axios.post(`${urlApi}product`, data);
 
             commit("newProduct", response.data);
             commit("resetNewProduct");
             commit("resetImage");
+            rootState.status = "ok";
         } catch (e) {
             commit("setErrors", e.response.data.errors);
         }
     },
-    setCategory({ commit }, oldProduct) {
+    async updateProduct({ commit, rootState }, data) {
+        try {
+            const response = await axios.put(
+                `${urlApi}product/${data.id}`,
+                data
+            );
+
+            commit("putProduct", response.data);
+            commit("resetNewProduct");
+            commit("resetImage");
+            rootState.status = "ok";
+        } catch (e) {
+            commit("setErrors", e.response.data.errors);
+        }
+    },
+    async deleteProduct({ commit }, id) {
+        await axios.delete(`${urlApi}product/${id}`);
+        commit("removeProduct", id);
+    },
+    setProduct({ commit }, oldProduct) {
         commit("setProduct", oldProduct);
         if (oldProduct.thumbnail != null) {
             commit(
@@ -61,8 +79,17 @@ const mutations = {
     },
     newProduct: (state, data) => {
         state.products.unshift(data);
-        state.status = "ok";
     },
+    putProduct: (state, data) => {
+        const index = state.products.findIndex(
+            product => product.id === data.id
+        );
+        if (index !== -1) {
+            state.products.splice(index, 1, data);
+        }
+    },
+    removeProduct: (state, id) =>
+        (state.products = state.products.filter(product => product.id !== id)),
     setProduct: (state, oldProduct) => {
         state.product = oldProduct;
     },

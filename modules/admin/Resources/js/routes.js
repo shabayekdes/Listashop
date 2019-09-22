@@ -31,7 +31,8 @@ export const routes = [
     {
         path: "/admin/product/create",
         name: "product.create",
-        component: EditProducts
+        component: EditProducts,
+        props: true
     },
     {
         path: "/admin/*",

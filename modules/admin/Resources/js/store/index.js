@@ -17,7 +17,8 @@ export default new Vuex.Store({
         image: {
             name: "Choose Image ...",
             url: "/img/img-placeholder.png"
-        }
+        },
+        status: ""
     },
     getters: {
         getMetaData: state => state.meta_data,
@@ -29,7 +30,8 @@ export default new Vuex.Store({
         hasError: state => field => {
             return state.errors.hasOwnProperty(field);
         },
-        getImage: state => state.image
+        getImage: state => state.image,
+        getStatus: state => state.status
     },
     actions: {
         uploadImage({ commit }, e) {

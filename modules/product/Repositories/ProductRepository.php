@@ -35,4 +35,26 @@ class ProductRepository extends BaseRepository
         }
         return $this->model->create($data);
     }
+
+    /**
+     * @param User  $user
+     * @param array $data
+     *
+     * @throws GeneralException
+     * @throws \Exception
+     * @throws \Throwable
+     * @return User
+     */
+    public function update($product, array $data) : Product
+    {
+        // dd($data['image']);
+        if($data['thumbnail']){
+            $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['thumbnail'], 0, strpos($data['thumbnail'], ';')))[1])[1];
+            \Image::make($data['thumbnail'])->save(public_path('img/products/').$name);
+
+            $data['thumbnail'] = $name;
+        }
+        $product->update($data);
+        return $product;
+    }
 }

@@ -104,7 +104,11 @@
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                           </router-link>
-                          <a class="btn btn-danger btn-sm" href="#">
+                          <a
+                            class="btn btn-danger btn-sm"
+                            @click="deleteProduct(product.id)"
+                            href="#"
+                          >
                             <i class="fas fa-trash"></i>
                             Delete
                           </a>
@@ -156,7 +160,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchListProducts"])
+    ...mapActions(["fetchListProducts", "deleteProduct"])
   },
   created() {
     this.fetchListProducts();

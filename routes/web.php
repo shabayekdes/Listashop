@@ -25,3 +25,38 @@ Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm')->
 
 Route::post('/login/admin', 'Auth\LoginController@adminLogin');
 Route::post('/register/admin', 'Auth\RegisterController@createAdmin')->name('register.admin');
+
+Route::group([
+    // 'middleware' => ['auth:api', 'admin']
+    'middleware' => ['auth:api-admin']
+    // 'middleware' => ['auth:api-admin', 'admin']
+], function () {
+
+    Route::get('/test', function () {
+
+        dd(\Auth::guard('admin')->check());
+
+    });
+
+    Route::namespace('\Admin\Http\Controllers\Api')->prefix('api/admin')->group(function () {
+
+
+
+        Route::resource('user', 'UserController');
+        Route::resource('category', 'CategoryController');
+        Route::apiResource('product', 'ProductController');
+    });
+
+    Route::namespace('Product\Http\Controllers')->prefix('api/admin')->group(function () {
+
+        // Route::get('product/show/all', 'ProductController@all');
+
+    });
+
+    Route::namespace('Category\Http\Controllers')->prefix('api/admin')->group(function () {
+
+        Route::get('category/show/all', 'CategoryController@all');
+
+    });
+
+});
