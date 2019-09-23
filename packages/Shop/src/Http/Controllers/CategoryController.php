@@ -29,10 +29,8 @@ class CategoryController extends Controller
         $this->_config = request('_config');
     }
 
-    public function index(Category $id)
+    public function index()
     {
-        dd($id);
-
         $product = Product::latest();
 
         $products = $product->get();

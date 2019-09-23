@@ -37,12 +37,12 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Shop\\": "modules/shop",
-            "Category\\": "modules/category",
-            "Product\\": "modules/product",
-            "Admin\\": "modules/admin",
-            "User\\": "modules/user",
-            "Core\\": "modules/core"
+            "Shop\\": "packages/Shop/src",
+            "Category\\": "packages/Category/src",
+            "Product\\": "packages/Product/src",
+            "Admin\\": "packages/Admin/src",
+            "User\\": "packages/User/src",
+            "Core\\": "packages/Core/src"
         },
         "classmap": [
             "database/seeds",
