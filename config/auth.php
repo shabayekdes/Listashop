@@ -52,7 +52,7 @@ return [
             'driver' => 'passport',
             'provider' => 'admins'
 
-        ],
+        ]
     ],
 
     /*

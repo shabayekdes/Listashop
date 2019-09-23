@@ -47,6 +47,8 @@ const actions = {
                 data
             );
 
+            
+
             commit("putCategory", response.data);
             commit("resetNewCategory");
             commit("resetImage");

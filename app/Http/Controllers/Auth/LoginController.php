@@ -84,6 +84,7 @@ class LoginController extends Controller
      */
     protected function guardLogin(Request $request, $guard)
     {
+        
         $this->validator($request);
 
         return Auth::guard($guard)->attempt(

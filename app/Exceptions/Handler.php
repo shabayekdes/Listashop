@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
     protected function unauthenticated($request, AuthenticationException $exception)
     {
 
-        // dd($exception);
+        // dd(auth()->user());
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
@@ -69,7 +69,7 @@ class Handler extends ExceptionHandler
             return redirect()->guest('/login/admin');
         }
 
-        return redirect()->guest(route('login', \App::getLocale()));
+        return redirect()->guest(route('login'));
     }
 
     protected function whoopsHandler()

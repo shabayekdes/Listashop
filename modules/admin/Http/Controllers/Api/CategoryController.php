@@ -21,7 +21,9 @@ class CategoryController extends Controller
     public function __construct(CategoryRepository $category)
     {
         $this->category = $category;
+
     }
+
     /**
      * Display a listing of the resource.
      *
