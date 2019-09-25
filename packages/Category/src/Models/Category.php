@@ -3,12 +3,9 @@
 namespace Category\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 
 class Category extends Model
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -32,4 +29,9 @@ class Category extends Model
     protected $casts = [
         'status' => 'boolean',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

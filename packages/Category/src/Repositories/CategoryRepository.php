@@ -2,21 +2,30 @@
 
 namespace Category\Repositories;
 
+use Illuminate\Container\Container as App;
 use Category\Models\Category;
 use Core\Eloquent\BaseRepository;
 
 class CategoryRepository extends BaseRepository
 {
     /**
-     * UserRepository constructor.
+     * Create a new controller instance.
      *
-     * @param  User  $model
+     * @return void
      */
-    public function __construct(Category $model)
+    public function __construct(App $app)
     {
-        $this->model = $model;
+        parent::__construct($app);
     }
-
+    /**
+     * Specify Model class name
+     *
+     * @return mixed
+     */
+    public function model()
+    {
+        return Category::class;
+    }
     /**
      * Create a new category record in the database with image.
      *
@@ -45,7 +54,7 @@ class CategoryRepository extends BaseRepository
      * @throws \Throwable
      * @return User
      */
-    public function update($id, array $data) : Category
+    public function update(array $data, $id) : Category
     {
         $category = $this->getById($id);
         // dd($data['image']);

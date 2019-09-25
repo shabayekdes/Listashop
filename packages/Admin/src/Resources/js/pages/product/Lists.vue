@@ -86,8 +86,23 @@
                         :key="product.id"
                       >
                         <td class="sorting_1">{{ product.id }}</td>
+                        <td>
+                          <img
+                            src="/img/default-150x150.png"
+                            v-if="product.thumbnail == null"
+                            alt="Product 1"
+                            class="img-circle img-size-64 mr-2"
+                          />
+                          <img
+                            :src="product.thumbnail"
+                            v-else
+                            alt="Product 2"
+                            class="img-circle img-size-64 mr-2"
+                          />
+                        </td>
                         <td>{{ product.name | slug }}</td>
-                        <td>{{ product.description }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.sku }}</td>
                         <td class="project-state text-center">
                           <span v-show="product.status" class="badge badge-success">Active</span>
                           <span v-show="!product.status" class="badge badge-warning">Non-Active</span>
@@ -147,13 +162,10 @@ export default {
     return {
       columns: [
         { width: "2%", label: "#", name: "id", active: true },
+        { width: "10%", label: "", name: "thumbnail", active: true },
         { width: "30%", label: "Name", name: "name", active: true },
-        {
-          width: "30%",
-          label: "Description",
-          name: "description",
-          active: true
-        },
+        { width: "30%", label: "Price", name: "price", active: true },
+        { width: "30%", label: "SKU", name: "sku", active: true },
         { width: "20%", label: "Status", name: "status", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]

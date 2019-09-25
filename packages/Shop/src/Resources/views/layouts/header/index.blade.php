@@ -7,10 +7,10 @@
             <div class="row">
                 <div class="col d-flex flex-row">
                     <div class="top_bar_contact_item">
-                        <div class="top_bar_icon"><img src="frontend/images/phone.png" alt=""></div>+38 068 005 3570
+                        <div class="top_bar_icon"><img src="/frontend/images/phone.png" alt=""></div>+38 068 005 3570
                     </div>
                     <div class="top_bar_contact_item">
-                        <div class="top_bar_icon"><img src="frontend/images/mail.png" alt=""></div><a
+                        <div class="top_bar_icon"><img src="/frontend/images/mail.png" alt=""></div><a
                             href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
                     </div>
                     <div class="top_bar_content ml-auto">
@@ -35,7 +35,7 @@
                             </ul>
                         </div>
                         <div class="top_bar_user">
-                            <div class="user_icon"><img src="frontend/images/user.svg" alt=""></div>
+                            <div class="user_icon"><img src="/frontend/images/user.svg" alt=""></div>
                             <div><a href="#">Register</a></div>
                             <div><a href="#">Sign in</a></div>
                         </div>
@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="header_search_button trans_300" value="Submit"><img
-                                            src="frontend/images/search.png" alt=""></button>
+                                            src="/frontend/images/search.png" alt=""></button>
                                 </form>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                 <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                     <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                         <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                            <div class="wishlist_icon"><img src="frontend/images/heart.png" alt=""></div>
+                            <div class="wishlist_icon"><img src="/frontend/images/heart.png" alt=""></div>
                             <div class="wishlist_content">
                                 <div class="wishlist_text"><a href="#">Wishlist</a></div>
                                 <div class="wishlist_count">115</div>
@@ -103,7 +103,7 @@
                         <div class="cart">
                             <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                 <div class="cart_icon">
-                                    <img src="frontend/images/cart.png" alt="">
+                                    <img src="/frontend/images/cart.png" alt="">
                                     <div class="cart_count"><span>10</span></div>
                                 </div>
                                 <div class="cart_content">
@@ -296,12 +296,12 @@
 
                         <div class="menu_contact">
                             <div class="menu_contact_item">
-                                <div class="menu_contact_icon"><img src="frontend/images/phone_white.png" alt=""></div>
+                                <div class="menu_contact_icon"><img src="/frontend/images/phone_white.png" alt=""></div>
                                 +38 068 005 3570
                             </div>
                             <div class="menu_contact_item">
-                                <div class="menu_contact_icon"><img src="frontend/images/mail_white.png" alt=""></div><a
-                                    href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                                <div class="menu_contact_icon"><img src="/frontend/images/mail_white.png" alt=""></div>
+                                <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
                             </div>
                         </div>
                     </div>

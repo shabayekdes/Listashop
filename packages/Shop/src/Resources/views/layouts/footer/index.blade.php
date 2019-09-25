@@ -7,7 +7,7 @@
                 <div
                     class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
                     <div class="newsletter_title_container">
-                        <div class="newsletter_icon"><img src="frontend/images/send.png" alt=""></div>
+                        <div class="newsletter_icon"><img src="/frontend/images/send.png" alt=""></div>
                         <div class="newsletter_title">Sign up for Newsletter</div>
                         <div class="newsletter_text">
                             <p>...and receive %20 coupon for first shopping.</p>
@@ -121,10 +121,10 @@
                     </div>
                     <div class="logos ml-sm-auto">
                         <ul class="logos_list">
-                            <li><a href="#"><img src="frontend/images/logos_1.png" alt=""></a></li>
-                            <li><a href="#"><img src="frontend/images/logos_2.png" alt=""></a></li>
-                            <li><a href="#"><img src="frontend/images/logos_3.png" alt=""></a></li>
-                            <li><a href="#"><img src="frontend/images/logos_4.png" alt=""></a></li>
+                            <li><a href="#"><img src="/frontend/images/logos_1.png" alt=""></a></li>
+                            <li><a href="#"><img src="/frontend/images/logos_2.png" alt=""></a></li>
+                            <li><a href="#"><img src="/frontend/images/logos_3.png" alt=""></a></li>
+                            <li><a href="#"><img src="/frontend/images/logos_4.png" alt=""></a></li>
                         </ul>
                     </div>
                 </div>

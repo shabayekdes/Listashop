@@ -12,12 +12,6 @@ use Product\Repositories\ProductRepository;
  */
 class HomeController extends Controller
 {
-    /**
-     * Contains route related configuration
-     *
-     * @var array
-     */
-    protected $_config;
 
     /**
      * Create a new controller instance.
@@ -26,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct(ProductRepository $product)
     {
-        $this->_config = request('_config');
+
     }
 
     public function index()
@@ -39,7 +33,7 @@ class HomeController extends Controller
 
         $featuredProducts = Product::featured()->get();
 
-        return view($this->_config['view'], compact('featuredProducts', 'saleProducts', 'products'));
+        return view('shop::home.index', compact('featuredProducts', 'saleProducts', 'products'));
     }
 
 }

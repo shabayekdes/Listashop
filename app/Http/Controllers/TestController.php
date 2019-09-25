@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
+use Product\Models\Product;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -14,7 +14,9 @@ class TestController extends Controller
      */
     public function index()
     {
-        dd(Str::random(20));
 
+        $test = Product::get(['id']);
+
+        dd($test);
     }
 }

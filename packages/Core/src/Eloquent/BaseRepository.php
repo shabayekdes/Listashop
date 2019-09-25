@@ -3,7 +3,10 @@
 namespace Core\Eloquent;
 
 use Core\Contracts\RepositoryContract;
+use Core\Exceptions\RepositoryException;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Container\Container as Application;
 
 /**
  * BaseRepository
@@ -11,286 +14,467 @@ use Illuminate\Database\Eloquent\Model;
  */
 abstract class BaseRepository implements RepositoryContract
 {
-  /**
-     * The repository model.
-     *
-     * @var \Illuminate\Database\Eloquent\Model
+   /**
+     * @var Application
+     */
+    protected $app;
+    /**
+     * @var Model
      */
     protected $model;
     /**
-     * The query builder.
-     *
-     * @var \Illuminate\Database\Eloquent\Builder
+     * @param Application $app
      */
-    protected $query;
-    /**
-     * Alias for the query limit.
-     *
-     * @var int
-     */
-    protected $take;
-    /**
-     * Array of related models to eager load.
-     *
-     * @var array
-     */
-    protected $with = [];
-    /**
-     * Array of one or more where clause parameters.
-     *
-     * @var array
-     */
-    protected $wheres = [];
-    /**
-     * Array of one or more where in clause parameters.
-     *
-     * @var array
-     */
-    protected $whereIns = [];
-    /**
-     * Array of one or more ORDER BY column/value pairs.
-     *
-     * @var array
-     */
-    protected $orderBys = [];
-    /**
-     * Array of scope methods to call on the model.
-     *
-     * @var array
-     */
-    protected $scopes = [];
-    /**
-     * Get all the model records in the database.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function all()
+    public function __construct(Application $app)
     {
-        $this->newQuery()->eagerLoad();
-        $models = $this->query->get();
-        $this->unsetClauses();
-        return $models;
+        $this->app = $app;
+        $this->makeModel();
     }
     /**
-     * Count the number of specified model records in the database.
+     * Specify Model class name
+     *
+     * @return string
+     */
+    abstract public function model();
+    /**
+     * @return Model
+     * @throws RepositoryException
+     */
+    public function makeModel()
+    {
+        $model = $this->app->make($this->model());
+        if (!$model instanceof Model) {
+            throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+        }
+        return $this->model = $model;
+    }
+
+    /**
+     * Retrieve data array for populate field select
+     * Compatible with Laravel 5.3
+     * @param string $column
+     * @param string|null $key
+     *
+     * @return \Illuminate\Support\Collection|array
+     */
+    public function pluck($column, $key = null)
+    {
+        return $this->model->pluck($column, $key);
+    }
+    /**
+     * Sync relations
+     *
+     * @param $id
+     * @param $relation
+     * @param $attributes
+     * @param bool $detaching
+     * @return mixed
+     */
+    public function sync($id, $relation, $attributes, $detaching = true)
+    {
+        return $this->find($id)->{$relation}()->sync($attributes, $detaching);
+    }
+    /**
+     * SyncWithoutDetaching
+     *
+     * @param $id
+     * @param $relation
+     * @param $attributes
+     * @return mixed
+     */
+    public function syncWithoutDetaching($id, $relation, $attributes)
+    {
+        return $this->sync($id, $relation, $attributes, false);
+    }
+    /**
+     * Retrieve all data of repository
+     *
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function all($columns = ['*'])
+    {
+        if ($this->model instanceof Builder) {
+            $results = $this->model->get($columns);
+        } else {
+            $results = $this->model->all($columns);
+        }
+        return $results;
+    }
+    /**
+     * Count results of repository
+     *
+     * @param array $where
+     * @param string $columns
      *
      * @return int
      */
-    public function count()
+    public function count(array $where = [], $columns = '*')
     {
-        return $this->get()->count();
+        if($where) {
+            $this->applyConditions($where);
+        }
+        $result = $this->model->count($columns);
+        return $result;
     }
     /**
-     * Get the first specified model record from the database.
+     * Alias of All method
      *
-     * @return \Illuminate\Database\Eloquent\Model
+     * @param array $columns
+     *
+     * @return mixed
      */
-    public function first()
+    public function get($columns = ['*'])
     {
-        $this->newQuery()->eagerLoad()->setClauses()->setScopes();
-        $model = $this->query->firstOrFail();
-        $this->unsetClauses();
+        return $this->all($columns);
+    }
+    /**
+     * Retrieve first data of repository
+     *
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function first($columns = ['*'])
+    {
+        $results = $this->model->first($columns);
+        return $results;
+    }
+    /**
+     * Retrieve first data of repository, or return new Entity
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function firstOrNew(array $attributes = [])
+    {
+        $model = $this->model->firstOrNew($attributes);
         return $model;
     }
     /**
-     * Get all the specified model records in the database.
+     * Retrieve first data of repository, or create new Entity
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @param array $attributes
+     *
+     * @return mixed
      */
-    public function get()
+    public function firstOrCreate(array $attributes = [])
     {
-        $this->newQuery()->eagerLoad()->setClauses()->setScopes();
-        $models = $this->query->get();
-        $this->unsetClauses();
-        return $models;
+        $model = $this->model->firstOrCreate($attributes);
+        return $model;
     }
+
     /**
-     * Get the specified model record from the database.
+     * Set the "limit" value of the query.
      *
-     * @param $id
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function getById($id)
-    {
-        $this->unsetClauses();
-        $this->newQuery()->eagerLoad();
-        return $this->query->findOrFail($id);
-    }
-    /**
-     * @param $item
-     * @param $column
-     * @param  array  $columns
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
-     */
-    public function getByColumn($item, $column, array $columns = ['*'])
-    {
-        $this->unsetClauses();
-        $this->newQuery()->eagerLoad();
-        return $this->query->where($column, $item)->first($columns);
-    }
-    /**
-     * Delete the specified model record from the database.
-     *
-     * @param $id
-     *
-     * @return bool|null
-     * @throws \Exception
-     */
-    public function deleteById($id)
-    {
-        $this->unsetClauses();
-        return $this->getById($id)->delete();
-    }
-    /**
-     * Set the query limit.
-     *
-     * @param int $limit
-     *
-     * @return $this
+     * @param  int  $value
+     * @return mixed
      */
     public function limit($limit)
     {
-        $this->take = $limit;
-        return $this;
+        $results = $this->model->limit($limit);
+        return $results;
     }
     /**
-     * Set an ORDER BY clause.
+     * Retrieve all data of repository, paginated
      *
-     * @param string $column
-     * @param string $direction
+     * @param null $limit
+     * @param array $columns
+     * @param string $method
+     *
+     * @return mixed
+     */
+    public function paginate($limit = null, $columns = ['*'], $method = "paginate")
+    {
+        $limit = is_null($limit) ? config('repository.pagination.limit', 15) : $limit;
+        $results = $this->model->{$method}($limit, $columns);
+        return $results;
+    }
+    /**
+     * Retrieve all data of repository, simple paginated
+     *
+     * @param null $limit
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function simplePaginate($limit = null, $columns = ['*'])
+    {
+        return $this->paginate($limit, $columns, "simplePaginate");
+    }
+    /**
+     * Find data by id
+     *
+     * @param       $id
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function find($id, $columns = ['*'])
+    {
+        $model = $this->model->findOrFail($id, $columns);
+        return $model;
+    }
+    /**
+     * Find data by field and value
+     *
+     * @param       $field
+     * @param       $value
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function findBySlug($field, $value = null, $columns = ['*'])
+    {
+        $model = $this->model->where($field, '=', $value)->first($columns);
+        return $model;
+    }
+    /**
+     * Find data by field and value
+     *
+     * @param       $field
+     * @param       $value
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function findByField($field, $value = null, $columns = ['*'])
+    {
+        $model = $this->model->where($field, '=', $value)->get($columns);
+        return $model;
+    }
+    /**
+     * Find data by multiple fields
+     *
+     * @param array $where
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function findWhere(array $where, $columns = ['*'])
+    {
+        $this->applyConditions($where);
+        $model = $this->model->get($columns);
+        return $model;
+    }
+    /**
+     * Find data by multiple values in one field
+     *
+     * @param       $field
+     * @param array $values
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function findWhereIn($field, array $values, $columns = ['*'])
+    {
+        $model = $this->model->whereIn($field, $values)->get($columns);
+        return $model;
+    }
+    /**
+     * Find data by excluding multiple values in one field
+     *
+     * @param       $field
+     * @param array $values
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function findWhereNotIn($field, array $values, $columns = ['*'])
+    {
+        $model = $this->model->whereNotIn($field, $values)->get($columns);
+        return $model;
+    }
+    /**
+     * Find data by between values in one field
+     *
+     * @param       $field
+     * @param array $values
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function findWhereBetween($field, array $values, $columns = ['*'])
+    {
+        $model = $this->model->whereBetween($field, $values)->get($columns);
+        return $model;
+    }
+    /**
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function create(array $attributes)
+    {
+
+        $model = $this->model->newInstance($attributes);
+        $model->save();
+        return $model;
+    }
+    /**
+     * Update a entity in repository by id
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return mixed
+     */
+    public function update(array $attributes, $id)
+    {
+        $model = $this->model->findOrFail($id);
+        $model->fill($attributes);
+        $model->save();
+        return $model;
+    }
+    /**
+     * Update or Create an entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     * @param array $values
+     *
+     * @return mixed
+     */
+    public function updateOrCreate(array $attributes, array $values = [])
+    {
+        $model = $this->model->updateOrCreate($attributes, $values);
+        return $model;
+    }
+    /**
+     * Delete a entity in repository by id
+     *
+     * @param $id
+     *
+     * @return int
+     */
+    public function delete($id)
+    {
+        $model = $this->find($id);
+        $deleted = $model->delete();
+        return $deleted;
+    }
+    /**
+     * Delete multiple entities by given criteria.
+     *
+     * @param array $where
+     *
+     * @return int
+     */
+    public function deleteWhere(array $where)
+    {
+        $this->applyConditions($where);
+        $deleted = $this->model->delete();
+        return $deleted;
+    }
+    /**
+     * Check if entity has relation
+     *
+     * @param string $relation
+     *
      * @return $this
      */
-    public function orderBy($column, $direction = 'asc')
+    public function has($relation)
     {
-        $this->orderBys[] = compact('column', 'direction');
+        $this->model = $this->model->has($relation);
         return $this;
     }
     /**
-     * @param int    $limit
-     * @param array  $columns
-     * @param string $pageName
-     * @param null   $page
+     * Load relations
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    public function paginate($limit = 25, array $columns = ['*'], $pageName = 'page', $page = null)
-    {
-        $this->newQuery()->eagerLoad()->setClauses()->setScopes();
-        $models = $this->query->paginate($limit, $columns, $pageName, $page);
-        $this->unsetClauses();
-        return $models;
-    }
-    /**
-     * Add a simple where clause to the query.
-     *
-     * @param string $column
-     * @param string $value
-     * @param string $operator
-     *
-     * @return $this
-     */
-    public function where($column, $value, $operator = '=')
-    {
-        $this->wheres[] = compact('column', 'value', 'operator');
-        return $this;
-    }
-    /**
-     * Add a simple where in clause to the query.
-     *
-     * @param string $column
-     * @param mixed  $values
-     *
-     * @return $this
-     */
-    public function whereIn($column, $values)
-    {
-        $values = is_array($values) ? $values : [$values];
-        $this->whereIns[] = compact('column', 'values');
-        return $this;
-    }
-    /**
-     * Set Eloquent relationships to eager load.
-     *
-     * @param $relations
+     * @param array|string $relations
      *
      * @return $this
      */
     public function with($relations)
     {
-        if (is_string($relations)) {
-            $relations = func_get_args();
-        }
-        $this->with = $relations;
+        $this->model = $this->model->with($relations);
         return $this;
     }
     /**
-     * Create a new instance of the model's query builder.
+     * Add subselect queries to count the relations.
      *
+     * @param  mixed $relations
      * @return $this
      */
-    protected function newQuery()
+    public function withCount($relations)
     {
-        $this->query = $this->model->newQuery();
+        $this->model = $this->model->withCount($relations);
         return $this;
     }
     /**
-     * Add relationships to the query builder to eager load.
+     * Load relation with closure
+     *
+     * @param string $relation
+     * @param closure $closure
      *
      * @return $this
      */
-    protected function eagerLoad()
+    public function whereHas($relation, $closure)
     {
-        foreach ($this->with as $relation) {
-            $this->query->with($relation);
-        }
+        $this->model = $this->model->whereHas($relation, $closure);
         return $this;
     }
     /**
-     * Set clauses on the query builder.
+     * Set hidden fields
+     *
+     * @param array $fields
      *
      * @return $this
      */
-    protected function setClauses()
+    public function hidden(array $fields)
     {
-        foreach ($this->wheres as $where) {
-            $this->query->where($where['column'], $where['operator'], $where['value']);
-        }
-        foreach ($this->whereIns as $whereIn) {
-            $this->query->whereIn($whereIn['column'], $whereIn['values']);
-        }
-        foreach ($this->orderBys as $orders) {
-            $this->query->orderBy($orders['column'], $orders['direction']);
-        }
-        if (isset($this->take) and ! is_null($this->take)) {
-            $this->query->take($this->take);
-        }
+        $this->model->setHidden($fields);
         return $this;
     }
     /**
-     * Set query scopes.
+     * Order collection by a given column
+     *
+     * @param string $column
+     * @param string $direction
      *
      * @return $this
      */
-    protected function setScopes()
+    public function orderBy($column, $direction = 'asc')
     {
-        foreach ($this->scopes as $method => $args) {
-            $this->query->$method(implode(', ', $args));
-        }
+        $this->model = $this->model->orderBy($column, $direction);
         return $this;
     }
     /**
-     * Reset the query clause parameter arrays.
+     * Set visible fields
+     *
+     * @param array $fields
      *
      * @return $this
      */
-    protected function unsetClauses()
+    public function visible(array $fields)
     {
-        $this->wheres = [];
-        $this->whereIns = [];
-        $this->scopes = [];
-        $this->take = null;
+        $this->model->setVisible($fields);
         return $this;
+    }
+    /**
+     * Applies the given where conditions to the model.
+     *
+     * @param array $where
+     * @return void
+     */
+    protected function applyConditions(array $where)
+    {
+        foreach ($where as $field => $value) {
+            if (is_array($value)) {
+                list($field, $condition, $val) = $value;
+                $this->model = $this->model->where($field, $condition, $val);
+            } else {
+                $this->model = $this->model->where($field, '=', $value);
+            }
+        }
     }
 }

@@ -2,21 +2,30 @@
 
 namespace Product\Repositories;
 
+use Illuminate\Container\Container as App;
 use Product\Models\Product;
 use Core\Eloquent\BaseRepository;
 
 class ProductRepository extends BaseRepository
 {
-    /**
-     * UserRepository constructor.
+        /**
+     * Create a new controller instance.
      *
-     * @param  User  $model
+     * @return void
      */
-    public function __construct(Product $model)
+    public function __construct(App $app)
     {
-        $this->model = $model;
+        parent::__construct($app);
     }
-
+    /**
+     * Specify Model class name
+     *
+     * @return mixed
+     */
+    public function model()
+    {
+        return Product::class;
+    }
     /**
      * Create a new product record in the database with thumb.
      *
@@ -45,7 +54,7 @@ class ProductRepository extends BaseRepository
      * @throws \Throwable
      * @return User
      */
-    public function update($product, array $data) : Product
+    public function update(array $data, $product) : Product
     {
         // dd($data['image']);
         if($data['thumbnail']){

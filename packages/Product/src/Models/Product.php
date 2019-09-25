@@ -54,4 +54,9 @@ class Product extends Model
     {
         return $query->where('special_price', '!=' , null);
     }
+
+    public function categories()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

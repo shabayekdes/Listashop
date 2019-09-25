@@ -2,7 +2,7 @@
 
 namespace User\Repositories;
 
-use App\User;
+use User\Models\User;
 use Core\Eloquent\BaseRepository;
 
 class UserRepository extends BaseRepository
