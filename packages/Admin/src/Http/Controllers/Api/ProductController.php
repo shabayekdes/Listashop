@@ -62,10 +62,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(\Product\Models\Product $product)
+    public function update(ProductRequest $request, $id)
     {
-        dd($product);
-        return $this->product->update($id, array_merge($request->all(), ['sku'=> Str::random(10)]));
+        return new ProductResource($this->product->update($request->all(), $this->product->find($id)));
     }
 
     /**

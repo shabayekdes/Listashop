@@ -204,7 +204,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label>Select Category</label>
-                <select v-model="getNewProduct.category_id" class="form-control">
+                <select v-model="getNewProduct.categories_id" class="form-control">
                   <option value disabled>Select Category</option>
                   <option
                     v-for="category in getAllCategories"
@@ -218,7 +218,7 @@
           </div>
           <div class="card card-outline card-primary">
             <div class="card-header">
-              <h3 class="card-title">Categories</h3>
+              <h3 class="card-title">Upload Thumbnail</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">

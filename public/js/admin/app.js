@@ -2166,7 +2166,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Users",
+  name: "Categories",
   components: {
     pagination: _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     datatable: _components_DataTable_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -2781,22 +2781,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "thumbnail",
         active: true
       }, {
-        width: "30%",
+        width: "23%",
         label: "Name",
         name: "name",
         active: true
       }, {
-        width: "30%",
+        width: "15%",
         label: "Price",
         name: "price",
         active: true
       }, {
-        width: "30%",
+        width: "20%",
         label: "SKU",
         name: "sku",
         active: true
       }, {
-        width: "20%",
+        width: "15%",
         label: "Status",
         name: "status",
         active: true
@@ -40967,8 +40967,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.getNewProduct.category_id,
-                          expression: "getNewProduct.category_id"
+                          value: _vm.getNewProduct.categories_id,
+                          expression: "getNewProduct.categories_id"
                         }
                       ],
                       staticClass: "form-control",
@@ -40984,7 +40984,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.getNewProduct,
-                            "category_id",
+                            "categories_id",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -41234,7 +41234,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Categories")]),
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Upload Thumbnail")]),
       _vm._v(" "),
       _c("div", { staticClass: "card-tools" }, [
         _c(
@@ -41519,17 +41519,17 @@ var staticRenderFns = [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
           _c("div", { staticClass: "col-sm-6" }, [
-            _c("h1", [_vm._v("DataTables")])
+            _c("h1", [_vm._v("Products")])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
               _c("li", { staticClass: "breadcrumb-item" }, [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Admin")])
               ]),
               _vm._v(" "),
               _c("li", { staticClass: "breadcrumb-item active" }, [
-                _vm._v("DataTables")
+                _vm._v("Products")
               ])
             ])
           ])
@@ -41542,7 +41542,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-5" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("List Products")])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Products List")])
     ])
   },
   function() {
@@ -59438,7 +59438,7 @@ var state = {
     price: "",
     cost: "",
     thumbnail: "",
-    category_id: ""
+    categories_id: ""
   }
 };
 var getters = {

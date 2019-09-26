@@ -5,14 +5,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>Products</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                <a href="#">Home</a>
+                <a href="#">Admin</a>
               </li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item active">Products</li>
             </ol>
           </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="card-header">
               <div class="row">
                 <div class="col-sm-12 col-md-5">
-                  <h3 class="card-title">List Products</h3>
+                  <h3 class="card-title">Products List</h3>
                 </div>
                 <div class="col-sm-12 col-md-7">
                   <router-link
@@ -163,10 +163,10 @@ export default {
       columns: [
         { width: "2%", label: "#", name: "id", active: true },
         { width: "10%", label: "", name: "thumbnail", active: true },
-        { width: "30%", label: "Name", name: "name", active: true },
-        { width: "30%", label: "Price", name: "price", active: true },
-        { width: "30%", label: "SKU", name: "sku", active: true },
-        { width: "20%", label: "Status", name: "status", active: true },
+        { width: "23%", label: "Name", name: "name", active: true },
+        { width: "15%", label: "Price", name: "price", active: true },
+        { width: "20%", label: "SKU", name: "sku", active: true },
+        { width: "15%", label: "Status", name: "status", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]
     };

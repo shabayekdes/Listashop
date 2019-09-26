@@ -157,7 +157,7 @@ import model from "@/components/Model.vue";
 import formCategory from "@/views/forms/CategoryForm.vue";
 
 export default {
-  name: "Users",
+  name: "Categories",
   components: {
     pagination,
     datatable,

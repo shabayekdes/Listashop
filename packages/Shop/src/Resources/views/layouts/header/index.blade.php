@@ -54,7 +54,7 @@
                 <!-- Logo -->
                 <div class="col-lg-2 col-sm-3 col-3 order-1">
                     <div class="logo_container">
-                        <div class="logo"><a href="#">Listashop</a></div>
+                        <div class="logo"><a href="/">Listashop</a></div>
                     </div>
                 </div>
 
@@ -137,7 +137,9 @@
 
                             <ul class="cat_menu">
                                 @foreach ($categories as $category)
-                                <li><a class="clc" href="#">{{ $category->name }}</a></li>
+                                <li><a class="clc"
+                                        href="{{ url('store?category='.$category->slug) }}">{{ $category->name }}</a>
+                                </li>
                                 @endforeach
                             </ul>
                         </div>

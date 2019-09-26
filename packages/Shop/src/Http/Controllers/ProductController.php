@@ -11,7 +11,7 @@ use Category\Repositories\CategoryRepository;
 /**
  * Home page controller
  */
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Contains route related configuration
@@ -59,25 +59,10 @@ class CategoryController extends Controller
 
         $products = $products->paginate($pagination);
 
-        return view('shop::category.index')->with([
+        return view('shop::product.index')->with([
             'products' => $products,
             'categories' => $categories,
             'categoryName' => $categoryName,
-        ]);
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  string  $slug
-     * @return \Illuminate\Http\Response
-     */
-    public function show($slug)
-    {
-        $product = Product::where('slug', $slug)->firstOrFail();
-        $mightAlsoLike = Product::where('slug', '!=', $slug)->get();
-         return view('shop::product.index')->with([
-            'product' => $product,
-            'mightAlsoLike' => $mightAlsoLike,
         ]);
     }
 

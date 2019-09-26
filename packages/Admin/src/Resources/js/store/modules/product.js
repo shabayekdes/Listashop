@@ -10,7 +10,7 @@ const state = {
         price: "",
         cost: "",
         thumbnail: "",
-        category_id: ""
+        categories_id: ""
     }
 };
 
