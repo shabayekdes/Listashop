@@ -41,7 +41,7 @@ const actions = {
             commit("SET_ERRORS", e.response.data.errors);
         }
     },
-    async updateCategory({ commit }, data) {
+    async updateCategory({ commit, rootState }, data) {
         try {
             const response = await axios.put(
                 `${urlApi}category/${data.id}`,
@@ -53,6 +53,8 @@ const actions = {
             commit("RESET_IMAGE");
 
             commit("SET_ERRORS", {});
+            rootState.status = "ok";
+
             $("#addNew").modal("hide");
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
@@ -76,10 +78,13 @@ const actions = {
             );
         }
     },
-    resetCategory({ commit }) {
+    resetCategory({ commit, rootState }) {
         $("#addNew").on("hide.bs.modal", function(e) {
             commit("RESET_NEW_CATEGORY");
             commit("RESET_IMAGE");
+            rootState.editMode = false;
+
+            // commit("RESET_STATUS");
         });
     }
 };

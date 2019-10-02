@@ -144,7 +144,7 @@
     <!-- /.content -->
     <!-- Modal -->
     <model title="Update Category">
-      <form-category :mode="editMode" />
+      <form-category />
     </model>
   </div>
 </template>
@@ -177,8 +177,7 @@ export default {
         },
         { width: "15%", label: "Status", name: "status", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
-      ],
-      editMode: false
+      ]
     };
   },
   methods: {

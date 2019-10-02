@@ -54,9 +54,9 @@ class CategoryRepository extends BaseRepository
      * @throws \Throwable
      * @return User
      */
-    public function update(array $data, $id) : Category
+    public function update(array $data, $category) : Category
     {
-        $category = $this->getById($id);
+
         // dd($data['image']);
         if($data['image']){
             $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['image'], 0, strpos($data['image'], ';')))[1])[1];

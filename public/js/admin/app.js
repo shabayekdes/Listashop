@@ -2228,8 +2228,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         label: "Action",
         name: "action",
         active: false
-      }],
-      editMode: false
+      }]
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListCategories", "storeCategory", "updateCategory", "setCategory", "setMode", "resetCategory", "deleteCategory"]), {
@@ -40590,7 +40589,7 @@ var render = function() {
       _c(
         "model",
         { attrs: { title: "Update Category" } },
-        [_c("form-category", { attrs: { mode: _vm.editMode } })],
+        [_c("form-category")],
         1
       )
     ],
@@ -59472,12 +59471,12 @@ var actions = {
     var _updateCategory = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, data) {
-      var commit, response;
+      var commit, rootState, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              commit = _ref3.commit;
+              commit = _ref3.commit, rootState = _ref3.rootState;
               _context3.prev = 1;
               _context3.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "category/").concat(data.id), data);
@@ -59488,21 +59487,22 @@ var actions = {
               commit("RESET_NEW_CATEGORY");
               commit("RESET_IMAGE");
               commit("SET_ERRORS", {});
+              rootState.status = "ok";
               $("#addNew").modal("hide");
-              _context3.next = 15;
+              _context3.next = 16;
               break;
 
-            case 12:
-              _context3.prev = 12;
+            case 13:
+              _context3.prev = 13;
               _context3.t0 = _context3["catch"](1);
               commit("SET_ERRORS", _context3.t0.response.data.errors);
 
-            case 15:
+            case 16:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 12]]);
+      }, _callee3, null, [[1, 13]]);
     }));
 
     function updateCategory(_x4, _x5) {
@@ -59555,10 +59555,12 @@ var actions = {
     }
   },
   resetCategory: function resetCategory(_ref6) {
-    var commit = _ref6.commit;
+    var commit = _ref6.commit,
+        rootState = _ref6.rootState;
     $("#addNew").on("hide.bs.modal", function (e) {
       commit("RESET_NEW_CATEGORY");
       commit("RESET_IMAGE");
+      rootState.editMode = false; // commit("RESET_STATUS");
     });
   }
 };
