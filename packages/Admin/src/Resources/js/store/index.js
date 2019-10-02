@@ -46,27 +46,27 @@ export default new Vuex.Store({
                     name: file.name,
                     url: reader.result
                 };
-                commit("setImage", image);
+                commit("SET_IMAGE", image);
             };
             reader.readAsDataURL(file);
         }
     },
     mutations: {
-        setMetaData: (state, data) => {
+        SET_META_DATA: (state, data) => {
             state.meta_data.last_page = data.meta.last_page;
             state.meta_data.current_page = data.meta.current_page;
             state.meta_data.prev_page_url = data.links.prev;
         },
-        setErrors: (state, data) => {
+        SET_ERRORS: (state, data) => {
             state.errors = data;
         },
-        setImage: (state, image) => {
+        SET_IMAGE: (state, image) => {
             state.image = {
                 name: image.name,
                 url: image.url
             };
         },
-        resetImage: state => {
+        RESET_IMAGE: state => {
             state.image = {
                 name: "Choose Image ...",
                 url: "/img/img-placeholder.png"

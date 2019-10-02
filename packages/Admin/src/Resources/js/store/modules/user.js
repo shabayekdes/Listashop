@@ -13,13 +13,13 @@ const actions = {
         let query = paged !== null ? `?page=${paged}` : "";
         const response = await axios.get(`${urlApi}user${query}`);
 
-        commit("showListUsers", response.data);
-        commit("setMetaData", response.data, { root: true });
+        commit("SHOW_LIST_USERS", response.data);
+        commit("SET_META_DATA", response.data, { root: true });
     }
 };
 
 const mutations = {
-    showListUsers: (state, data) => {
+    SHOW_LIST_USERS: (state, data) => {
         state.users = data.data;
     }
 };

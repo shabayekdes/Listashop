@@ -24,19 +24,19 @@ const actions = {
         let query = paged !== null ? `?page=${paged}` : "";
         const response = await axios.get(`${urlApi}product${query}`);
 
-        commit("showListProducts", response.data);
-        commit("setMetaData", response.data, { root: true });
+        commit("SHOW_LIST_PRODUCTS", response.data);
+        commit("SET_META_DATA", response.data, { root: true });
     },
     async storeProduct({ commit, rootState }, data) {
         try {
             const response = await axios.post(`${urlApi}product`, data);
 
-            commit("newProduct", response.data);
-            commit("resetNewProduct");
-            commit("resetImage");
+            commit("NEW_PRODUCT", response.data);
+            commit("RESET_NEW_PRODUCT");
+            commit("RESET_IMAGE");
             rootState.status = "ok";
         } catch (e) {
-            commit("setErrors", e.response.data.errors);
+            commit("SET_ERRORS", e.response.data.errors);
         }
     },
     async updateProduct({ commit, rootState }, data) {
@@ -46,23 +46,23 @@ const actions = {
                 data
             );
 
-            commit("putProduct", response.data);
-            commit("resetNewProduct");
-            commit("resetImage");
+            commit("PUT_PRODUCT", response.data);
+            commit("RESET_NEW_PRODUCT");
+            commit("RESET_IMAGE");
             rootState.status = "ok";
         } catch (e) {
-            commit("setErrors", e.response.data.errors);
+            commit("SET_ERRORS", e.response.data.errors);
         }
     },
     async deleteProduct({ commit }, id) {
         await axios.delete(`${urlApi}product/${id}`);
-        commit("removeProduct", id);
+        commit("REMOVE_PRODUCT", id);
     },
     setProduct({ commit }, oldProduct) {
-        commit("setProduct", oldProduct);
+        commit("SET_PRODUCT", oldProduct);
         if (oldProduct.thumbnail != null) {
             commit(
-                "setImage",
+                "SET_IMAGE",
                 {
                     name: oldProduct.thumbnail,
                     url: "/img/category/" + oldProduct.thumbnail
@@ -74,13 +74,13 @@ const actions = {
 };
 
 const mutations = {
-    showListProducts: (state, data) => {
+    SHOW_LIST_PRODUCTS: (state, data) => {
         state.products = data.data;
     },
-    newProduct: (state, data) => {
+    NEW_PRODUCT: (state, data) => {
         state.products.unshift(data);
     },
-    putProduct: (state, data) => {
+    PUT_PRODUCT: (state, data) => {
         const index = state.products.findIndex(
             product => product.id === data.id
         );
@@ -88,12 +88,12 @@ const mutations = {
             state.products.splice(index, 1, data);
         }
     },
-    removeProduct: (state, id) =>
+    REMOVE_PRODUCT: (state, id) =>
         (state.products = state.products.filter(product => product.id !== id)),
-    setProduct: (state, oldProduct) => {
+    SET_PRODUCT: (state, oldProduct) => {
         state.product = oldProduct;
     },
-    resetNewProduct: state => {
+    RESET_NEW_PRODUCT: state => {
         state.product = {
             name: "",
             sku: "",

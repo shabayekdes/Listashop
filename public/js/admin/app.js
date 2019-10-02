@@ -59098,28 +59098,28 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
           name: file.name,
           url: reader.result
         };
-        commit("setImage", image);
+        commit("SET_IMAGE", image);
       };
 
       reader.readAsDataURL(file);
     }
   },
   mutations: {
-    setMetaData: function setMetaData(state, data) {
+    SET_META_DATA: function SET_META_DATA(state, data) {
       state.meta_data.last_page = data.meta.last_page;
       state.meta_data.current_page = data.meta.current_page;
       state.meta_data.prev_page_url = data.links.prev;
     },
-    setErrors: function setErrors(state, data) {
+    SET_ERRORS: function SET_ERRORS(state, data) {
       state.errors = data;
     },
-    setImage: function setImage(state, image) {
+    SET_IMAGE: function SET_IMAGE(state, image) {
       state.image = {
         name: image.name,
         url: image.url
       };
     },
-    resetImage: function resetImage(state) {
+    RESET_IMAGE: function RESET_IMAGE(state) {
       state.image = {
         name: "Choose Image ...",
         url: "/img/img-placeholder.png"
@@ -59210,12 +59210,12 @@ var actions = {
 
             case 12:
               response = _context.sent;
-              commit("setMetaData", response.data, {
+              commit("SET_META_DATA", response.data, {
                 root: true
               });
 
             case 14:
-              commit("showListCategories", response.data);
+              commit("SHOW_LIST_CATEGORIES", response.data);
 
             case 15:
             case "end":
@@ -59247,17 +59247,17 @@ var actions = {
 
             case 4:
               response = _context2.sent;
-              commit("newCategory", response.data);
-              commit("resetNewCategory");
-              commit("resetImage");
-              commit("setErrors", {});
+              commit("_NEW_CATEGORY", response.data);
+              commit("RESET_NEW_CATEGORY");
+              commit("RESET_IMAGE");
+              commit("SET_ERRORS", {});
               _context2.next = 14;
               break;
 
             case 11:
               _context2.prev = 11;
               _context2.t0 = _context2["catch"](1);
-              commit("setErrors", _context2.t0.response.data.errors);
+              commit("SET_ERRORS", _context2.t0.response.data.errors);
 
             case 14:
             case "end":
@@ -59289,10 +59289,10 @@ var actions = {
 
             case 4:
               response = _context3.sent;
-              commit("putCategory", response.data);
-              commit("resetNewCategory");
-              commit("resetImage");
-              commit("setErrors", {});
+              commit("PUT_CATEGORY", response.data);
+              commit("RESET_NEW_CATEGORY");
+              commit("RESET_IMAGE");
+              commit("SET_ERRORS", {});
               $("#addNew").modal("hide");
               _context3.next = 15;
               break;
@@ -59300,7 +59300,7 @@ var actions = {
             case 12:
               _context3.prev = 12;
               _context3.t0 = _context3["catch"](1);
-              commit("setErrors", _context3.t0.response.data.errors);
+              commit("SET_ERRORS", _context3.t0.response.data.errors);
 
             case 15:
             case "end":
@@ -59330,7 +59330,7 @@ var actions = {
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "category/").concat(id));
 
             case 3:
-              commit("removeCategory", id);
+              commit("REMOVE_CATEGORY", id);
 
             case 4:
             case "end":
@@ -59348,10 +59348,10 @@ var actions = {
   }(),
   setCategory: function setCategory(_ref5, oldCategory) {
     var commit = _ref5.commit;
-    commit("setCategory", oldCategory);
+    commit("SET_CATEGORY", oldCategory);
 
     if (oldCategory.image != null) {
-      commit("setImage", {
+      commit("SET_IMAGE", {
         name: oldCategory.image,
         url: "/img/category/" + oldCategory.image
       }, {
@@ -59362,19 +59362,19 @@ var actions = {
   resetCategory: function resetCategory(_ref6) {
     var commit = _ref6.commit;
     $("#addNew").on("hide.bs.modal", function (e) {
-      commit("resetNewCategory");
-      commit("resetImage");
+      commit("RESET_NEW_CATEGORY");
+      commit("RESET_IMAGE");
     });
   }
 };
 var mutations = {
-  showListCategories: function showListCategories(state, data) {
+  SHOW_LIST_CATEGORIES: function SHOW_LIST_CATEGORIES(state, data) {
     state.categories = data.data;
   },
-  newCategory: function newCategory(state, data) {
+  NEW_CATEGORY: function NEW_CATEGORY(state, data) {
     state.categories.unshift(data);
   },
-  putCategory: function putCategory(state, data) {
+  PUT_CATEGORY: function PUT_CATEGORY(state, data) {
     var index = state.categories.findIndex(function (category) {
       return category.id === data.id;
     });
@@ -59383,15 +59383,15 @@ var mutations = {
       state.categories.splice(index, 1, data);
     }
   },
-  removeCategory: function removeCategory(state, id) {
+  REMOVE_CATEGORY: function REMOVE_CATEGORY(state, id) {
     return state.categories = state.categories.filter(function (category) {
       return category.id !== id;
     });
   },
-  setCategory: function setCategory(state, oldCategory) {
+  SET_CATEGORY: function SET_CATEGORY(state, oldCategory) {
     state.category = oldCategory;
   },
-  resetNewCategory: function resetNewCategory(state) {
+  RESET_NEW_CATEGORY: function RESET_NEW_CATEGORY(state) {
     state.category = {
       name: "",
       slug: "",
@@ -59471,8 +59471,8 @@ var actions = {
 
             case 5:
               response = _context.sent;
-              commit("showListProducts", response.data);
-              commit("setMetaData", response.data, {
+              commit("SHOW_LIST_PRODUCTS", response.data);
+              commit("SET_META_DATA", response.data, {
                 root: true
               });
 
@@ -59506,9 +59506,9 @@ var actions = {
 
             case 4:
               response = _context2.sent;
-              commit("newProduct", response.data);
-              commit("resetNewProduct");
-              commit("resetImage");
+              commit("NEW_PRODUCT", response.data);
+              commit("RESET_NEW_PRODUCT");
+              commit("RESET_IMAGE");
               rootState.status = "ok";
               _context2.next = 14;
               break;
@@ -59516,7 +59516,7 @@ var actions = {
             case 11:
               _context2.prev = 11;
               _context2.t0 = _context2["catch"](1);
-              commit("setErrors", _context2.t0.response.data.errors);
+              commit("SET_ERRORS", _context2.t0.response.data.errors);
 
             case 14:
             case "end":
@@ -59548,9 +59548,9 @@ var actions = {
 
             case 4:
               response = _context3.sent;
-              commit("putProduct", response.data);
-              commit("resetNewProduct");
-              commit("resetImage");
+              commit("PUT_PRODUCT", response.data);
+              commit("RESET_NEW_PRODUCT");
+              commit("RESET_IMAGE");
               rootState.status = "ok";
               _context3.next = 14;
               break;
@@ -59558,7 +59558,7 @@ var actions = {
             case 11:
               _context3.prev = 11;
               _context3.t0 = _context3["catch"](1);
-              commit("setErrors", _context3.t0.response.data.errors);
+              commit("SET_ERRORS", _context3.t0.response.data.errors);
 
             case 14:
             case "end":
@@ -59588,7 +59588,7 @@ var actions = {
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "product/").concat(id));
 
             case 3:
-              commit("removeProduct", id);
+              commit("REMOVE_PRODUCT", id);
 
             case 4:
             case "end":
@@ -59606,10 +59606,10 @@ var actions = {
   }(),
   setProduct: function setProduct(_ref5, oldProduct) {
     var commit = _ref5.commit;
-    commit("setProduct", oldProduct);
+    commit("SET_PRODUCT", oldProduct);
 
     if (oldProduct.thumbnail != null) {
-      commit("setImage", {
+      commit("SET_IMAGE", {
         name: oldProduct.thumbnail,
         url: "/img/category/" + oldProduct.thumbnail
       }, {
@@ -59619,13 +59619,13 @@ var actions = {
   }
 };
 var mutations = {
-  showListProducts: function showListProducts(state, data) {
+  SHOW_LIST_PRODUCTS: function SHOW_LIST_PRODUCTS(state, data) {
     state.products = data.data;
   },
-  newProduct: function newProduct(state, data) {
+  NEW_PRODUCT: function NEW_PRODUCT(state, data) {
     state.products.unshift(data);
   },
-  putProduct: function putProduct(state, data) {
+  PUT_PRODUCT: function PUT_PRODUCT(state, data) {
     var index = state.products.findIndex(function (product) {
       return product.id === data.id;
     });
@@ -59634,15 +59634,15 @@ var mutations = {
       state.products.splice(index, 1, data);
     }
   },
-  removeProduct: function removeProduct(state, id) {
+  REMOVE_PRODUCT: function REMOVE_PRODUCT(state, id) {
     return state.products = state.products.filter(function (product) {
       return product.id !== id;
     });
   },
-  setProduct: function setProduct(state, oldProduct) {
+  SET_PRODUCT: function SET_PRODUCT(state, oldProduct) {
     state.product = oldProduct;
   },
-  resetNewProduct: function resetNewProduct(state) {
+  RESET_NEW_PRODUCT: function RESET_NEW_PRODUCT(state) {
     state.product = {
       name: "",
       sku: "",
@@ -59713,8 +59713,8 @@ var actions = {
 
             case 5:
               response = _context.sent;
-              commit("showListUsers", response.data);
-              commit("setMetaData", response.data, {
+              commit("SHOW_LIST_USERS", response.data);
+              commit("SET_META_DATA", response.data, {
                 root: true
               });
 
@@ -59734,7 +59734,7 @@ var actions = {
   }()
 };
 var mutations = {
-  showListUsers: function showListUsers(state, data) {
+  SHOW_LIST_USERS: function SHOW_LIST_USERS(state, data) {
     state.users = data.data;
   }
 };
