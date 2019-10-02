@@ -1,5 +1,8 @@
 <template>
-  <form @submit.prevent="mode ? patchCategory() : createCategory()" enctype="multipart/form-data">
+  <form
+    @submit.prevent="getMode ? patchCategory() : createCategory()"
+    enctype="multipart/form-data"
+  >
     <div class="card-body">
       <div class="form-group">
         <label for="inputName">Category Name</label>
@@ -9,8 +12,10 @@
           @change="setSlug"
           id="inputName"
           class="form-control"
+          :class="{ 'is-invalid': hasError('name') }"
           placeholder="Enter name of category ..."
         />
+        <has-error field="name"></has-error>
       </div>
       <div class="form-group">
         <label class="col-form-label" for="inlineFormInputGroup">Slug</label>
@@ -22,9 +27,11 @@
             type="text"
             v-model="getNewCategory.slug"
             class="form-control"
+            :class="{ 'is-invalid': hasError('slug') }"
             id="inlineFormInputGroup"
             placeholder="Enter slug name ..."
           />
+          <has-error field="slug"></has-error>
         </div>
       </div>
       <div class="form-group">
@@ -33,15 +40,17 @@
           v-model="getNewCategory.parent_id"
           name="category_id"
           id="category_id"
-          class="form-control"
+          class="custom-select"
+          :class="{ 'is-invalid': hasError('parent_id') }"
         >
-          <option value>Select category parent</option>
+          <option value>Select one category</option>
           <option
             v-for="category in getAllCategories"
             :value="category.id"
             :key="category.id"
           >{{ category.name }}</option>
         </select>
+        <has-error field="parent_id"></has-error>
       </div>
       <div class="row mb-3">
         <div class="col-md-4 offset-md-4">
@@ -54,55 +63,57 @@
           />
         </div>
       </div>
-      <div class="form-group">
-        <div class="input-group mb-3">
-          <div class="custom-file">
-            <label
-              class="custom-file-label"
-              for="inputGroupFile02"
-              aria-describedby="inputGroupFileAddon02"
-            >{{ getImage.name }}</label>
-            <input
-              type="file"
-              @change="uploadImage"
-              class="custom-file-input"
-              id="inputGroupFile02"
-            />
-          </div>
-        </div>
+
+      <div class="custom-file mb-3">
+        <input
+          type="file"
+          @change="uploadImage"
+          class="custom-file-input"
+          id="validatedCustomFile"
+          :class="{ 'is-invalid': hasError('image') }"
+        />
+        <label class="custom-file-label" for="inputGroupFile02">{{ getImage.name }}</label>
+        <has-error field="image"></has-error>
       </div>
+
       <div class="form-group">
         <label for="inputDescription">Description</label>
         <textarea
           id="inputDescription"
           v-model="getNewCategory.description"
           class="form-control"
+          :class="{ 'is-invalid': hasError('description') }"
           rows="4"
         ></textarea>
+        <has-error field="description"></has-error>
       </div>
     </div>
     <!-- /.card-body -->
 
     <div class="card-footer">
-      <button type="submit" v-if="mode" class="btn btn-success">Update</button>
+      <button type="submit" v-if="getMode" class="btn btn-success">Update</button>
       <button type="submit" v-else class="btn btn-primary">Submit</button>
-      <button type="submit" v-show="mode" class="btn btn-primary" data-dismiss="modal">close</button>
+      <button type="submit" v-show="getMode" class="btn btn-primary" data-dismiss="modal">close</button>
     </div>
   </form>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import HasError from "@/components/HasError.vue";
 
 export default {
   name: "form-category",
-  props: ["mode"],
+  components: {
+    HasError
+  },
   methods: {
     ...mapActions([
       "storeCategory",
       "updateCategory",
       "uploadImage",
-      "fetchListCategories"
+      "fetchListCategories",
+      "setError"
     ]),
     createCategory() {
       this.storeCategory(this.getNewCategory);
@@ -123,9 +134,21 @@ export default {
         this.getNewCategory.image = val.url;
       },
       deep: true
+    },
+    getNewCategory: {
+      handler: function(val, oldVal) {
+        this.setError({ errors: null });
+      },
+      deep: true
     }
   },
-  computed: mapGetters(["getNewCategory", "getAllCategories", "getImage"])
+  computed: mapGetters([
+    "getNewCategory",
+    "getAllCategories",
+    "getImage",
+    "getMode",
+    "hasError"
+  ])
 };
 </script>
 

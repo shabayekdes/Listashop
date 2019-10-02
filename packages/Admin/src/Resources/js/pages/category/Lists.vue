@@ -187,11 +187,12 @@ export default {
       "storeCategory",
       "updateCategory",
       "setCategory",
+      "setMode",
       "resetCategory",
       "deleteCategory"
     ]),
     editModel(category) {
-      this.editMode = true;
+      this.setMode(true);
       $("#addNew").modal("show");
       this.setCategory(category);
     },

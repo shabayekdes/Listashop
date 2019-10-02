@@ -1895,6 +1895,34 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./packages/admin/src/resources/js/components/HasError.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/admin/src/resources/js/components/HasError.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "has-error",
+  props: {
+    field: {
+      type: String,
+      required: true
+    }
+  },
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["hasError", "getErrorMsg"])
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./packages/admin/src/resources/js/components/Model.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/admin/src/resources/js/components/Model.vue?vue&type=script&lang=js& ***!
@@ -2204,9 +2232,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       editMode: false
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListCategories", "storeCategory", "updateCategory", "setCategory", "resetCategory", "deleteCategory"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListCategories", "storeCategory", "updateCategory", "setCategory", "setMode", "resetCategory", "deleteCategory"]), {
     editModel: function editModel(category) {
-      this.editMode = true;
+      this.setMode(true);
       $("#addNew").modal("show");
       this.setCategory(category);
     },
@@ -3051,6 +3079,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_HasError_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/HasError.vue */ "./packages/admin/src/resources/js/components/HasError.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3150,11 +3179,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "form-category",
-  props: ["mode"],
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeCategory", "updateCategory", "uploadImage", "fetchListCategories"]), {
+  components: {
+    HasError: _components_HasError_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeCategory", "updateCategory", "uploadImage", "fetchListCategories", "setError"]), {
     createCategory: function createCategory() {
       this.storeCategory(this.getNewCategory);
     },
@@ -3171,9 +3210,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.getNewCategory.image = val.url;
       },
       deep: true
+    },
+    getNewCategory: {
+      handler: function handler(val, oldVal) {
+        this.setError({
+          errors: null
+        });
+      },
+      deep: true
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNewCategory", "getAllCategories", "getImage"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNewCategory", "getAllCategories", "getImage", "getMode", "hasError"])
 });
 
 /***/ }),
@@ -40000,6 +40047,35 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./packages/admin/src/resources/js/components/HasError.vue?vue&type=template&id=568255ba&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/admin/src/resources/js/components/HasError.vue?vue&type=template&id=568255ba& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.hasError(_vm.field)
+    ? _c("div", {
+        staticClass: "help-block invalid-feedback",
+        domProps: { innerHTML: _vm._s(_vm.getErrorMsg(_vm.field)) }
+      })
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./packages/admin/src/resources/js/components/Model.vue?vue&type=template&id=26b2df2d&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/admin/src/resources/js/components/Model.vue?vue&type=template&id=26b2df2d& ***!
@@ -41992,44 +42068,52 @@ var render = function() {
       on: {
         submit: function($event) {
           $event.preventDefault()
-          _vm.mode ? _vm.patchCategory() : _vm.createCategory()
+          _vm.getMode ? _vm.patchCategory() : _vm.createCategory()
         }
       }
     },
     [
       _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "inputName" } }, [
-            _vm._v("Category Name")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.getNewCategory.name,
-                expression: "getNewCategory.name"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              id: "inputName",
-              placeholder: "Enter name of category ..."
-            },
-            domProps: { value: _vm.getNewCategory.name },
-            on: {
-              change: _vm.setSlug,
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "inputName" } }, [
+              _vm._v("Category Name")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.getNewCategory.name,
+                  expression: "getNewCategory.name"
                 }
-                _vm.$set(_vm.getNewCategory, "name", $event.target.value)
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.hasError("name") },
+              attrs: {
+                type: "text",
+                id: "inputName",
+                placeholder: "Enter name of category ..."
+              },
+              domProps: { value: _vm.getNewCategory.name },
+              on: {
+                change: _vm.setSlug,
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.getNewCategory, "name", $event.target.value)
+                }
               }
-            }
-          })
-        ]),
+            }),
+            _vm._v(" "),
+            _c("has-error", { attrs: { field: "name" } })
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c(
@@ -42041,87 +42125,103 @@ var render = function() {
             [_vm._v("Slug")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "input-group" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.getNewCategory.slug,
-                  expression: "getNewCategory.slug"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                id: "inlineFormInputGroup",
-                placeholder: "Enter slug name ..."
-              },
-              domProps: { value: _vm.getNewCategory.slug },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.getNewCategory, "slug", $event.target.value)
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("Categories")]),
-          _vm._v(" "),
           _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.getNewCategory.parent_id,
-                  expression: "getNewCategory.parent_id"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { name: "category_id", id: "category_id" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.getNewCategory,
-                    "parent_id",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                }
-              }
-            },
+            "div",
+            { staticClass: "input-group" },
             [
-              _c("option", { attrs: { value: "" } }, [
-                _vm._v("Select category parent")
-              ]),
+              _vm._m(0),
               _vm._v(" "),
-              _vm._l(_vm.getAllCategories, function(category) {
-                return _c(
-                  "option",
-                  { key: category.id, domProps: { value: category.id } },
-                  [_vm._v(_vm._s(category.name))]
-                )
-              })
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.getNewCategory.slug,
+                    expression: "getNewCategory.slug"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.hasError("slug") },
+                attrs: {
+                  type: "text",
+                  id: "inlineFormInputGroup",
+                  placeholder: "Enter slug name ..."
+                },
+                domProps: { value: _vm.getNewCategory.slug },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.getNewCategory, "slug", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("has-error", { attrs: { field: "slug" } })
             ],
-            2
+            1
           )
         ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", [_vm._v("Categories")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.getNewCategory.parent_id,
+                    expression: "getNewCategory.parent_id"
+                  }
+                ],
+                staticClass: "custom-select",
+                class: { "is-invalid": _vm.hasError("parent_id") },
+                attrs: { name: "category_id", id: "category_id" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.getNewCategory,
+                      "parent_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("Select one category")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.getAllCategories, function(category) {
+                  return _c(
+                    "option",
+                    { key: category.id, domProps: { value: category.id } },
+                    [_vm._v(_vm._s(category.name))]
+                  )
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c("has-error", { attrs: { field: "parent_id" } })
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "row mb-3" }, [
           _c("div", { staticClass: "col-md-4 offset-md-4" }, [
@@ -42137,61 +42237,74 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("div", { staticClass: "input-group mb-3" }, [
-            _c("div", { staticClass: "custom-file" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "custom-file-label",
-                  attrs: {
-                    for: "inputGroupFile02",
-                    "aria-describedby": "inputGroupFileAddon02"
-                  }
-                },
-                [_vm._v(_vm._s(_vm.getImage.name))]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "custom-file-input",
-                attrs: { type: "file", id: "inputGroupFile02" },
-                on: { change: _vm.uploadImage }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "inputDescription" } }, [
-            _vm._v("Description")
-          ]),
-          _vm._v(" "),
-          _c("textarea", {
-            directives: [
+        _c(
+          "div",
+          { staticClass: "custom-file mb-3" },
+          [
+            _c("input", {
+              staticClass: "custom-file-input",
+              class: { "is-invalid": _vm.hasError("image") },
+              attrs: { type: "file", id: "validatedCustomFile" },
+              on: { change: _vm.uploadImage }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
               {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.getNewCategory.description,
-                expression: "getNewCategory.description"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "inputDescription", rows: "4" },
-            domProps: { value: _vm.getNewCategory.description },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+                staticClass: "custom-file-label",
+                attrs: { for: "inputGroupFile02" }
+              },
+              [_vm._v(_vm._s(_vm.getImage.name))]
+            ),
+            _vm._v(" "),
+            _c("has-error", { attrs: { field: "image" } })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "inputDescription" } }, [
+              _vm._v("Description")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.getNewCategory.description,
+                  expression: "getNewCategory.description"
                 }
-                _vm.$set(_vm.getNewCategory, "description", $event.target.value)
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.hasError("description") },
+              attrs: { id: "inputDescription", rows: "4" },
+              domProps: { value: _vm.getNewCategory.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.getNewCategory,
+                    "description",
+                    $event.target.value
+                  )
+                }
               }
-            }
-          })
-        ])
+            }),
+            _vm._v(" "),
+            _c("has-error", { attrs: { field: "description" } })
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer" }, [
-        _vm.mode
+        _vm.getMode
           ? _c(
               "button",
               { staticClass: "btn btn-success", attrs: { type: "submit" } },
@@ -42210,8 +42323,8 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.mode,
-                expression: "mode"
+                value: _vm.getMode,
+                expression: "getMode"
               }
             ],
             staticClass: "btn btn-primary",
@@ -58473,6 +58586,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./packages/admin/src/resources/js/components/HasError.vue":
+/*!*****************************************************************!*\
+  !*** ./packages/admin/src/resources/js/components/HasError.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HasError_vue_vue_type_template_id_568255ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HasError.vue?vue&type=template&id=568255ba& */ "./packages/admin/src/resources/js/components/HasError.vue?vue&type=template&id=568255ba&");
+/* harmony import */ var _HasError_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HasError.vue?vue&type=script&lang=js& */ "./packages/admin/src/resources/js/components/HasError.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _HasError_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HasError_vue_vue_type_template_id_568255ba___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _HasError_vue_vue_type_template_id_568255ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "packages/admin/src/resources/js/components/HasError.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./packages/admin/src/resources/js/components/HasError.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./packages/admin/src/resources/js/components/HasError.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HasError_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./HasError.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./packages/admin/src/resources/js/components/HasError.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HasError_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./packages/admin/src/resources/js/components/HasError.vue?vue&type=template&id=568255ba&":
+/*!************************************************************************************************!*\
+  !*** ./packages/admin/src/resources/js/components/HasError.vue?vue&type=template&id=568255ba& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HasError_vue_vue_type_template_id_568255ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./HasError.vue?vue&type=template&id=568255ba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./packages/admin/src/resources/js/components/HasError.vue?vue&type=template&id=568255ba&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HasError_vue_vue_type_template_id_568255ba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HasError_vue_vue_type_template_id_568255ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./packages/admin/src/resources/js/components/Model.vue":
 /*!**************************************************************!*\
   !*** ./packages/admin/src/resources/js/components/Model.vue ***!
@@ -59057,7 +59239,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       name: "Choose Image ...",
       url: "/img/img-placeholder.png"
     },
-    status: ""
+    status: "",
+    editMode: false
   },
   getters: {
     getMetaData: function getMetaData(state) {
@@ -59080,6 +59263,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     getStatus: function getStatus(state) {
       return state.status;
+    },
+    getMode: function getMode(state) {
+      return state.editMode;
     }
   },
   actions: {
@@ -59102,6 +59288,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       };
 
       reader.readAsDataURL(file);
+    },
+    setError: function setError(_ref2, oldError) {
+      var commit = _ref2.commit;
+      commit("SET_ERRORS", oldError);
+    },
+    setMode: function setMode(_ref3, bool) {
+      var state = _ref3.state;
+      state.editMode = bool;
     }
   },
   mutations: {
@@ -59161,7 +59355,8 @@ var state = {
     id: "",
     name: "",
     slug: "",
-    image: ""
+    image: "",
+    parent_id: ""
   }
 };
 var getters = {
@@ -59247,7 +59442,7 @@ var actions = {
 
             case 4:
               response = _context2.sent;
-              commit("_NEW_CATEGORY", response.data);
+              commit("NEW_CATEGORY", response.data);
               commit("RESET_NEW_CATEGORY");
               commit("RESET_IMAGE");
               commit("SET_ERRORS", {});

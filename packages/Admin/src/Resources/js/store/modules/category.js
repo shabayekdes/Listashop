@@ -6,7 +6,8 @@ const state = {
         id: "",
         name: "",
         slug: "",
-        image: ""
+        image: "",
+        parent_id: ""
     }
 };
 
@@ -32,7 +33,7 @@ const actions = {
         try {
             const response = await axios.post(`${urlApi}category`, data);
 
-            commit("_NEW_CATEGORY", response.data);
+            commit("NEW_CATEGORY", response.data);
             commit("RESET_NEW_CATEGORY");
             commit("RESET_IMAGE");
             commit("SET_ERRORS", {});

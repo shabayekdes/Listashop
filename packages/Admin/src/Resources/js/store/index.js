@@ -18,7 +18,8 @@ export default new Vuex.Store({
             name: "Choose Image ...",
             url: "/img/img-placeholder.png"
         },
-        status: ""
+        status: "",
+        editMode: false
     },
     getters: {
         getMetaData: state => state.meta_data,
@@ -31,7 +32,8 @@ export default new Vuex.Store({
             return state.errors.hasOwnProperty(field);
         },
         getImage: state => state.image,
-        getStatus: state => state.status
+        getStatus: state => state.status,
+        getMode: state => state.editMode
     },
     actions: {
         uploadImage({ commit }, e) {
@@ -49,6 +51,12 @@ export default new Vuex.Store({
                 commit("SET_IMAGE", image);
             };
             reader.readAsDataURL(file);
+        },
+        setError({ commit }, oldError) {
+            commit("SET_ERRORS", oldError);
+        },
+        setMode({ state }, bool) {
+            state.editMode = bool;
         }
     },
     mutations: {
