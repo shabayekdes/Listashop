@@ -2,9 +2,11 @@
 
 namespace Category\Repositories;
 
-use Illuminate\Container\Container as App;
 use Category\Models\Category;
 use Core\Eloquent\BaseRepository;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
+use Illuminate\Container\Container as App;
 
 class CategoryRepository extends BaseRepository
 {
@@ -35,14 +37,7 @@ class CategoryRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        // dd($data['image']);
-        if($data['image']){
-            $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['image'], 0, strpos($data['image'], ';')))[1])[1];
-            \Image::make($data['image'])->save(public_path('img/category/').$name);
-
-            $data['image'] = $name;
-        }
-        return $this->model->create($data);
+        return $this->model->create($this->storeImage($data));
     }
 
     /**
@@ -56,16 +51,24 @@ class CategoryRepository extends BaseRepository
      */
     public function update(array $data, $category) : Category
     {
+        if (isset($data['image']) && File::exists('img/category/'. $category->image)) {
+            File::delete('img/category/'. $category->image);
+        }
+        $category->update($this->storeImage($data));
+        return $category;
+    }
 
-        // dd($data['image']);
-        if($data['image']){
+    private function storeImage($data)
+    {
+        if (isset($data['image'])) {
+
             $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['image'], 0, strpos($data['image'], ';')))[1])[1];
-            \Image::make($data['image'])->save(public_path('img/category/').$name);
+            Image::make($data['image'])->save(public_path('img/category/').$name);
 
             $data['image'] = $name;
+
         }
-        $category->update($data);
-        return $category;
+        return $data;
     }
 
 }

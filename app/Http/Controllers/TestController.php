@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Product\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class TestController extends Controller
 {
@@ -14,6 +16,7 @@ class TestController extends Controller
      */
     public function index()
     {
+        dd(File::exists('img/products/4.jpeg'));
 
         $test = Product::get(['id']);
 

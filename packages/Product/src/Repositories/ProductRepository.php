@@ -2,9 +2,12 @@
 
 namespace Product\Repositories;
 
-use Illuminate\Container\Container as App;
 use Product\Models\Product;
 use Core\Eloquent\BaseRepository;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Container\Container as App;
 
 class ProductRepository extends BaseRepository
 {
@@ -35,14 +38,7 @@ class ProductRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        // dd($data['image']);
-        if($data['thumbnail']){
-            $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['thumbnail'], 0, strpos($data['thumbnail'], ';')))[1])[1];
-            \Image::make($data['thumbnail'])->save(public_path('img/products/').$name);
-
-            $data['thumbnail'] = $name;
-        }
-        return $this->model->create($data);
+        return $this->model->create($this->storeImage($data));
     }
 
     /**
@@ -56,14 +52,23 @@ class ProductRepository extends BaseRepository
      */
     public function update(array $data, $product) : Product
     {
-        // dd($data['image']);
-        if($data['thumbnail']){
+        if (isset($data['thumbnail']) && File::exists('img/products/'. $product->thumbnail)) {
+            File::delete('img/products/'. $product->thumbnail);
+        }
+        $product->update($this->storeImage($data));
+        return $product;
+    }
+
+    private function storeImage($data)
+    {
+        if (isset($data['thumbnail'])) {
+
             $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['thumbnail'], 0, strpos($data['thumbnail'], ';')))[1])[1];
-            \Image::make($data['thumbnail'])->save(public_path('img/products/').$name);
+            Image::make($data['thumbnail'])->save(public_path('img/products/').$name);
 
             $data['thumbnail'] = $name;
+
         }
-        $product->update($data);
-        return $product;
+        return $data;
     }
 }

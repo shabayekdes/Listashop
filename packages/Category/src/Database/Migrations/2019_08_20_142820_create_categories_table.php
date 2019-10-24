@@ -14,7 +14,7 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('position')->default(0);
             $table->string('image')->nullable();
             $table->boolean('status')->default(0);
@@ -30,7 +30,7 @@ class CreateCategoriesTable extends Migration
             $table->text('meta_keywords')->nullable();
 
 
-            $table->unsignedInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('parent_id')->default(0);
             $table->index('parent_id');
             $table->timestamps();
         });

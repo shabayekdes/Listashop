@@ -26,11 +26,11 @@ class Product extends Model
     ];
 
     /**
-     * Get the post's image.
+     * The images that belong to the product.
      */
-    public function image()
+    public function images()
     {
-        return $this->morphOne(Gallery::class, 'galleriable');
+        return $this->hasMany(ProductImage::class);
     }
 
     /**

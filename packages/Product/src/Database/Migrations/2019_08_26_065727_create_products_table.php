@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('sku');
             $table->string('name');
             $table->string('slug');
@@ -42,7 +42,7 @@ class CreateProductsTable extends Migration
             // $table->text('meta_keywords')->nullable();
             // $table->text('meta_description')->nullable();
 
-            $table->integer('categories_id')->unsigned();
+            $table->unsignedBigInteger('categories_id');
             $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->timestamps();
