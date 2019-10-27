@@ -14,10 +14,10 @@ require("laravel-mix-merge-manifest");
 mix.webpackConfig({
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "modules/admin/resources/js/")
+            "@": path.resolve(__dirname, "packages/admin/src/resources/js/")
         }
     }
 });
-mix.js("modules/admin/resources/js/app.js", "public/js/admin")
-    .sass("modules/admin/resources/sass/app.scss", "public/css/admin")
+mix.js("packages/admin/src/resources/js/app.js", "public/js/admin")
+    .sass("packages/admin/src/resources/sass/app.scss", "public/css/admin")
     .mergeManifest();

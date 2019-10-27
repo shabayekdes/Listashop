@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
-use Illuminate\Support\Facades\Config;
 
 class LoginController extends Controller
 {
@@ -47,7 +46,7 @@ class LoginController extends Controller
     public function showAdminLoginForm()
     {
         return view('auth.login', [
-            'url' => Config::get('constants.guards.admin')
+            'url' => config('constants.guards.admin')
         ]);
     }
 
@@ -70,7 +69,7 @@ class LoginController extends Controller
      */
     public function adminLogin(Request $request)
     {
-        if ($this->guardLogin($request, Config::get('constants.guards.admin'))) {
+        if ($this->guardLogin($request, config('constants.guards.admin'))) {
             return redirect()->intended('/admin');
         }
 
@@ -84,6 +83,7 @@ class LoginController extends Controller
      */
     protected function guardLogin(Request $request, $guard)
     {
+
         $this->validator($request);
 
         return Auth::guard($guard)->attempt(

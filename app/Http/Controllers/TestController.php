@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
+use Product\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class TestController extends Controller
 {
@@ -14,7 +16,10 @@ class TestController extends Controller
      */
     public function index()
     {
-        dd(Str::random(20));
+        dd(File::exists('img/products/4.jpeg'));
 
+        $test = Product::get(['id']);
+
+        dd($test);
     }
 }

@@ -40,20 +40,19 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users'
+        ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'api' => [
-            'driver' => 'passport',
-            'provider' => 'users',
-            'hash' => false,
-        ],
         'api-admin' => [
             'driver' => 'passport',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+            'provider' => 'admins'
+
+        ]
     ],
 
     /*
@@ -76,7 +75,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => User\Models\User::class,
         ],
 
         'admins' => [

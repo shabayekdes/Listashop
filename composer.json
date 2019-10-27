@@ -19,6 +19,7 @@
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
+        "laravel/ui": "^1.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^7.5"
@@ -36,16 +37,19 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Shop\\": "modules/shop",
-            "Category\\": "modules/category",
-            "Product\\": "modules/product",
-            "Admin\\": "modules/admin",
-            "User\\": "modules/user",
-            "Core\\": "modules/core"
+            "Shop\\": "packages/Shop/src",
+            "Category\\": "packages/Category/src",
+            "Product\\": "packages/Product/src",
+            "Admin\\": "packages/Admin/src",
+            "User\\": "packages/User/src",
+            "Core\\": "packages/Core/src"
         },
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "packages/Core/src/Helpers/helpers.php"
         ]
     },
     "autoload-dev": {
