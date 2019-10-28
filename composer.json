@@ -42,7 +42,8 @@
             "Product\\": "packages/Product/src",
             "Admin\\": "packages/Admin/src",
             "User\\": "packages/User/src",
-            "Core\\": "packages/Core/src"
+            "Core\\": "packages/Core/src",
+            "Cart\\": "packages/Cart/src"
         },
         "classmap": [
             "database/seeds",

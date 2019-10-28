@@ -1,5 +1,4 @@
 <header class="header">
-
     <!-- Top Bar -->
 
     <div class="top_bar">
@@ -98,16 +97,17 @@
                                 <div class="wishlist_count">115</div>
                             </div>
                         </div>
-
                         <!-- Cart -->
                         <div class="cart">
                             <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                 <div class="cart_icon">
                                     <img src="/frontend/images/cart.png" alt="">
-                                    <div class="cart_count"><span>10</span></div>
+                                    <div class="cart_count">
+                                        <span>{{ session()->has('cart') ? session('cart')->totalQty : '0' }}</span>
+                                    </div>
                                 </div>
                                 <div class="cart_content">
-                                    <div class="cart_text"><a href="#">Cart</a></div>
+                                    <div class="cart_text"><a href="{{ route('cart.index') }}">Cart</a></div>
                                     <div class="cart_price">$85</div>
                                 </div>
                             </div>

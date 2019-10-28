@@ -16,6 +16,8 @@ class TestController extends Controller
      */
     public function index()
     {
+        dd(session()->all());
+
         dd(File::exists('img/products/4.jpeg'));
 
         $test = Product::get(['id']);

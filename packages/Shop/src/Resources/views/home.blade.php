@@ -273,7 +273,8 @@
                                             <div class="product_price discount">$225<span>{{ $product->price }}</span>
                                             </div>
                                             <div class="product_name">
-                                                <div><a href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
+                                                <div><a
+                                                        href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
                                                 </div>
                                             </div>
                                             <div class="product_extras">
@@ -283,7 +284,8 @@
                                                     <input type="radio" name="product_color" style="background:#000000">
                                                     <input type="radio" name="product_color" style="background:#999999">
                                                 </div>
-                                                <button class="product_cart_button">Add to Cart</button>
+                                                <a href="{{ route('cart.store',$product)}}"
+                                                    class="product_cart_button">Add to Cart</a>
                                             </div>
                                         </div>
                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
@@ -316,7 +318,8 @@
                                             <div class="product_price discount">$225<span>{{ $product->price }}</span>
                                             </div>
                                             <div class="product_name">
-                                                <div><a href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
+                                                <div><a
+                                                        href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
                                                 </div>
                                             </div>
                                             <div class="product_extras">
