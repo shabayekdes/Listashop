@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Http\Controllers\Api;
+namespace Admin\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;

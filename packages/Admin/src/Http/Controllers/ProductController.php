@@ -1,29 +1,29 @@
 <?php
 
-namespace Admin\Http\Controllers\Api;
+namespace Admin\Http\Controllers;
 
+use Illuminate\Support\Str;
+use Product\Models\Product;
 use Illuminate\Http\Request;
-use Category\Models\Category;
 use App\Http\Controllers\Controller;
-use Category\Http\Requests\CategoryRequest;
-use Category\Http\Resources\CategoryResource;
-use Category\Repositories\CategoryRepository;
+use Product\Http\Requests\ProductRequest;
+use Product\Http\Resources\ProductResource;
+use Product\Repositories\ProductRepository;
 
-class CategoryController extends Controller
+
+class ProductController extends Controller
 {
-    protected $category;
+    protected $product;
 
     /**
-     * Category Controller constructor.
+     * Product Controller constructor.
      *
-     * @param CategoryRepositoryInterface $category
+     * @param ProductRepositoryInterface $product
      */
-    public function __construct(CategoryRepository $category)
+    public function __construct(ProductRepository $product)
     {
-        $this->category = $category;
-
+        $this->product = $product;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -31,10 +31,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        if(request('show')){
-            return CategoryResource::collection($this->category->all());
-        }
-        return CategoryResource::collection($this->category->paginate());
+        return ProductResource::collection($this->product->paginate());
     }
 
     /**
@@ -43,9 +40,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(ProductRequest $request)
     {
-        return $this->category->create($request->all());
+        return $this->product->create(array_merge($request->all(), ['sku'=> Str::random(10)]));
     }
 
     /**
@@ -65,9 +62,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(ProductRequest $request, $id)
     {
-        return $this->category->update($request->all(), $category);
+        return new ProductResource($this->product->update($request->all(), $this->product->find($id)));
     }
 
     /**
@@ -78,7 +75,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->category->deleteById($id);
-        return ["message" => "Category delete!!"];
+        $this->product->deleteById($user->id);
+
     }
 }

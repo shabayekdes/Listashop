@@ -64,7 +64,7 @@ class ProductRepository extends BaseRepository
         if (isset($data['thumbnail'])) {
 
             $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['thumbnail'], 0, strpos($data['thumbnail'], ';')))[1])[1];
-            Image::make($data['thumbnail'])->save(public_path('img/products/').$name);
+            Image::make($data['thumbnail'])->fit(150, 150, null, 'top-left')->save(public_path('img/products/').$name);
 
             $data['thumbnail'] = $name;
 

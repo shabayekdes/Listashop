@@ -185,6 +185,7 @@ return [
         Product\Providers\ProductServiceProvider::class,
         Admin\Providers\AdminServiceProvider::class,
         User\Providers\UserServiceProvider::class,
+        Cart\Providers\CartServiceProvider::class,
 
 
 
