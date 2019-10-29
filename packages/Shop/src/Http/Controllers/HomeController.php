@@ -32,7 +32,6 @@ class HomeController extends Controller
         $saleProducts = Product::onsale()->get();
 
         $featuredProducts = Product::featured()->get();
-
         return view('shop::home', compact('featuredProducts', 'saleProducts', 'products'));
     }
 

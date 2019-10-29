@@ -268,7 +268,12 @@
                                         class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                         <div
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt=""></div>
+
+
+                                            <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
+
+                                        </div>
+
                                         <div class="product_content">
                                             <div class="product_price discount">$225<span>{{ $product->price }}</span>
                                             </div>
@@ -313,7 +318,7 @@
                                         class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                         <div
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt=""></div>
+                                            <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt=""></div>
                                         <div class="product_content">
                                             <div class="product_price discount">$225<span>{{ $product->price }}</span>
                                             </div>
@@ -356,7 +361,7 @@
                                         class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                         <div
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt="">
+                                            <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
                     </div>
                     <div class="product_content">
                         <div class="product_price discount">$225<span>{{ $product->price }}</span>
@@ -599,7 +604,7 @@
                                             class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                             <div
                                                 class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt="">
+                                                <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
@@ -645,7 +650,7 @@
                                             class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                             <div
                                                 class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt="">
+                                                <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
@@ -691,7 +696,7 @@
                                             class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                             <div
                                                 class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt="">
+                                                <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">

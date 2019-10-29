@@ -24,4 +24,5 @@ Route::namespace('Shop\Http\Controllers')->group(function(){
     Route::get('/cart', 'CartController@index')->name('cart.index');
     Route::get('/cart/{product}', 'CartController@store')->name('cart.store');
 
+    Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 });

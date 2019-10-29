@@ -67,4 +67,15 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * Get the url thumbnail.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getThumbUrlAttribute($value)
+    {
+        return ($this->thumbnail ?? 'default.png');
+    }
 }
