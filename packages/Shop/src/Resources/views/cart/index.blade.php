@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="cart_item_price cart_info_col">
                                         <div class="cart_item_title">Price</div>
-                                        <div class="cart_item_text">${{ $product['price'] }}</div>
+                                        <div class="cart_item_text">{{ $product['price'] }}</div>
                                     </div>
                                     <div class="cart_item_total cart_info_col">
                                         <div class="cart_item_title">Total</div>
@@ -59,8 +59,9 @@
                     </div>
 
                     <div class="cart_buttons">
-                        <button type="button" class="button cart_button_clear">Add to Cart</button>
-                        <button type="button" class="button cart_button_checkout">Add to Cart</button>
+                        <a href="{{ route('store.index') }}" class="button cart_button_clear">Continue Shopping</a>
+                        <a href="{{ route('checkout.index') }}" class="button cart_button_checkout">Proceed to
+                            Checkout</a>
                     </div>
                 </div>
             </div>

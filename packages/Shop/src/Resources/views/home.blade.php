@@ -275,7 +275,8 @@
                                         </div>
 
                                         <div class="product_content">
-                                            <div class="product_price discount">$225<span>{{ $product->price }}</span>
+                                            <div class="product_price discount">
+                                                $225<span>{{ $product->present_price }}</span>
                                             </div>
                                             <div class="product_name">
                                                 <div><a
@@ -608,7 +609,7 @@
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
-                                                    $225<span>{{ $product->price }}</span>
+                                                    $225<span>{{ $product->present_price }}</span>
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a
@@ -654,7 +655,7 @@
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
-                                                    $225<span>{{ $product->price }}</span>
+                                                    $225<span>{{ $product->present_price }}</span>
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a
@@ -700,7 +701,7 @@
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
-                                                    $225<span>{{ $product->price }}</span>
+                                                    $225<span>{{ $product->present_price }}</span>
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a
