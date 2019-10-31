@@ -2,8 +2,6 @@
 
 namespace Shop\Http\Controllers;
 
-
-use Cart\Cart;
 use App\Http\Controllers\Controller;
 
 /**
@@ -18,13 +16,7 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        if (session()->has('cart')) {
-            $cart = new Cart(session()->get('cart'));
-        } else {
-            $cart = null;
-        }
-
-        return view('shop::checkout.index', compact('cart'));
+        return view('shop::checkout.index');
     }
     /**
      * Store a newly created resource in storage.

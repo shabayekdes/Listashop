@@ -3,8 +3,8 @@
 namespace Cart\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
-
+use Illuminate\Foundation\AliasLoader;
+use Cart\Facades\Cart;
 class CartServiceProvider extends ServiceProvider
 {
 
@@ -29,6 +29,16 @@ class CartServiceProvider extends ServiceProvider
      */
     protected function registerFacades()
     {
+        //to make the cart facade and bind the
+        //alias to the class needed to be called.
+        $loader = AliasLoader::getInstance();
 
+        $loader->alias('cart', Cart::class);
+
+        $this->app->singleton('cart', function () {
+            return new cart();
+        });
+
+        $this->app->bind('cart', 'Cart\Cart');
     }
 }

@@ -12,20 +12,22 @@
 <div class="cart_section">
     <div class="container">
         <div class="row">
-            @if($cart)
+            @if (Cart::count() > 0)
+            <h2>{{ Cart::count() }} item(s) in Shopping Cart</h2>
+
             <div class="col-lg-10 offset-lg-1">
                 <div class="cart_container">
                     <div class="cart_title">Shopping Cart</div>
                     <div class="cart_items">
                         <ul class="cart_list">
-                            @foreach( $cart->items as $product)
+                            @foreach( Cart::content() as $item)
                             <li class="cart_item clearfix">
                                 <div class="cart_item_image"><img
-                                        src="{{ url( 'img/products/' . $product['thumbnail']) }}" alt=""></div>
+                                        src="{{ url('/img/products/'.$item->model->thumbnail) }}" alt=""></div>
                                 <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                     <div class="cart_item_name cart_info_col">
                                         <div class="cart_item_title">Name</div>
-                                        <div class="cart_item_text">{{ $product['name'] }}</div>
+                                        <div class="cart_item_text">{{ Str::words($item->model->name, 3, '') }}</div>
                                     </div>
                                     <div class="cart_item_color cart_info_col">
                                         <div class="cart_item_title">Color</div>
@@ -34,15 +36,15 @@
                                     </div>
                                     <div class="cart_item_quantity cart_info_col">
                                         <div class="cart_item_title">Quantity</div>
-                                        <div class="cart_item_text">{{ $product['qty']}}</div>
+                                        <div class="cart_item_text">{{ $item->qty }}</div>
                                     </div>
                                     <div class="cart_item_price cart_info_col">
                                         <div class="cart_item_title">Price</div>
-                                        <div class="cart_item_text">{{ $product['price'] }}</div>
+                                        <div class="cart_item_text">${{ $item->model->price }}</div>
                                     </div>
                                     <div class="cart_item_total cart_info_col">
                                         <div class="cart_item_title">Total</div>
-                                        <div class="cart_item_text">${{$cart->totalPrice}}</div>
+                                        <div class="cart_item_text">${{ $item->subtotal }}</div>
                                     </div>
                                 </div>
                             </li>
@@ -54,7 +56,7 @@
                     <div class="order_total">
                         <div class="order_total_content text-md-right">
                             <div class="order_total_title">Order Total:</div>
-                            <div class="order_total_amount">${{$cart->totalPrice}}</div>
+                            <div class="order_total_amount">${{ Cart::subtotal() }}</div>
                         </div>
                     </div>
 
