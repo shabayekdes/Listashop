@@ -2,6 +2,9 @@
 
 namespace Shop\Http\Controllers;
 
+use Cart\Facades\Cart;
+use Product\Models\Product;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 /**
@@ -26,8 +29,11 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        $contents = Cart::content()->map(function ($item) {
+            return $item->model->slug.', '.$item->qty;
+        })->values()->toJson();
+        dd($contents);
 
     }
-
 
 }

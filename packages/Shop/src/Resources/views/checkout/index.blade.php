@@ -20,7 +20,7 @@
     <div class="checkout-section">
         <div>
             <form action="{{ route('checkout.store') }}" method="POST" id="payment-form">
-                {{ csrf_field() }}
+                @csrf
                 <h2>Billing Details</h2>
 
                 <div class="form-group">
