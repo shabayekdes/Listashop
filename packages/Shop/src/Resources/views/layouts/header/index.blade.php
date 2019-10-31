@@ -103,7 +103,7 @@
                                 <div class="cart_icon">
                                     <img src="/frontend/images/cart.png" alt="">
                                     <div class="cart_count">
-                                        <span>{{ session()->has('cart') ? session('cart')->totalQty : '0' }}</span>
+                                        <span>{{ Cart::instance('default')->count() }}</span>
                                     </div>
                                 </div>
                                 <div class="cart_content">

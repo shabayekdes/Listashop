@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cart\Facades\Cart;
 use Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -16,7 +17,11 @@ class TestController extends Controller
      */
     public function index()
     {
-        dd(session()->all());
+
+        Cart::add(1, 'Shabayekdes', 1, 2541)
+            ->associate('Product\Models\Product');
+
+        dd(Cart::content());
 
         dd(File::exists('img/products/4.jpeg'));
 

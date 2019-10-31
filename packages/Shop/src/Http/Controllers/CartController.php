@@ -2,7 +2,7 @@
 
 namespace Shop\Http\Controllers;
 
-use Cart\Cart;
+use Cart\Facades\Cart;
 use Product\Models\Product;
 use App\Http\Controllers\Controller;
 
@@ -18,12 +18,15 @@ class CartController extends Controller
      */
     public function index()
     {
-        if (session()->has('cart')) {
-            $cart = new Cart(session()->get('cart'));
-        } else {
-            $cart = null;
-        }
-        return view('shop::cart.index', compact('cart'));
+        // if (session()->has('cart')) {
+        //     $cart = new Cart(session()->get('cart'));
+        // } else {
+        //     $cart = null;
+        // }
+
+        $cart = null;
+
+        return view('shop::cart.index');
     }
     /**
      * Add items to cart.
@@ -34,13 +37,17 @@ class CartController extends Controller
     {
         $product = Product::find($id);
 
-        if (session()->has('cart')) {
-            $cart = new Cart(session('cart'));
-        } else {
-            $cart = new Cart();
+        $duplicates = Cart::search(function ($cartItem, $rowId) use ($product) {
+            return $cartItem->id === $product->id;
+        });
+
+        if ($duplicates->isNotEmpty()) {
+            return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
         }
-        $cart->add($product);
-        session(['cart' => $cart]);
+
+        Cart::add($id, $product->name, 1, $product->price)
+            ->associate('Product\Models\Product');
+
         return redirect()->back()->with('success', 'Product was added');
     }
 
