@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->decimal('price', 12, 4);
             $table->decimal('cost', 12, 4);
+            $table->unsignedInteger('quantity')->default(10);
 
             $table->boolean('status')->default(true);
 

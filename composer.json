@@ -44,7 +44,8 @@
             "Admin\\": "packages/Admin/src",
             "User\\": "packages/User/src",
             "Core\\": "packages/Core/src",
-            "Cart\\": "packages/Cart/src"
+            "Cart\\": "packages/Cart/src",
+            "Order\\": "packages/Order/src"
         },
         "classmap": [
             "database/seeds",
