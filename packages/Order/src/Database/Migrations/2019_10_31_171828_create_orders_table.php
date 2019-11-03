@@ -24,14 +24,16 @@ class CreateOrdersTable extends Migration
 
             $table->string('coupon_code')->nullable();
 
-            $table->integer('total_item_count')->nullable();
+            $table->integer('total_item_count');
 
-            $table->decimal('grand_total', 12, 4)->default(0)->nullable();
+            $table->decimal('grand_total', 12, 4)->default(0);
 
             $table->string('payment_gateway')->default('stripe');
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
+            $table->json('error')->nullable();
             $table->timestamps();
         });
     }

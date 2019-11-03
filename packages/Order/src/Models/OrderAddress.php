@@ -1,12 +1,14 @@
 <?php
 
-namespace App;
+namespace Order\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class OrderAddress extends Model
 {
-    protected $table = 'order_address';
+    protected $table = 'order_addresses';
+
+    protected $fillable = ['user_id','order_id','first_name','last_name','email','address1','address2','country','state','city','postcode','phone'];
 
     /**
      * Get of the customer fullname.

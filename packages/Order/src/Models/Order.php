@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    protected $fillable = ['user_id','grand_total','total_item_count','error'];
+
     /**
      * Status label.
      */
@@ -37,14 +39,14 @@ class Order extends Model
      */
     public function products()
     {
-        return $this->hasMany(OrderProduct::class);
+        return $this->belongsToMany('Product\Models\Product')->withPivot('quantity', 'total');
     }
     /**
      * Get the addresses for the order.
      */
     public function addresses()
     {
-        return $this->hasMany(OrderAddress::class);
+        return $this->hasOne(OrderAddress::class);
     }
 
 }

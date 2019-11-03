@@ -18,14 +18,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        // if (session()->has('cart')) {
-        //     $cart = new Cart(session()->get('cart'));
-        // } else {
-        //     $cart = null;
-        // }
-
-        $cart = null;
-
+        // dd(Cart::content());
         return view('shop::cart.index');
     }
     /**

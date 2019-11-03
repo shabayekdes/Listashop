@@ -80,7 +80,7 @@
                 </div>
                 <div class="spacer"></div>
 
-                <button type="submit" class="button checkout_button">Complete Order</button>
+                <button type="submit" id="complete-order" class="button checkout_button">Complete Order</button>
 
 
             </form>
@@ -96,7 +96,7 @@
                 @foreach( Cart::content() as $item)
                 <div class="checkout-table-row">
                     <div class="checkout-table-row-left">
-                        <img src="{{ url('/img/products/'.$item->model->thumbnail) }}" alt="item"
+                        <img src="{{ url('/img/products/'.$item->model->thumb_url) }}" alt="item"
                             class="checkout-table-img">
                         <div class="checkout-item-details">
                             <div class="checkout-table-item">{{ Str::words($item->model->name, 3, '') }}</div>
@@ -155,7 +155,7 @@
 
 <script>
     // Create a Stripe client.
-var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+var stripe = Stripe('pk_test_sMKSH12Vb2yYtP7GTpMwSZn2');
 
 // Create an instance of Elements.
 var elements = stripe.elements();

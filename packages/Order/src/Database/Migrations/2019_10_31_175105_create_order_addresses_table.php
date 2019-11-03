@@ -25,7 +25,6 @@ class CreateOrderAddressesTable extends Migration
             $table->string('city');
             $table->integer('postcode');
             $table->string('phone');
-            $table->string('address_type');
 
             $table->bigInteger('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
