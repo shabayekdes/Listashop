@@ -29,7 +29,12 @@ const actions = {
     },
     async storeProduct({ commit, rootState }, data) {
         try {
-            const response = await axios.post(`${urlApi}product`, data);
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            };
+            const response = await axios.post(`${urlApi}product`, data, config);
 
             commit("NEW_PRODUCT", response.data);
             commit("RESET_NEW_PRODUCT");

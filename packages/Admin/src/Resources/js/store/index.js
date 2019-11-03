@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import User from "./modules/user";
 import Category from "./modules/category";
 import Product from "./modules/product";
+import Image from "./modules/image";
 
 Vue.use(Vuex);
 
@@ -84,6 +85,7 @@ export default new Vuex.Store({
     modules: {
         User,
         Category,
-        Product
+        Product,
+        Image
     }
 });

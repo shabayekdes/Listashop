@@ -100,7 +100,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import HasError from "@/components/HasError.vue";
+import HasError from "@Admin/components/HasError.vue";
 
 export default {
   name: "form-category",

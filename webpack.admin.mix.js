@@ -14,7 +14,10 @@ require("laravel-mix-merge-manifest");
 mix.webpackConfig({
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "packages/admin/src/resources/js/")
+            "@Admin": path.resolve(
+                __dirname,
+                "packages/admin/src/resources/js/"
+            )
         }
     }
 });

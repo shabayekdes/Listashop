@@ -59,7 +59,7 @@ class CheckoutController extends Controller
             // decrease the quantities of all the products in the cart
             $this->decreaseQuantities();
             Cart::instance('default')->destroy();
-            return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
+            return redirect()->route('store.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
         } catch (CardErrorException $e) {
             $this->addToOrdersTables($request, $e->getMessage());
             return back()->withErrors('Error! ' . $e->getMessage());

@@ -7,8 +7,8 @@ import { routes } from "./routes";
 
 Vue.use(VueRouter);
 
-Vue.component("not-found", require("./views/NotFound.vue"));
-Vue.component("loading", require("./views/Loading.vue"));
+Vue.component("not-found", require("@Admin/views/NotFound.vue"));
+Vue.component("loading", require("@Admin/views/Loading.vue"));
 
 Vue.filter("slug", function(value) {
     if (!value) return "";
