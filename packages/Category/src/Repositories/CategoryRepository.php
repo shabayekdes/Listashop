@@ -2,6 +2,7 @@
 
 namespace Category\Repositories;
 
+use Illuminate\Support\Str;
 use Category\Models\Category;
 use Core\Eloquent\BaseRepository;
 use Illuminate\Support\Facades\File;
@@ -37,7 +38,10 @@ class CategoryRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        return $this->model->create($this->storeImage($data));
+        $category = $this->model->create($data);
+
+        return $this->uploadThumb($category);
+
     }
 
     /**
@@ -58,17 +62,25 @@ class CategoryRepository extends BaseRepository
         return $category;
     }
 
-    private function storeImage($data)
+    private function uploadThumb($category)
     {
-        if (isset($data['image'])) {
+        if (request()->has('image')) {
+            // Get filename with the extension
+            $filenameWithExt = request('image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = request('image')->getClientOriginalExtension();
 
-            $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['image'], 0, strpos($data['image'], ';')))[1])[1];
-            Image::make($data['image'])->save(public_path('img/category/').$name);
 
-            $data['image'] = $name;
-
+            $fileNameToStore= 'category-' . $category->id .'.'.$extension;
+            $path = request('image')->storeAs('public/categories',  $fileNameToStore);
+            $fileNameToStore = Str::replaceFirst('public/', '', $path);
+            $category->update([
+                'image' => $fileNameToStore
+            ]);
         }
-        return $data;
+        return $category;
     }
 
 }

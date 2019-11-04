@@ -8,3 +8,9 @@ if (! function_exists('upload_image')) {
         return route("{$resource}.show", $model);
     }
 }
+if (! function_exists('presentPrice')) {
+    function presentPrice($price)
+    {
+        return '$' . number_format($price, 2);
+    }
+}

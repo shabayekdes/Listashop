@@ -3242,6 +3242,14 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @Admin/components/HasError.vue */ "./packages/admin/src/resources/js/components/HasError.vue");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3355,9 +3363,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     HasError: _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeCategory", "updateCategory", "uploadImage", "fetchListCategories", "setError"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeCategory", "updateCategory", "addThumb", "resetImages", "fetchListCategories", "setError"]), {
     createCategory: function createCategory() {
-      this.storeCategory(this.getNewCategory);
+      var formData = new FormData();
+
+      for (var _i = 0, _Object$entries = Object.entries(this.getNewCategory); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        formData.append(key, value);
+      }
+
+      if (this.getThumb.file) {
+        formData.append("image", this.getThumb.file, this.getThumb.name);
+      }
+
+      this.storeCategory(formData);
     },
     patchCategory: function patchCategory() {
       this.updateCategory(this.getNewCategory);
@@ -3367,12 +3389,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   watch: {
-    getImage: {
-      handler: function handler(val, oldVal) {
-        this.getNewCategory.image = val.url;
-      },
-      deep: true
-    },
     getNewCategory: {
       handler: function handler(val, oldVal) {
         this.setError({
@@ -3380,9 +3396,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       },
       deep: true
+    },
+    getStatus: function getStatus(val, oldVal) {
+      if (val == "ok") {
+        this.resetImages();
+      }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNewCategory", "getAllCategories", "getImage", "getMode", "hasError"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNewCategory", "getAllCategories", "getThumb", "getMode", "getStatus", "hasError"])
 });
 
 /***/ }),
@@ -42532,7 +42553,7 @@ var render = function() {
               attrs: {
                 width: "200",
                 height: "200",
-                src: _vm.getImage.url,
+                src: _vm.getThumb.url,
                 alt: "user image"
               }
             })
@@ -42547,7 +42568,7 @@ var render = function() {
               staticClass: "custom-file-input",
               class: { "is-invalid": _vm.hasError("image") },
               attrs: { type: "file", id: "validatedCustomFile" },
-              on: { change: _vm.uploadImage }
+              on: { change: _vm.addThumb }
             }),
             _vm._v(" "),
             _c(
@@ -42556,7 +42577,7 @@ var render = function() {
                 staticClass: "custom-file-label",
                 attrs: { for: "inputGroupFile02" }
               },
-              [_vm._v(_vm._s(_vm.getImage.name))]
+              [_vm._v(_vm._s(_vm.getThumb.name))]
             ),
             _vm._v(" "),
             _c("has-error", { attrs: { field: "image" } })
@@ -59852,7 +59873,6 @@ var state = {
     id: "",
     name: "",
     slug: "",
-    image: "",
     parent_id: ""
   }
 };
@@ -59927,36 +59947,41 @@ var actions = {
     var _storeCategory = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, data) {
-      var commit, response;
+      var commit, rootState, config, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              commit = _ref2.commit;
+              commit = _ref2.commit, rootState = _ref2.rootState;
               _context2.prev = 1;
-              _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "category"), data);
+              config = {
+                headers: {
+                  "Content-Type": "multipart/form-data"
+                }
+              };
+              _context2.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "category"), data, config);
 
-            case 4:
+            case 5:
               response = _context2.sent;
               commit("NEW_CATEGORY", response.data);
               commit("RESET_NEW_CATEGORY");
-              commit("RESET_IMAGE");
               commit("SET_ERRORS", {});
-              _context2.next = 14;
+              rootState.status = "ok";
+              _context2.next = 15;
               break;
 
-            case 11:
-              _context2.prev = 11;
+            case 12:
+              _context2.prev = 12;
               _context2.t0 = _context2["catch"](1);
               commit("SET_ERRORS", _context2.t0.response.data.errors);
 
-            case 14:
+            case 15:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 11]]);
+      }, _callee2, null, [[1, 12]]);
     }));
 
     function storeCategory(_x2, _x3) {
@@ -59983,24 +60008,23 @@ var actions = {
               response = _context3.sent;
               commit("PUT_CATEGORY", response.data);
               commit("RESET_NEW_CATEGORY");
-              commit("RESET_IMAGE");
               commit("SET_ERRORS", {});
               rootState.status = "ok";
               $("#addNew").modal("hide");
-              _context3.next = 16;
+              _context3.next = 15;
               break;
 
-            case 13:
-              _context3.prev = 13;
+            case 12:
+              _context3.prev = 12;
               _context3.t0 = _context3["catch"](1);
               commit("SET_ERRORS", _context3.t0.response.data.errors);
 
-            case 16:
+            case 15:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 13]]);
+      }, _callee3, null, [[1, 12]]);
     }));
 
     function updateCategory(_x4, _x5) {

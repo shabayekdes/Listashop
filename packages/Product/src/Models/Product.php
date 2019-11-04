@@ -22,7 +22,7 @@ class Product extends Model
      * @var array
      */
     protected $casts = [
-        'featured' => 'boolean',
+        'featured' => 'boolean'
     ];
 
     /**

@@ -58,7 +58,7 @@
             class="img-thumbnail mx-auto"
             width="200"
             height="200"
-            :src="getImage.url"
+            :src="getThumb.url"
             alt="user image"
           />
         </div>
@@ -67,12 +67,12 @@
       <div class="custom-file mb-3">
         <input
           type="file"
-          @change="uploadImage"
+          @change="addThumb"
           class="custom-file-input"
           id="validatedCustomFile"
           :class="{ 'is-invalid': hasError('image') }"
         />
-        <label class="custom-file-label" for="inputGroupFile02">{{ getImage.name }}</label>
+        <label class="custom-file-label" for="inputGroupFile02">{{ getThumb.name }}</label>
         <has-error field="image"></has-error>
       </div>
 
@@ -111,12 +111,23 @@ export default {
     ...mapActions([
       "storeCategory",
       "updateCategory",
-      "uploadImage",
+      "addThumb",
+      "resetImages",
       "fetchListCategories",
       "setError"
     ]),
     createCategory() {
-      this.storeCategory(this.getNewCategory);
+      const formData = new FormData();
+
+      for (const [key, value] of Object.entries(this.getNewCategory)) {
+        formData.append(key, value);
+      }
+
+      if (this.getThumb.file) {
+        formData.append("image", this.getThumb.file, this.getThumb.name);
+      }
+
+      this.storeCategory(formData);
     },
     patchCategory() {
       this.updateCategory(this.getNewCategory);
@@ -129,24 +140,24 @@ export default {
     }
   },
   watch: {
-    getImage: {
-      handler: function(val, oldVal) {
-        this.getNewCategory.image = val.url;
-      },
-      deep: true
-    },
     getNewCategory: {
       handler: function(val, oldVal) {
         this.setError({ errors: null });
       },
       deep: true
+    },
+    getStatus(val, oldVal) {
+      if (val == "ok") {
+        this.resetImages();
+      }
     }
   },
   computed: mapGetters([
     "getNewCategory",
     "getAllCategories",
-    "getImage",
+    "getThumb",
     "getMode",
+    "getStatus",
     "hasError"
   ])
 };

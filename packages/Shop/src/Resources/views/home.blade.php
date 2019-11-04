@@ -275,9 +275,15 @@
                                         </div>
 
                                         <div class="product_content">
+                                            @if (empty($product->special_price))
+                                            <div class="product_price">{{ $product->present_price }}</div>
+
+                                            @else
                                             <div class="product_price discount">
-                                                $225<span>{{ $product->present_price }}</span>
+                                                {{ presentPrice($product->special_price) }}<span>{{ $product->present_price }}</span>
                                             </div>
+
+                                            @endif
                                             <div class="product_name">
                                                 <div><a
                                                         href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
@@ -609,7 +615,8 @@
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
-                                                    $225<span>{{ $product->present_price }}</span>
+                                                    {{ $product->special_price ?? '' }}
+                                                    <span>{{ $product->present_price }}</span>
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a
