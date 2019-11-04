@@ -1,31 +1,38 @@
 <template>
-  <div
-    class="uploader"
-    @dragenter="OnDragEnter"
-    @dragleave="OnDragLeave"
-    @dragover.prevent
-    @drop="onDrop"
-    :class="{ dragging: isDragging }"
-  >
-    <div>
-      <i class="fas fa-cloud-upload-alt"></i>
-      <p>Drag your images here</p>
-      <div>OR</div>
-      <div class="file-input">
-        <label for="file">Select a file</label>
-        <input type="file" id="file" @change="onInputChange" multiple />
-      </div>
-    </div>
-
-    <!-- <div class="images-preview" v-show="getImages.length">
-      <div class="img-wrapper" v-for="(image, index) in getImages" :key="index">
-        <img :src="image" :alt="`Image Uplaoder ${index}`" />
-        <div class="details">
-          <span class="name" v-text="getFiles[index].name"></span>
-          <span class="size" v-text="getFileSize(getFiles[index].size)"></span>
+  <div class="card">
+    <div class="card-header">
+      <div
+        class="uploader"
+        @dragenter="OnDragEnter"
+        @dragleave="OnDragLeave"
+        @dragover.prevent
+        @drop="onDrop"
+        :class="{ dragging: isDragging }"
+      >
+        <div>
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Drag your images here</p>
+          <div>OR</div>
+          <div class="file-input">
+            <label for="file">Select a file</label>
+            <input type="file" id="file" @change="onInputChange" multiple />
+          </div>
         </div>
       </div>
-    </div>-->
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <div class="images-preview" v-show="getImages.length">
+        <div class="img-wrapper" v-for="(image, index) in getImages" :key="index">
+          <img :src="image" :alt="`Image Uplaoder ${index}`" />
+          <div class="details">
+            <span class="name" v-text="getFiles[index].name"></span>
+            <span class="size" v-text="getFileSize(getFiles[index].size)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
   </div>
 </template>
 
@@ -113,37 +120,6 @@ export default {
       z-index: -2;
     }
   }
-  .images-preview {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    .img-wrapper {
-      width: 160px;
-      display: flex;
-      flex-direction: column;
-      margin: 10px;
-      height: 150px;
-      justify-content: space-between;
-      background: #fff;
-      box-shadow: 5px 5px 20px #3e3737;
-      img {
-        max-height: 105px;
-      }
-    }
-    .details {
-      font-size: 12px;
-      background: #fff;
-      color: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: self-start;
-      padding: 3px 6px;
-      .name {
-        overflow: hidden;
-        height: 18px;
-      }
-    }
-  }
   .upload-control {
     position: absolute;
     width: 100%;
@@ -167,6 +143,37 @@ export default {
     label {
       padding: 2px 5px;
       margin-right: 10px;
+    }
+  }
+}
+.images-preview {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  .img-wrapper {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    height: 150px;
+    justify-content: space-between;
+    background: #fff;
+    box-shadow: 5px 5px 20px #3e3737;
+    img {
+      max-height: 105px;
+    }
+  }
+  .details {
+    font-size: 12px;
+    background: #fff;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    padding: 3px 6px;
+    .name {
+      overflow: hidden;
+      height: 18px;
     }
   }
 }

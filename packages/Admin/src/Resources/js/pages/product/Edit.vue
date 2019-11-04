@@ -215,7 +215,7 @@
                   class="img-thumbnail mx-auto"
                   width="200"
                   height="200"
-                  :src="getImage.url"
+                  :src="getThumb.url"
                   alt="user image"
                 />
               </div>
@@ -227,10 +227,10 @@
                     class="custom-file-label"
                     for="inputGroupFile02"
                     aria-describedby="inputGroupFileAddon02"
-                  >{{ getImage.name }}</label>
+                  >{{ getThumb.name }}</label>
                   <input
                     type="file"
-                    @change="uploadImage"
+                    @change="addThumb"
                     class="custom-file-input"
                     id="inputGroupFile02"
                   />
@@ -265,7 +265,7 @@
       </div>
     </div>
     <!-- Modal -->
-    <model title="Update Category" size="modal-sm">
+    <model title="Media uploader" size="modal-xl">
       <image-uploader></image-uploader>
     </model>
   </section>
@@ -304,7 +304,8 @@ export default {
       "updateProduct",
       "setProduct",
       "fetchListCategories",
-      "uploadImage"
+      "addThumb",
+      "resetImages"
     ]),
     createProduct() {
       const formData = new FormData();
@@ -314,6 +315,11 @@ export default {
       this.getFiles.forEach(file => {
         formData.append("images[]", file, file.name);
       });
+
+      if (this.getThumb.file) {
+        formData.append("images[thumb]", this.getThumb.file);
+      }
+
       this.storeProduct(formData);
     },
     patchProduct() {
@@ -336,24 +342,18 @@ export default {
     }
   },
   watch: {
-    getImage: {
-      handler: function(val, oldVal) {
-        this.getNewProduct.thumbnail = val.url;
-      },
-      deep: true
-    },
     getStatus(val, oldVal) {
       if (val == "ok") {
-        // this.$router.push({ path: "/admin/products" });
+        this.$router.push({ path: "/admin/products" });
+        this.resetImages();
       }
     }
   },
   computed: mapGetters([
     "getNewProduct",
     "getAllCategories",
-    "getMetaData",
     "getFiles",
-    "getImage",
+    "getThumb",
     "getStatus"
   ])
 };

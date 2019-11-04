@@ -9,7 +9,6 @@ const state = {
         slug: "",
         price: "",
         cost: "",
-        thumbnail: "",
         categories_id: ""
     }
 };
@@ -38,7 +37,6 @@ const actions = {
 
             commit("NEW_PRODUCT", response.data);
             commit("RESET_NEW_PRODUCT");
-            commit("RESET_IMAGE");
             rootState.status = "ok";
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
@@ -105,7 +103,6 @@ const mutations = {
             slug: "",
             price: "",
             cost: "",
-            thumbnail: "",
             category_id: ""
         };
     }

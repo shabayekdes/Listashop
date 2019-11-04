@@ -2676,7 +2676,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {};
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "uploadImage"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "addThumb", "resetImages"]), {
     createProduct: function createProduct() {
       var formData = new FormData();
 
@@ -2691,6 +2691,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getFiles.forEach(function (file) {
         formData.append("images[]", file, file.name);
       });
+
+      if (this.getThumb.file) {
+        formData.append("images[thumb]", this.getThumb.file);
+      }
+
       this.storeProduct(formData);
     },
     patchProduct: function patchProduct() {
@@ -2711,18 +2716,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   watch: {
-    getImage: {
-      handler: function handler(val, oldVal) {
-        this.getNewProduct.thumbnail = val.url;
-      },
-      deep: true
-    },
     getStatus: function getStatus(val, oldVal) {
-      if (val == "ok") {// this.$router.push({ path: "/admin/products" });
+      if (val == "ok") {
+        this.$router.push({
+          path: "/admin/products"
+        });
+        this.resetImages();
       }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNewProduct", "getAllCategories", "getMetaData", "getFiles", "getImage", "getStatus"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNewProduct", "getAllCategories", "getFiles", "getThumb", "getStatus"])
 });
 
 /***/ }),
@@ -3086,6 +3089,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7834,7 +7844,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, ".uploader[data-v-8d64ccca] {\n  width: 100%;\n  background: #2196f3;\n  color: #fff;\n  padding: 40px 15px;\n  text-align: center;\n  border-radius: 10px;\n  border: 3px dashed #fff;\n  font-size: 20px;\n  position: relative;\n}\n.uploader.dragging[data-v-8d64ccca] {\n  background: #fff;\n  color: #2196f3;\n  border: 3px dashed #2196f3;\n}\n.uploader.dragging .file-input label[data-v-8d64ccca] {\n  background: #2196f3;\n  color: #fff;\n}\n.uploader i[data-v-8d64ccca] {\n  font-size: 85px;\n}\n.uploader .file-input[data-v-8d64ccca] {\n  width: 200px;\n  margin: auto;\n  height: 68px;\n  position: relative;\n}\n.uploader .file-input label[data-v-8d64ccca],\n.uploader .file-input input[data-v-8d64ccca] {\n  background: #fff;\n  color: #2196f3;\n  width: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  padding: 10px;\n  border-radius: 4px;\n  margin-top: 7px;\n  cursor: pointer;\n}\n.uploader .file-input input[data-v-8d64ccca] {\n  opacity: 0;\n  z-index: -2;\n}\n.uploader .images-preview[data-v-8d64ccca] {\n  display: flex;\n  flex-wrap: wrap;\n  margin-top: 20px;\n}\n.uploader .images-preview .img-wrapper[data-v-8d64ccca] {\n  width: 160px;\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  height: 150px;\n  justify-content: space-between;\n  background: #fff;\n  box-shadow: 5px 5px 20px #3e3737;\n}\n.uploader .images-preview .img-wrapper img[data-v-8d64ccca] {\n  max-height: 105px;\n}\n.uploader .images-preview .details[data-v-8d64ccca] {\n  font-size: 12px;\n  background: #fff;\n  color: #000;\n  display: flex;\n  flex-direction: column;\n  align-items: self-start;\n  padding: 3px 6px;\n}\n.uploader .images-preview .details .name[data-v-8d64ccca] {\n  overflow: hidden;\n  height: 18px;\n}\n.uploader .upload-control[data-v-8d64ccca] {\n  position: absolute;\n  width: 100%;\n  background: #fff;\n  top: 0;\n  left: 0;\n  border-top-left-radius: 7px;\n  border-top-right-radius: 7px;\n  padding: 10px;\n  padding-bottom: 4px;\n  text-align: right;\n}\n.uploader .upload-control button[data-v-8d64ccca],\n.uploader .upload-control label[data-v-8d64ccca] {\n  background: #2196f3;\n  border: 2px solid #03a9f4;\n  border-radius: 3px;\n  color: #fff;\n  font-size: 15px;\n  cursor: pointer;\n}\n.uploader .upload-control label[data-v-8d64ccca] {\n  padding: 2px 5px;\n  margin-right: 10px;\n}", ""]);
+exports.push([module.i, ".uploader[data-v-8d64ccca] {\n  width: 100%;\n  background: #2196f3;\n  color: #fff;\n  padding: 40px 15px;\n  text-align: center;\n  border-radius: 10px;\n  border: 3px dashed #fff;\n  font-size: 20px;\n  position: relative;\n}\n.uploader.dragging[data-v-8d64ccca] {\n  background: #fff;\n  color: #2196f3;\n  border: 3px dashed #2196f3;\n}\n.uploader.dragging .file-input label[data-v-8d64ccca] {\n  background: #2196f3;\n  color: #fff;\n}\n.uploader i[data-v-8d64ccca] {\n  font-size: 85px;\n}\n.uploader .file-input[data-v-8d64ccca] {\n  width: 200px;\n  margin: auto;\n  height: 68px;\n  position: relative;\n}\n.uploader .file-input label[data-v-8d64ccca],\n.uploader .file-input input[data-v-8d64ccca] {\n  background: #fff;\n  color: #2196f3;\n  width: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  padding: 10px;\n  border-radius: 4px;\n  margin-top: 7px;\n  cursor: pointer;\n}\n.uploader .file-input input[data-v-8d64ccca] {\n  opacity: 0;\n  z-index: -2;\n}\n.uploader .upload-control[data-v-8d64ccca] {\n  position: absolute;\n  width: 100%;\n  background: #fff;\n  top: 0;\n  left: 0;\n  border-top-left-radius: 7px;\n  border-top-right-radius: 7px;\n  padding: 10px;\n  padding-bottom: 4px;\n  text-align: right;\n}\n.uploader .upload-control button[data-v-8d64ccca],\n.uploader .upload-control label[data-v-8d64ccca] {\n  background: #2196f3;\n  border: 2px solid #03a9f4;\n  border-radius: 3px;\n  color: #fff;\n  font-size: 15px;\n  cursor: pointer;\n}\n.uploader .upload-control label[data-v-8d64ccca] {\n  padding: 2px 5px;\n  margin-right: 10px;\n}\n.images-preview[data-v-8d64ccca] {\n  display: flex;\n  flex-wrap: wrap;\n  margin-top: 20px;\n}\n.images-preview .img-wrapper[data-v-8d64ccca] {\n  width: 160px;\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  height: 150px;\n  justify-content: space-between;\n  background: #fff;\n  box-shadow: 5px 5px 20px #3e3737;\n}\n.images-preview .img-wrapper img[data-v-8d64ccca] {\n  max-height: 105px;\n}\n.images-preview .details[data-v-8d64ccca] {\n  font-size: 12px;\n  background: #fff;\n  color: #000;\n  display: flex;\n  flex-direction: column;\n  align-items: self-start;\n  padding: 3px 6px;\n}\n.images-preview .details .name[data-v-8d64ccca] {\n  overflow: hidden;\n  height: 18px;\n}", ""]);
 
 // exports
 
@@ -41365,7 +41375,7 @@ var render = function() {
                     attrs: {
                       width: "200",
                       height: "200",
-                      src: _vm.getImage.url,
+                      src: _vm.getThumb.url,
                       alt: "user image"
                     }
                   })
@@ -41384,13 +41394,13 @@ var render = function() {
                           "aria-describedby": "inputGroupFileAddon02"
                         }
                       },
-                      [_vm._v(_vm._s(_vm.getImage.name))]
+                      [_vm._v(_vm._s(_vm.getThumb.name))]
                     ),
                     _vm._v(" "),
                     _c("input", {
                       staticClass: "custom-file-input",
                       attrs: { type: "file", id: "inputGroupFile02" },
-                      on: { change: _vm.uploadImage }
+                      on: { change: _vm.addThumb }
                     })
                   ])
                 ])
@@ -41421,7 +41431,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "model",
-        { attrs: { title: "Update Category", size: "modal-sm" } },
+        { attrs: { title: "Media uploader", size: "modal-xl" } },
         [_c("image-uploader")],
         1
       )
@@ -42155,39 +42165,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "uploader",
-      class: { dragging: _vm.isDragging },
-      on: {
-        dragenter: _vm.OnDragEnter,
-        dragleave: _vm.OnDragLeave,
-        dragover: function($event) {
-          $event.preventDefault()
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _c(
+        "div",
+        {
+          staticClass: "uploader",
+          class: { dragging: _vm.isDragging },
+          on: {
+            dragenter: _vm.OnDragEnter,
+            dragleave: _vm.OnDragLeave,
+            dragover: function($event) {
+              $event.preventDefault()
+            },
+            drop: _vm.onDrop
+          }
         },
-        drop: _vm.onDrop
-      }
-    },
-    [
-      _c("div", [
-        _c("i", { staticClass: "fas fa-cloud-upload-alt" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("Drag your images here")]),
-        _vm._v(" "),
-        _c("div", [_vm._v("OR")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "file-input" }, [
-          _c("label", { attrs: { for: "file" } }, [_vm._v("Select a file")]),
-          _vm._v(" "),
-          _c("input", {
-            attrs: { type: "file", id: "file", multiple: "" },
-            on: { change: _vm.onInputChange }
-          })
-        ])
-      ])
-    ]
-  )
+        [
+          _c("div", [
+            _c("i", { staticClass: "fas fa-cloud-upload-alt" }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Drag your images here")]),
+            _vm._v(" "),
+            _c("div", [_vm._v("OR")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "file-input" }, [
+              _c("label", { attrs: { for: "file" } }, [
+                _vm._v("Select a file")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "file", id: "file", multiple: "" },
+                on: { change: _vm.onInputChange }
+              })
+            ])
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.getImages.length,
+              expression: "getImages.length"
+            }
+          ],
+          staticClass: "images-preview"
+        },
+        _vm._l(_vm.getImages, function(image, index) {
+          return _c("div", { key: index, staticClass: "img-wrapper" }, [
+            _c("img", {
+              attrs: { src: image, alt: "Image Uplaoder " + index }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "details" }, [
+              _c("span", {
+                staticClass: "name",
+                domProps: { textContent: _vm._s(_vm.getFiles[index].name) }
+              }),
+              _vm._v(" "),
+              _c("span", {
+                staticClass: "size",
+                domProps: {
+                  textContent: _vm._s(_vm.getFileSize(_vm.getFiles[index].size))
+                }
+              })
+            ])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59715,10 +59770,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       prev_page_url: null
     },
     errors: {},
-    image: {
-      name: "Choose Image ...",
-      url: "/img/img-placeholder.png"
-    },
     status: "",
     editMode: false
   },
@@ -59738,9 +59789,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         return state.errors.hasOwnProperty(field);
       };
     },
-    getImage: function getImage(state) {
-      return state.image;
-    },
     getStatus: function getStatus(state) {
       return state.status;
     },
@@ -59749,32 +59797,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     }
   },
   actions: {
-    uploadImage: function uploadImage(_ref, e) {
+    setError: function setError(_ref, oldError) {
       var commit = _ref.commit;
-      var file = e.target.files[0];
-      var reader = new FileReader();
-      var limit = 1024 * 1024 * 2;
-
-      if (file["size"] > limit) {
-        return false;
-      }
-
-      reader.onloadend = function (f) {
-        var image = {
-          name: file.name,
-          url: reader.result
-        };
-        commit("SET_IMAGE", image);
-      };
-
-      reader.readAsDataURL(file);
-    },
-    setError: function setError(_ref2, oldError) {
-      var commit = _ref2.commit;
       commit("SET_ERRORS", oldError);
     },
-    setMode: function setMode(_ref3, bool) {
-      var state = _ref3.state;
+    setMode: function setMode(_ref2, bool) {
+      var state = _ref2.state;
       state.editMode = bool;
     }
   },
@@ -59786,18 +59814,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     SET_ERRORS: function SET_ERRORS(state, data) {
       state.errors = data;
-    },
-    SET_IMAGE: function SET_IMAGE(state, image) {
-      state.image = {
-        name: image.name,
-        url: image.url
-      };
-    },
-    RESET_IMAGE: function RESET_IMAGE(state) {
-      state.image = {
-        name: "Choose Image ...",
-        url: "/img/img-placeholder.png"
-      };
     }
   },
   modules: {
@@ -60096,12 +60112,14 @@ var mutations = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
 var state = {
   files: [],
-  images: []
+  images: [],
+  thumb: {
+    name: "Choose Image ...",
+    url: "/img/img-placeholder.png",
+    file: ""
+  }
 };
 var getters = {
   getFiles: function getFiles(state) {
@@ -60109,6 +60127,9 @@ var getters = {
   },
   getImages: function getImages(state) {
     return state.images;
+  },
+  getThumb: function getThumb(state) {
+    return state.thumb;
   }
 };
 var actions = {
@@ -60139,6 +60160,34 @@ var actions = {
     }
 
     return "".concat(Math.round(size * 100) / 100, " ").concat(fSExt[i]);
+  },
+  addThumb: function addThumb(_ref2, e) {
+    var state = _ref2.state;
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    var limit = 1024 * 1024 * 2;
+
+    if (file["size"] > limit) {
+      return false;
+    }
+
+    reader.onloadend = function (f) {
+      state.thumb.name = file.name;
+      state.thumb.url = reader.result;
+      state.thumb.file = file;
+    };
+
+    reader.readAsDataURL(file);
+  },
+  resetImages: function resetImages(_ref3) {
+    var state = _ref3.state;
+    state.files = [];
+    state.images = [];
+    state.thumb = {
+      name: "Choose Image ...",
+      url: "/img/img-placeholder.png",
+      file: ""
+    };
   }
 };
 var mutations = {};
@@ -60180,7 +60229,6 @@ var state = {
     slug: "",
     price: "",
     cost: "",
-    thumbnail: "",
     categories_id: ""
   }
 };
@@ -60256,22 +60304,21 @@ var actions = {
               response = _context2.sent;
               commit("NEW_PRODUCT", response.data);
               commit("RESET_NEW_PRODUCT");
-              commit("RESET_IMAGE");
               rootState.status = "ok";
-              _context2.next = 15;
+              _context2.next = 14;
               break;
 
-            case 12:
-              _context2.prev = 12;
+            case 11:
+              _context2.prev = 11;
               _context2.t0 = _context2["catch"](1);
               commit("SET_ERRORS", _context2.t0.response.data.errors);
 
-            case 15:
+            case 14:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 12]]);
+      }, _callee2, null, [[1, 11]]);
     }));
 
     function storeProduct(_x2, _x3) {
@@ -60397,7 +60444,6 @@ var mutations = {
       slug: "",
       price: "",
       cost: "",
-      thumbnail: "",
       category_id: ""
     };
   }
