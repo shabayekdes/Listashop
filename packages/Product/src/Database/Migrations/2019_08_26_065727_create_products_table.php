@@ -28,8 +28,8 @@ class CreateProductsTable extends Migration
             $table->boolean('featured')->nullable();
             $table->string('thumbnail')->nullable();
             $table->decimal('special_price', 12, 4)->nullable();
-            $table->date('special_price_from')->nullable();
-            $table->date('special_price_to')->nullable();
+            // $table->date('special_price_from')->nullable();
+            // $table->date('special_price_to')->nullable();
 
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();

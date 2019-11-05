@@ -12,7 +12,7 @@ const state = {
 
 const getters = {
     getAllCategories: state => state.categories,
-    getNewCategory: state => state.category
+    getSingleCategory: state => state.category
 };
 
 const actions = {
@@ -46,7 +46,6 @@ const actions = {
 
             commit("SET_ERRORS", {});
             rootState.status = "ok";
-
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }

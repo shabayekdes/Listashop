@@ -2652,6 +2652,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2680,7 +2683,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     createProduct: function createProduct() {
       var formData = new FormData();
 
-      for (var _i = 0, _Object$entries = Object.entries(this.getNewProduct); _i < _Object$entries.length; _i++) {
+      for (var _i = 0, _Object$entries = Object.entries(this.getSingleProduct); _i < _Object$entries.length; _i++) {
         var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
@@ -2699,13 +2702,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.storeProduct(formData);
     },
     patchProduct: function patchProduct() {
-      this.updateProduct(this.getNewProduct);
+      this.updateProduct(this.getSingleProduct);
     },
     newModel: function newModel() {
       $("#addNew").modal("show");
     },
     setSlug: function setSlug() {
-      this.getNewProduct.slug = this.getNewProduct.name.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
+      this.getSingleProduct.slug = this.getSingleProduct.name.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
     }
   }),
   created: function created() {
@@ -2725,7 +2728,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNewProduct", "getAllCategories", "getFiles", "getThumb", "getStatus"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getFiles", "getThumb", "getStatus"])
 });
 
 /***/ }),
@@ -3367,7 +3370,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     createCategory: function createCategory() {
       var formData = new FormData();
 
-      for (var _i = 0, _Object$entries = Object.entries(this.getNewCategory); _i < _Object$entries.length; _i++) {
+      for (var _i = 0, _Object$entries = Object.entries(this.getSingleCategory); _i < _Object$entries.length; _i++) {
         var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
@@ -3382,14 +3385,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.storeCategory(formData);
     },
     patchCategory: function patchCategory() {
-      this.updateCategory(this.getNewCategory);
+      this.updateCategory(this.getSingleCategory);
     },
     setSlug: function setSlug() {
-      this.getNewCategory.slug = this.getNewCategory.name.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
+      this.getSingleCategory.slug = this.getSingleCategory.name.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
     }
   }),
   watch: {
-    getNewCategory: {
+    getSingleCategory: {
       handler: function handler(val, oldVal) {
         this.setError({
           errors: null
@@ -3403,7 +3406,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getNewCategory", "getAllCategories", "getThumb", "getMode", "getStatus", "hasError"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleCategory", "getAllCategories", "getThumb", "getMode", "getStatus", "hasError"])
 });
 
 /***/ }),
@@ -41093,20 +41096,24 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.getNewProduct.name,
-                      expression: "getNewProduct.name"
+                      value: _vm.getSingleProduct.name,
+                      expression: "getSingleProduct.name"
                     }
                   ],
                   staticClass: "form-control",
                   attrs: { type: "text", id: "inputName" },
-                  domProps: { value: _vm.getNewProduct.name },
+                  domProps: { value: _vm.getSingleProduct.name },
                   on: {
                     change: _vm.setSlug,
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.getNewProduct, "name", $event.target.value)
+                      _vm.$set(
+                        _vm.getSingleProduct,
+                        "name",
+                        $event.target.value
+                      )
                     }
                   }
                 })
@@ -41130,8 +41137,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.getNewProduct.slug,
-                        expression: "getNewProduct.slug"
+                        value: _vm.getSingleProduct.slug,
+                        expression: "getSingleProduct.slug"
                       }
                     ],
                     staticClass: "form-control",
@@ -41140,13 +41147,17 @@ var render = function() {
                       id: "inlineFormInputGroup",
                       placeholder: "Link to product"
                     },
-                    domProps: { value: _vm.getNewProduct.slug },
+                    domProps: { value: _vm.getSingleProduct.slug },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.getNewProduct, "slug", $event.target.value)
+                        _vm.$set(
+                          _vm.getSingleProduct,
+                          "slug",
+                          $event.target.value
+                        )
                       }
                     }
                   })
@@ -41202,8 +41213,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.getNewProduct.price,
-                                        expression: "getNewProduct.price"
+                                        value: _vm.getSingleProduct.price,
+                                        expression: "getSingleProduct.price"
                                       }
                                     ],
                                     staticClass: "form-control form-control-sm",
@@ -41212,7 +41223,7 @@ var render = function() {
                                       id: "colFormLabelSm"
                                     },
                                     domProps: {
-                                      value: _vm.getNewProduct.price
+                                      value: _vm.getSingleProduct.price
                                     },
                                     on: {
                                       input: function($event) {
@@ -41220,7 +41231,7 @@ var render = function() {
                                           return
                                         }
                                         _vm.$set(
-                                          _vm.getNewProduct,
+                                          _vm.getSingleProduct,
                                           "price",
                                           $event.target.value
                                         )
@@ -41247,8 +41258,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.getNewProduct.cost,
-                                        expression: "getNewProduct.cost"
+                                        value: _vm.getSingleProduct.cost,
+                                        expression: "getSingleProduct.cost"
                                       }
                                     ],
                                     staticClass: "form-control form-control-sm",
@@ -41256,14 +41267,16 @@ var render = function() {
                                       type: "number",
                                       id: "colFormLabelSm"
                                     },
-                                    domProps: { value: _vm.getNewProduct.cost },
+                                    domProps: {
+                                      value: _vm.getSingleProduct.cost
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
                                           return
                                         }
                                         _vm.$set(
-                                          _vm.getNewProduct,
+                                          _vm.getSingleProduct,
                                           "cost",
                                           $event.target.value
                                         )
@@ -41341,8 +41354,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.getNewProduct.categories_id,
-                        expression: "getNewProduct.categories_id"
+                        value: _vm.getSingleProduct.categories_id,
+                        expression: "getSingleProduct.categories_id"
                       }
                     ],
                     staticClass: "form-control",
@@ -41357,7 +41370,7 @@ var render = function() {
                             return val
                           })
                         _vm.$set(
-                          _vm.getNewProduct,
+                          _vm.getSingleProduct,
                           "categories_id",
                           $event.target.multiple
                             ? $$selectedVal
@@ -41415,7 +41428,7 @@ var render = function() {
                           "aria-describedby": "inputGroupFileAddon02"
                         }
                       },
-                      [_vm._v(_vm._s(_vm.getThumb.name))]
+                      [_vm._v(_vm._s(_vm.truncate(_vm.getThumb.name, 20)))]
                     ),
                     _vm._v(" "),
                     _c("input", {
@@ -41453,7 +41466,20 @@ var render = function() {
       _c(
         "model",
         { attrs: { title: "Media uploader", size: "modal-xl" } },
-        [_c("image-uploader")],
+        [
+          _c("image-uploader"),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer justify-content-between" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("Close")]
+            )
+          ])
+        ],
         1
       )
     ],
@@ -41685,7 +41711,7 @@ var render = function() {
                     },
                     [
                       _vm._v("\n                Add New\n                "),
-                      _c("i", { staticClass: "fas fa-plane" })
+                      _c("i", { staticClass: "fas fa-cart-plus" })
                     ]
                   )
                 ],
@@ -42248,7 +42274,11 @@ var render = function() {
             _c("div", { staticClass: "details" }, [
               _c("span", {
                 staticClass: "name",
-                domProps: { textContent: _vm._s(_vm.getFiles[index].name) }
+                domProps: {
+                  textContent: _vm._s(
+                    _vm.truncate(_vm.getFiles[index].name, 20)
+                  )
+                }
               }),
               _vm._v(" "),
               _c("span", {
@@ -42410,8 +42440,8 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.getNewCategory.name,
-                  expression: "getNewCategory.name"
+                  value: _vm.getSingleCategory.name,
+                  expression: "getSingleCategory.name"
                 }
               ],
               staticClass: "form-control",
@@ -42421,14 +42451,14 @@ var render = function() {
                 id: "inputName",
                 placeholder: "Enter name of category ..."
               },
-              domProps: { value: _vm.getNewCategory.name },
+              domProps: { value: _vm.getSingleCategory.name },
               on: {
                 change: _vm.setSlug,
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.getNewCategory, "name", $event.target.value)
+                  _vm.$set(_vm.getSingleCategory, "name", $event.target.value)
                 }
               }
             }),
@@ -42459,8 +42489,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.getNewCategory.slug,
-                    expression: "getNewCategory.slug"
+                    value: _vm.getSingleCategory.slug,
+                    expression: "getSingleCategory.slug"
                   }
                 ],
                 staticClass: "form-control",
@@ -42470,13 +42500,13 @@ var render = function() {
                   id: "inlineFormInputGroup",
                   placeholder: "Enter slug name ..."
                 },
-                domProps: { value: _vm.getNewCategory.slug },
+                domProps: { value: _vm.getSingleCategory.slug },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.getNewCategory, "slug", $event.target.value)
+                    _vm.$set(_vm.getSingleCategory, "slug", $event.target.value)
                   }
                 }
               }),
@@ -42500,8 +42530,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.getNewCategory.parent_id,
-                    expression: "getNewCategory.parent_id"
+                    value: _vm.getSingleCategory.parent_id,
+                    expression: "getSingleCategory.parent_id"
                   }
                 ],
                 staticClass: "custom-select",
@@ -42518,7 +42548,7 @@ var render = function() {
                         return val
                       })
                     _vm.$set(
-                      _vm.getNewCategory,
+                      _vm.getSingleCategory,
                       "parent_id",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
@@ -42577,7 +42607,7 @@ var render = function() {
                 staticClass: "custom-file-label",
                 attrs: { for: "inputGroupFile02" }
               },
-              [_vm._v(_vm._s(_vm.getThumb.name))]
+              [_vm._v(_vm._s(_vm.truncate(_vm.getThumb.name, 20)))]
             ),
             _vm._v(" "),
             _c("has-error", { attrs: { field: "image" } })
@@ -42598,21 +42628,21 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.getNewCategory.description,
-                  expression: "getNewCategory.description"
+                  value: _vm.getSingleCategory.description,
+                  expression: "getSingleCategory.description"
                 }
               ],
               staticClass: "form-control",
               class: { "is-invalid": _vm.hasError("description") },
               attrs: { id: "inputDescription", rows: "4" },
-              domProps: { value: _vm.getNewCategory.description },
+              domProps: { value: _vm.getSingleCategory.description },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
                   _vm.$set(
-                    _vm.getNewCategory,
+                    _vm.getSingleCategory,
                     "description",
                     $event.target.value
                   )
@@ -58765,6 +58795,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter("slug", function (value) {
   value = value.toString();
   return value.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
 });
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
+  methods: {
+    truncate: function truncate(str, no_word) {
+      return str.substr(0, no_word) + "...";
+    }
+  }
+});
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__["routes"],
   mode: "history"
@@ -59880,7 +59917,7 @@ var getters = {
   getAllCategories: function getAllCategories(state) {
     return state.categories;
   },
-  getNewCategory: function getNewCategory(state) {
+  getSingleCategory: function getSingleCategory(state) {
     return state.category;
   }
 };
@@ -60260,7 +60297,7 @@ var getters = {
   getAllProducts: function getAllProducts(state) {
     return state.products;
   },
-  getNewProduct: function getNewProduct(state) {
+  getSingleProduct: function getSingleProduct(state) {
     return state.product;
   }
 };

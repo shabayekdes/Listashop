@@ -25,7 +25,7 @@
               <input
                 type="text"
                 @change="setSlug"
-                v-model="getNewProduct.name"
+                v-model="getSingleProduct.name"
                 id="inputName"
                 class="form-control"
               />
@@ -38,7 +38,7 @@
                 </div>
                 <input
                   type="text"
-                  v-model="getNewProduct.slug"
+                  v-model="getSingleProduct.slug"
                   class="form-control"
                   id="inlineFormInputGroup"
                   placeholder="Link to product"
@@ -103,7 +103,7 @@
                           <div class="col-sm-10">
                             <input
                               type="number"
-                              v-model="getNewProduct.price"
+                              v-model="getSingleProduct.price"
                               class="form-control form-control-sm"
                               id="colFormLabelSm"
                             />
@@ -117,7 +117,7 @@
                           <div class="col-sm-10">
                             <input
                               type="number"
-                              v-model="getNewProduct.cost"
+                              v-model="getSingleProduct.cost"
                               class="form-control form-control-sm"
                               id="colFormLabelSm"
                             />
@@ -184,7 +184,7 @@
           <div class="card-body">
             <div class="form-group">
               <label>Select Category</label>
-              <select v-model="getNewProduct.categories_id" class="form-control">
+              <select v-model="getSingleProduct.categories_id" class="form-control">
                 <option value disabled>Select Category</option>
                 <option
                   v-for="category in getAllCategories"
@@ -227,7 +227,7 @@
                     class="custom-file-label"
                     for="inputGroupFile02"
                     aria-describedby="inputGroupFileAddon02"
-                  >{{ getThumb.name }}</label>
+                  >{{ truncate(getThumb.name, 20) }}</label>
                   <input
                     type="file"
                     @change="addThumb"
@@ -267,6 +267,9 @@
     <!-- Modal -->
     <model title="Media uploader" size="modal-xl">
       <image-uploader></image-uploader>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </model>
   </section>
   <!-- /.content -->
@@ -309,7 +312,7 @@ export default {
     ]),
     createProduct() {
       const formData = new FormData();
-      for (const [key, value] of Object.entries(this.getNewProduct)) {
+      for (const [key, value] of Object.entries(this.getSingleProduct)) {
         formData.append(key, value);
       }
       this.getFiles.forEach(file => {
@@ -323,13 +326,13 @@ export default {
       this.storeProduct(formData);
     },
     patchProduct() {
-      this.updateProduct(this.getNewProduct);
+      this.updateProduct(this.getSingleProduct);
     },
     newModel() {
       $("#addNew").modal("show");
     },
     setSlug() {
-      this.getNewProduct.slug = this.getNewProduct.name
+      this.getSingleProduct.slug = this.getSingleProduct.name
         .toLowerCase()
         .replace(/[^\w ]+/g, "")
         .replace(/ +/g, "-");
@@ -350,7 +353,7 @@ export default {
     }
   },
   computed: mapGetters([
-    "getNewProduct",
+    "getSingleProduct",
     "getAllCategories",
     "getFiles",
     "getThumb",

@@ -72,7 +72,6 @@ class CategoryRepository extends BaseRepository
             // Get just ext
             $extension = request('image')->getClientOriginalExtension();
 
-
             $fileNameToStore= 'category-' . $category->id .'.'.$extension;
             $path = request('image')->storeAs('public/categories',  $fileNameToStore);
             $fileNameToStore = Str::replaceFirst('public/', '', $path);

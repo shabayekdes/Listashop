@@ -15,7 +15,7 @@
                   class="btn btn-success float-right"
                 >
                   Add New
-                  <i class="fas fa-plane"></i>
+                  <i class="fas fa-cart-plus"></i>
                 </router-link>
               </div>
             </div>

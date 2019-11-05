@@ -26,7 +26,7 @@
         <div class="img-wrapper" v-for="(image, index) in getImages" :key="index">
           <img :src="image" :alt="`Image Uplaoder ${index}`" />
           <div class="details">
-            <span class="name" v-text="getFiles[index].name"></span>
+            <span class="name" v-text="truncate(getFiles[index].name, 20)"></span>
             <span class="size" v-text="getFileSize(getFiles[index].size)"></span>
           </div>
         </div>

@@ -8,7 +8,7 @@
         <label for="inputName">Category Name</label>
         <input
           type="text"
-          v-model="getNewCategory.name"
+          v-model="getSingleCategory.name"
           @change="setSlug"
           id="inputName"
           class="form-control"
@@ -25,7 +25,7 @@
           </div>
           <input
             type="text"
-            v-model="getNewCategory.slug"
+            v-model="getSingleCategory.slug"
             class="form-control"
             :class="{ 'is-invalid': hasError('slug') }"
             id="inlineFormInputGroup"
@@ -37,7 +37,7 @@
       <div class="form-group">
         <label>Categories</label>
         <select
-          v-model="getNewCategory.parent_id"
+          v-model="getSingleCategory.parent_id"
           name="category_id"
           id="category_id"
           class="custom-select"
@@ -72,7 +72,7 @@
           id="validatedCustomFile"
           :class="{ 'is-invalid': hasError('image') }"
         />
-        <label class="custom-file-label" for="inputGroupFile02">{{ getThumb.name }}</label>
+        <label class="custom-file-label" for="inputGroupFile02">{{ truncate(getThumb.name,20) }}</label>
         <has-error field="image"></has-error>
       </div>
 
@@ -80,7 +80,7 @@
         <label for="inputDescription">Description</label>
         <textarea
           id="inputDescription"
-          v-model="getNewCategory.description"
+          v-model="getSingleCategory.description"
           class="form-control"
           :class="{ 'is-invalid': hasError('description') }"
           rows="4"
@@ -118,29 +118,26 @@ export default {
     ]),
     createCategory() {
       const formData = new FormData();
-
-      for (const [key, value] of Object.entries(this.getNewCategory)) {
+      for (const [key, value] of Object.entries(this.getSingleCategory)) {
         formData.append(key, value);
       }
-
       if (this.getThumb.file) {
         formData.append("image", this.getThumb.file, this.getThumb.name);
       }
-
       this.storeCategory(formData);
     },
     patchCategory() {
-      this.updateCategory(this.getNewCategory);
+      this.updateCategory(this.getSingleCategory);
     },
     setSlug() {
-      this.getNewCategory.slug = this.getNewCategory.name
+      this.getSingleCategory.slug = this.getSingleCategory.name
         .toLowerCase()
         .replace(/[^\w ]+/g, "")
         .replace(/ +/g, "-");
     }
   },
   watch: {
-    getNewCategory: {
+    getSingleCategory: {
       handler: function(val, oldVal) {
         this.setError({ errors: null });
       },
@@ -153,7 +150,7 @@ export default {
     }
   },
   computed: mapGetters([
-    "getNewCategory",
+    "getSingleCategory",
     "getAllCategories",
     "getThumb",
     "getMode",

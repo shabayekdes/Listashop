@@ -21,6 +21,12 @@ Vue.filter("slug", function(value) {
         .replace(/ +/g, "-");
 });
 
+Vue.mixin({
+    methods: {
+        truncate: (str, no_word) => str.substr(0, no_word) + "..."
+    }
+});
+
 const router = new VueRouter({
     routes,
     mode: "history"

@@ -15,7 +15,7 @@ const state = {
 
 const getters = {
     getAllProducts: state => state.products,
-    getNewProduct: state => state.product
+    getSingleProduct: state => state.product
 };
 
 const actions = {
