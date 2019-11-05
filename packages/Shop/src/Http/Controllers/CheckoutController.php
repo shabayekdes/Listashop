@@ -71,9 +71,11 @@ class CheckoutController extends Controller
 
         // Insert into orders table
         $order = Order::create([
+            'customer_first_name' => $request->name,
+            'customer_last_name' => $request->name,
             'user_id' => auth()->user() ? auth()->user()->id : null,
             'grand_total' => Cart::total(),
-            'total_item_count' => Cart::count(),
+            'item_count' => Cart::count(),
             'error' => $error,
         ]);
 

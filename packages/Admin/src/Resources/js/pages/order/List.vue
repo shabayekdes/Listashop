@@ -7,7 +7,7 @@
           <div class="card-header">
             <div class="row">
               <div class="col-sm-12 col-md-5">
-                <h3 class="card-title">Products List</h3>
+                <h3 class="card-title">Order List</h3>
               </div>
               <div class="col-sm-12 col-md-7">
                 <router-link
@@ -58,37 +58,24 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <datatable :columns="columns">
-                    <tr role="row" class="odd" v-for="product in getAllProducts" :key="product.id">
-                      <td class="sorting_1">{{ product.id }}</td>
+                  <datatable :columns="columns" :length="getAllOrders.length">
+                    <tr role="row" class="odd" v-for="order in getAllOrders" :key="order.id">
+                      <td class="sorting_1">{{ order.id }}</td>
+                      <td v-if="order.is_guest">{{ order.customer_name }}</td>
+                      <td v-else>{{ order.user.name }}</td>
+                      <td>{{ order.total }}</td>
                       <td>
-                        <img
-                          src="/img/default-150x150.png"
-                          v-if="product.thumbnail == null"
-                          alt="Product 1"
-                          class="img-circle img-size-64 mr-2"
-                        />
-                        <img
-                          :src="product.thumbnail"
-                          v-else
-                          alt="Product 2"
-                          class="img-circle img-size-64 mr-2"
-                        />
+                        <span class="badge badge-warning">Pending</span>
                       </td>
-                      <td>{{ product.name | slug }}</td>
-                      <td>{{ product.price }}</td>
-                      <td>{{ product.sku }}</td>
-                      <td class="project-state text-center">
-                        <span v-show="product.status" class="badge badge-success">Active</span>
-                        <span v-show="!product.status" class="badge badge-warning">Non-Active</span>
-                      </td>
+                      <td>{{ order.payment_gateway }}</td>
+                      <td>{{ order.date }}</td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
+                        <a class="btn btn-primary btn-sm" @click="newModel(order)" href="#">
                           <i class="fas fa-folder"></i>
                           View
                         </a>
                         <router-link
-                          :to="{ name: 'product.create',  params: { product, editMode: true } }"
+                          :to="{ name: 'product.create',  params: { order, editMode: true } }"
                           class="btn btn-info btn-sm"
                         >
                           <i class="fas fa-pencil-alt"></i>
@@ -107,7 +94,7 @@
                   </datatable>
                 </div>
               </div>
-              <pagination :meta_data="getMetaData" v-on:next="fetchListProducts"></pagination>
+              <pagination :meta_data="getMetaData" v-on:next="fetchListOrders"></pagination>
             </div>
           </div>
           <!-- /.card-body -->
@@ -117,6 +104,10 @@
       <!-- /.col -->
     </div>
     <!-- /.row -->
+    <!-- Modal -->
+    <model title="Invoice" size="modal-xl">
+      <invoice />
+    </model>
   </section>
   <!-- /.content -->
 </template>
@@ -125,33 +116,56 @@
 import { mapGetters, mapActions } from "vuex";
 import pagination from "@Admin/components/Pagination.vue";
 import datatable from "@Admin/components/DataTable.vue";
+import model from "@Admin/components/Model.vue";
+import Invoice from "@Admin/views/Invoice";
 
 export default {
-  name: "ProductList",
+  name: "OrderList",
   components: {
     pagination,
-    datatable
+    datatable,
+    model,
+    Invoice
   },
   data() {
     return {
       columns: [
         { width: "2%", label: "#", name: "id", active: true },
-        { width: "10%", label: "", name: "thumbnail", active: true },
-        { width: "23%", label: "Name", name: "name", active: true },
-        { width: "15%", label: "Price", name: "price", active: true },
-        { width: "20%", label: "SKU", name: "sku", active: true },
+        {
+          width: "15%",
+          label: "Customer Name",
+          name: "customer_name",
+          active: true
+        },
+        {
+          width: "20%",
+          label: "Grand Total",
+          name: "grand_total",
+          active: true
+        },
         { width: "15%", label: "Status", name: "status", active: true },
+        {
+          width: "15%",
+          label: "Payment Gateway",
+          name: "payment_gateway",
+          active: true
+        },
+        { width: "18%", label: "Date", name: "date", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]
     };
   },
   methods: {
-    ...mapActions(["fetchListProducts", "deleteProduct"])
+    ...mapActions(["fetchListOrders", "setOrder", "deleteProduct"]),
+    newModel(order) {
+      this.setOrder(order);
+      $("#addNew").modal("show");
+    }
   },
   created() {
-    this.fetchListProducts();
+    this.fetchListOrders();
   },
-  computed: mapGetters(["getAllProducts", "getMetaData"])
+  computed: mapGetters(["getAllOrders", "getMetaData"])
 };
 </script>
 

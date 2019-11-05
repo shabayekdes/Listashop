@@ -1,14 +1,12 @@
 <?php
 
-namespace Category\Repositories;
+namespace Order\Repositories;
 
-use Category\Models\Category;
+use Order\Models\Order;
 use Core\Eloquent\BaseRepository;
-use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image;
 use Illuminate\Container\Container as App;
 
-class CategoryRepository extends BaseRepository
+class OrderRepository extends BaseRepository
 {
     /**
      * Create a new controller instance.
@@ -26,7 +24,7 @@ class CategoryRepository extends BaseRepository
      */
     public function model()
     {
-        return Category::class;
+        return Order::class;
     }
     /**
      * Create a new category record in the database with image.
@@ -37,7 +35,7 @@ class CategoryRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        return $this->model->create($this->storeImage($data));
+        return $this->model->create($data);
     }
 
     /**
@@ -49,26 +47,11 @@ class CategoryRepository extends BaseRepository
      * @throws \Throwable
      * @return User
      */
-    public function update(array $data, $category) : Category
+    public function update(array $data, $order) : Order
     {
-        if (isset($data['image']) && File::exists('img/category/'. $category->image)) {
-            File::delete('img/category/'. $category->image);
-        }
-        $category->update($this->storeImage($data));
-        return $category;
+        $order->update($data);
+        return $order;
     }
 
-    private function storeImage($data)
-    {
-        if (isset($data['image'])) {
-
-            $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['image'], 0, strpos($data['image'], ';')))[1])[1];
-            Image::make($data['image'])->save(public_path('img/category/').$name);
-
-            $data['image'] = $name;
-
-        }
-        return $data;
-    }
 
 }

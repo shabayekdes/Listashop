@@ -23,4 +23,5 @@ mix.webpackConfig({
 });
 mix.js("packages/admin/src/resources/js/app.js", "public/js/admin")
     .sass("packages/admin/src/resources/sass/app.scss", "public/css/admin")
-    .mergeManifest();
+    .mergeManifest()
+    .browserSync("http://localhost:8000");
