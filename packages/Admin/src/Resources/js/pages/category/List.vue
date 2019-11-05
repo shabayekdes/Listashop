@@ -54,59 +54,53 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <datatable :columns="columns">
-                    <tbody>
-                      <tr role="row" v-for="category in getAllCategories" :key="category.id">
-                        <td class="sorting_1">{{ category.id }}</td>
-                        <td>{{ category.name }}</td>
-                        <td>{{ category.description }}</td>
-                        <td>
-                          <div class="form-group">
-                            <div class="custom-control custom-switch custom-switch-on-success">
-                              <input
-                                type="checkbox"
-                                v-model="category.status"
-                                @change="changeStatus(category)"
-                                class="custom-control-input"
-                                :id="category.slug"
-                              />
-                              <label
-                                v-show="category.status"
-                                class="custom-control-label"
-                                :for="category.slug"
-                              >Active</label>
-                              <label
-                                v-show="!category.status"
-                                class="custom-control-label"
-                                :for="category.slug"
-                              >Non-Active</label>
-                            </div>
+                  <datatable :columns="columns" :length="getAllCategories.length">
+                    <tr role="row" v-for="category in getAllCategories" :key="category.id">
+                      <td class="sorting_1">{{ category.id }}</td>
+                      <td>{{ category.name }}</td>
+                      <td>{{ category.description }}</td>
+                      <td>
+                        <div class="form-group">
+                          <div class="custom-control custom-switch custom-switch-on-success">
+                            <input
+                              type="checkbox"
+                              v-model="category.status"
+                              @change="changeStatus(category)"
+                              class="custom-control-input"
+                              :id="category.slug"
+                            />
+                            <label
+                              v-show="category.status"
+                              class="custom-control-label"
+                              :for="category.slug"
+                            >Active</label>
+                            <label
+                              v-show="!category.status"
+                              class="custom-control-label"
+                              :for="category.slug"
+                            >Non-Active</label>
                           </div>
-                        </td>
-                        <!-- <td class="project-state text-center">
-                            <span v-show="category.status" class="badge badge-success">Active</span>
-                            <span v-show="!category.status" class="badge badge-warning">Non-Active</span>
-                        </td>-->
-                        <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder"></i>
-                            View
-                          </a>
-                          <a class="btn btn-info btn-sm" @click="editModel(category)" href="#">
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                          </a>
-                          <a
-                            class="btn btn-danger btn-sm"
-                            @click="deleteCategory(category.id)"
-                            href="#"
-                          >
-                            <i class="fas fa-trash"></i>
-                            Delete
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
+                        </div>
+                      </td>
+                      <td class="project-actions text-right">
+                        <a class="btn btn-primary btn-sm" href="#">
+                          <i class="fas fa-folder"></i>
+                          View
+                        </a>
+                        <a class="btn btn-info btn-sm" @click="editModel(category)" href="#">
+                          <i class="fas fa-pencil-alt"></i>
+                          Edit
+                        </a>
+                        <a
+                          class="btn btn-danger btn-sm"
+                          @click="deleteCategory(category.id)"
+                          href="#"
+                        >
+                          <i class="fas fa-trash"></i>
+                          Delete
+                        </a>
+                      </td>
+                    </tr>
                   </datatable>
                 </div>
               </div>
@@ -121,7 +115,7 @@
     </div>
     <!-- /.row -->
     <!-- Modal -->
-    <model title="Update Category">
+    <model title="Update Category" size="modal-xl">
       <form-category />
     </model>
   </section>
@@ -184,6 +178,6 @@ export default {
   mounted() {
     this.resetCategory();
   },
-  computed: mapGetters(["getAllCategories", "getNewCategory", "getMetaData"])
+  computed: mapGetters(["getAllCategories", "getMetaData"])
 };
 </script>

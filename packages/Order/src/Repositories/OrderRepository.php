@@ -2,6 +2,7 @@
 
 namespace Order\Repositories;
 
+use Order\Models\Order;
 use Core\Eloquent\BaseRepository;
 use Illuminate\Container\Container as App;
 
@@ -48,7 +49,6 @@ class OrderRepository extends BaseRepository
      */
     public function update(array $data, $order) : Order
     {
-
         $order->update($data);
         return $order;
     }

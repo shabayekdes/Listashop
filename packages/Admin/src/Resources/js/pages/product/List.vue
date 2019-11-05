@@ -58,7 +58,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <datatable :columns="columns">
+                  <datatable :columns="columns" :length="getAllProducts.length">
                     <tr role="row" class="odd" v-for="product in getAllProducts" :key="product.id">
                       <td class="sorting_1">{{ product.id }}</td>
                       <td>

@@ -12,7 +12,6 @@ use Order\Repositories\OrderRepository;
 /**
  * Order Admin page controller
  */
-
 class OrderController extends Controller
 {
     protected $order;
@@ -20,7 +19,7 @@ class OrderController extends Controller
     /**
      * Order Controller constructor.
      *
-     * @param CategoryRepositoryInterface $category
+     * @param OrderRepository $order
      */
     public function __construct(OrderRepository $order)
     {
@@ -34,7 +33,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return OrderResource::collection($this->category->paginate());
+        return OrderResource::collection($this->order->with('products')->paginate());
     }
 
     /**

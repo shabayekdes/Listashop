@@ -15,16 +15,16 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status')->nullable();
+            $table->string('status')->default('Pending');
 
-            $table->boolean('is_guest')->nullable();
+            $table->boolean('is_guest')->default(true);
             $table->string('customer_email')->nullable();
             $table->string('customer_first_name')->nullable();
             $table->string('customer_last_name')->nullable();
 
             $table->string('coupon_code')->nullable();
 
-            $table->integer('total_item_count');
+            $table->integer('item_count');
 
             $table->decimal('grand_total', 12, 4)->default(0);
 
