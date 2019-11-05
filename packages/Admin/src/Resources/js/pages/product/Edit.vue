@@ -28,7 +28,10 @@
                 v-model="getSingleProduct.name"
                 id="inputName"
                 class="form-control"
+                placeholder="Enter product name ..."
+                :class="{ 'is-invalid': hasError('name') }"
               />
+              <has-error field="name"></has-error>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">Slug</label>
@@ -42,12 +45,20 @@
                   class="form-control"
                   id="inlineFormInputGroup"
                   placeholder="Link to product"
+                  :class="{ 'is-invalid': hasError('slug') }"
                 />
+                <has-error field="slug"></has-error>
               </div>
             </div>
             <div class="form-group">
               <label for="inputDescription">Description</label>
-              <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+              <textarea
+                id="inputDescription"
+                class="form-control"
+                rows="4"
+                :class="{ 'is-invalid': hasError('description') }"
+              ></textarea>
+              <has-error field="description"></has-error>
             </div>
           </div>
           <!-- /.card-body -->
@@ -106,7 +117,9 @@
                               v-model="getSingleProduct.price"
                               class="form-control form-control-sm"
                               id="colFormLabelSm"
+                              :class="{ 'is-invalid': hasError('price') }"
                             />
+                            <has-error field="price"></has-error>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -120,7 +133,9 @@
                               v-model="getSingleProduct.cost"
                               class="form-control form-control-sm"
                               id="colFormLabelSm"
+                              :class="{ 'is-invalid': hasError('cost') }"
                             />
+                            <has-error field="cost"></has-error>
                           </div>
                         </div>
                       </div>
@@ -184,7 +199,13 @@
           <div class="card-body">
             <div class="form-group">
               <label>Select Category</label>
-              <select v-model="getSingleProduct.categories_id" class="form-control">
+              <select
+                v-model="getSingleProduct.categories_id"
+                name="categories_id"
+                id="categories_id"
+                class="custom-select"
+                :class="{ 'is-invalid': hasError('categories_id') }"
+              >
                 <option value disabled>Select Category</option>
                 <option
                   v-for="category in getAllCategories"
@@ -192,6 +213,7 @@
                   :value="category.id"
                 >{{ category.name }}</option>
               </select>
+              <has-error field="categories_id"></has-error>
             </div>
           </div>
           <!-- /.card-body -->
@@ -279,12 +301,14 @@
 import { mapGetters, mapActions, mapState } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
 import model from "@Admin/components/Model.vue";
+import HasError from "@Admin/components/HasError.vue";
 
 export default {
   name: "ProductEdit",
   components: {
     ImageUploader,
-    model
+    model,
+    HasError
   },
   props: {
     product: {
@@ -308,7 +332,8 @@ export default {
       "setProduct",
       "fetchListCategories",
       "addThumb",
-      "resetImages"
+      "resetImages",
+      "setError"
     ]),
     createProduct() {
       const formData = new FormData();
@@ -357,7 +382,8 @@ export default {
     "getAllCategories",
     "getFiles",
     "getThumb",
-    "getStatus"
+    "getStatus",
+    "hasError"
   ])
 };
 </script>

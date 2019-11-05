@@ -38,8 +38,8 @@
         <label>Categories</label>
         <select
           v-model="getSingleCategory.parent_id"
-          name="category_id"
-          id="category_id"
+          name="parent_id"
+          id="parent_id"
           class="custom-select"
           :class="{ 'is-invalid': hasError('parent_id') }"
         >

@@ -2364,6 +2364,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _Admin_views_ImageUploader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @Admin/views/ImageUploader */ "./packages/admin/src/resources/js/views/ImageUploader.vue");
 /* harmony import */ var _Admin_components_Model_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @Admin/components/Model.vue */ "./packages/admin/src/resources/js/components/Model.vue");
+/* harmony import */ var _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @Admin/components/HasError.vue */ "./packages/admin/src/resources/js/components/HasError.vue");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -2655,6 +2656,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -2662,7 +2686,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "ProductEdit",
   components: {
     ImageUploader: _Admin_views_ImageUploader__WEBPACK_IMPORTED_MODULE_1__["default"],
-    model: _Admin_components_Model_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    model: _Admin_components_Model_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    HasError: _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: {
     product: {
@@ -2679,7 +2704,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {};
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "addThumb", "resetImages"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "addThumb", "resetImages", "setError"]), {
     createProduct: function createProduct() {
       var formData = new FormData();
 
@@ -2728,7 +2753,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getFiles", "getThumb", "getStatus"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getFiles", "getThumb", "getStatus", "hasError"])
 });
 
 /***/ }),
@@ -41086,38 +41111,50 @@ var render = function() {
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "inputName" } }, [
-                  _vm._v("Product Name")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.getSingleProduct.name,
-                      expression: "getSingleProduct.name"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", id: "inputName" },
-                  domProps: { value: _vm.getSingleProduct.name },
-                  on: {
-                    change: _vm.setSlug,
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", { attrs: { for: "inputName" } }, [
+                    _vm._v("Product Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.getSingleProduct.name,
+                        expression: "getSingleProduct.name"
                       }
-                      _vm.$set(
-                        _vm.getSingleProduct,
-                        "name",
-                        $event.target.value
-                      )
+                    ],
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.hasError("name") },
+                    attrs: {
+                      type: "text",
+                      id: "inputName",
+                      placeholder: "Enter product name ..."
+                    },
+                    domProps: { value: _vm.getSingleProduct.name },
+                    on: {
+                      change: _vm.setSlug,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.getSingleProduct,
+                          "name",
+                          $event.target.value
+                        )
+                      }
                     }
-                  }
-                })
-              ]),
+                  }),
+                  _vm._v(" "),
+                  _c("has-error", { attrs: { field: "name" } })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "form-group row" }, [
                 _c(
@@ -41129,51 +41166,76 @@ var render = function() {
                   [_vm._v("Slug")]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "input-group mb-2 col-sm-10" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.getSingleProduct.slug,
-                        expression: "getSingleProduct.slug"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "inlineFormInputGroup",
-                      placeholder: "Link to product"
-                    },
-                    domProps: { value: _vm.getSingleProduct.slug },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2 col-sm-10" },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.getSingleProduct.slug,
+                          expression: "getSingleProduct.slug"
                         }
-                        _vm.$set(
-                          _vm.getSingleProduct,
-                          "slug",
-                          $event.target.value
-                        )
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.hasError("slug") },
+                      attrs: {
+                        type: "text",
+                        id: "inlineFormInputGroup",
+                        placeholder: "Link to product"
+                      },
+                      domProps: { value: _vm.getSingleProduct.slug },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.getSingleProduct,
+                            "slug",
+                            $event.target.value
+                          )
+                        }
                       }
-                    }
-                  })
-                ])
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", { attrs: { field: "slug" } })
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
-              _vm._m(2)
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", { attrs: { for: "inputDescription" } }, [
+                    _vm._v("Description")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    staticClass: "form-control",
+                    class: { "is-invalid": _vm.hasError("description") },
+                    attrs: { id: "inputDescription", rows: "4" }
+                  }),
+                  _vm._v(" "),
+                  _c("has-error", { attrs: { field: "description" } })
+                ],
+                1
+              )
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card card-outline card-primary" }, [
-            _vm._m(3),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "row" }, [
-                _vm._m(4),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-9" }, [
                   _c(
@@ -41207,38 +41269,51 @@ var render = function() {
                                   [_vm._v("Price (EGP)")]
                                 ),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-sm-10" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.getSingleProduct.price,
-                                        expression: "getSingleProduct.price"
-                                      }
-                                    ],
-                                    staticClass: "form-control form-control-sm",
-                                    attrs: {
-                                      type: "number",
-                                      id: "colFormLabelSm"
-                                    },
-                                    domProps: {
-                                      value: _vm.getSingleProduct.price
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
+                                _c(
+                                  "div",
+                                  { staticClass: "col-sm-10" },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.getSingleProduct.price,
+                                          expression: "getSingleProduct.price"
                                         }
-                                        _vm.$set(
-                                          _vm.getSingleProduct,
-                                          "price",
-                                          $event.target.value
-                                        )
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      class: {
+                                        "is-invalid": _vm.hasError("price")
+                                      },
+                                      attrs: {
+                                        type: "number",
+                                        id: "colFormLabelSm"
+                                      },
+                                      domProps: {
+                                        value: _vm.getSingleProduct.price
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.getSingleProduct,
+                                            "price",
+                                            $event.target.value
+                                          )
+                                        }
                                       }
-                                    }
-                                  })
-                                ])
+                                    }),
+                                    _vm._v(" "),
+                                    _c("has-error", {
+                                      attrs: { field: "price" }
+                                    })
+                                  ],
+                                  1
+                                )
                               ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "form-group row" }, [
@@ -41252,38 +41327,51 @@ var render = function() {
                                   [_vm._v("Cost (EGP)")]
                                 ),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-sm-10" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.getSingleProduct.cost,
-                                        expression: "getSingleProduct.cost"
-                                      }
-                                    ],
-                                    staticClass: "form-control form-control-sm",
-                                    attrs: {
-                                      type: "number",
-                                      id: "colFormLabelSm"
-                                    },
-                                    domProps: {
-                                      value: _vm.getSingleProduct.cost
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
+                                _c(
+                                  "div",
+                                  { staticClass: "col-sm-10" },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.getSingleProduct.cost,
+                                          expression: "getSingleProduct.cost"
                                         }
-                                        _vm.$set(
-                                          _vm.getSingleProduct,
-                                          "cost",
-                                          $event.target.value
-                                        )
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-sm",
+                                      class: {
+                                        "is-invalid": _vm.hasError("cost")
+                                      },
+                                      attrs: {
+                                        type: "number",
+                                        id: "colFormLabelSm"
+                                      },
+                                      domProps: {
+                                        value: _vm.getSingleProduct.cost
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.getSingleProduct,
+                                            "cost",
+                                            $event.target.value
+                                          )
+                                        }
                                       }
-                                    }
-                                  })
-                                ])
+                                    }),
+                                    _vm._v(" "),
+                                    _c("has-error", {
+                                      attrs: { field: "cost" }
+                                    })
+                                  ],
+                                  1
+                                )
                               ])
                             ])
                           ])
@@ -41299,7 +41387,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-md-3" }, [
           _c("div", { staticClass: "card card-outline card-primary" }, [
-            _vm._m(5),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c(
@@ -41341,65 +41429,77 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card card-outline card-primary" }, [
-            _vm._m(6),
+            _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", [_vm._v("Select Category")]),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.getSingleProduct.categories_id,
-                        expression: "getSingleProduct.categories_id"
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", [_vm._v("Select Category")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.getSingleProduct.categories_id,
+                          expression: "getSingleProduct.categories_id"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      class: { "is-invalid": _vm.hasError("categories_id") },
+                      attrs: { name: "categories_id", id: "categories_id" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.getSingleProduct,
+                            "categories_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
                       }
-                    ],
-                    staticClass: "form-control",
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.getSingleProduct,
-                          "categories_id",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
+                    },
+                    [
+                      _c("option", { attrs: { value: "", disabled: "" } }, [
+                        _vm._v("Select Category")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.getAllCategories, function(category) {
+                        return _c(
+                          "option",
+                          {
+                            key: category.id,
+                            domProps: { value: category.id }
+                          },
+                          [_vm._v(_vm._s(category.name))]
                         )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "", disabled: "" } }, [
-                      _vm._v("Select Category")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.getAllCategories, function(category) {
-                      return _c(
-                        "option",
-                        { key: category.id, domProps: { value: category.id } },
-                        [_vm._v(_vm._s(category.name))]
-                      )
-                    })
-                  ],
-                  2
-                )
-              ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("has-error", { attrs: { field: "categories_id" } })
+                ],
+                1
+              )
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card card-outline card-primary" }, [
-            _vm._m(7),
+            _vm._m(6),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "row mb-3" }, [
@@ -41443,7 +41543,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card card-outline card-primary" }, [
-            _vm._m(8),
+            _vm._m(7),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c(
@@ -41517,21 +41617,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("div", { staticClass: "input-group-text" }, [_vm._v("product/")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "inputDescription" } }, [
-        _vm._v("Description")
-      ]),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: { id: "inputDescription", rows: "4" }
-      })
     ])
   },
   function() {
@@ -42536,7 +42621,7 @@ var render = function() {
                 ],
                 staticClass: "custom-select",
                 class: { "is-invalid": _vm.hasError("parent_id") },
-                attrs: { name: "category_id", id: "category_id" },
+                attrs: { name: "parent_id", id: "parent_id" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
