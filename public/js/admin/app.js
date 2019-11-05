@@ -7912,7 +7912,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\n.custom-file-label[data-v-62eaff5c] {\n  font-size: 14px;\n}\n", ""]);
+exports.push([module.i, "\n.custom-file-label[data-v-62eaff5c] {\r\n  font-size: 14px;\n}\r\n", ""]);
 
 // exports
 
@@ -7950,7 +7950,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\n.custom-file-label[data-v-4aac0000] {\n  font-size: 14px;\n}\n", ""]);
+exports.push([module.i, "\n.custom-file-label[data-v-4aac0000] {\r\n  font-size: 14px;\n}\r\n", ""]);
 
 // exports
 
