@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Cart\Facades\Cart;
+use Order\Models\Order;
 use Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -16,10 +18,54 @@ class TestController extends Controller
      */
     public function index()
     {
+
+        Cart::add(1, 'Shabayekdes', 1, 2541)
+            ->associate('Product\Models\Product');
+
+        dd(Cart::content());
+
         dd(File::exists('img/products/4.jpeg'));
 
         $test = Product::get(['id']);
 
         dd($test);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function store(Request $request)
+    {
+
+        // Insert into orders table
+        $order = Order::create([
+            'user_id' => 1,
+            'grand_total' => Cart::subtotal(),
+            'total_item_count' => Cart::count(),
+            'error' => null,
+        ]);
+
+
+        $order->addresses()->create([
+            'user_id' => 1,
+            'first_name' => $request->name,
+            'last_name' => $request->name,
+            'email' => $request->email,
+            'address1' => $request->address,
+            'address2' => $request->address,
+            'country' => $request->city,
+            'state' => $request->city,
+            'city' => $request->city,
+            'postcode' => $request->postalcode,
+            'phone' => $request->phone
+        ]);
+        // Insert into order_product table
+        foreach (Cart::content() as $item) {
+            $order->product()->attach($item->model->id, ['quantity' => $item->qty, 'total' => $item->subtotal]);
+        }
+
+        return $order;
     }
 }

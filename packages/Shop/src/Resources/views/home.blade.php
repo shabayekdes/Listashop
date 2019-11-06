@@ -268,12 +268,25 @@
                                         class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                         <div
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt=""></div>
+
+
+                                            <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
+
+                                        </div>
+
                                         <div class="product_content">
-                                            <div class="product_price discount">$225<span>{{ $product->price }}</span>
+                                            @if (empty($product->special_price))
+                                            <div class="product_price">{{ $product->present_price }}</div>
+
+                                            @else
+                                            <div class="product_price discount">
+                                                {{ presentPrice($product->special_price) }}<span>{{ $product->present_price }}</span>
                                             </div>
+
+                                            @endif
                                             <div class="product_name">
-                                                <div><a href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
+                                                <div><a
+                                                        href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
                                                 </div>
                                             </div>
                                             <div class="product_extras">
@@ -283,7 +296,8 @@
                                                     <input type="radio" name="product_color" style="background:#000000">
                                                     <input type="radio" name="product_color" style="background:#999999">
                                                 </div>
-                                                <button class="product_cart_button">Add to Cart</button>
+                                                <a href="{{ route('cart.store',$product)}}"
+                                                    class="product_cart_button">Add to Cart</a>
                                             </div>
                                         </div>
                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
@@ -311,12 +325,13 @@
                                         class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                         <div
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt=""></div>
+                                            <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt=""></div>
                                         <div class="product_content">
                                             <div class="product_price discount">$225<span>{{ $product->price }}</span>
                                             </div>
                                             <div class="product_name">
-                                                <div><a href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
+                                                <div><a
+                                                        href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
                                                 </div>
                                             </div>
                                             <div class="product_extras">
@@ -353,7 +368,7 @@
                                         class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                         <div
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt="">
+                                            <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
                     </div>
                     <div class="product_content">
                         <div class="product_price discount">$225<span>{{ $product->price }}</span>
@@ -596,11 +611,12 @@
                                             class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                             <div
                                                 class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt="">
+                                                <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
-                                                    $225<span>{{ $product->price }}</span>
+                                                    {{ $product->special_price ?? '' }}
+                                                    <span>{{ $product->present_price }}</span>
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a
@@ -642,11 +658,11 @@
                                             class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                             <div
                                                 class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt="">
+                                                <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
-                                                    $225<span>{{ $product->price }}</span>
+                                                    $225<span>{{ $product->present_price }}</span>
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a
@@ -688,11 +704,11 @@
                                             class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                             <div
                                                 class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <img src="{{ url( 'img/products/' . $product->thumbnail) }}" alt="">
+                                                <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
                                             </div>
                                             <div class="product_content">
                                                 <div class="product_price discount">
-                                                    $225<span>{{ $product->price }}</span>
+                                                    $225<span>{{ $product->present_price }}</span>
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a

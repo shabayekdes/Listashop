@@ -22,7 +22,7 @@ class Product extends Model
      * @var array
      */
     protected $casts = [
-        'featured' => 'boolean',
+        'featured' => 'boolean'
     ];
 
     /**
@@ -66,5 +66,26 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the url thumbnail.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getThumbUrlAttribute($value)
+    {
+        return ($this->thumbnail ?? 'default.png');
+    }
+    /**
+     * Get the present price.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getPresentPriceAttribute($value)
+    {
+        return '$' . number_format($this->price, 2);
     }
 }

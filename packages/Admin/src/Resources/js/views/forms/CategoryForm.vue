@@ -8,7 +8,7 @@
         <label for="inputName">Category Name</label>
         <input
           type="text"
-          v-model="getNewCategory.name"
+          v-model="getSingleCategory.name"
           @change="setSlug"
           id="inputName"
           class="form-control"
@@ -25,7 +25,7 @@
           </div>
           <input
             type="text"
-            v-model="getNewCategory.slug"
+            v-model="getSingleCategory.slug"
             class="form-control"
             :class="{ 'is-invalid': hasError('slug') }"
             id="inlineFormInputGroup"
@@ -37,9 +37,9 @@
       <div class="form-group">
         <label>Categories</label>
         <select
-          v-model="getNewCategory.parent_id"
-          name="category_id"
-          id="category_id"
+          v-model="getSingleCategory.parent_id"
+          name="parent_id"
+          id="parent_id"
           class="custom-select"
           :class="{ 'is-invalid': hasError('parent_id') }"
         >
@@ -58,7 +58,7 @@
             class="img-thumbnail mx-auto"
             width="200"
             height="200"
-            :src="getImage.url"
+            :src="getThumb.url"
             alt="user image"
           />
         </div>
@@ -67,12 +67,12 @@
       <div class="custom-file mb-3">
         <input
           type="file"
-          @change="uploadImage"
+          @change="addThumb"
           class="custom-file-input"
           id="validatedCustomFile"
           :class="{ 'is-invalid': hasError('image') }"
         />
-        <label class="custom-file-label" for="inputGroupFile02">{{ getImage.name }}</label>
+        <label class="custom-file-label" for="inputGroupFile02">{{ truncate(getThumb.name,20) }}</label>
         <has-error field="image"></has-error>
       </div>
 
@@ -80,7 +80,7 @@
         <label for="inputDescription">Description</label>
         <textarea
           id="inputDescription"
-          v-model="getNewCategory.description"
+          v-model="getSingleCategory.description"
           class="form-control"
           :class="{ 'is-invalid': hasError('description') }"
           rows="4"
@@ -100,7 +100,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import HasError from "@/components/HasError.vue";
+import HasError from "@Admin/components/HasError.vue";
 
 export default {
   name: "form-category",
@@ -111,42 +111,50 @@ export default {
     ...mapActions([
       "storeCategory",
       "updateCategory",
-      "uploadImage",
+      "addThumb",
+      "resetImages",
       "fetchListCategories",
       "setError"
     ]),
     createCategory() {
-      this.storeCategory(this.getNewCategory);
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(this.getSingleCategory)) {
+        formData.append(key, value);
+      }
+      if (this.getThumb.file) {
+        formData.append("image", this.getThumb.file, this.getThumb.name);
+      }
+      this.storeCategory(formData);
     },
     patchCategory() {
-      this.updateCategory(this.getNewCategory);
+      this.updateCategory(this.getSingleCategory);
     },
     setSlug() {
-      this.getNewCategory.slug = this.getNewCategory.name
+      this.getSingleCategory.slug = this.getSingleCategory.name
         .toLowerCase()
         .replace(/[^\w ]+/g, "")
         .replace(/ +/g, "-");
     }
   },
   watch: {
-    getImage: {
-      handler: function(val, oldVal) {
-        this.getNewCategory.image = val.url;
-      },
-      deep: true
-    },
-    getNewCategory: {
+    getSingleCategory: {
       handler: function(val, oldVal) {
         this.setError({ errors: null });
       },
       deep: true
+    },
+    getStatus(val, oldVal) {
+      if (val == "ok") {
+        this.resetImages();
+      }
     }
   },
   computed: mapGetters([
-    "getNewCategory",
+    "getSingleCategory",
     "getAllCategories",
-    "getImage",
+    "getThumb",
     "getMode",
+    "getStatus",
     "hasError"
   ])
 };

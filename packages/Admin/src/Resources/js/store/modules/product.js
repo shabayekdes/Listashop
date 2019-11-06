@@ -9,14 +9,13 @@ const state = {
         slug: "",
         price: "",
         cost: "",
-        thumbnail: "",
         categories_id: ""
     }
 };
 
 const getters = {
     getAllProducts: state => state.products,
-    getNewProduct: state => state.product
+    getSingleProduct: state => state.product
 };
 
 const actions = {
@@ -29,11 +28,15 @@ const actions = {
     },
     async storeProduct({ commit, rootState }, data) {
         try {
-            const response = await axios.post(`${urlApi}product`, data);
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            };
+            const response = await axios.post(`${urlApi}product`, data, config);
 
             commit("NEW_PRODUCT", response.data);
             commit("RESET_NEW_PRODUCT");
-            commit("RESET_IMAGE");
             rootState.status = "ok";
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
@@ -100,7 +103,6 @@ const mutations = {
             slug: "",
             price: "",
             cost: "",
-            thumbnail: "",
             category_id: ""
         };
     }

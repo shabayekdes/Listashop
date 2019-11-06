@@ -6,14 +6,13 @@ const state = {
         id: "",
         name: "",
         slug: "",
-        image: "",
         parent_id: ""
     }
 };
 
 const getters = {
     getAllCategories: state => state.categories,
-    getNewCategory: state => state.category
+    getSingleCategory: state => state.category
 };
 
 const actions = {
@@ -29,14 +28,24 @@ const actions = {
 
         commit("SHOW_LIST_CATEGORIES", response.data);
     },
-    async storeCategory({ commit }, data) {
+    async storeCategory({ commit, rootState }, data) {
         try {
-            const response = await axios.post(`${urlApi}category`, data);
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            };
+            const response = await axios.post(
+                `${urlApi}category`,
+                data,
+                config
+            );
 
             commit("NEW_CATEGORY", response.data);
             commit("RESET_NEW_CATEGORY");
-            commit("RESET_IMAGE");
+
             commit("SET_ERRORS", {});
+            rootState.status = "ok";
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
@@ -50,8 +59,6 @@ const actions = {
 
             commit("PUT_CATEGORY", response.data);
             commit("RESET_NEW_CATEGORY");
-            commit("RESET_IMAGE");
-
             commit("SET_ERRORS", {});
             rootState.status = "ok";
 

@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/" class="brand-link">
 
         <span class="brand-text font-weight-light">Listashop</span>
     </a>
@@ -35,7 +35,7 @@
                 {{-- User --}}
                 <li class="nav-item">
                     <router-link to="/admin/users" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             User
                         </p>
@@ -44,7 +44,7 @@
                 {{-- Category --}}
                 <li class="nav-item">
                     <router-link to="/admin/categories" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Category
                         </p>
@@ -53,9 +53,18 @@
                 {{-- Product --}}
                 <li class="nav-item">
                     <router-link to="/admin/products" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-cart-arrow-down"></i>
                         <p>
                             Product
+                        </p>
+                    </router-link>
+                </li>
+                {{-- Product --}}
+                <li class="nav-item">
+                    <router-link to="/admin/orders" class="nav-link">
+                        <i class="nav-icon fas fa-cart-arrow-down"></i>
+                        <p>
+                            Order
                         </p>
                     </router-link>
                 </li>

@@ -14,10 +14,14 @@ require("laravel-mix-merge-manifest");
 mix.webpackConfig({
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "packages/admin/src/resources/js/")
+            "@Admin": path.resolve(
+                __dirname,
+                "packages/admin/src/resources/js/"
+            )
         }
     }
 });
 mix.js("packages/admin/src/resources/js/app.js", "public/js/admin")
     .sass("packages/admin/src/resources/sass/app.scss", "public/css/admin")
-    .mergeManifest();
+    .mergeManifest()
+    .browserSync("http://localhost:8000");

@@ -1,5 +1,4 @@
 <header class="header">
-
     <!-- Top Bar -->
 
     <div class="top_bar">
@@ -36,8 +35,24 @@
                         </div>
                         <div class="top_bar_user">
                             <div class="user_icon"><img src="/frontend/images/user.svg" alt=""></div>
-                            <div><a href="#">Register</a></div>
-                            <div><a href="#">Sign in</a></div>
+                            @guest
+                            <div><a href="/register">Register</a></div>
+                            <div><a href="/login">Sign in</a></div>
+                            @else
+                            <div>
+                                <a href="#">My Account</a>
+                            </div>
+                            <div>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                            </div>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -98,16 +113,17 @@
                                 <div class="wishlist_count">115</div>
                             </div>
                         </div>
-
                         <!-- Cart -->
                         <div class="cart">
                             <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                 <div class="cart_icon">
                                     <img src="/frontend/images/cart.png" alt="">
-                                    <div class="cart_count"><span>10</span></div>
+                                    <div class="cart_count">
+                                        <span>{{ Cart::instance('default')->count() }}</span>
+                                    </div>
                                 </div>
                                 <div class="cart_content">
-                                    <div class="cart_text"><a href="#">Cart</a></div>
+                                    <div class="cart_text"><a href="{{ route('cart.index') }}">Cart</a></div>
                                     <div class="cart_price">$85</div>
                                 </div>
                             </div>

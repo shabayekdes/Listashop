@@ -2,9 +2,9 @@
 
 namespace Product\Repositories;
 
+use Illuminate\Support\Str;
 use Product\Models\Product;
 use Core\Eloquent\BaseRepository;
-use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Container\Container as App;
@@ -38,7 +38,10 @@ class ProductRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        return $this->model->create($this->storeImage($data));
+        $product = $this->model->create($data);
+
+        return $this->uploadGallery($product);
+
     }
 
     /**
@@ -52,23 +55,49 @@ class ProductRepository extends BaseRepository
      */
     public function update(array $data, $product) : Product
     {
-        if (isset($data['thumbnail']) && File::exists('img/products/'. $product->thumbnail)) {
-            File::delete('img/products/'. $product->thumbnail);
+        if (isset($data['thumbnail']) && Storage::exists('img/products/'. $product->thumbnail)) {
+            Storage::delete('img/products/'. $product->thumbnail);
         }
         $product->update($this->storeImage($data));
         return $product;
     }
 
-    private function storeImage($data)
+    private function uploadGallery($product)
     {
-        if (isset($data['thumbnail'])) {
+        if (request()->has('images')) {
+            foreach (request('images') as $key => $image) {
+                // Get filename with the extension
+                $filenameWithExt = $image->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just ext
+                $extension = $image->getClientOriginalExtension();
+                if($key == 'thumb'){
 
-            $name = $data['slug'] .'.' . explode('/', explode(':', substr($data['thumbnail'], 0, strpos($data['thumbnail'], ';')))[1])[1];
-            Image::make($data['thumbnail'])->save(public_path('img/products/').$name);
+                    $fileNameToStore= 'product-' . $product->id .'.'.$extension;
+                    $path = $image->storeAs('public/products/' . $product->id,  $fileNameToStore);
+                    $fileNameToStore = Str::replaceFirst('public/', '', $path);
+                    $productImage = $product->update([
+                        'thumbnail' => $fileNameToStore
+                    ]);
 
-            $data['thumbnail'] = $name;
+                }else{
+                    // Filename to store
+                    $fileNameToStore= $filename.'.'.$extension;
+                    // Upload Image
+                    $path = $image->store('public/products/' . $product->id);
 
+                    $fileNameToStore = Str::replaceFirst('public/', '', $path);
+
+                    $productImage = $product->images()->create([
+                        'path' => $fileNameToStore
+                    ]);
+                    $img = Image::make(public_path('storage/'.$productImage->path))->fit(130, 150, null, 'center');
+                    $img->save();
+                }
+
+            }
         }
-        return $data;
+        return $product;
     }
 }

@@ -185,6 +185,8 @@ return [
         Product\Providers\ProductServiceProvider::class,
         Admin\Providers\AdminServiceProvider::class,
         User\Providers\UserServiceProvider::class,
+        Cart\Providers\CartServiceProvider::class,
+        Order\Providers\OrderServiceProvider::class,
 
 
 
@@ -238,7 +240,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Cart' => Cart\Facades\Cart::class
 
     ],
 
