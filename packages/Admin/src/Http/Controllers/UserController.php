@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection($this->user->all());
+        return UserResource::collection($this->user->paginate());
     }
 
     /**

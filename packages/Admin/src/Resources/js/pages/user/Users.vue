@@ -5,7 +5,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">DataTable with default features</h3>
+            <h3 class="card-title">Users List</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -44,7 +44,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <datatable :columns="columns">
+                  <datatable :columns="columns" :length="getAllUsers.length">
                     <tr role="row" class="odd" v-for="user in getAllUsers" :key="user.id">
                       <td class="sorting_1">{{ user.id }}</td>
                       <td>{{ user.name }}</td>

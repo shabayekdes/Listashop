@@ -42787,7 +42787,12 @@ var render = function() {
                     [
                       _c(
                         "datatable",
-                        { attrs: { columns: _vm.columns } },
+                        {
+                          attrs: {
+                            columns: _vm.columns,
+                            length: _vm.getAllUsers.length
+                          }
+                        },
                         _vm._l(_vm.getAllUsers, function(user) {
                           return _c(
                             "tr",
@@ -42883,9 +42888,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [
-        _vm._v("DataTable with default features")
-      ])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Users List")])
     ])
   },
   function() {
