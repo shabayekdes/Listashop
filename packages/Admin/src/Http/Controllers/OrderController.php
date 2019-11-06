@@ -2,24 +2,30 @@
 
 namespace Admin\Http\Controllers;
 
+use Order\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use User\Repositories\UserRepository;
-use User\Http\Resources\UserResource;
+use Order\Http\Requests\OrderRequest;
+use Order\Http\Resources\OrderResource;
+use Order\Repositories\OrderRepository;
 
-class UserController extends Controller
+/**
+ * Order Admin page controller
+ */
+class OrderController extends Controller
 {
-    protected $user;
+    protected $order;
 
     /**
-     * User Controller constructor.
+     * Order Controller constructor.
      *
-     * @param UserRepositoryInterface $user
+     * @param OrderRepository $order
      */
-    public function __construct(UserRepository $user)
+    public function __construct(OrderRepository $order)
     {
-        $this->user = $user;
+        $this->order = $order;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +33,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection($this->user->paginate());
+        return OrderResource::collection($this->order->with('products')->paginate());
     }
 
     /**
@@ -36,8 +42,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
+        return $this->order->create($request->all());
     }
 
     /**
@@ -57,8 +64,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
+        return $this->order->update($request->all(), $order);
     }
 
     /**
@@ -69,6 +77,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->order->deleteById($id);
+        return ["message" => "Order delete!!"];
     }
 }

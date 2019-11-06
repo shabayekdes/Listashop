@@ -5,8 +5,22 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Users List</h3>
+            <div class="row">
+              <div class="col-sm-12 col-md-5">
+                <h3 class="card-title">Products List</h3>
+              </div>
+              <div class="col-sm-12 col-md-7">
+                <router-link
+                  :to="{ name: 'product.create',  params: { editMode: false } }"
+                  class="btn btn-success float-right"
+                >
+                  Add New
+                  <i class="fas fa-cart-plus"></i>
+                </router-link>
+              </div>
+            </div>
           </div>
+
           <!-- /.card-header -->
           <div class="card-body">
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -44,21 +58,47 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <datatable :columns="columns" :length="getAllUsers.length">
-                    <tr role="row" class="odd" v-for="user in getAllUsers" :key="user.id">
-                      <td class="sorting_1">{{ user.id }}</td>
-                      <td>{{ user.name }}</td>
-                      <td>{{ user.email }}</td>
+                  <datatable :columns="columns" :length="getAllProducts.length">
+                    <tr role="row" class="odd" v-for="product in getAllProducts" :key="product.id">
+                      <td class="sorting_1">{{ product.id }}</td>
+                      <td>
+                        <img
+                          src="/img/default-150x150.png"
+                          v-if="product.thumbnail == null"
+                          alt="Product 1"
+                          class="img-circle img-size-64 mr-2"
+                        />
+                        <img
+                          :src="product.thumbnail"
+                          v-else
+                          alt="Product 2"
+                          class="img-circle img-size-64 mr-2"
+                        />
+                      </td>
+                      <td>{{ product.name | slug }}</td>
+                      <td>{{ product.price }}</td>
+                      <td>{{ product.sku }}</td>
+                      <td class="project-state text-center">
+                        <span v-show="product.status" class="badge badge-success">Active</span>
+                        <span v-show="!product.status" class="badge badge-warning">Non-Active</span>
+                      </td>
                       <td class="project-actions text-right">
                         <a class="btn btn-primary btn-sm" href="#">
                           <i class="fas fa-folder"></i>
                           View
                         </a>
-                        <a class="btn btn-info btn-sm" href="#">
+                        <router-link
+                          :to="{ name: 'product.create',  params: { product, editMode: true } }"
+                          class="btn btn-info btn-sm"
+                        >
                           <i class="fas fa-pencil-alt"></i>
                           Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
+                        </router-link>
+                        <a
+                          class="btn btn-danger btn-sm"
+                          @click="deleteProduct(product.id)"
+                          href="#"
+                        >
                           <i class="fas fa-trash"></i>
                           Delete
                         </a>
@@ -67,7 +107,7 @@
                   </datatable>
                 </div>
               </div>
-              <pagination :meta_data="getMetaData" v-on:next="fetchListUsers"></pagination>
+              <pagination :meta_data="getMetaData" v-on:next="fetchListProducts"></pagination>
             </div>
           </div>
           <!-- /.card-body -->
@@ -87,7 +127,7 @@ import pagination from "@Admin/components/Pagination.vue";
 import datatable from "@Admin/components/DataTable.vue";
 
 export default {
-  name: "Users",
+  name: "ProductList",
   components: {
     pagination,
     datatable
@@ -96,19 +136,22 @@ export default {
     return {
       columns: [
         { width: "2%", label: "#", name: "id", active: true },
-        { width: "40%", label: "Name", name: "name", active: true },
-        { width: "40%", label: "Email", name: "email", active: true },
+        { width: "10%", label: "", name: "thumbnail", active: true },
+        { width: "23%", label: "Name", name: "name", active: true },
+        { width: "15%", label: "Price", name: "price", active: true },
+        { width: "20%", label: "SKU", name: "sku", active: true },
+        { width: "15%", label: "Status", name: "status", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]
     };
   },
   methods: {
-    ...mapActions(["fetchListUsers"])
+    ...mapActions(["fetchListProducts", "deleteProduct"])
   },
   created() {
-    this.fetchListUsers();
+    this.fetchListProducts();
   },
-  computed: mapGetters(["getAllUsers", "getMetaData"])
+  computed: mapGetters(["getAllProducts", "getMetaData"])
 };
 </script>
 

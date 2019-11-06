@@ -3,9 +3,13 @@ import Wrapper from "@Admin/layouts/Wrapper";
 import Dashboard from "@Admin/pages/dashboard/Dashboard.vue";
 
 import Users from "@Admin/pages/user/Users.vue";
-import ListCategories from "@Admin/pages/category/Lists.vue";
-import ListProducts from "@Admin/pages/product/Lists.vue";
+
+import ListCategories from "@Admin/pages/category/List.vue";
+
+import ListProducts from "@Admin/pages/product/List.vue";
 import EditProducts from "@Admin/pages/product/Edit.vue";
+
+import ListOrders from "@Admin/pages/order/List.vue";
 
 import NotFound from "@Admin/views/NotFound.vue";
 
@@ -26,7 +30,7 @@ export const routes = [
                 }
             },
             {
-                path: "/admin/users",
+                path: "users",
                 name: "users.index",
                 component: Users,
                 meta: {
@@ -34,7 +38,7 @@ export const routes = [
                 }
             },
             {
-                path: "/admin/categories",
+                path: "categories",
                 name: "Categories.index",
                 component: ListCategories,
                 meta: {
@@ -42,7 +46,7 @@ export const routes = [
                 }
             },
             {
-                path: "/admin/products",
+                path: "products",
                 name: "Products.index",
                 component: ListProducts,
                 meta: {
@@ -50,12 +54,20 @@ export const routes = [
                 }
             },
             {
-                path: "/admin/product/create",
+                path: "product/create",
                 name: "product.create",
                 component: EditProducts,
                 props: true,
                 meta: {
                     text: "product"
+                }
+            },
+            {
+                path: "orders",
+                name: "order.index",
+                component: ListOrders,
+                meta: {
+                    text: "Orders"
                 }
             }
         ]

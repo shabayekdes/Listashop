@@ -59,6 +59,15 @@
                         </p>
                     </router-link>
                 </li>
+                {{-- Product --}}
+                <li class="nav-item">
+                    <router-link to="/admin/orders" class="nav-link">
+                        <i class="nav-icon fas fa-cart-arrow-down"></i>
+                        <p>
+                            Order
+                        </p>
+                    </router-link>
+                </li>
                 {{-- Logout --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -7,6 +7,7 @@ use Order\Models\Order;
 use Product\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Order\Http\Requests\CheckoutRequest;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Cartalyst\Stripe\Exception\CardErrorException;
 
@@ -22,6 +23,14 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+        if (Cart::instance('default')->count() == 0) {
+            return redirect()->route('store.index');
+        }
+
+        if (auth()->user() && request()->is('guestCheckout')) {
+            return redirect()->route('checkout.index');
+        }
+
         return view('shop::checkout.index');
     }
     /**
@@ -30,11 +39,11 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CheckoutRequest $request)
     {
         // Check race condition when there are less items available to purchase
         if ($this->productsAreNoLongerAvailable()) {
-            return back()->withErrors('Sorry! One of the items in your cart is no longer avialble.');
+            return back()->withErrors('Sorry! One of the items in your cart is no longer available.');
         }
 
         $contents = Cart::content()->map(function ($item) {
@@ -71,9 +80,12 @@ class CheckoutController extends Controller
 
         // Insert into orders table
         $order = Order::create([
+            'customer_first_name' => $request->name,
+            'customer_last_name' => $request->name,
             'user_id' => auth()->user() ? auth()->user()->id : null,
+            'is_guest' => auth()->user() ? false : true,
             'grand_total' => Cart::total(),
-            'total_item_count' => Cart::count(),
+            'item_count' => Cart::count(),
             'error' => $error,
         ]);
 

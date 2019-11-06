@@ -35,8 +35,24 @@
                         </div>
                         <div class="top_bar_user">
                             <div class="user_icon"><img src="/frontend/images/user.svg" alt=""></div>
-                            <div><a href="#">Register</a></div>
-                            <div><a href="#">Sign in</a></div>
+                            @guest
+                            <div><a href="/register">Register</a></div>
+                            <div><a href="/login">Sign in</a></div>
+                            @else
+                            <div>
+                                <a href="#">My Account</a>
+                            </div>
+                            <div>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                            </div>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                            @endguest
                         </div>
                     </div>
                 </div>
