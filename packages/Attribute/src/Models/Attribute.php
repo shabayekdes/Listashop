@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
+    protected $table = 'attributes';
 
     /**
      * The attributes that are mass assignable.
@@ -17,9 +18,9 @@ class Attribute extends Model
     /**
      * The images that belong to the product.
      */
-    public function images()
+    public function options()
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany('Attribute\Models\AttributeOption');
     }
 
     /**

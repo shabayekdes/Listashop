@@ -8,5 +8,6 @@ Route::group([
         Route::apiResource('category', 'CategoryController');
         Route::apiResource('product', 'ProductController');
         Route::apiResource('order', 'OrderController');
+        Route::apiResource('attribute', 'AttributeController');
     });
 });

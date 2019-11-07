@@ -37,7 +37,7 @@
             <strong>Copyright &copy; 2014-2019 <a href="#">Shabayekdes</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0.0-beta.1
+                <b>Version</b> 0.2.0-beta
             </div>
         </footer>
 
