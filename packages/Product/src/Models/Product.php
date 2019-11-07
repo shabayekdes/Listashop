@@ -69,16 +69,6 @@ class Product extends Model
     }
 
     /**
-     * Get the url thumbnail.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getThumbUrlAttribute($value)
-    {
-        return ($this->thumbnail ?? 'default.png');
-    }
-    /**
      * Get the present price.
      *
      * @param  string  $value
