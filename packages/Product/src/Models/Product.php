@@ -88,4 +88,11 @@ class Product extends Model
     {
         return '$' . number_format($this->price, 2);
     }
+    /**
+     * Get the product items record associated with the order.
+     */
+    public function orders()
+    {
+        return $this->belongsToMany('Order\Models\Order')->withPivot('quantity', 'total');
+    }
 }

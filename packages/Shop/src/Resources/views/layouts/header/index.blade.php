@@ -40,7 +40,7 @@
                             <div><a href="/login">Sign in</a></div>
                             @else
                             <div>
-                                <a href="#">My Account</a>
+                                <a href="{{ route('myAccount.index') }}">My Account</a>
                             </div>
                             <div>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
