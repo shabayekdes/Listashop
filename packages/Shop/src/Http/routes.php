@@ -29,7 +29,12 @@ Route::namespace('Shop\Http\Controllers')->group(function(){
         Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
         Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
 
-        Route::get('/guestCheckout', 'CheckoutController@index')->name('guestCheckout.index');
+        Route::get('/guest-checkout', 'CheckoutController@index')->name('guestCheckout.index');
+
+        Route::get('/my-account', 'UserController@index')->name('myAccount.index')->middleware('auth');
+
+        Route::get('/my-orders', 'OrdersController@index')->name('orders.index');
+        Route::get('/my-orders/{order}', 'OrdersController@show')->name('orders.show');
     });
 
 });
