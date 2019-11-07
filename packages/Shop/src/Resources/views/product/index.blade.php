@@ -19,15 +19,23 @@
             <!-- Images -->
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
-                    <li data-image="/img/single/single_4.jpg"><img src="/img/single/single_4.jpg" alt=""></li>
-                    <li data-image="/img/single/single_2.jpg"><img src="/img/single/single_2.jpg" alt=""></li>
-                    <li data-image="/img/single/single_3.jpg"><img src="/img/single/single_3.jpg" alt=""></li>
+                    @foreach ($product->images()->limit(3)->get() as $image)
+                    <li data-image="{{ url('storage/'.$image->path) }}"><img src="{{ url('storage/'.$image->path) }}"
+                            alt=""></li>
+                    @endforeach
+
                 </ul>
             </div>
 
             <!-- Selected Image -->
             <div class="col-lg-5 order-lg-2 order-1">
-                <div class="image_selected"><img src="{{ url('/img/products/'. $product->thumbnail) }}" alt=""></div>
+                <div class="image_selected">
+                    @if (empty($product->thumbnail))
+                    <img src="{{ url( 'img/products/default.png') }}" alt="">
+                    @else
+                    <img src="{{ url( 'storage/' . $product->thumbnail) }}" alt="">
+                    @endif
+                </div>
             </div>
 
             <!-- Description -->
@@ -82,7 +90,7 @@
 
                             <div class="product_price">{{ $product->price }}</div>
                             <div class="button_container">
-                                <button type="button" class="button cart_button">Add to Cart</button>
+                                <a href="{{ route('cart.store',$product)}}" class="button cart_button">Add to Cart</a>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                             </div>
 
