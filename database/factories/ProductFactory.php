@@ -10,6 +10,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'sku' => $faker->unique()->randomNumber,
         'name' => $faker->sentence(),
         'slug' => $faker->unique()->randomNumber,
+        'type' => 'simple',
         'price' => rand(1999, 9999),
         'cost' => rand(599, 2000),
         'description' => $faker->text(),

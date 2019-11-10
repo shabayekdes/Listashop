@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('sku');
             $table->string('name');
             $table->string('slug');
+            $table->string('type');
             $table->decimal('price', 12, 4);
             $table->decimal('cost', 12, 4);
             $table->unsignedInteger('quantity')->default(10);

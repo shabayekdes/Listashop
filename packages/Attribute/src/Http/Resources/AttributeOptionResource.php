@@ -4,7 +4,7 @@ namespace Attribute\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AttributeResource extends JsonResource
+class AttributeOptionResource extends JsonResource
 {
 
     /**
@@ -15,11 +15,6 @@ class AttributeResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'name' =>$this->name,
-            'options' => $this->options->implode('label', ', ')
-        ];
-
+        return parent::toArray($request);
     }
 }

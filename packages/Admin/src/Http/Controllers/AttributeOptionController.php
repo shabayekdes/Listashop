@@ -2,28 +2,28 @@
 
 namespace Admin\Http\Controllers;
 
-use Illuminate\Support\Str;
-use Product\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Product\Http\Requests\ProductRequest;
-use Product\Http\Resources\ProductResource;
-use Product\Repositories\ProductRepository;
+use Attribute\Models\AttributeOption;
+use Attribute\Http\Requests\AttributeOptionRequest;
+use Attribute\Http\Resources\AttributeOptionResource;
+use Attribute\Repositories\AttributeOptionRepository;
 
 
-class ProductController extends Controller
+class AttributeOptionController extends Controller
 {
-    protected $product;
+    protected $option;
 
     /**
-     * Product Controller constructor.
+     * Attribute Option Controller constructor.
      *
-     * @param ProductRepositoryInterface $product
+     * @param AttributeOptionRepositoryInterface $option
      */
-    public function __construct(ProductRepository $product)
+    public function __construct(AttributeOptionRepository $option)
     {
-        $this->product = $product;
+        $this->option = $option;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection($this->product->paginate());
+        return AttributeOptionResource::collection($this->option->paginate());
     }
 
     /**
@@ -40,9 +40,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(AttributeOptionRequest $request)
     {
-        return $this->product->create(array_merge($request->all(), ['sku'=> Str::random(10)]));
     }
 
     /**
@@ -51,8 +50,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(AttributeOption $option)
     {
+
     }
 
     /**
@@ -62,9 +62,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, AttributeOption $option)
     {
-        return new ProductResource($this->product->update($request->all(), $this->product->find($id)));
+
+
     }
 
     /**
@@ -75,8 +76,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->product->deleteById($user->id);
-        return ['message' => 'product deleted!!'];
 
     }
 }

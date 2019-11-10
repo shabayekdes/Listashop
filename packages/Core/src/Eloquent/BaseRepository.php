@@ -318,6 +318,19 @@ abstract class BaseRepository implements RepositoryContract
         return $model;
     }
     /**
+     * create with relations
+     *
+     * @param $id
+     * @param $relation
+     * @param $attributes
+     * @param bool $detaching
+     * @return mixed
+     */
+    public function withCreate($id, $relation, $attributes)
+    {
+        return $this->find($id)->{$relation}()->create($attributes);
+    }
+    /**
      * Update a entity in repository by id
      *
      * @throws ValidatorException

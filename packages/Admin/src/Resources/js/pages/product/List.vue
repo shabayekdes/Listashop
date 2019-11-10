@@ -83,7 +83,7 @@
                         <span v-show="!product.status" class="badge badge-warning">Non-Active</span>
                       </td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
+                        <a class="btn btn-primary btn-sm" :href="'/store/'+product.slug">
                           <i class="fas fa-folder"></i>
                           View
                         </a>

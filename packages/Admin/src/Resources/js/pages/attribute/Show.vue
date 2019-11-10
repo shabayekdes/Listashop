@@ -5,31 +5,11 @@
       <div class="col-4">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Create New Attribute</h3>
+            <h3 class="card-title">Add New {{ getSingleAttribute.name }}</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form @submit.prevent="createAttribute">
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputName">Attribute Name</label>
-                <input
-                  type="text"
-                  v-model="getSingleAttribute.name"
-                  id="inputName"
-                  class="form-control"
-                  :class="{ 'is-invalid': hasError('name') }"
-                  placeholder="Enter name of attribute ..."
-                />
-                <has-error field="name"></has-error>
-              </div>
-            </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </form>
+          <form-option />
         </div>
       </div>
       <div class="col-8">
@@ -74,20 +54,16 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <datatable :columns="columns" :length="getAllAttributes.length">
-                    <tr role="row" v-for="attribute in getAllAttributes" :key="attribute.id">
-                      <td class="sorting_1">{{ attribute.id }}</td>
-                      <td>{{ attribute.name }}</td>
+                  <datatable :columns="columns" :length="getAllOptions.length">
+                    <tr role="row" v-for="option in getAllOptions" :key="option.id">
+                      <td class="sorting_1">{{ option.id }}</td>
+                      <td>{{ option.label }}</td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder"></i>
-                          View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="#">
+                        <a class="btn btn-info btn-sm" @click="editModel(option)" href="#">
                           <i class="fas fa-pencil-alt"></i>
                           Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="#">
+                        <a class="btn btn-danger btn-sm" @click="deleteOption(option.id)" href="#">
                           <i class="fas fa-trash"></i>
                           Delete
                         </a>
@@ -96,7 +72,6 @@
                   </datatable>
                 </div>
               </div>
-              <pagination :meta_data="getMetaData" v-on:next="fetchListAttributes"></pagination>
             </div>
           </div>
           <!-- /.card-body -->
@@ -106,22 +81,28 @@
       <!-- /.col -->
     </div>
     <!-- /.row -->
+    <!-- Modal -->
+    <model title="Update Attribute" size="modal-sm">
+      <form-option />
+    </model>
   </section>
   <!-- /.content -->
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import pagination from "@Admin/components/Pagination.vue";
 import datatable from "@Admin/components/DataTable.vue";
 import HasError from "@Admin/components/HasError.vue";
+import model from "@Admin/components/Model.vue";
+import formOption from "@Admin/views/forms/AttributeOptionForm.vue";
 
 export default {
-  name: "Attributes",
+  name: "Attribute-Options",
   components: {
-    pagination,
     datatable,
-    HasError
+    HasError,
+    model,
+    formOption
   },
   data() {
     return {
@@ -133,19 +114,27 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchListAttributes", "storeAttribute", "setError"]),
-    createAttribute() {
-      this.storeAttribute(this.getSingleAttribute);
+    ...mapActions([
+      "showAttribute",
+      "storeAttribute",
+      "setOption",
+      "deleteOption",
+      "resetOption",
+      "setMode",
+      "setError"
+    ]),
+    editModel(option) {
+      this.setMode(true);
+      $("#addNew").modal("show");
+      this.setOption(option);
     }
   },
   created() {
-    this.fetchListAttributes();
+    this.showAttribute(this.$route.params.id);
   },
-  computed: mapGetters([
-    "getAllAttributes",
-    "getSingleAttribute",
-    "hasError",
-    "getMetaData"
-  ])
+  mounted() {
+    this.resetOption();
+  },
+  computed: mapGetters(["getSingleAttribute", "getAllOptions", "getMetaData"])
 };
 </script>

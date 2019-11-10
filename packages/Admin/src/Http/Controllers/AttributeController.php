@@ -5,22 +5,29 @@ namespace Admin\Http\Controllers;
 use Illuminate\Http\Request;
 use Attribute\Models\Attribute;
 use App\Http\Controllers\Controller;
+use Attribute\Models\AttributeOption;
 use Attribute\Http\Requests\AttributeRequest;
 use Attribute\Http\Resources\AttributeResource;
 use Attribute\Repositories\AttributeRepository;
+use Attribute\Http\Requests\AttributeOptionRequest;
+use Attribute\Http\Resources\AttributeOptionResource;
+use Attribute\Repositories\AttributeOptionRepository;
 
 class AttributeController extends Controller
 {
     protected $attribute;
+    protected $option;
 
     /**
      * Attribute Controller constructor.
      *
-     * @param AttributeRepositoryInterface $attribute
+     * @param AttributeRepository $attribute
+     * @param AttributeOptionRepository $option
      */
-    public function __construct(AttributeRepository $attribute)
+    public function __construct(AttributeRepository $attribute, AttributeOptionRepository $option)
     {
         $this->attribute = $attribute;
+        $this->option = $option;
     }
 
     /**
@@ -50,8 +57,13 @@ class AttributeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Attribute $attribute)
     {
+        $collection = collect($attribute);
+
+        $attr = $collection->put('options', $attribute->options()->get());
+
+        return response()->json(['data' => $attr], 200 );
     }
 
     /**
@@ -63,7 +75,8 @@ class AttributeController extends Controller
      */
     public function update(Request $request, Attribute $attribute)
     {
-        return $this->attribute->update($request->all(), $attribute);
+        $attr =  $this->attribute->update($request->all(), $attribute);
+        return new AttributeResource($attr);
 
     }
 
@@ -75,6 +88,41 @@ class AttributeController extends Controller
      */
     public function destroy($id)
     {
+        $attr = $this->attribute->delete($id);
+        return ['message' => 'attribute deleted!!'];
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeOption(AttributeOptionRequest $request, $id )
+    {
+        return $this->attribute->withCreate($id, 'options',$request->all());
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateOption(AttributeOptionRequest $request, AttributeOption $option )
+    {
+        $attr_option =  $this->option->update($request->all(), $option);
+        return new AttributeOptionResource($attr_option);
+
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyOption($id)
+    {
+        $this->option->delete($id);
+        return ['message' => 'option deleted!!'];
     }
 }

@@ -2,12 +2,11 @@
 
 namespace Attribute\Repositories;
 
-use Attribute\Models\Attribute;
 use Core\Eloquent\BaseRepository;
+use Attribute\Models\AttributeOption;
 use Illuminate\Container\Container as App;
-use Attribute\Http\Resources\AttributeResource;
 
-class AttributeRepository extends BaseRepository
+class AttributeOptionRepository extends BaseRepository
 {
     /**
      * Create a new controller instance.
@@ -25,10 +24,10 @@ class AttributeRepository extends BaseRepository
      */
     public function model()
     {
-        return Attribute::class;
+        return AttributeOption::class;
     }
     /**
-     * Create a new attribute record in the database.
+     * Create a new option record in the database.
      *
      * @param array $data
      *
@@ -48,9 +47,9 @@ class AttributeRepository extends BaseRepository
      * @throws \Throwable
      * @return User
      */
-    public function update(array $data, $attribute)
+    public function update(array $data, $option)
     {
-        $attribute->update($data);
-        return $attribute;
+        $option->update($data);
+        return $option;
     }
 }

@@ -61,15 +61,23 @@
                       <td v-if="attribute.options != ''">{{ attribute.options }}</td>
                       <td v-else>-</td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder"></i>
+                        <router-link
+                          :to="{ name: 'attribute.show',  params: { id: attribute.id } }"
+                          class="btn btn-primary btn-sm"
+                        >
                           View
-                        </a>
+                          <i class="fas fa-folder"></i>
+                        </router-link>
+
                         <a class="btn btn-info btn-sm" @click="editModel(attribute)" href="#">
                           <i class="fas fa-pencil-alt"></i>
                           Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="#">
+                        <a
+                          class="btn btn-danger btn-sm"
+                          @click="deleteAttribute(attribute.id)"
+                          href="#"
+                        >
                           <i class="fas fa-trash"></i>
                           Delete
                         </a>
@@ -125,6 +133,7 @@ export default {
     ...mapActions([
       "fetchListAttributes",
       "setAttribute",
+      "deleteAttribute",
       "resetAttribute",
       "setMode",
       "setError"

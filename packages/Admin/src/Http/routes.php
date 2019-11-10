@@ -9,5 +9,10 @@ Route::group([
         Route::apiResource('product', 'ProductController');
         Route::apiResource('order', 'OrderController');
         Route::apiResource('attribute', 'AttributeController');
+        // Route::apiResource('attribute-options', 'AttributeOptionController');
+
+        Route::post('attribute-options/{id}', 'AttributeController@storeOption');
+        Route::put('attribute-options/{option}', 'AttributeController@updateOption');
+        Route::delete('attribute-options/{id}', 'AttributeController@destroyOption');
     });
 });
