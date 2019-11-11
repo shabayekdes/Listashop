@@ -77,7 +77,7 @@
                       </td>
                       <td>{{ product.name | slug }}</td>
                       <td>{{ product.price }}</td>
-                      <td>{{ product.sku }}</td>
+                      <td>{{ product.quantity }}</td>
                       <td class="project-state text-center">
                         <span v-show="product.status" class="badge badge-success">Active</span>
                         <span v-show="!product.status" class="badge badge-warning">Non-Active</span>
@@ -139,7 +139,7 @@ export default {
         { width: "10%", label: "", name: "thumbnail", active: true },
         { width: "23%", label: "Name", name: "name", active: true },
         { width: "15%", label: "Price", name: "price", active: true },
-        { width: "20%", label: "SKU", name: "sku", active: true },
+        { width: "20%", label: "Quantity", name: "quantity", active: true },
         { width: "15%", label: "Status", name: "status", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]

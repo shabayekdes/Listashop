@@ -16,6 +16,10 @@ class CreateProductAttributeOptionsTable extends Migration
         Schema::create('product_attribute_options', function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->string('sku');
+            $table->decimal('price', 12, 4);
+            $table->unsignedInteger('quantity')->default(10);
+
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('attribute_option_id');
 
