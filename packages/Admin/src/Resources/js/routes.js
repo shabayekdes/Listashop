@@ -62,7 +62,7 @@ export const routes = [
                 component: EditProducts,
                 props: true,
                 meta: {
-                    text: "product"
+                    text: "New Product"
                 }
             },
             {

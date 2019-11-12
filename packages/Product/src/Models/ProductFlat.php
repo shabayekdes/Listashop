@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace Product\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class ProductFlat extends Model
 {
-    protected $table = 'products';
+    protected $table = 'product_flats';
 
     /**
      * The attributes that are mass assignable.
@@ -37,4 +37,24 @@ class ProductFlat extends Model
         'new' => 'boolean',
         'special_price' => 'boolean'
     ];
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', 1);
+    }
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOnsale($query)
+    {
+        return $query->where('special_price', '!=' , null);
+    }
 }

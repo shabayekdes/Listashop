@@ -9,6 +9,7 @@ const state = {
         slug: "",
         price: "",
         cost: "",
+        type: "simple",
         categories_id: ""
     }
 };

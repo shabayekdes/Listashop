@@ -19,10 +19,11 @@
               <has-error field="name"></has-error>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">Slug</label>
-              <div class="input-group mb-2 col-sm-10">
+              <div class="input-group col-sm-4">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">product/</div>
+                  <div class="input-group-text bg-primary color-palette">
+                    <small>product/</small>
+                  </div>
                 </div>
                 <input
                   type="text"
@@ -35,6 +36,45 @@
                 <has-error field="slug"></has-error>
               </div>
             </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+
+        <div class="card card-outline card-primary">
+          <div class="card-header">
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label card-title">Product Data -</label>
+              <div class="col-sm-3">
+                <select
+                  class="form-control"
+                  v-model="getSingleProduct.type"
+                  id="exampleFormControlSelect1"
+                >
+                  <option value="simple">Simple product</option>
+                  <option value="attr">Attribute product</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <product-simple v-if="getSingleProduct.type == 'simple'" />
+          <product-attribute v-else />
+
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <div class="card card-primary collapsed-card">
+          <div class="card-header">
+            <h3 class="card-title">Description</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
             <div class="form-group">
               <label for="inputDescription">Description</label>
               <textarea
@@ -48,33 +88,6 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <!-- /.card -->
-        <div class="card card-outline card-primary">
-          <div class="card-header">
-            <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label card-title">Product Data -</label>
-              <div class="col-sm-3">
-                <select class="form-control" v-model="productData" id="exampleFormControlSelect1">
-                  <option value="simple">Simple product</option>
-                  <option value="attr">Attribute product</option>
-                </select>
-              </div>
-            </div>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-            <!-- /.card-tools -->
-          </div>
-          <!-- /.card-header -->
-          <product-simple v-if="productData == 'simple'" />
-          <product-attribute v-else />
-
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-
         <!-- /.card -->
       </div>
 

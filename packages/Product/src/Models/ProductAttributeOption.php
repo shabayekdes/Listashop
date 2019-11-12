@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductAttributeOption extends Model
 {
-    protected $table = 'products';
+    protected $table = 'product_attribute_options';
 
     /**
      * The attributes that are mass assignable.

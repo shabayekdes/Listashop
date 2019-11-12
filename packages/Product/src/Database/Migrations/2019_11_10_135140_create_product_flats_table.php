@@ -23,9 +23,9 @@ class CreateProductFlatsTable extends Migration
             $table->unsignedInteger('quantity')->default(10);
             $table->string('thumbnail')->nullable();
 
-            $table->boolean('new')->nullable();
-            $table->boolean('featured')->nullable();
-            $table->boolean('special_price')->nullable();
+            $table->boolean('new')->default(false);
+            $table->boolean('featured')->default(false);
+            $table->boolean('special_price')->default(false);
             // $table->date('special_price_from')->nullable();
             // $table->date('special_price_to')->nullable();
 

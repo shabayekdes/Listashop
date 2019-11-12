@@ -103,6 +103,10 @@
                       id="colFormLabelSm"
                       :class="{ 'is-invalid': hasError('sku') }"
                     />
+                    <small
+                      id="emailHelp"
+                      class="form-text text-muted"
+                    >Keep it blank to automatically generate sku.</small>
                     <has-error field="sku"></has-error>
                   </div>
                 </div>
@@ -117,6 +121,22 @@
                       <option>Out of stock</option>
                     </select>
                     <has-error field="cost"></has-error>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="colFormLabelSm"
+                    class="col-sm-2 col-form-label col-form-label-sm"
+                  >Stock quantity</label>
+                  <div class="col-sm-6">
+                    <input
+                      type="number"
+                      v-model="getSingleProduct.quantity"
+                      class="form-control form-control-sm"
+                      id="colFormLabelSm"
+                      :class="{ 'is-invalid': hasError('quantity') }"
+                    />
+                    <has-error field="quantity"></has-error>
                   </div>
                 </div>
               </div>

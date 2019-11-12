@@ -214,6 +214,23 @@ abstract class BaseRepository implements RepositoryContract
      */
     public function find($id, $columns = ['*'])
     {
+        dd($id);
+
+        $model = $this->model->findOrFail($id, $columns);
+        return $model;
+    }
+    /**
+     * Find data by id
+     *
+     * @param       $id
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function test($id, $columns = ['*'])
+    {
+        dd($id);
+
         $model = $this->model->findOrFail($id, $columns);
         return $model;
     }
@@ -312,6 +329,7 @@ abstract class BaseRepository implements RepositoryContract
      */
     public function create(array $attributes)
     {
+        dd($attributes);
 
         $model = $this->model->newInstance($attributes);
         $model->save();
@@ -489,5 +507,14 @@ abstract class BaseRepository implements RepositoryContract
                 $this->model = $this->model->where($field, '=', $value);
             }
         }
+    }
+    /**
+     * Get fillable of the model.
+     *
+     * @param array $data
+     */
+    protected function getFillableData(array $data)
+    {
+        return array_intersect_key($data, array_flip($this->model->getFillable()));
     }
 }

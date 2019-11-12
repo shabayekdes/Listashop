@@ -23,26 +23,6 @@ class Product extends Model
         'categories_id'
     ];
     /**
-     * Scope a query to only include popular users.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeFeatured($query)
-    {
-        return $query->where('featured', 1);
-    }
-    /**
-     * Scope a query to only include popular users.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeOnsale($query)
-    {
-        return $query->where('special_price', '!=' , null);
-    }
-    /**
      * Get the present price.
      *
      * @param  string  $value
@@ -58,6 +38,13 @@ class Product extends Model
     public function orders()
     {
         return $this->belongsToMany('Order\Models\Order')->withPivot('quantity', 'total');
+    }
+    /**
+     * The images that belong to the product.
+     */
+    public function flat()
+    {
+        return $this->hasOne('Product\Models\ProductFlat');
     }
     /**
      * The images that belong to the product.
