@@ -11,12 +11,14 @@ const state = {
         cost: "",
         type: "simple",
         categories_id: ""
-    }
+    },
+    variations: []
 };
 
 const getters = {
     getAllProducts: state => state.products,
-    getSingleProduct: state => state.product
+    getSingleProduct: state => state.product,
+    getVariations: state => state.variations
 };
 
 const actions = {

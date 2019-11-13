@@ -24,11 +24,15 @@ const getters = {
 
 const actions = {
     async fetchListAttributes({ commit }, paged = null) {
-        let query = paged !== null ? `?page=${paged}` : "";
-        let response = await axios.get(`${urlApi}attribute${query}`);
-
+        let response = "";
+        if (paged == "all") {
+            response = await axios.get(`${urlApi}attribute?show=all`);
+        } else {
+            let query = paged !== null ? `?page=${paged}` : "";
+            response = await axios.get(`${urlApi}attribute${query}`);
+            commit("SET_META_DATA", response.data, { root: true });
+        }
         commit("SHOW_LIST_ATTRIBUTES", response.data);
-        commit("SET_META_DATA", response.data, { root: true });
     },
     async storeAttribute({ commit }, data) {
         try {

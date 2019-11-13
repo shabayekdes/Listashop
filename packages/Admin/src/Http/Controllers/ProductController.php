@@ -42,6 +42,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        dd($request->all());
         return $this->product->create(array_merge($request->all(), ['sku'=> Str::random(10)]));
     }
 

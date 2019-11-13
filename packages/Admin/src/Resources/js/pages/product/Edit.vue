@@ -51,7 +51,7 @@
                   id="exampleFormControlSelect1"
                 >
                   <option value="simple">Simple product</option>
-                  <option value="attr">Attribute product</option>
+                  <option value="variation">Attribute product</option>
                 </select>
               </div>
             </div>
@@ -59,7 +59,6 @@
           <!-- /.card-header -->
           <product-simple v-if="getSingleProduct.type == 'simple'" />
           <product-attribute v-else />
-
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -237,8 +236,8 @@
 <script>
 import { mapGetters, mapActions, mapState } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
-import ProductSimple from "@Admin/views/ProductSimple";
-import ProductAttribute from "@Admin/views/ProductAttribute";
+import ProductSimple from "@Admin/pages/product/views/ProductSimple";
+import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
 import model from "@Admin/components/Model.vue";
 import HasError from "@Admin/components/HasError.vue";
 
@@ -264,9 +263,7 @@ export default {
     }
   },
   data() {
-    return {
-      productData: "simple"
-    };
+    return {};
   },
   methods: {
     ...mapActions([
@@ -286,11 +283,11 @@ export default {
       this.getFiles.forEach(file => {
         formData.append("images[]", file, file.name);
       });
-
       if (this.getThumb.file) {
-        formData.append("images[thumb]", this.getThumb.file);
+        formData.append("thumb", this.getThumb.file);
+        // formData.append("images[thumb]", this.getThumb.file);
       }
-
+      formData.append("variations", JSON.stringify(this.getVariations));
       this.storeProduct(formData);
     },
     patchProduct() {
@@ -323,6 +320,7 @@ export default {
   computed: mapGetters([
     "getSingleProduct",
     "getAllCategories",
+    "getVariations",
     "getFiles",
     "getThumb",
     "getStatus",

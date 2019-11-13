@@ -9,6 +9,7 @@ use Attribute\Models\AttributeOption;
 use Attribute\Http\Requests\AttributeRequest;
 use Attribute\Http\Resources\AttributeResource;
 use Attribute\Repositories\AttributeRepository;
+use Attribute\Http\Resources\AttributeCollection;
 use Attribute\Http\Requests\AttributeOptionRequest;
 use Attribute\Http\Resources\AttributeOptionResource;
 use Attribute\Repositories\AttributeOptionRepository;
@@ -37,6 +38,9 @@ class AttributeController extends Controller
      */
     public function index()
     {
+        if(request('show')){
+            return new AttributeCollection($this->attribute->all());
+        }
         return AttributeResource::collection($this->attribute->with('options')->paginate());
     }
 

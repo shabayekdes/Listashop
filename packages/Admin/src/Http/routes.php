@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    // 'middleware' => ['auth:api-admin', 'admin', 'api']
+    'middleware' => ['auth:api-admin', 'admin', 'api']
 ], function () {
     Route::namespace('\Admin\Http\Controllers')->prefix('api/admin')->group(function () {
         Route::apiResource('user', 'UserController');
