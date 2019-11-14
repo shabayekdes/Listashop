@@ -2,6 +2,7 @@
 
 namespace Attribute\Database\Seeders;
 
+use Attribute\Models\Attribute;
 use Illuminate\Database\Seeder;
 
 class AttributeTableSeeder extends Seeder
@@ -13,5 +14,22 @@ class AttributeTableSeeder extends Seeder
      */
     public function run()
     {
+        $attribute = Attribute::create([
+            'name' => 'Color'
+        ]);
+        $attribute->options()->createMany([
+            ['label' => 'Red'],
+            ['label' => 'Black'],
+            ['label' => 'Blue'],
+        ]);
+
+        $attribute = Attribute::create([
+            'name' => 'Size'
+        ]);
+        $attribute->options()->createMany([
+            ['label' => 'medium'],
+            ['label' => 'large'],
+            ['label' => 'xlarge'],
+        ]);
     }
 }
