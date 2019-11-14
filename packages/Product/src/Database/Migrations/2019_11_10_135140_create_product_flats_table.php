@@ -42,10 +42,14 @@ class CreateProductFlatsTable extends Migration
             // $table->text('meta_description')->nullable();
 
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
+
 
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('product_flats');
+
         });
     }
 

@@ -57,4 +57,14 @@ class ProductFlat extends Model
     {
         return $query->where('special_price', '!=' , null);
     }
+    /**
+     * Get the present price.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getPresentPriceAttribute($value)
+    {
+        return '$' . number_format($this->price, 2);
+    }
 }

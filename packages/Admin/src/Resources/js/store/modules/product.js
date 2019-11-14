@@ -99,6 +99,10 @@ const mutations = {
     SET_PRODUCT: (state, oldProduct) => {
         state.product = oldProduct;
     },
+    SET_VARIATION: (state, newVariation) => {
+        state.variations = [];
+        state.variations.push(...newVariation);
+    },
     RESET_NEW_PRODUCT: state => {
         state.product = {
             name: "",

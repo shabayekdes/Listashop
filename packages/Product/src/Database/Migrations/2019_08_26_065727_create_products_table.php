@@ -24,6 +24,8 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('categories_id');
 
+            $table->foreign('parent_id')->references('id')->on('products');
+
             $table->timestamps();
 
             $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');

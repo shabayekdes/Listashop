@@ -18,6 +18,20 @@ class TestController extends Controller
      */
     public function index()
     {
+        $product = Product::find(2);
+        $child = $product->children()->create([
+            'sku'  =>'sadasdasdasd',
+            'type'=>'simple',
+            'slug'=>'sdadasdasd',
+            'categories_id' => 1
+        ]);
+
+        dd($child);
+
+        $product->options()->attach(2);
+
+
+
 
         Cart::add(1, 'Shabayekdes', 1, 2541)
             ->associate('Product\Models\Product');

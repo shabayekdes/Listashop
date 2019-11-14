@@ -284,8 +284,7 @@ export default {
         formData.append("images[]", file, file.name);
       });
       if (this.getThumb.file) {
-        formData.append("thumb", this.getThumb.file);
-        // formData.append("images[thumb]", this.getThumb.file);
+        formData.append("images[thumb]", this.getThumb.file);
       }
       formData.append("variations", JSON.stringify(this.getVariations));
       this.storeProduct(formData);

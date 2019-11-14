@@ -23,14 +23,18 @@ class Product extends Model
         'categories_id'
     ];
     /**
-     * Get the present price.
-     *
-     * @param  string  $value
-     * @return string
+     * Get children of product items record associated.
      */
-    public function getPresentPriceAttribute($value)
+    public function children()
     {
-        return '$' . number_format($this->price, 2);
+        return $this->hasMany( 'Product\Models\Product', 'parent_id', 'id' );
+    }
+    /**
+     * Get parent of product items record associated.
+     */
+    public function parent()
+    {
+        return $this->hasOne( 'Product\Models\Product', 'id', 'parent_id' );
     }
     /**
      * Get the product items record associated with the order.
@@ -51,13 +55,20 @@ class Product extends Model
      */
     public function images()
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany('Product\Models\ProductImage');
     }
     /**
      * The category that belong to the product.
      */
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo('Category\Models\Category');
+    }
+    /**
+     * The roles that belong to the user.
+     */
+    public function options()
+    {
+        return $this->belongsToMany('Attribute\Models\AttributeOption');
     }
 }

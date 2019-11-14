@@ -3209,7 +3209,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
 
       if (this.getThumb.file) {
-        formData.append("thumb", this.getThumb.file); // formData.append("images[thumb]", this.getThumb.file);
+        formData.append("images[thumb]", this.getThumb.file);
       }
 
       formData.append("variations", JSON.stringify(this.getVariations));
@@ -3716,7 +3716,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       options: []
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListAttributes", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["REMOVE_ATTRIBUTE"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListAttributes", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["REMOVE_ATTRIBUTE", "SET_VARIATION"]), {
     addAttribute: function addAttribute() {
       if (this.attribute != "") {
         this.attributes.unshift(this.attribute);
@@ -3725,8 +3725,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     cartesian: function cartesian() {
-      var _this$getVariations;
-
       var r = [],
           arg = arguments,
           max = arg.length - 1;
@@ -3743,10 +3741,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       helper([], 0);
-      this.getVariations = [];
-
-      (_this$getVariations = this.getVariations).push.apply(_this$getVariations, r);
-
+      this.SET_VARIATION(r);
       return r;
     }
   }),
@@ -65134,6 +65129,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
 var state = {
   products: [],
   product: {
@@ -65315,6 +65319,13 @@ var mutations = {
   },
   SET_PRODUCT: function SET_PRODUCT(state, oldProduct) {
     state.product = oldProduct;
+  },
+  SET_VARIATION: function SET_VARIATION(state, newVariation) {
+    var _state$variations;
+
+    state.variations = [];
+
+    (_state$variations = state.variations).push.apply(_state$variations, _toConsumableArray(newVariation));
   },
   RESET_NEW_PRODUCT: function RESET_NEW_PRODUCT(state) {
     state.product = {

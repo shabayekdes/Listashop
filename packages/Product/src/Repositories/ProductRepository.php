@@ -7,6 +7,8 @@ use Core\Eloquent\BaseRepository;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Container\Container as App;
+use Attribute\Repositories\AttributeOptionRepository;
+use Product\Repositories\ProductAttributeOptionRepository;
 
 
 class ProductRepository extends BaseRepository
@@ -18,14 +20,33 @@ class ProductRepository extends BaseRepository
      */
     protected $productFlat;
     /**
+     * ProductAttributeOptionRepository Repository Object
+     *
+     * @var object
+     */
+    protected $pAttributeOption;
+    /**
+     * ProductAttributeOptionRepository Repository Object
+     *
+     * @var object
+     */
+    protected $attributeOption;
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ProductFlatRepository $productFlat, App $app)
+    public function __construct(
+        ProductFlatRepository $productFlat,
+        ProductAttributeOptionRepository $pAttributeOption,
+        AttributeOptionRepository $attributeOption,
+        App $app
+        )
     {
         parent::__construct($app);
         $this->productFlat = $productFlat;
+        $this->pAttributeOption = $pAttributeOption;
+        $this->attributeOption = $attributeOption;
     }
     /**
      * Specify Model class name
@@ -46,9 +67,22 @@ class ProductRepository extends BaseRepository
     public function create(array $data)
     {
         $product = $this->model->create($data);
-        $this->productFlat->createProductFlat($data, $product);
+
+        switch ($data['type']) {
+            case 'simple':
+                $this->productFlat->createProductFlat($data, $product);
+                break;
+            case 'attribute':
+
+                break;
+
+            // default:
+            //     # code...
+            //     break;
+        }
 
         return $product;
     }
+
 
 }

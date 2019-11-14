@@ -2,7 +2,10 @@
 
 namespace Product\Repositories;
 
+use Illuminate\Support\Str;
 use Core\Eloquent\BaseRepository;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Container\Container as App;
 
 class ProductFlatRepository extends BaseRepository
@@ -34,10 +37,11 @@ class ProductFlatRepository extends BaseRepository
      */
     public function createProductFlat(array $data, $product)
     {
-        return $product->flat()->create($data);
+        $productFlat =  $product->flat()->create($data);
+        return $this->uploadImages($productFlat, $product);
     }
 
-    private function uploadGallery($product)
+    private function uploadImages($productFlat, $product)
     {
         if (request()->has('images')) {
             foreach (request('images') as $key => $image) {
@@ -52,7 +56,7 @@ class ProductFlatRepository extends BaseRepository
                     $fileNameToStore= 'product-' . $product->id .'.'.$extension;
                     $path = $image->storeAs('public/products/' . $product->id,  $fileNameToStore);
                     $fileNameToStore = Str::replaceFirst('public/', '', $path);
-                    $productImage = $product->update([
+                    $productImage = $productFlat->update([
                         'thumbnail' => $fileNameToStore
                     ]);
 
@@ -73,6 +77,6 @@ class ProductFlatRepository extends BaseRepository
 
             }
         }
-        return $product;
+        return $productFlat;
     }
 }

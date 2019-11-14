@@ -227,7 +227,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapActions, mapMutations, mapState } from "vuex";
 import ProductVariation from "@Admin/views/forms/ProductVariation";
 import HasError from "@Admin/components/HasError.vue";
 
@@ -246,7 +246,7 @@ export default {
   },
   methods: {
     ...mapActions(["fetchListAttributes", "setError"]),
-    ...mapMutations(["REMOVE_ATTRIBUTE"]),
+    ...mapMutations(["REMOVE_ATTRIBUTE", "SET_VARIATION"]),
     addAttribute() {
       if (this.attribute != "") {
         this.attributes.unshift(this.attribute);
@@ -267,8 +267,7 @@ export default {
         }
       }
       helper([], 0);
-      this.getVariations = [];
-      this.getVariations.push(...r);
+      this.SET_VARIATION(r);
       return r;
     }
   },
