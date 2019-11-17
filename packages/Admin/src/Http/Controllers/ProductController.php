@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection($this->product->paginate());
+        return ProductResource::collection($this->product->findWhereIn('type', ['simple', 'configurable'])->paginate());
     }
 
     /**
@@ -42,6 +42,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        // dd($request->all());
+        // dd(json_decode($request->variations));
         return $this->product->create(array_merge($request->all(), ['sku'=> Str::random(10)]));
     }
 
@@ -76,6 +78,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $this->product->deleteById($user->id);
+        return ['message' => 'product deleted!!'];
 
     }
 }

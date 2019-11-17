@@ -9,13 +9,16 @@ const state = {
         slug: "",
         price: "",
         cost: "",
+        type: "simple",
         categories_id: ""
-    }
+    },
+    variations: []
 };
 
 const getters = {
     getAllProducts: state => state.products,
-    getSingleProduct: state => state.product
+    getSingleProduct: state => state.product,
+    getVariations: state => state.variations
 };
 
 const actions = {
@@ -95,6 +98,10 @@ const mutations = {
         (state.products = state.products.filter(product => product.id !== id)),
     SET_PRODUCT: (state, oldProduct) => {
         state.product = oldProduct;
+    },
+    SET_VARIATION: (state, newVariation) => {
+        state.variations = [];
+        state.variations.push(...newVariation);
     },
     RESET_NEW_PRODUCT: state => {
         state.product = {

@@ -3,22 +3,7 @@
   <section class="content">
     <div class="row">
       <div class="col-md-9">
-        <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">General</h3>
-
-            <div class="card-tools">
-              <button
-                type="button"
-                class="btn btn-tool"
-                data-card-widget="collapse"
-                data-toggle="tooltip"
-                title="Collapse"
-              >
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-          </div>
+        <div class="card card-outline card-primary">
           <div class="card-body">
             <div class="form-group">
               <label for="inputName">Product Name</label>
@@ -34,10 +19,11 @@
               <has-error field="name"></has-error>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">Slug</label>
-              <div class="input-group mb-2 col-sm-10">
+              <div class="input-group col-sm-4">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">product/</div>
+                  <div class="input-group-text bg-primary color-palette">
+                    <small>product/</small>
+                  </div>
                 </div>
                 <input
                   type="text"
@@ -50,6 +36,44 @@
                 <has-error field="slug"></has-error>
               </div>
             </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+
+        <div class="card card-outline card-primary">
+          <div class="card-header">
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label card-title">Product Data -</label>
+              <div class="col-sm-3">
+                <select
+                  class="form-control"
+                  v-model="getSingleProduct.type"
+                  id="exampleFormControlSelect1"
+                >
+                  <option value="simple">Simple product</option>
+                  <option value="configurable">Attribute product</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <product-simple v-if="getSingleProduct.type == 'simple'" />
+          <product-attribute v-else />
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <div class="card card-primary collapsed-card">
+          <div class="card-header">
+            <h3 class="card-title">Description</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
             <div class="form-group">
               <label for="inputDescription">Description</label>
               <textarea
@@ -63,94 +87,6 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <!-- /.card -->
-        <div class="card card-outline card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Product Data</h3>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-            <!-- /.card-tools -->
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <div class="row">
-              <div class="col-3">
-                <div
-                  class="nav flex-column nav-pills"
-                  id="v-pills-tab"
-                  role="tablist"
-                  aria-orientation="vertical"
-                >
-                  <a
-                    class="nav-link active"
-                    id="v-pills-home-tab"
-                    data-toggle="pill"
-                    href="#v-pills-home"
-                    role="tab"
-                    aria-controls="v-pills-home"
-                    aria-selected="true"
-                  >General</a>
-                </div>
-              </div>
-              <div class="col-9">
-                <div class="tab-content" id="v-pills-tabContent">
-                  <div
-                    class="tab-pane fade show active"
-                    id="v-pills-home"
-                    role="tabpanel"
-                    aria-labelledby="v-pills-home-tab"
-                  >
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="form-group row">
-                          <label
-                            for="colFormLabelSm"
-                            class="col-sm-2 col-form-label col-form-label-sm"
-                          >Price (EGP)</label>
-                          <div class="col-sm-10">
-                            <input
-                              type="number"
-                              v-model="getSingleProduct.price"
-                              class="form-control form-control-sm"
-                              id="colFormLabelSm"
-                              :class="{ 'is-invalid': hasError('price') }"
-                            />
-                            <has-error field="price"></has-error>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label
-                            for="colFormLabelSm"
-                            class="col-sm-2 col-form-label col-form-label-sm"
-                          >Cost (EGP)</label>
-                          <div class="col-sm-10">
-                            <input
-                              type="number"
-                              v-model="getSingleProduct.cost"
-                              class="form-control form-control-sm"
-                              id="colFormLabelSm"
-                              :class="{ 'is-invalid': hasError('cost') }"
-                            />
-                            <has-error field="cost"></has-error>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-
         <!-- /.card -->
       </div>
 
@@ -300,6 +236,8 @@
 <script>
 import { mapGetters, mapActions, mapState } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
+import ProductSimple from "@Admin/pages/product/views/ProductSimple";
+import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
 import model from "@Admin/components/Model.vue";
 import HasError from "@Admin/components/HasError.vue";
 
@@ -307,6 +245,8 @@ export default {
   name: "ProductEdit",
   components: {
     ImageUploader,
+    ProductSimple,
+    ProductAttribute,
     model,
     HasError
   },
@@ -343,11 +283,10 @@ export default {
       this.getFiles.forEach(file => {
         formData.append("images[]", file, file.name);
       });
-
       if (this.getThumb.file) {
         formData.append("images[thumb]", this.getThumb.file);
       }
-
+      formData.append("variations", JSON.stringify(this.getVariations));
       this.storeProduct(formData);
     },
     patchProduct() {
@@ -380,6 +319,7 @@ export default {
   computed: mapGetters([
     "getSingleProduct",
     "getAllCategories",
+    "getVariations",
     "getFiles",
     "getThumb",
     "getStatus",
@@ -391,5 +331,8 @@ export default {
 <style scoped>
 .custom-file-label {
   font-size: 14px;
+}
+.card-header .form-group {
+  margin-bottom: 0;
 }
 </style>

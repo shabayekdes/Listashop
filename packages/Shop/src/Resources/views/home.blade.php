@@ -271,7 +271,11 @@
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
 
 
-                                            <img src="{{ url( 'img/products/' . $product->thumb_url) }}" alt="">
+                                            @if (empty($product->thumbnail))
+                                            <img src="{{ url( 'img/products/default.png') }}" alt="">
+                                            @else
+                                            <img src="{{ url( 'storage/' . $product->thumbnail) }}" alt="">
+                                            @endif
 
                                         </div>
 

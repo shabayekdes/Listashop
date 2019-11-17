@@ -2,6 +2,7 @@
 
 namespace Product\Http\Resources;
 
+use Product\Http\Resources\ProductFlatResource as ProductFlat;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -17,17 +18,10 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'sku' => $this->sku,
-            'name' => $this->name,
             'slug' => $this->slug,
-            'thumbnail' => $this->thumbnail != null ? url("/storage//". $this->thumbnail) : null,
-            'price' => $this->price,
-            'cost' => $this->cost,
             'categories_id' => $this->categories_id,
             'status' => $this->status,
-            'quantity' => $this->quantity,
-            'description' => $this->description,
-            'pivot' => $this->pivot,
-
+            'details' => $this->flat == null ? "" : new ProductFlat($this->flat)
         ];
     }
 }

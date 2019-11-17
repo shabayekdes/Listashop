@@ -14,79 +14,27 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['sku', 'name', 'slug', 'description', 'thumbnail', 'price', 'cost','categories_id','status'];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'featured' => 'boolean'
+    protected $fillable = [
+        'sku',
+        'slug',
+        'type',
+        'status',
+        'parent_id',
+        'categories_id'
     ];
-
     /**
-     * The images that belong to the product.
+     * Get children of product items record associated.
      */
-    public function images()
+    public function children()
     {
-        return $this->hasMany(ProductImage::class);
-    }
-
-    /**
-     * The category that belong to the product.
-     */
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    /**
-     * Scope a query to only include popular users.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeFeatured($query)
-    {
-        return $query->where('featured', 1);
-    }
-
-    /**
-     * Scope a query to only include popular users.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeOnsale($query)
-    {
-        return $query->where('special_price', '!=' , null);
-    }
-
-    public function categories()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    /**
-     * Get the url thumbnail.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getThumbUrlAttribute($value)
-    {
-        return ($this->thumbnail ?? 'default.png');
+        return $this->hasMany( 'Product\Models\Product', 'parent_id', 'id' );
     }
     /**
-     * Get the present price.
-     *
-     * @param  string  $value
-     * @return string
+     * Get parent of product items record associated.
      */
-    public function getPresentPriceAttribute($value)
+    public function parent()
     {
-        return '$' . number_format($this->price, 2);
+        return $this->hasOne( 'Product\Models\Product', 'id', 'parent_id' );
     }
     /**
      * Get the product items record associated with the order.
@@ -94,5 +42,33 @@ class Product extends Model
     public function orders()
     {
         return $this->belongsToMany('Order\Models\Order')->withPivot('quantity', 'total');
+    }
+    /**
+     * The images that belong to the product.
+     */
+    public function flat()
+    {
+        return $this->hasOne('Product\Models\ProductFlat');
+    }
+    /**
+     * The images that belong to the product.
+     */
+    public function images()
+    {
+        return $this->hasMany('Product\Models\ProductImage');
+    }
+    /**
+     * The category that belong to the product.
+     */
+    public function category()
+    {
+        return $this->belongsTo('Category\Models\Category');
+    }
+    /**
+     * The roles that belong to the user.
+     */
+    public function options()
+    {
+        return $this->belongsToMany('Attribute\Models\AttributeOption');
     }
 }
