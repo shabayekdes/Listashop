@@ -268,9 +268,9 @@ abstract class BaseRepository implements RepositoryContract
      *
      * @return mixed
      */
-    public function findWhereIn($field, array $values, $columns = ['*'])
+    public function findWhereIn($field, array $values, $paginate = true, $columns = ['*'])
     {
-        $model = $this->model->whereIn($field, $values)->get($columns);
+        $model = $this->model->whereIn($field, $values);
         return $model;
     }
     /**

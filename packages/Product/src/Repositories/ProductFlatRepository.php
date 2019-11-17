@@ -38,7 +38,11 @@ class ProductFlatRepository extends BaseRepository
     public function createProductFlat(array $data, $product)
     {
         $productFlat =  $product->flat()->create($data);
-        return $this->uploadImages($productFlat, $product);
+        if($product->type == 'simple' || $product->type == 'configurable'){
+
+            return $this->uploadImages($productFlat, $product);
+        }
+        return $productFlat;
     }
 
     private function uploadImages($productFlat, $product)

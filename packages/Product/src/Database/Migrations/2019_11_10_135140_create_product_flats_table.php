@@ -25,7 +25,7 @@ class CreateProductFlatsTable extends Migration
 
             $table->boolean('new')->default(false);
             $table->boolean('featured')->default(false);
-            $table->boolean('special_price')->default(false);
+            $table->decimal('special_price', 12, 4)->nullable();
             // $table->date('special_price_from')->nullable();
             // $table->date('special_price_to')->nullable();
 

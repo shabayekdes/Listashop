@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection($this->product->paginate());
+        return ProductResource::collection($this->product->findWhereIn('type', ['simple', 'configurable'])->paginate());
     }
 
     /**

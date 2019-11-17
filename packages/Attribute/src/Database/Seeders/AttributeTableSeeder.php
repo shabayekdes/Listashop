@@ -27,9 +27,9 @@ class AttributeTableSeeder extends Seeder
             'name' => 'Size'
         ]);
         $attribute->options()->createMany([
-            ['label' => 'medium'],
-            ['label' => 'large'],
-            ['label' => 'xlarge'],
+            ['label' => 'Medium'],
+            ['label' => 'Large'],
+            ['label' => 'XLarge'],
         ]);
     }
 }

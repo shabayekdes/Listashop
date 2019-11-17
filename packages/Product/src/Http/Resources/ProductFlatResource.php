@@ -14,6 +14,16 @@ class ProductFlatResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'sku' => $this->sku,
+            'name' => $this->name,
+            'thumbnail' => $this->thumbnail != null ? url("/storage//". $this->thumbnail) : null,
+            'price' => $this->price,
+            'cost' => $this->cost,
+            'status' => $this->status,
+            'quantity' => $this->quantity,
+            'description' => $this->description,
+        ];
     }
 }

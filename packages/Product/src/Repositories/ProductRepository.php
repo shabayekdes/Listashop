@@ -70,6 +70,9 @@ class ProductRepository extends BaseRepository
         $product = $this->model->create($data);
         $variations = json_decode($data['variations'], true);
 
+        $this->productFlat->createProductFlat($data, $product);
+
+
         switch ($data['type']) {
             case 'simple':
                 $this->productFlat->createProductFlat($data, $product);
