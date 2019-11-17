@@ -43638,7 +43638,7 @@ var render = function() {
                           _vm._v("Simple product")
                         ]),
                         _vm._v(" "),
-                        _c("option", { attrs: { value: "variation" } }, [
+                        _c("option", { attrs: { value: "configurable" } }, [
                           _vm._v("Attribute product")
                         ])
                       ]

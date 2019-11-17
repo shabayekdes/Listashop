@@ -18,6 +18,7 @@ class TestController extends Controller
      */
     public function index()
     {
+        dd(array_permutation([1,5]));
         $product = Product::find(2);
         $child = $product->children()->create([
             'sku'  =>'sadasdasdasd',

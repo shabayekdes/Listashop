@@ -51,7 +51,7 @@
                   id="exampleFormControlSelect1"
                 >
                   <option value="simple">Simple product</option>
-                  <option value="variation">Attribute product</option>
+                  <option value="configurable">Attribute product</option>
                 </select>
               </div>
             </div>
