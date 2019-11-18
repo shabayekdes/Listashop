@@ -3162,6 +3162,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3177,22 +3218,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     model: _Admin_components_Model_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     HasError: _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  props: {
-    product: {
-      type: Object,
-      "default": function _default() {
-        return {};
-      }
-    },
-    editMode: {
-      type: Boolean,
-      "default": false
-    }
-  },
   data: function data() {
     return {};
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "addThumb", "resetImages", "setError"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "fetchListAttributes", "addThumb", "resetImages", "setMode", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["SET_STATUS"]), {
     createProduct: function createProduct() {
       var formData = new FormData();
 
@@ -3226,11 +3255,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.fetchListCategories("all");
+    this.fetchListAttributes("all");
 
-    if (this.editMode == true) {
+    if (this.$route.params.id == undefined) {
+      this.setMode(false);
+    } else {
+      this.setMode(true);
       this.setProduct(this.product);
     }
+
+    this.SET_STATUS("");
+    this.fetchListCategories("all");
   },
   watch: {
     getStatus: function getStatus(val, oldVal) {
@@ -3242,7 +3277,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getVariations", "getFiles", "getThumb", "getStatus", "hasError"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getVariations", "getMode", "getFiles", "getImages", "getThumb", "getStatus", "hasError"])
 });
 
 /***/ }),
@@ -3700,6 +3735,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3712,17 +3755,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       attributes: [],
-      attribute: "",
-      options: []
+      attribute: ""
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchListAttributes", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["REMOVE_ATTRIBUTE", "SET_VARIATION"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addSelectedAttr", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["REMOVE_ATTRIBUTE", "REMOVE_VARIATION", "SET_VARIATION", "RESET_OPTIONS", "NEW_ATTRIBUTE"]), {
     addAttribute: function addAttribute() {
       if (this.attribute != "") {
         this.attributes.unshift(this.attribute);
         this.REMOVE_ATTRIBUTE(this.attribute.id);
         this.attribute = "";
       }
+    },
+    removeAttribute: function removeAttribute(attribute) {
+      this.NEW_ATTRIBUTE(attribute);
+      this.attributes = this.attributes.filter(function (attr) {
+        return attr.id !== attribute.id;
+      });
     },
     cartesian: function cartesian() {
       var r = [],
@@ -3745,21 +3793,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return r;
     }
   }),
-  created: function created() {
-    this.fetchListAttributes("all");
-  },
   watch: {
     attributes: function attributes(val, oldVal) {
       var _this = this;
 
-      this.options = [];
+      this.RESET_OPTIONS();
       val.map(function (attr) {
-        _this.options.push(attr.options);
+        _this.getAllOptions.push(attr.options);
       });
-      this.cartesian.apply(this, _toConsumableArray(this.options));
+
+      if (this.getAllOptions.length > 0) {
+        this.cartesian.apply(this, _toConsumableArray(this.getAllOptions));
+      } else {
+        this.REMOVE_VARIATION([]);
+      }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getVariations", "getAllAttributes", "hasError"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllOptions", "getVariations", "getAllAttributes", "getSelectedAttr", "hasError"])
 });
 
 /***/ }),
@@ -3775,14 +3825,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @Admin/components/HasError.vue */ "./packages/admin/src/resources/js/components/HasError.vue");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3957,56 +3999,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {};
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "addThumb", "resetImages", "setError"]), {
-    createProduct: function createProduct() {
-      var formData = new FormData();
-
-      for (var _i = 0, _Object$entries = Object.entries(this.getSingleProduct); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-            key = _Object$entries$_i[0],
-            value = _Object$entries$_i[1];
-
-        formData.append(key, value);
-      }
-
-      this.getFiles.forEach(function (file) {
-        formData.append("images[]", file, file.name);
-      });
-
-      if (this.getThumb.file) {
-        formData.append("images[thumb]", this.getThumb.file);
-      }
-
-      this.storeProduct(formData);
-    },
-    patchProduct: function patchProduct() {
-      this.updateProduct(this.getSingleProduct);
-    },
-    newModel: function newModel() {
-      $("#addNew").modal("show");
-    },
-    setSlug: function setSlug() {
-      this.getSingleProduct.slug = this.getSingleProduct.name.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
-    }
-  }),
-  created: function created() {
-    this.fetchListCategories("all");
-
-    if (this.editMode == true) {
-      this.setProduct(this.product);
-    }
-  },
-  watch: {
-    getStatus: function getStatus(val, oldVal) {
-      if (val == "ok") {
-        this.$router.push({
-          path: "/admin/products"
-        });
-        this.resetImages();
-      }
-    }
-  },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getFiles", "getThumb", "getStatus", "hasError"])
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["setError"])),
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "hasError"])
 });
 
 /***/ }),
@@ -9420,7 +9414,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\n.custom-file-label[data-v-3ffe6152] {\n  font-size: 14px;\n}\n", ""]);
+exports.push([module.i, "\n.custom-file-label[data-v-3ffe6152] {\r\n  font-size: 14px;\n}\r\n", ""]);
 
 // exports
 
@@ -9439,7 +9433,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\n.custom-file-label[data-v-82ce8f32] {\n  font-size: 14px;\n}\n", ""]);
+exports.push([module.i, "\n.custom-file-label[data-v-82ce8f32] {\r\n  font-size: 14px;\n}\r\n", ""]);
 
 // exports
 
@@ -43692,8 +43686,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: !_vm.editMode,
-                      expression: "!editMode"
+                      value: !_vm.getMode,
+                      expression: "!getMode"
                     }
                   ],
                   staticClass: "btn btn-block bg-gradient-primary btn-lg",
@@ -43710,8 +43704,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.editMode,
-                      expression: "editMode"
+                      value: _vm.getMode,
+                      expression: "getMode"
                     }
                   ],
                   staticClass: "btn btn-block bg-gradient-success btn-lg",
@@ -43842,15 +43836,84 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c(
+                "div",
+                {
+                  staticClass: "carousel slide",
+                  attrs: {
+                    id: "carouselExampleIndicators",
+                    "data-ride": "carousel"
+                  }
+                },
+                [
+                  _c(
+                    "ol",
+                    { staticClass: "carousel-indicators" },
+                    _vm._l(_vm.getImages, function(image, index) {
+                      return _c("li", {
+                        key: index,
+                        class: { active: index === 0 },
+                        attrs: {
+                          "data-target": "#carouselExampleIndicators",
+                          "data-slide-to": index
+                        }
+                      })
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.getImages.length,
+                          expression: "getImages.length"
+                        }
+                      ],
+                      staticClass: "carousel-inner"
+                    },
+                    _vm._l(_vm.getImages, function(image, index) {
+                      return _c(
+                        "div",
+                        {
+                          key: index,
+                          staticClass: "carousel-item",
+                          class: { active: index === 0 }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "d-block w-100",
+                            attrs: {
+                              src: image,
+                              alt: "Image Uplaoder " + index
+                            }
+                          })
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _vm._m(7)
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
                 "a",
                 {
-                  staticClass: "btn btn-info btn-sm",
+                  staticClass: "btn btn-default btn-block",
                   attrs: { href: "#" },
                   on: { click: _vm.newModel }
                 },
                 [
-                  _c("i", { staticClass: "fas fa-pencil-alt" }),
-                  _vm._v("\n            Edit\n          ")
+                  _c("i", { staticClass: "fas fa-cloud-upload-alt" }),
+                  _vm._v("\n            Upload\n          ")
                 ]
               )
             ])
@@ -43986,6 +44049,54 @@ var staticRenderFns = [
         )
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-prev",
+        attrs: {
+          href: "#carouselExampleIndicators",
+          role: "button",
+          "data-slide": "prev"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-prev-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-next",
+        attrs: {
+          href: "#carouselExampleIndicators",
+          role: "button",
+          "data-slide": "next"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-next-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -44173,11 +44284,8 @@ var render = function() {
                                       staticClass: "btn btn-info btn-sm",
                                       attrs: {
                                         to: {
-                                          name: "product.create",
-                                          params: {
-                                            product: product,
-                                            editMode: true
-                                          }
+                                          name: "product.edit",
+                                          params: { id: product.id }
                                         }
                                       }
                                     },
@@ -44725,7 +44833,26 @@ var render = function() {
                               _vm._v(_vm._s(attribute.name))
                             ]),
                             _vm._v(" "),
-                            _vm._m(2, true)
+                            _c("div", { staticClass: "card-tools" }, [
+                              _vm._m(2, true),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-tool",
+                                  attrs: {
+                                    type: "button",
+                                    "data-card-widget": "remove"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.removeAttribute(attribute)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fas fa-times" })]
+                              )
+                            ])
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "card-body" }, [
@@ -44869,16 +44996,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-tools" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-tool",
-          attrs: { type: "button", "data-card-widget": "collapse" }
-        },
-        [_c("i", { staticClass: "fas fa-minus" })]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-tool",
+        attrs: { type: "button", "data-card-widget": "collapse" }
+      },
+      [_c("i", { staticClass: "fas fa-minus" })]
+    )
   }
 ]
 render._withStripped = true
@@ -64202,6 +64327,14 @@ var routes = [{
       text: "New Product"
     }
   }, {
+    path: "product/edit/:id",
+    name: "product.edit",
+    component: _Admin_pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    props: true,
+    meta: {
+      text: "Edit Product"
+    }
+  }, {
     path: "orders",
     name: "order.index",
     component: _Admin_pages_order_List_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
@@ -64309,6 +64442,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     SET_ERRORS: function SET_ERRORS(state, data) {
       state.errors = data;
+    },
+    SET_STATUS: function SET_STATUS(state, data) {
+      state.status = data;
     }
   },
   modules: {
@@ -64340,29 +64476,25 @@ __webpack_require__.r(__webpack_exports__);
 
 var state = {
   attributes: [],
+  selectedAttr: [],
   options: [],
   attribute: {
     id: "",
     name: ""
-  },
-  option: {
-    id: "",
-    label: "",
-    attribute_id: ""
   }
 };
 var getters = {
   getAllAttributes: function getAllAttributes(state) {
     return state.attributes;
   },
+  getSelectedAttr: function getSelectedAttr(state) {
+    return state.selectedAttr;
+  },
   getSingleAttribute: function getSingleAttribute(state) {
     return state.attribute;
   },
   getAllOptions: function getAllOptions(state) {
     return state.options;
-  },
-  getSingleOption: function getSingleOption(state) {
-    return state.option;
   }
 };
 var actions = {
@@ -64528,24 +64660,29 @@ var actions = {
       }
     });
   },
-  setAttribute: function setAttribute(_ref6, oldAttribute) {
+  addSelectedAttr: function addSelectedAttr(_ref6, selected) {
     var commit = _ref6.commit;
+    commit("NEW_SELECTED_ATTR", selected);
+    commit("REMOVE_ATTRIBUTE", selected.id);
+  },
+  setAttribute: function setAttribute(_ref7, oldAttribute) {
+    var commit = _ref7.commit;
     commit("SET_ATTRIBUTE", oldAttribute);
   },
-  resetAttribute: function resetAttribute(_ref7) {
-    var commit = _ref7.commit;
+  resetAttribute: function resetAttribute(_ref8) {
+    var commit = _ref8.commit;
     $("#addNew").on("hide.bs.modal", function (e) {
       commit("RESET_NEW_ATTRIBUTE");
     });
   },
   // Attribute Options
-  storeOption: function storeOption(_ref8, data) {
+  storeOption: function storeOption(_ref9, data) {
     var commit, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function storeOption$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            commit = _ref8.commit;
+            commit = _ref9.commit;
             _context6.prev = 1;
             _context6.next = 4;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "attribute-options/").concat(data.attribute_id), data));
@@ -64570,13 +64707,13 @@ var actions = {
       }
     }, null, null, [[1, 10]]);
   },
-  updateOption: function updateOption(_ref9, data) {
+  updateOption: function updateOption(_ref10, data) {
     var commit, rootState, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function updateOption$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            commit = _ref9.commit, rootState = _ref9.rootState;
+            commit = _ref10.commit, rootState = _ref10.rootState;
             _context7.prev = 1;
             _context7.next = 4;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "attribute-options/").concat(data.id), data));
@@ -64603,13 +64740,13 @@ var actions = {
       }
     }, null, null, [[1, 12]]);
   },
-  deleteOption: function deleteOption(_ref10, id) {
+  deleteOption: function deleteOption(_ref11, id) {
     var commit;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function deleteOption$(_context8) {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
-            commit = _ref10.commit;
+            commit = _ref11.commit;
             _context8.next = 3;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "attribute-options/").concat(id)));
 
@@ -64622,10 +64759,6 @@ var actions = {
         }
       }
     });
-  },
-  setOption: function setOption(_ref11, oldOption) {
-    var commit = _ref11.commit;
-    commit("SET_OPTION", oldOption);
   },
   resetOption: function resetOption(_ref12) {
     var commit = _ref12.commit;
@@ -64640,6 +64773,9 @@ var mutations = {
   },
   NEW_ATTRIBUTE: function NEW_ATTRIBUTE(state, data) {
     state.attributes.unshift(data);
+  },
+  NEW_SELECTED_ATTR: function NEW_SELECTED_ATTR(state, selected) {
+    state.selectedAttr.unshift(selected);
   },
   PUT_ATTRIBUTE: function PUT_ATTRIBUTE(state, data) {
     var index = state.attributes.findIndex(function (attribute) {
@@ -64688,12 +64824,8 @@ var mutations = {
   SET_OPTION: function SET_OPTION(state, oldOption) {
     state.option = oldOption;
   },
-  RESET_NEW_OPTION: function RESET_NEW_OPTION(state) {
-    state.option = {
-      id: "",
-      label: "",
-      attribute_id: ""
-    };
+  RESET_OPTIONS: function RESET_OPTIONS(state) {
+    state.options = [];
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -65327,14 +65459,19 @@ var mutations = {
 
     (_state$variations = state.variations).push.apply(_state$variations, _toConsumableArray(newVariation));
   },
+  REMOVE_VARIATION: function REMOVE_VARIATION(state) {
+    state.variations = [];
+  },
   RESET_NEW_PRODUCT: function RESET_NEW_PRODUCT(state) {
     state.product = {
+      id: "",
       name: "",
       sku: "",
       slug: "",
       price: "",
       cost: "",
-      category_id: ""
+      type: "simple",
+      categories_id: ""
     };
   }
 };

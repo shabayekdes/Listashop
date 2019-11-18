@@ -103,14 +103,19 @@ const mutations = {
         state.variations = [];
         state.variations.push(...newVariation);
     },
+    REMOVE_VARIATION: state => {
+        state.variations = [];
+    },
     RESET_NEW_PRODUCT: state => {
         state.product = {
+            id: "",
             name: "",
             sku: "",
             slug: "",
             price: "",
             cost: "",
-            category_id: ""
+            type: "simple",
+            categories_id: ""
         };
     }
 };

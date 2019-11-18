@@ -207,6 +207,14 @@
                       <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
                       </button>
+                      <button
+                        type="button"
+                        @click="removeAttribute(attribute)"
+                        data-card-widget="remove"
+                        class="btn btn-tool"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
                     </div>
                     <!-- /.card-tools -->
                   </div>
@@ -227,7 +235,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations, mapState } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 import ProductVariation from "@Admin/views/forms/ProductVariation";
 import HasError from "@Admin/components/HasError.vue";
 
@@ -240,19 +248,30 @@ export default {
   data() {
     return {
       attributes: [],
-      attribute: "",
-      options: []
+      attribute: ""
     };
   },
   methods: {
-    ...mapActions(["fetchListAttributes", "setError"]),
-    ...mapMutations(["REMOVE_ATTRIBUTE", "SET_VARIATION"]),
+    ...mapActions(["addSelectedAttr", "setError"]),
+    ...mapMutations([
+      "REMOVE_ATTRIBUTE",
+      "REMOVE_VARIATION",
+      "SET_VARIATION",
+      "RESET_OPTIONS",
+      "NEW_ATTRIBUTE"
+    ]),
     addAttribute() {
       if (this.attribute != "") {
         this.attributes.unshift(this.attribute);
         this.REMOVE_ATTRIBUTE(this.attribute.id);
         this.attribute = "";
       }
+    },
+    removeAttribute(attribute) {
+      this.NEW_ATTRIBUTE(attribute);
+      this.attributes = this.attributes.filter(
+        attr => attr.id !== attribute.id
+      );
     },
     cartesian() {
       var r = [],
@@ -271,22 +290,25 @@ export default {
       return r;
     }
   },
-  created() {
-    this.fetchListAttributes("all");
-  },
   watch: {
     attributes(val, oldVal) {
-      this.options = [];
+      this.RESET_OPTIONS();
       val.map(attr => {
-        this.options.push(attr.options);
+        this.getAllOptions.push(attr.options);
       });
-      this.cartesian(...this.options);
+      if (this.getAllOptions.length > 0) {
+        this.cartesian(...this.getAllOptions);
+      } else {
+        this.REMOVE_VARIATION([]);
+      }
     }
   },
   computed: mapGetters([
     "getSingleProduct",
+    "getAllOptions",
     "getVariations",
     "getAllAttributes",
+    "getSelectedAttr",
     "hasError"
   ])
 };

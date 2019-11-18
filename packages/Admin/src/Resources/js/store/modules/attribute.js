@@ -2,24 +2,20 @@ import axios from "axios";
 
 const state = {
     attributes: [],
+    selectedAttr: [],
     options: [],
     attribute: {
         id: "",
         name: ""
-    },
-    option: {
-        id: "",
-        label: "",
-        attribute_id: ""
     }
 };
 
 const getters = {
     getAllAttributes: state => state.attributes,
+    getSelectedAttr: state => state.selectedAttr,
     getSingleAttribute: state => state.attribute,
 
-    getAllOptions: state => state.options,
-    getSingleOption: state => state.option
+    getAllOptions: state => state.options
 };
 
 const actions = {
@@ -76,6 +72,10 @@ const actions = {
         await axios.delete(`${urlApi}attribute/${id}`);
         commit("REMOVE_ATTRIBUTE", id);
     },
+    addSelectedAttr({ commit }, selected) {
+        commit("NEW_SELECTED_ATTR", selected);
+        commit("REMOVE_ATTRIBUTE", selected.id);
+    },
     setAttribute({ commit }, oldAttribute) {
         commit("SET_ATTRIBUTE", oldAttribute);
     },
@@ -120,9 +120,6 @@ const actions = {
         await axios.delete(`${urlApi}attribute-options/${id}`);
         commit("REMOVE_OPTION", id);
     },
-    setOption({ commit }, oldOption) {
-        commit("SET_OPTION", oldOption);
-    },
     resetOption({ commit }) {
         $("#addNew").on("hide.bs.modal", function(e) {
             commit("RESET_NEW_OPTION");
@@ -136,6 +133,9 @@ const mutations = {
     },
     NEW_ATTRIBUTE: (state, data) => {
         state.attributes.unshift(data);
+    },
+    NEW_SELECTED_ATTR: (state, selected) => {
+        state.selectedAttr.unshift(selected);
     },
     PUT_ATTRIBUTE: (state, data) => {
         const index = state.attributes.findIndex(
@@ -174,12 +174,8 @@ const mutations = {
     SET_OPTION: (state, oldOption) => {
         state.option = oldOption;
     },
-    RESET_NEW_OPTION: state => {
-        state.option = {
-            id: "",
-            label: "",
-            attribute_id: ""
-        };
+    RESET_OPTIONS: state => {
+        state.options = [];
     }
 };
 

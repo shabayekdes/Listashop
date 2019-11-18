@@ -77,7 +77,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->product->deleteById($user->id);
+        $this->product->delete($id);
         return ['message' => 'product deleted!!'];
 
     }

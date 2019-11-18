@@ -49,6 +49,9 @@ export default new Vuex.Store({
         },
         SET_ERRORS: (state, data) => {
             state.errors = data;
+        },
+        SET_STATUS: (state, data) => {
+            state.status = data;
         }
     },
     modules: {

@@ -106,13 +106,13 @@
           <div class="card-body">
             <button
               type="button"
-              v-show="!editMode"
+              v-show="!getMode"
               @click="createProduct"
               class="btn btn-block bg-gradient-primary btn-lg"
             >Save</button>
             <button
               type="button"
-              v-show="editMode"
+              v-show="getMode"
               @click="patchProduct"
               class="btn btn-block bg-gradient-success btn-lg"
             >Update</button>
@@ -211,12 +211,53 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <a class="btn btn-info btn-sm" @click="newModel" href="#">
-              <i class="fas fa-pencil-alt"></i>
-              Edit
-            </a>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li
+                  data-target="#carouselExampleIndicators"
+                  v-for="(image, index) in getImages"
+                  :key="index"
+                  :class="{ 'active': index === 0 }"
+                  :data-slide-to="index"
+                ></li>
+              </ol>
+              <div class="carousel-inner" v-show="getImages.length">
+                <div
+                  class="carousel-item"
+                  v-for="(image, index) in getImages"
+                  :key="index"
+                  :class="{ 'active': index === 0 }"
+                >
+                  <img class="d-block w-100" :src="image" :alt="`Image Uplaoder ${index}`" />
+                </div>
+              </div>
+              <a
+                class="carousel-control-prev"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="prev"
+              >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="next"
+              >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
           </div>
           <!-- /.card-body -->
+          <div class="card-footer">
+            <a class="btn btn-default btn-block" @click="newModel" href="#">
+              <i class="fas fa-cloud-upload-alt"></i>
+              Upload
+            </a>
+          </div>
         </div>
 
         <!-- /.card -->
@@ -234,7 +275,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapState } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
 import ProductSimple from "@Admin/pages/product/views/ProductSimple";
 import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
@@ -250,18 +291,6 @@ export default {
     model,
     HasError
   },
-  props: {
-    product: {
-      type: Object,
-      default: function() {
-        return {};
-      }
-    },
-    editMode: {
-      type: Boolean,
-      default: false
-    }
-  },
   data() {
     return {};
   },
@@ -271,10 +300,13 @@ export default {
       "updateProduct",
       "setProduct",
       "fetchListCategories",
+      "fetchListAttributes",
       "addThumb",
       "resetImages",
+      "setMode",
       "setError"
     ]),
+    ...mapMutations(["SET_STATUS"]),
     createProduct() {
       const formData = new FormData();
       for (const [key, value] of Object.entries(this.getSingleProduct)) {
@@ -303,10 +335,15 @@ export default {
     }
   },
   created() {
-    this.fetchListCategories("all");
-    if (this.editMode == true) {
+    this.fetchListAttributes("all");
+    if (this.$route.params.id == undefined) {
+      this.setMode(false);
+    } else {
+      this.setMode(true);
       this.setProduct(this.product);
     }
+    this.SET_STATUS("");
+    this.fetchListCategories("all");
   },
   watch: {
     getStatus(val, oldVal) {
@@ -320,7 +357,9 @@ export default {
     "getSingleProduct",
     "getAllCategories",
     "getVariations",
+    "getMode",
     "getFiles",
+    "getImages",
     "getThumb",
     "getStatus",
     "hasError"

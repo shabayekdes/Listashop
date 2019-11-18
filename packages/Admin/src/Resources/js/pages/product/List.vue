@@ -88,7 +88,7 @@
                           View
                         </a>
                         <router-link
-                          :to="{ name: 'product.create',  params: { product, editMode: true } }"
+                          :to="{ name: 'product.edit',  params: { id: product.id } }"
                           class="btn btn-info btn-sm"
                         >
                           <i class="fas fa-pencil-alt"></i>

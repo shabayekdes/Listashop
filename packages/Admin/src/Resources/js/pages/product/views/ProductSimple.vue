@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapState } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import HasError from "@Admin/components/HasError.vue";
 
 export default {
@@ -169,65 +169,9 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions([
-      "storeProduct",
-      "updateProduct",
-      "setProduct",
-      "fetchListCategories",
-      "addThumb",
-      "resetImages",
-      "setError"
-    ]),
-    createProduct() {
-      const formData = new FormData();
-      for (const [key, value] of Object.entries(this.getSingleProduct)) {
-        formData.append(key, value);
-      }
-      this.getFiles.forEach(file => {
-        formData.append("images[]", file, file.name);
-      });
-
-      if (this.getThumb.file) {
-        formData.append("images[thumb]", this.getThumb.file);
-      }
-
-      this.storeProduct(formData);
-    },
-    patchProduct() {
-      this.updateProduct(this.getSingleProduct);
-    },
-    newModel() {
-      $("#addNew").modal("show");
-    },
-    setSlug() {
-      this.getSingleProduct.slug = this.getSingleProduct.name
-        .toLowerCase()
-        .replace(/[^\w ]+/g, "")
-        .replace(/ +/g, "-");
-    }
+    ...mapActions(["setError"])
   },
-  created() {
-    this.fetchListCategories("all");
-    if (this.editMode == true) {
-      this.setProduct(this.product);
-    }
-  },
-  watch: {
-    getStatus(val, oldVal) {
-      if (val == "ok") {
-        this.$router.push({ path: "/admin/products" });
-        this.resetImages();
-      }
-    }
-  },
-  computed: mapGetters([
-    "getSingleProduct",
-    "getAllCategories",
-    "getFiles",
-    "getThumb",
-    "getStatus",
-    "hasError"
-  ])
+  computed: mapGetters(["getSingleProduct", "hasError"])
 };
 </script>
 

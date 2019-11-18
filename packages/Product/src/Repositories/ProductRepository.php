@@ -72,25 +72,10 @@ class ProductRepository extends BaseRepository
 
         $this->productFlat->createProductFlat($data, $product);
 
-
-        switch ($data['type']) {
-            case 'simple':
-                $this->productFlat->createProductFlat($data, $product);
-                break;
-            case 'configurable':
-                foreach ($variations as $variant) {
-                    $attributes_ids = Arr::pluck($variant['attributes'], 'id');
-                    $data = [
-                        "sku" => $product->sku . '-variant-' . implode('-', $attributes_ids),
-                        "name" => "",
-                        "price" => $variant['price'] ?? $data['price'],
-                        "cost" => $variant['cost'] ?? $data['cost'],
-                        "quantity" => $variant['quantity'] ?? $data['quantity'],
-                    ];
-
-                    $this->createVariant($variant, $product, $data);
-                }
-                break;
+        if($data['type'] == 'configurable'){
+            foreach ($variations as $variant) {
+                $this->createVariant($variant, $product, $data);
+            }
         }
 
         return $product;
@@ -101,8 +86,20 @@ class ProductRepository extends BaseRepository
      * @param array $data
      * @return mixed
      */
-    public function createVariant($variant ,$product, $data = [])
+    public function createVariant($variant ,$product, $data)
     {
+        $attributes_ids = Arr::pluck($variant['attributes'], 'id');
+
+        $data = [
+            "sku" => $product->sku . '-variant-' . implode('-', $attributes_ids),
+            "name" => "",
+            "price" => $variant['price'] ?? $data['price'],
+            "cost" => $variant['cost'] ?? $data['cost'],
+        ];
+        if(Arr::has($variant, 'quantity') || Arr::has($data, 'quantity')){
+            $data['quantity'] = $variant['quantity'] ?? $data['quantity'];
+        }
+
         $productVariant = $product->children()->create([
             'type' => 'product-variant',
             'sku' => $data['sku'],

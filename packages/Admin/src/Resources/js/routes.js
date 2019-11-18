@@ -66,6 +66,15 @@ export const routes = [
                 }
             },
             {
+                path: "product/edit/:id",
+                name: "product.edit",
+                component: EditProducts,
+                props: true,
+                meta: {
+                    text: "Edit Product"
+                }
+            },
+            {
                 path: "orders",
                 name: "order.index",
                 component: ListOrders,
