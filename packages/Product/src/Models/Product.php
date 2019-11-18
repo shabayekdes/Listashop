@@ -71,4 +71,13 @@ class Product extends Model
     {
         return $this->belongsToMany('Attribute\Models\AttributeOption');
     }
+    /**
+     * The roles that belong to the user.
+     */
+    public function attributes()
+    {
+        return $this->belongsToMany('Attribute\Models\Attribute');
+    }
+
+
 }

@@ -3203,6 +3203,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3743,6 +3758,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3754,24 +3773,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      attributes: [],
       attribute: ""
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addSelectedAttr", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["REMOVE_ATTRIBUTE", "REMOVE_VARIATION", "SET_VARIATION", "RESET_OPTIONS", "NEW_ATTRIBUTE"]), {
-    addAttribute: function addAttribute() {
-      if (this.attribute != "") {
-        this.attributes.unshift(this.attribute);
-        this.REMOVE_ATTRIBUTE(this.attribute.id);
-        this.attribute = "";
-      }
-    },
-    removeAttribute: function removeAttribute(attribute) {
-      this.NEW_ATTRIBUTE(attribute);
-      this.attributes = this.attributes.filter(function (attr) {
-        return attr.id !== attribute.id;
-      });
-    },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["addSelectedAttr", "removeSelectedAttr", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["REMOVE_VARIATION", "SET_VARIATION", "RESET_OPTIONS"]), {
     cartesian: function cartesian() {
       var r = [],
           arg = arguments,
@@ -3794,7 +3799,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   watch: {
-    attributes: function attributes(val, oldVal) {
+    getSelectedAttr: function getSelectedAttr(val, oldVal) {
       var _this = this;
 
       this.RESET_OPTIONS();
@@ -3809,7 +3814,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllOptions", "getVariations", "getAllAttributes", "getSelectedAttr", "hasError"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllOptions", "getAllAttributes", "getSelectedAttr", "hasError"])
 });
 
 /***/ }),
@@ -4805,6 +4810,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43835,9 +43845,37 @@ var render = function() {
             _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "col-md-4 offset-md-4" }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.getImages.length,
+                      expression: "!getImages.length"
+                    }
+                  ],
+                  staticClass: "img-thumbnail mx-auto",
+                  attrs: {
+                    width: "200",
+                    height: "200",
+                    src: "/img/img-placeholder.png",
+                    alt: "user image"
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.getImages.length,
+                      expression: "getImages.length"
+                    }
+                  ],
                   staticClass: "carousel slide",
                   attrs: {
                     id: "carouselExampleIndicators",
@@ -43863,17 +43901,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.getImages.length,
-                          expression: "getImages.length"
-                        }
-                      ],
-                      staticClass: "carousel-inner"
-                    },
+                    { staticClass: "carousel-inner" },
                     _vm._l(_vm.getImages, function(image, index) {
                       return _c(
                         "div",
@@ -44807,7 +44835,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.addAttribute()
+                                return _vm.addSelectedAttr(_vm.attribute)
                               }
                             }
                           },
@@ -44820,7 +44848,7 @@ var render = function() {
                   _c(
                     "div",
                     { staticClass: "card-body" },
-                    _vm._l(_vm.attributes, function(attribute) {
+                    _vm._l(_vm.getSelectedAttr, function(attribute) {
                       return _c(
                         "div",
                         {
@@ -44846,7 +44874,7 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      return _vm.removeAttribute(attribute)
+                                      return _vm.removeSelectedAttr(attribute)
                                     }
                                   }
                                 },
@@ -46658,178 +46686,196 @@ var render = function() {
         "aria-labelledby": "v-pills-variations-tab"
       }
     },
-    _vm._l(_vm.getVariations, function(variation) {
-      return _c(
-        "div",
-        { key: variation.id, staticClass: "card collapsed-card" },
-        [
-          _c("div", { staticClass: "card-header" }, [
-            _c(
-              "h3",
-              { staticClass: "card-title" },
-              _vm._l(variation.attributes, function(item) {
-                return _c("span", { key: item.id }, [
-                  _vm._v(_vm._s(item.label) + " /")
-                ])
-              }),
-              0
-            ),
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.getVariations, function(variation) {
+        return _c(
+          "div",
+          { key: variation.id, staticClass: "card collapsed-card" },
+          [
+            _c("div", { staticClass: "card-header" }, [
+              _c(
+                "h3",
+                { staticClass: "card-title" },
+                _vm._l(variation.attributes, function(item) {
+                  return _c("span", { key: item.id }, [
+                    _vm._v(_vm._s(item.label) + " /")
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _vm._m(1, true)
+            ]),
             _vm._v(" "),
-            _vm._m(0, true)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-sm-2 col-form-label col-form-label-sm",
-                      attrs: { for: "colFormLabelSm" }
-                    },
-                    [_vm._v("Price (EGP)")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: variation.price,
-                          expression: "variation.price"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm",
-                      attrs: { type: "number", id: "price" },
-                      domProps: { value: variation.price },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-sm-2 col-form-label col-form-label-sm",
+                        attrs: { for: "colFormLabelSm" }
+                      },
+                      [_vm._v("Price (EGP)")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: variation.price,
+                            expression: "variation.price"
                           }
-                          _vm.$set(variation, "price", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-sm-2 col-form-label col-form-label-sm",
-                      attrs: { for: "colFormLabelSm" }
-                    },
-                    [_vm._v("Cost (EGP)")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: variation.cost,
-                          expression: "variation.cost"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm",
-                      attrs: { type: "number", id: "cost" },
-                      domProps: { value: variation.cost },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "number", id: "price" },
+                        domProps: { value: variation.price },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(variation, "price", $event.target.value)
                           }
-                          _vm.$set(variation, "cost", $event.target.value)
                         }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-sm-2 col-form-label col-form-label-sm",
-                      attrs: { for: "colFormLabelSm" }
-                    },
-                    [_vm._v("Qauntity")]
-                  ),
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: variation.qauntity,
-                          expression: "variation.qauntity"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm",
-                      attrs: { type: "number", id: "qauntity" },
-                      domProps: { value: variation.qauntity },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-sm-2 col-form-label col-form-label-sm",
+                        attrs: { for: "colFormLabelSm" }
+                      },
+                      [_vm._v("Cost (EGP)")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: variation.cost,
+                            expression: "variation.cost"
                           }
-                          _vm.$set(variation, "qauntity", $event.target.value)
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "number", id: "cost" },
+                        domProps: { value: variation.cost },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(variation, "cost", $event.target.value)
+                          }
                         }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-sm-2 col-form-label col-form-label-sm",
-                      attrs: { for: "colFormLabelSm" }
-                    },
-                    [_vm._v("SKU")]
-                  ),
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: variation.sku,
-                          expression: "variation.sku"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm",
-                      attrs: { type: "number", id: "sku" },
-                      domProps: { value: variation.sku },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-sm-2 col-form-label col-form-label-sm",
+                        attrs: { for: "colFormLabelSm" }
+                      },
+                      [_vm._v("Qauntity")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: variation.qauntity,
+                            expression: "variation.qauntity"
                           }
-                          _vm.$set(variation, "sku", $event.target.value)
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "number", id: "qauntity" },
+                        domProps: { value: variation.qauntity },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(variation, "qauntity", $event.target.value)
+                          }
                         }
-                      }
-                    })
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-sm-2 col-form-label col-form-label-sm",
+                        attrs: { for: "colFormLabelSm" }
+                      },
+                      [_vm._v("SKU")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: variation.sku,
+                            expression: "variation.sku"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "number", id: "sku" },
+                        domProps: { value: variation.sku },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(variation, "sku", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
                   ])
                 ])
               ])
             ])
-          ])
-        ]
-      )
-    }),
-    0
+          ]
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "callout callout-info" }, [
+      _c("h5", [_vm._v("I am an info callout!")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Follow the steps to continue to payment.")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -64665,24 +64711,29 @@ var actions = {
     commit("NEW_SELECTED_ATTR", selected);
     commit("REMOVE_ATTRIBUTE", selected.id);
   },
-  setAttribute: function setAttribute(_ref7, oldAttribute) {
+  removeSelectedAttr: function removeSelectedAttr(_ref7, selected) {
     var commit = _ref7.commit;
+    commit("NEW_ATTRIBUTE", selected);
+    commit("REMOVE_SELECTED_ATTR", selected.id);
+  },
+  setAttribute: function setAttribute(_ref8, oldAttribute) {
+    var commit = _ref8.commit;
     commit("SET_ATTRIBUTE", oldAttribute);
   },
-  resetAttribute: function resetAttribute(_ref8) {
-    var commit = _ref8.commit;
+  resetAttribute: function resetAttribute(_ref9) {
+    var commit = _ref9.commit;
     $("#addNew").on("hide.bs.modal", function (e) {
       commit("RESET_NEW_ATTRIBUTE");
     });
   },
   // Attribute Options
-  storeOption: function storeOption(_ref9, data) {
+  storeOption: function storeOption(_ref10, data) {
     var commit, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function storeOption$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            commit = _ref9.commit;
+            commit = _ref10.commit;
             _context6.prev = 1;
             _context6.next = 4;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "attribute-options/").concat(data.attribute_id), data));
@@ -64707,13 +64758,13 @@ var actions = {
       }
     }, null, null, [[1, 10]]);
   },
-  updateOption: function updateOption(_ref10, data) {
+  updateOption: function updateOption(_ref11, data) {
     var commit, rootState, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function updateOption$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            commit = _ref10.commit, rootState = _ref10.rootState;
+            commit = _ref11.commit, rootState = _ref11.rootState;
             _context7.prev = 1;
             _context7.next = 4;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "attribute-options/").concat(data.id), data));
@@ -64740,13 +64791,13 @@ var actions = {
       }
     }, null, null, [[1, 12]]);
   },
-  deleteOption: function deleteOption(_ref11, id) {
+  deleteOption: function deleteOption(_ref12, id) {
     var commit;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function deleteOption$(_context8) {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
-            commit = _ref11.commit;
+            commit = _ref12.commit;
             _context8.next = 3;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "attribute-options/").concat(id)));
 
@@ -64760,8 +64811,8 @@ var actions = {
       }
     });
   },
-  resetOption: function resetOption(_ref12) {
-    var commit = _ref12.commit;
+  resetOption: function resetOption(_ref13) {
+    var commit = _ref13.commit;
     $("#addNew").on("hide.bs.modal", function (e) {
       commit("RESET_NEW_OPTION");
     });
@@ -64788,6 +64839,11 @@ var mutations = {
   },
   REMOVE_ATTRIBUTE: function REMOVE_ATTRIBUTE(state, id) {
     return state.attributes = state.attributes.filter(function (attr) {
+      return attr.id !== id;
+    });
+  },
+  REMOVE_SELECTED_ATTR: function REMOVE_SELECTED_ATTR(state, id) {
+    return state.selectedAttr = state.selectedAttr.filter(function (attr) {
       return attr.id !== id;
     });
   },

@@ -211,7 +211,22 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="col-md-4 offset-md-4">
+              <img
+                class="img-thumbnail mx-auto"
+                width="200"
+                height="200"
+                src="/img/img-placeholder.png"
+                alt="user image"
+                v-show="!getImages.length"
+              />
+            </div>
+            <div
+              id="carouselExampleIndicators"
+              class="carousel slide"
+              data-ride="carousel"
+              v-show="getImages.length"
+            >
               <ol class="carousel-indicators">
                 <li
                   data-target="#carouselExampleIndicators"
@@ -221,7 +236,7 @@
                   :data-slide-to="index"
                 ></li>
               </ol>
-              <div class="carousel-inner" v-show="getImages.length">
+              <div class="carousel-inner">
                 <div
                   class="carousel-item"
                   v-for="(image, index) in getImages"

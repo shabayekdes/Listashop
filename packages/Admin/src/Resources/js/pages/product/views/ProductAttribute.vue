@@ -188,7 +188,11 @@
                     </select>
                   </div>
                   <div class="col-sm-3">
-                    <button type="button" @click="addAttribute()" class="btn btn-primary">
+                    <button
+                      type="button"
+                      @click="addSelectedAttr(attribute)"
+                      class="btn btn-primary"
+                    >
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
@@ -198,7 +202,7 @@
               <div class="card-body">
                 <div
                   class="card card-primary collapsed-card"
-                  v-for="attribute in attributes"
+                  v-for="attribute in getSelectedAttr"
                   :key="attribute.id"
                 >
                   <div class="card-header">
@@ -209,7 +213,7 @@
                       </button>
                       <button
                         type="button"
-                        @click="removeAttribute(attribute)"
+                        @click="removeSelectedAttr(attribute)"
                         data-card-widget="remove"
                         class="btn btn-tool"
                       >
@@ -247,32 +251,12 @@ export default {
   },
   data() {
     return {
-      attributes: [],
       attribute: ""
     };
   },
   methods: {
-    ...mapActions(["addSelectedAttr", "setError"]),
-    ...mapMutations([
-      "REMOVE_ATTRIBUTE",
-      "REMOVE_VARIATION",
-      "SET_VARIATION",
-      "RESET_OPTIONS",
-      "NEW_ATTRIBUTE"
-    ]),
-    addAttribute() {
-      if (this.attribute != "") {
-        this.attributes.unshift(this.attribute);
-        this.REMOVE_ATTRIBUTE(this.attribute.id);
-        this.attribute = "";
-      }
-    },
-    removeAttribute(attribute) {
-      this.NEW_ATTRIBUTE(attribute);
-      this.attributes = this.attributes.filter(
-        attr => attr.id !== attribute.id
-      );
-    },
+    ...mapActions(["addSelectedAttr", "removeSelectedAttr", "setError"]),
+    ...mapMutations(["REMOVE_VARIATION", "SET_VARIATION", "RESET_OPTIONS"]),
     cartesian() {
       var r = [],
         arg = arguments,
@@ -291,7 +275,7 @@ export default {
     }
   },
   watch: {
-    attributes(val, oldVal) {
+    getSelectedAttr(val, oldVal) {
       this.RESET_OPTIONS();
       val.map(attr => {
         this.getAllOptions.push(attr.options);
@@ -306,7 +290,6 @@ export default {
   computed: mapGetters([
     "getSingleProduct",
     "getAllOptions",
-    "getVariations",
     "getAllAttributes",
     "getSelectedAttr",
     "hasError"

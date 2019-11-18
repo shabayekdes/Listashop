@@ -5,6 +5,11 @@
     role="tabpanel"
     aria-labelledby="v-pills-variations-tab"
   >
+    <div class="callout callout-info">
+      <h5>I am an info callout!</h5>
+
+      <p>Follow the steps to continue to payment.</p>
+    </div>
     <div class="card collapsed-card" v-for="variation in getVariations" :key="variation.id">
       <div class="card-header">
         <h3 class="card-title">

@@ -8,6 +8,7 @@ use Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Product\Http\Resources\ProductResource;
 
 class TestController extends Controller
 {
@@ -18,7 +19,12 @@ class TestController extends Controller
      */
     public function index()
     {
-        $product = Product::find(2);
+        $product = Product::with('flat','images','options','options.attribute')->where('id', 1)->first();
+
+        dd($product->attributes()->get());
+        return new ProductResource($product);
+
+
         $child = $product->children()->create([
             'sku'  =>'sadasdasdasd',
             'type'=>'simple',

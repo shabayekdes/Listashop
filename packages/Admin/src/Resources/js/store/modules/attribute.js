@@ -76,6 +76,10 @@ const actions = {
         commit("NEW_SELECTED_ATTR", selected);
         commit("REMOVE_ATTRIBUTE", selected.id);
     },
+    removeSelectedAttr({ commit }, selected) {
+        commit("NEW_ATTRIBUTE", selected);
+        commit("REMOVE_SELECTED_ATTR", selected.id);
+    },
     setAttribute({ commit }, oldAttribute) {
         commit("SET_ATTRIBUTE", oldAttribute);
     },
@@ -147,6 +151,10 @@ const mutations = {
     },
     REMOVE_ATTRIBUTE: (state, id) =>
         (state.attributes = state.attributes.filter(attr => attr.id !== id)),
+    REMOVE_SELECTED_ATTR: (state, id) =>
+        (state.selectedAttr = state.selectedAttr.filter(
+            attr => attr.id !== id
+        )),
     SET_ATTRIBUTE: (state, oldAttribute) => {
         state.attribute = oldAttribute;
     },

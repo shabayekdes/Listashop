@@ -17,6 +17,13 @@ class AttributeOption extends Model
     /**
      * The roles that belong to the user.
      */
+    public function attribute()
+    {
+        return $this->belongsTo('Attribute\Models\Attribute');
+    }
+    /**
+     * The roles that belong to the user.
+     */
     public function products()
     {
         return $this->belongsToMany('Attribute\Models\AttributeOption');
