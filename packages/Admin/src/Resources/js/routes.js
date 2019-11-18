@@ -11,6 +11,9 @@ import EditProducts from "@Admin/pages/product/Edit.vue";
 
 import ListOrders from "@Admin/pages/order/List.vue";
 
+import ListAttributes from "@Admin/pages/attribute/List.vue";
+import ShowAttribute from "@Admin/pages/attribute/Show.vue";
+
 import NotFound from "@Admin/views/NotFound.vue";
 
 export const routes = [
@@ -59,7 +62,16 @@ export const routes = [
                 component: EditProducts,
                 props: true,
                 meta: {
-                    text: "product"
+                    text: "New Product"
+                }
+            },
+            {
+                path: "product/edit/:id",
+                name: "product.edit",
+                component: EditProducts,
+                props: true,
+                meta: {
+                    text: "Edit Product"
                 }
             },
             {
@@ -68,6 +80,22 @@ export const routes = [
                 component: ListOrders,
                 meta: {
                     text: "Orders"
+                }
+            },
+            {
+                path: "attributes",
+                name: "attribute.index",
+                component: ListAttributes,
+                meta: {
+                    text: "Attributes"
+                }
+            },
+            {
+                path: "attribute/:id",
+                name: "attribute.show",
+                component: ShowAttribute,
+                meta: {
+                    text: "Attributes"
                 }
             }
         ]

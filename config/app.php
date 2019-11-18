@@ -187,6 +187,7 @@ return [
         User\Providers\UserServiceProvider::class,
         Cart\Providers\CartServiceProvider::class,
         Order\Providers\OrderServiceProvider::class,
+        Attribute\Providers\AttributeServiceProvider::class,
 
 
 

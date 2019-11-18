@@ -3,22 +3,7 @@
   <section class="content">
     <div class="row">
       <div class="col-md-9">
-        <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">General</h3>
-
-            <div class="card-tools">
-              <button
-                type="button"
-                class="btn btn-tool"
-                data-card-widget="collapse"
-                data-toggle="tooltip"
-                title="Collapse"
-              >
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-          </div>
+        <div class="card card-outline card-primary">
           <div class="card-body">
             <div class="form-group">
               <label for="inputName">Product Name</label>
@@ -34,10 +19,11 @@
               <has-error field="name"></has-error>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">Slug</label>
-              <div class="input-group mb-2 col-sm-10">
+              <div class="input-group col-sm-4">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">product/</div>
+                  <div class="input-group-text bg-primary color-palette">
+                    <small>product/</small>
+                  </div>
                 </div>
                 <input
                   type="text"
@@ -50,6 +36,44 @@
                 <has-error field="slug"></has-error>
               </div>
             </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+
+        <div class="card card-outline card-primary">
+          <div class="card-header">
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label card-title">Product Data -</label>
+              <div class="col-sm-3">
+                <select
+                  class="form-control"
+                  v-model="getSingleProduct.type"
+                  id="exampleFormControlSelect1"
+                >
+                  <option value="simple">Simple product</option>
+                  <option value="configurable">Attribute product</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <product-simple v-if="getSingleProduct.type == 'simple'" />
+          <product-attribute v-else />
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <div class="card card-primary collapsed-card">
+          <div class="card-header">
+            <h3 class="card-title">Description</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
             <div class="form-group">
               <label for="inputDescription">Description</label>
               <textarea
@@ -63,94 +87,6 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <!-- /.card -->
-        <div class="card card-outline card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Product Data</h3>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-            <!-- /.card-tools -->
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <div class="row">
-              <div class="col-3">
-                <div
-                  class="nav flex-column nav-pills"
-                  id="v-pills-tab"
-                  role="tablist"
-                  aria-orientation="vertical"
-                >
-                  <a
-                    class="nav-link active"
-                    id="v-pills-home-tab"
-                    data-toggle="pill"
-                    href="#v-pills-home"
-                    role="tab"
-                    aria-controls="v-pills-home"
-                    aria-selected="true"
-                  >General</a>
-                </div>
-              </div>
-              <div class="col-9">
-                <div class="tab-content" id="v-pills-tabContent">
-                  <div
-                    class="tab-pane fade show active"
-                    id="v-pills-home"
-                    role="tabpanel"
-                    aria-labelledby="v-pills-home-tab"
-                  >
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="form-group row">
-                          <label
-                            for="colFormLabelSm"
-                            class="col-sm-2 col-form-label col-form-label-sm"
-                          >Price (EGP)</label>
-                          <div class="col-sm-10">
-                            <input
-                              type="number"
-                              v-model="getSingleProduct.price"
-                              class="form-control form-control-sm"
-                              id="colFormLabelSm"
-                              :class="{ 'is-invalid': hasError('price') }"
-                            />
-                            <has-error field="price"></has-error>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label
-                            for="colFormLabelSm"
-                            class="col-sm-2 col-form-label col-form-label-sm"
-                          >Cost (EGP)</label>
-                          <div class="col-sm-10">
-                            <input
-                              type="number"
-                              v-model="getSingleProduct.cost"
-                              class="form-control form-control-sm"
-                              id="colFormLabelSm"
-                              :class="{ 'is-invalid': hasError('cost') }"
-                            />
-                            <has-error field="cost"></has-error>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-
         <!-- /.card -->
       </div>
 
@@ -170,13 +106,13 @@
           <div class="card-body">
             <button
               type="button"
-              v-show="!editMode"
+              v-show="!getMode"
               @click="createProduct"
               class="btn btn-block bg-gradient-primary btn-lg"
             >Save</button>
             <button
               type="button"
-              v-show="editMode"
+              v-show="getMode"
               @click="patchProduct"
               class="btn btn-block bg-gradient-success btn-lg"
             >Update</button>
@@ -275,12 +211,68 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <a class="btn btn-info btn-sm" @click="newModel" href="#">
-              <i class="fas fa-pencil-alt"></i>
-              Edit
-            </a>
+            <div class="col-md-4 offset-md-4">
+              <img
+                class="img-thumbnail mx-auto"
+                width="200"
+                height="200"
+                src="/img/img-placeholder.png"
+                alt="user image"
+                v-show="!getImages.length"
+              />
+            </div>
+            <div
+              id="carouselExampleIndicators"
+              class="carousel slide"
+              data-ride="carousel"
+              v-show="getImages.length"
+            >
+              <ol class="carousel-indicators">
+                <li
+                  data-target="#carouselExampleIndicators"
+                  v-for="(image, index) in getImages"
+                  :key="index"
+                  :class="{ 'active': index === 0 }"
+                  :data-slide-to="index"
+                ></li>
+              </ol>
+              <div class="carousel-inner">
+                <div
+                  class="carousel-item"
+                  v-for="(image, index) in getImages"
+                  :key="index"
+                  :class="{ 'active': index === 0 }"
+                >
+                  <img class="d-block w-100" :src="image" :alt="`Image Uplaoder ${index}`" />
+                </div>
+              </div>
+              <a
+                class="carousel-control-prev"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="prev"
+              >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="next"
+              >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
           </div>
           <!-- /.card-body -->
+          <div class="card-footer">
+            <a class="btn btn-default btn-block" @click="newModel" href="#">
+              <i class="fas fa-cloud-upload-alt"></i>
+              Upload
+            </a>
+          </div>
         </div>
 
         <!-- /.card -->
@@ -298,8 +290,10 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapState } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
+import ProductSimple from "@Admin/pages/product/views/ProductSimple";
+import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
 import model from "@Admin/components/Model.vue";
 import HasError from "@Admin/components/HasError.vue";
 
@@ -307,20 +301,10 @@ export default {
   name: "ProductEdit",
   components: {
     ImageUploader,
+    ProductSimple,
+    ProductAttribute,
     model,
     HasError
-  },
-  props: {
-    product: {
-      type: Object,
-      default: function() {
-        return {};
-      }
-    },
-    editMode: {
-      type: Boolean,
-      default: false
-    }
   },
   data() {
     return {};
@@ -331,10 +315,13 @@ export default {
       "updateProduct",
       "setProduct",
       "fetchListCategories",
+      "fetchListAttributes",
       "addThumb",
       "resetImages",
+      "setMode",
       "setError"
     ]),
+    ...mapMutations(["SET_STATUS"]),
     createProduct() {
       const formData = new FormData();
       for (const [key, value] of Object.entries(this.getSingleProduct)) {
@@ -343,11 +330,10 @@ export default {
       this.getFiles.forEach(file => {
         formData.append("images[]", file, file.name);
       });
-
       if (this.getThumb.file) {
         formData.append("images[thumb]", this.getThumb.file);
       }
-
+      formData.append("variations", JSON.stringify(this.getVariations));
       this.storeProduct(formData);
     },
     patchProduct() {
@@ -364,10 +350,15 @@ export default {
     }
   },
   created() {
-    this.fetchListCategories("all");
-    if (this.editMode == true) {
+    this.fetchListAttributes("all");
+    if (this.$route.params.id == undefined) {
+      this.setMode(false);
+    } else {
+      this.setMode(true);
       this.setProduct(this.product);
     }
+    this.SET_STATUS("");
+    this.fetchListCategories("all");
   },
   watch: {
     getStatus(val, oldVal) {
@@ -380,7 +371,10 @@ export default {
   computed: mapGetters([
     "getSingleProduct",
     "getAllCategories",
+    "getVariations",
+    "getMode",
     "getFiles",
+    "getImages",
     "getThumb",
     "getStatus",
     "hasError"
@@ -391,5 +385,8 @@ export default {
 <style scoped>
 .custom-file-label {
   font-size: 14px;
+}
+.card-header .form-group {
+  margin-bottom: 0;
 }
 </style>

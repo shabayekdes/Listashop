@@ -5,6 +5,7 @@ import Category from "./modules/category";
 import Product from "./modules/product";
 import Order from "./modules/order";
 import Image from "./modules/image";
+import Attribute from "./modules/attribute";
 
 Vue.use(Vuex);
 
@@ -48,6 +49,9 @@ export default new Vuex.Store({
         },
         SET_ERRORS: (state, data) => {
             state.errors = data;
+        },
+        SET_STATUS: (state, data) => {
+            state.status = data;
         }
     },
     modules: {
@@ -55,6 +59,7 @@ export default new Vuex.Store({
         Category,
         Product,
         Order,
+        Attribute,
         Image
     }
 });

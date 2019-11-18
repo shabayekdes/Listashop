@@ -268,9 +268,9 @@ abstract class BaseRepository implements RepositoryContract
      *
      * @return mixed
      */
-    public function findWhereIn($field, array $values, $columns = ['*'])
+    public function findWhereIn($field, array $values, $paginate = true, $columns = ['*'])
     {
-        $model = $this->model->whereIn($field, $values)->get($columns);
+        $model = $this->model->whereIn($field, $values);
         return $model;
     }
     /**
@@ -312,10 +312,22 @@ abstract class BaseRepository implements RepositoryContract
      */
     public function create(array $attributes)
     {
-
         $model = $this->model->newInstance($attributes);
         $model->save();
         return $model;
+    }
+    /**
+     * create with relations
+     *
+     * @param $id
+     * @param $relation
+     * @param $attributes
+     * @param bool $detaching
+     * @return mixed
+     */
+    public function withCreate($id, $relation, $attributes)
+    {
+        return $this->find($id)->{$relation}()->create($attributes);
     }
     /**
      * Update a entity in repository by id
@@ -476,5 +488,14 @@ abstract class BaseRepository implements RepositoryContract
                 $this->model = $this->model->where($field, '=', $value);
             }
         }
+    }
+    /**
+     * Get fillable of the model.
+     *
+     * @param array $data
+     */
+    protected function getFillableData(array $data)
+    {
+        return array_intersect_key($data, array_flip($this->model->getFillable()));
     }
 }
