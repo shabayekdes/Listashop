@@ -164,6 +164,9 @@ const mutations = {
             name: ""
         };
     },
+    RESET_SELECTED_ATTR: state => {
+        state.selectedAttr = [];
+    },
     // Attribute Options
     SHOW_LIST_OPTIONS: (state, data) => {
         state.options = data;

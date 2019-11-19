@@ -73,6 +73,7 @@ class ProductRepository extends BaseRepository
         $this->productFlat->createProductFlat($data, $product);
 
         if($data['type'] == 'configurable'){
+            $product->attributes()->attach($data['attributes']);
             foreach ($variations as $variant) {
                 $this->createVariant($variant, $product, $data);
             }

@@ -18,10 +18,12 @@ export default new Vuex.Store({
         },
         errors: {},
         status: "",
+        loading: true,
         editMode: false
     },
     getters: {
         getMetaData: state => state.meta_data,
+        getLoading: state => state.loading,
         getErrorMsg: state => field => {
             if (state.errors.hasOwnProperty(field)) {
                 return state.errors[field][0];
@@ -49,6 +51,9 @@ export default new Vuex.Store({
         },
         SET_ERRORS: (state, data) => {
             state.errors = data;
+        },
+        SET_LOADING: state => {
+            state.loading = !state.loading;
         },
         SET_STATUS: (state, data) => {
             state.status = data;

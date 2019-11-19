@@ -23,7 +23,7 @@ class ProductResource extends JsonResource
             'status' => $this->status,
             'details' => $this->flat == null ? "" : new ProductFlat($this->flat),
             'images' => $this->images,
-            'options' => $this->options->load('attribute')->first()->attribute
+            // 'options' => $this->options->load('attribute')->first()->attribute
         ];
     }
 }

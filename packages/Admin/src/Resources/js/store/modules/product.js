@@ -28,6 +28,7 @@ const actions = {
 
         commit("SHOW_LIST_PRODUCTS", response.data);
         commit("SET_META_DATA", response.data, { root: true });
+        commit("SET_LOADING", { root: true });
     },
     async storeProduct({ commit, rootState }, data) {
         try {
@@ -40,6 +41,9 @@ const actions = {
 
             commit("NEW_PRODUCT", response.data);
             commit("RESET_NEW_PRODUCT");
+            commit("RESET_SELECTED_ATTR");
+            commit("SET_LOADING", { root: true });
+
             rootState.status = "ok";
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);

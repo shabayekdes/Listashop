@@ -2090,7 +2090,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Admin_layouts_Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @Admin/layouts/Header */ "./packages/admin/src/resources/js/layouts/Header.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Admin_layouts_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @Admin/layouts/Header */ "./packages/admin/src/resources/js/layouts/Header.vue");
+/* harmony import */ var _Admin_views_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @Admin/views/Loading */ "./packages/admin/src/resources/js/views/Loading.vue");
+//
+//
 //
 //
 //
@@ -2112,11 +2116,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Wrapper",
   components: {
-    Header: _Admin_layouts_Header__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+    Header: _Admin_layouts_Header__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Loading: _Admin_views_Loading__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getLoading"])
 });
 
 /***/ }),
@@ -3236,7 +3244,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {};
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "fetchListAttributes", "addThumb", "resetImages", "setMode", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["SET_STATUS"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeProduct", "updateProduct", "setProduct", "fetchListCategories", "fetchListAttributes", "addThumb", "resetImages", "setMode", "setError"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["SET_STATUS", "SET_LOADING"]), {
     createProduct: function createProduct() {
       var formData = new FormData();
 
@@ -3257,6 +3265,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       formData.append("variations", JSON.stringify(this.getVariations));
+      var result = this.getSelectedAttr.map(function (a) {
+        return a.id;
+      });
+      result.forEach(function (r) {
+        formData.append("attributes[]", r);
+      });
       this.storeProduct(formData);
     },
     patchProduct: function patchProduct() {
@@ -3271,6 +3285,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   created: function created() {
     this.fetchListAttributes("all");
+    this.SET_LOADING();
 
     if (this.$route.params.id == undefined) {
       this.setMode(false);
@@ -3292,7 +3307,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getVariations", "getMode", "getFiles", "getImages", "getThumb", "getStatus", "hasError"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getVariations", "getSelectedAttr", "getMode", "getFiles", "getImages", "getThumb", "getStatus", "hasError"])
 });
 
 /***/ }),
@@ -9405,7 +9420,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.sk-folding-cube[data-v-0b6473ee] {\n  width: 40px;\n  height: 40px;\n  position: absolute;\n  bottom: 50%;\n  left: 50%;\n  -webkit-transform: rotateZ(45deg);\n  transform: rotateZ(45deg);\n}\n.sk-folding-cube .sk-cube[data-v-0b6473ee] {\n  float: left;\n  width: 50%;\n  height: 50%;\n  position: relative;\n  -webkit-transform: scale(1.1);\n  transform: scale(1.1);\n}\n.sk-folding-cube .sk-cube[data-v-0b6473ee]:before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #6dcbcd;\n  -webkit-animation: sk-foldCubeAngle-data-v-0b6473ee 2.4s infinite linear both;\n  animation: sk-foldCubeAngle-data-v-0b6473ee 2.4s infinite linear both;\n  -webkit-transform-origin: 100% 100%;\n  transform-origin: 100% 100%;\n}\n.sk-folding-cube .sk-cube2[data-v-0b6473ee] {\n  -webkit-transform: scale(1.1) rotateZ(90deg);\n  transform: scale(1.1) rotateZ(90deg);\n}\n.sk-folding-cube .sk-cube3[data-v-0b6473ee] {\n  -webkit-transform: scale(1.1) rotateZ(180deg);\n  transform: scale(1.1) rotateZ(180deg);\n}\n.sk-folding-cube .sk-cube4[data-v-0b6473ee] {\n  -webkit-transform: scale(1.1) rotateZ(270deg);\n  transform: scale(1.1) rotateZ(270deg);\n}\n.sk-folding-cube .sk-cube2[data-v-0b6473ee]:before {\n  -webkit-animation-delay: 0.3s;\n  animation-delay: 0.3s;\n}\n.sk-folding-cube .sk-cube3[data-v-0b6473ee]:before {\n  -webkit-animation-delay: 0.6s;\n  animation-delay: 0.6s;\n}\n.sk-folding-cube .sk-cube4[data-v-0b6473ee]:before {\n  -webkit-animation-delay: 0.9s;\n  animation-delay: 0.9s;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-0b6473ee {\n0%,\n  10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%,\n  75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%,\n  100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-0b6473ee {\n0%,\n  10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%,\n  75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%,\n  100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n", ""]);
+exports.push([module.i, "\n.sk-folding-cube[data-v-0b6473ee] {\r\n  width: 40px;\r\n  height: 40px;\r\n  position: absolute;\r\n  bottom: 50%;\r\n  left: 50%;\r\n  -webkit-transform: rotateZ(45deg);\r\n  transform: rotateZ(45deg);\n}\n.sk-folding-cube .sk-cube[data-v-0b6473ee] {\r\n  float: left;\r\n  width: 50%;\r\n  height: 50%;\r\n  position: relative;\r\n  -webkit-transform: scale(1.1);\r\n  transform: scale(1.1);\n}\n.sk-folding-cube .sk-cube[data-v-0b6473ee]:before {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: #6dcbcd;\r\n  -webkit-animation: sk-foldCubeAngle-data-v-0b6473ee 2.4s infinite linear both;\r\n  animation: sk-foldCubeAngle-data-v-0b6473ee 2.4s infinite linear both;\r\n  -webkit-transform-origin: 100% 100%;\r\n  transform-origin: 100% 100%;\n}\n.sk-folding-cube .sk-cube2[data-v-0b6473ee] {\r\n  -webkit-transform: scale(1.1) rotateZ(90deg);\r\n  transform: scale(1.1) rotateZ(90deg);\n}\n.sk-folding-cube .sk-cube3[data-v-0b6473ee] {\r\n  -webkit-transform: scale(1.1) rotateZ(180deg);\r\n  transform: scale(1.1) rotateZ(180deg);\n}\n.sk-folding-cube .sk-cube4[data-v-0b6473ee] {\r\n  -webkit-transform: scale(1.1) rotateZ(270deg);\r\n  transform: scale(1.1) rotateZ(270deg);\n}\n.sk-folding-cube .sk-cube2[data-v-0b6473ee]:before {\r\n  -webkit-animation-delay: 0.3s;\r\n  animation-delay: 0.3s;\n}\n.sk-folding-cube .sk-cube3[data-v-0b6473ee]:before {\r\n  -webkit-animation-delay: 0.6s;\r\n  animation-delay: 0.6s;\n}\n.sk-folding-cube .sk-cube4[data-v-0b6473ee]:before {\r\n  -webkit-animation-delay: 0.9s;\r\n  animation-delay: 0.9s;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-0b6473ee {\n0%,\r\n  10% {\r\n    -webkit-transform: perspective(140px) rotateX(-180deg);\r\n    transform: perspective(140px) rotateX(-180deg);\r\n    opacity: 0;\n}\n25%,\r\n  75% {\r\n    -webkit-transform: perspective(140px) rotateX(0deg);\r\n    transform: perspective(140px) rotateX(0deg);\r\n    opacity: 1;\n}\n90%,\r\n  100% {\r\n    -webkit-transform: perspective(140px) rotateY(180deg);\r\n    transform: perspective(140px) rotateY(180deg);\r\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-0b6473ee {\n0%,\r\n  10% {\r\n    -webkit-transform: perspective(140px) rotateX(-180deg);\r\n    transform: perspective(140px) rotateX(-180deg);\r\n    opacity: 0;\n}\n25%,\r\n  75% {\r\n    -webkit-transform: perspective(140px) rotateX(0deg);\r\n    transform: perspective(140px) rotateX(0deg);\r\n    opacity: 1;\n}\n90%,\r\n  100% {\r\n    -webkit-transform: perspective(140px) rotateY(180deg);\r\n    transform: perspective(140px) rotateY(180deg);\r\n    opacity: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -63021,7 +63036,6 @@ __webpack_require__(/*! ./bootstrap */ "./packages/admin/src/resources/js/bootst
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("not-found", __webpack_require__(/*! @Admin/views/NotFound.vue */ "./packages/admin/src/resources/js/views/NotFound.vue"));
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("loading", __webpack_require__(/*! @Admin/views/Loading.vue */ "./packages/admin/src/resources/js/views/Loading.vue"));
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter("slug", function (value) {
   if (!value) return "";
   value = value.toString();
@@ -64445,11 +64459,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     errors: {},
     status: "",
+    loading: true,
     editMode: false
   },
   getters: {
     getMetaData: function getMetaData(state) {
       return state.meta_data;
+    },
+    getLoading: function getLoading(state) {
+      return state.loading;
     },
     getErrorMsg: function getErrorMsg(state) {
       return function (field) {
@@ -64488,6 +64506,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     SET_ERRORS: function SET_ERRORS(state, data) {
       state.errors = data;
+    },
+    SET_LOADING: function SET_LOADING(state) {
+      state.loading = !state.loading;
     },
     SET_STATUS: function SET_STATUS(state, data) {
       state.status = data;
@@ -64855,6 +64876,9 @@ var mutations = {
       id: "",
       name: ""
     };
+  },
+  RESET_SELECTED_ATTR: function RESET_SELECTED_ATTR(state) {
+    state.selectedAttr = [];
   },
   // Attribute Options
   SHOW_LIST_OPTIONS: function SHOW_LIST_OPTIONS(state, data) {
@@ -65374,8 +65398,11 @@ var actions = {
             commit("SET_META_DATA", response.data, {
               root: true
             });
+            commit("SET_LOADING", {
+              root: true
+            });
 
-          case 8:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -65402,21 +65429,25 @@ var actions = {
             response = _context2.sent;
             commit("NEW_PRODUCT", response.data);
             commit("RESET_NEW_PRODUCT");
+            commit("RESET_SELECTED_ATTR");
+            commit("SET_LOADING", {
+              root: true
+            });
             rootState.status = "ok";
-            _context2.next = 14;
+            _context2.next = 16;
             break;
 
-          case 11:
-            _context2.prev = 11;
+          case 13:
+            _context2.prev = 13;
             _context2.t0 = _context2["catch"](1);
             commit("SET_ERRORS", _context2.t0.response.data.errors);
 
-          case 14:
+          case 16:
           case "end":
             return _context2.stop();
         }
       }
-    }, null, null, [[1, 11]]);
+    }, null, null, [[1, 13]]);
   },
   updateProduct: function updateProduct(_ref3, data) {
     var commit, rootState, response;

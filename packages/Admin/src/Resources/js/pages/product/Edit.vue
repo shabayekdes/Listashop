@@ -321,7 +321,7 @@ export default {
       "setMode",
       "setError"
     ]),
-    ...mapMutations(["SET_STATUS"]),
+    ...mapMutations(["SET_STATUS", "SET_LOADING"]),
     createProduct() {
       const formData = new FormData();
       for (const [key, value] of Object.entries(this.getSingleProduct)) {
@@ -334,6 +334,13 @@ export default {
         formData.append("images[thumb]", this.getThumb.file);
       }
       formData.append("variations", JSON.stringify(this.getVariations));
+
+      let result = this.getSelectedAttr.map(a => a.id);
+
+      result.forEach(r => {
+        formData.append("attributes[]", r);
+      });
+
       this.storeProduct(formData);
     },
     patchProduct() {
@@ -351,6 +358,7 @@ export default {
   },
   created() {
     this.fetchListAttributes("all");
+    this.SET_LOADING();
     if (this.$route.params.id == undefined) {
       this.setMode(false);
     } else {
@@ -372,6 +380,7 @@ export default {
     "getSingleProduct",
     "getAllCategories",
     "getVariations",
+    "getSelectedAttr",
     "getMode",
     "getFiles",
     "getImages",

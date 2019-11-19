@@ -44,7 +44,8 @@ class ProductController extends Controller
     {
         // dd($request->all());
         // dd(json_decode($request->variations));
-        return $this->product->create(array_merge($request->all(), ['sku'=> Str::random(10)]));
+        $product = $this->product->create(array_merge($request->all(), ['sku'=> Str::random(10)]));
+        return new ProductResource($product);
     }
 
     /**
