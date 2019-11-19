@@ -38,6 +38,13 @@ class ProductFlat extends Model
         'special_price' => 'boolean'
     ];
     /**
+     * The images that belong to the product.
+     */
+    public function product()
+    {
+        return $this->belongsTo('Product\Models\Product');
+    }
+    /**
      * Scope a query to only include popular users.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -66,5 +73,15 @@ class ProductFlat extends Model
     public function getPresentPriceAttribute($value)
     {
         return '$' . number_format($this->price, 2);
+    }
+    /**
+     * Get the discount price.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDiscountAttribute($value)
+    {
+        return (int) 100 - ceil($this->special_price * 100 / $this->price). "%";;
     }
 }
