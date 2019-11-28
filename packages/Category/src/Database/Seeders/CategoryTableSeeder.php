@@ -2,110 +2,27 @@
 
 namespace Category\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use DB;
 use Carbon\Carbon;
+use Category\Models\Category;
+use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
 
 class CategoryTableSeeder extends Seeder
 {
-    public function run()
+    public function run(Faker $faker)
     {
-        DB::table('categories')->delete();
 
-        $now = Carbon::now();
+        for ($i=0; $i < 5 ; $i++) {
 
-        DB::table('categories')->insert([
-            [
-                'id' => '1',
-                'position' => '1',
-                'status' => '1',
-                'name' => 'Laptops',
-                'slug' => 'laptops',
-                'description' => 'Root',
-                'meta_title' => '',
-                'meta_description' => '',
-                'meta_keywords' => '',
-                'created_at' => $now,
-                'updated_at' => $now
-            ],
-            [
-                'id' => '2',
-                'position' => '1',
-                'status' => '1',
-                'name' => 'Desktops',
-                'slug' => 'desktops',
-                'description' => 'Root',
-                'meta_title' => '',
-                'meta_description' => '',
-                'meta_keywords' => '',
-                'created_at' => $now,
-                'updated_at' => $now
-            ],
-            [
-                'id' => '3',
-                'position' => '1',
-                'status' => '1',
-                'name' => 'Tablets',
-                'slug' => 'tablets',
-                'description' => 'Root',
-                'meta_title' => '',
-                'meta_description' => '',
-                'meta_keywords' => '',
-                'created_at' => $now,
-                'updated_at' => $now
-            ],
-            [
-                'id' => '4',
-                'position' => '1',
-                'status' => '1',
-                'name' => 'TVs',
-                'slug' => 'tvs',
-                'description' => 'Root',
-                'meta_title' => '',
-                'meta_description' => '',
-                'meta_keywords' => '',
-                'created_at' => $now,
-                'updated_at' => $now
-            ],
-            [
-                'id' => '5',
-                'position' => '1',
-                'status' => '1',
-                'name' => 'Appliances',
-                'slug' => 'appliances',
-                'description' => 'Root',
-                'meta_title' => '',
-                'meta_description' => '',
-                'meta_keywords' => '',
-                'created_at' => $now,
-                'updated_at' => $now
-            ],
-            [
-                'id' => '6',
-                'position' => '1',
-                'status' => '1',
-                'name' => 'Digital Cameras',
-                'slug' => 'digital-cameras',
-                'description' => 'Root',
-                'meta_title' => '',
-                'meta_description' => '',
-                'meta_keywords' => '',
-                'created_at' => $now,
-                'updated_at' => $now
-            ],
-            [
-                'id' => '7',
-                'position' => '1',
-                'status' => '1',
-                'name' => 'Mobile Phones',
-                'slug' => 'mobile-phones',
-                'description' => 'Root',
-                'meta_title' => '',
-                'meta_description' => '',
-                'meta_keywords' => '',
-                'created_at' => $now,
-                'updated_at' => $now
-            ],
-        ]);
+            $id = $i+1;
+
+            Category::create([
+                'name' => $faker->sentence(),
+                'slug' => $faker->unique()->randomNumber,
+                'image' => 'categories/category-'. $id .'.png',
+            ]);
+
+        }
     }
 }

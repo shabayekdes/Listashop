@@ -34,8 +34,7 @@ class ProductFlat extends Model
      */
     protected $casts = [
         'featured' => 'boolean',
-        'new' => 'boolean',
-        'special_price' => 'boolean'
+        'new' => 'boolean'
     ];
     /**
      * The images that belong to the product.

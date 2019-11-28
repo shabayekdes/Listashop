@@ -25,17 +25,19 @@ class HomeController extends Controller
 
     public function index()
     {
-        $products = Product::with('flat')->get();
+        $products = Product::with('flat')->whereIn('type', ['simple', 'configurable'])->take(20)->get();
+
+        // dd($products);
 
         $featuredProducts = Product::whereHas('flat' , function ($query) {
 
             $query->where('featured','=', true);
-        })->get();
+        })->whereIn('type', ['simple', 'configurable'])->get();
 
         $saleProducts = Product::whereHas('flat' , function ($query) {
 
             $query->where('special_price','!=', null);
-        })->get();
+        })->whereIn('type', ['simple', 'configurable'])->get();
 
         return view('shop::home', compact('featuredProducts', 'saleProducts', 'products'));
     }

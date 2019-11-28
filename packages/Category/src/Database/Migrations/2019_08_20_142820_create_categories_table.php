@@ -30,7 +30,7 @@ class CreateCategoriesTable extends Migration
             $table->text('meta_keywords')->nullable();
 
 
-            $table->unsignedBigInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->index('parent_id');
             $table->timestamps();
         });
