@@ -20,7 +20,7 @@ class Product extends Model
         'type',
         'status',
         'parent_id',
-        'categories_id'
+        'category_id'
     ];
     /**
      * Get children of product items record associated.

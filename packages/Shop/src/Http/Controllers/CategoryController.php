@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $pagination = 9;
         $categories = $this->category->all();
         if (request()->category) {
-            $products = Product::with('categories')->whereHas('categories', function ($query) {
+            $products = Product::whereHas('category', function ($query) {
                 $query->where('slug', request()->category);
             });
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;

@@ -23,7 +23,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => $faker->unique()->randomNumber,
                 'slug' => $faker->unique()->randomNumber,
                 'type' => Arr::random($type),
-                'categories_id' => ceil(rand(1, 5))
+                'category_id' => ceil(rand(1, 5))
             ]);
             $product->flat()->create([
                 'sku' => $faker->unique()->randomNumber,

@@ -10,7 +10,7 @@ const state = {
         price: "",
         cost: "",
         type: "simple",
-        categories_id: ""
+        category_id: ""
     },
     variations: []
 };
@@ -119,7 +119,7 @@ const mutations = {
             price: "",
             cost: "",
             type: "simple",
-            categories_id: ""
+            category_id: ""
         };
     }
 };

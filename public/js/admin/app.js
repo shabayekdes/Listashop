@@ -9401,7 +9401,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\n.custom-file-label[data-v-62eaff5c] {\n  font-size: 14px;\n}\n.card-header .form-group[data-v-62eaff5c] {\n  margin-bottom: 0;\n}\n", ""]);
+exports.push([module.i, "\n.custom-file-label[data-v-62eaff5c] {\r\n  font-size: 14px;\n}\n.card-header .form-group[data-v-62eaff5c] {\r\n  margin-bottom: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -43759,13 +43759,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.getSingleProduct.categories_id,
-                          expression: "getSingleProduct.categories_id"
+                          value: _vm.getSingleProduct.category_id,
+                          expression: "getSingleProduct.category_id"
                         }
                       ],
                       staticClass: "custom-select",
-                      class: { "is-invalid": _vm.hasError("categories_id") },
-                      attrs: { name: "categories_id", id: "categories_id" },
+                      class: { "is-invalid": _vm.hasError("category_id") },
+                      attrs: { name: "category_id", id: "category_id" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -43778,7 +43778,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.getSingleProduct,
-                            "categories_id",
+                            "category_id",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -43805,7 +43805,7 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _c("has-error", { attrs: { field: "categories_id" } })
+                  _c("has-error", { attrs: { field: "category_id" } })
                 ],
                 1
               )
@@ -65360,7 +65360,7 @@ var state = {
     price: "",
     cost: "",
     type: "simple",
-    categories_id: ""
+    category_id: ""
   },
   variations: []
 };
@@ -65558,7 +65558,7 @@ var mutations = {
       price: "",
       cost: "",
       type: "simple",
-      categories_id: ""
+      category_id: ""
     };
   }
 };
@@ -66300,8 +66300,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Listashop\packages\admin\src\resources\js\app.js */"./packages/admin/src/resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Listashop\packages\admin\src\resources\sass\app.scss */"./packages/admin/src/resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\Listashop\packages\admin\src\resources\js\app.js */"./packages/admin/src/resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\Listashop\packages\admin\src\resources\sass\app.scss */"./packages/admin/src/resources/sass/app.scss");
 
 
 /***/ })

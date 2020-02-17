@@ -136,11 +136,11 @@
             <div class="form-group">
               <label>Select Category</label>
               <select
-                v-model="getSingleProduct.categories_id"
-                name="categories_id"
-                id="categories_id"
+                v-model="getSingleProduct.category_id"
+                name="category_id"
+                id="category_id"
                 class="custom-select"
-                :class="{ 'is-invalid': hasError('categories_id') }"
+                :class="{ 'is-invalid': hasError('category_id') }"
               >
                 <option value disabled>Select Category</option>
                 <option
@@ -149,7 +149,7 @@
                   :value="category.id"
                 >{{ category.name }}</option>
               </select>
-              <has-error field="categories_id"></has-error>
+              <has-error field="category_id"></has-error>
             </div>
           </div>
           <!-- /.card-body -->
