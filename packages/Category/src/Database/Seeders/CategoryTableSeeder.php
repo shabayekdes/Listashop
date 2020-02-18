@@ -18,7 +18,7 @@ class CategoryTableSeeder extends Seeder
             $id = $i+1;
 
             Category::create([
-                'name' => $faker->sentence(),
+                'name' => $faker->word,
                 'slug' => $faker->unique()->randomNumber,
                 'image' => 'categories/category-'. $id .'.png',
             ]);

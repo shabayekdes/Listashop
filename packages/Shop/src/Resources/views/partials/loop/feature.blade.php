@@ -1,19 +1,11 @@
-@if ($product->flat->new)
-<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-    @else
-    <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-        @endif
+<div class="product_item d-flex flex-column align-items-center justify-content-center text-center {{ $product->flat->new ? 'is_new' : 'discount' }}">
 
-        <div class="product_image d-flex flex-column align-items-center justify-content-center">
+    <div class="product_image d-flex flex-column align-items-center justify-content-center">
+
+        <img src="{{ empty($product->flat->thumbnail) ?url( 'img/products/default.png') : url( 'storage/' . $product->flat->thumbnail) }}" alt="">
 
 
-            @if (empty($product->flat->thumbnail))
-            <img src="{{ url( 'img/products/default.png') }}" alt="">
-            @else
-            <img src="{{ url( 'storage/' . $product->flat->thumbnail) }}" alt="">
-            @endif
-
-        </div>
+    </div>
 
         <div class="product_content">
             @if (empty($product->flat->special_price))

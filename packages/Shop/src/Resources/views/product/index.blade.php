@@ -48,7 +48,8 @@
                         <p>{{ $product->flat->description }}</p>
                     </div>
                     <div class="order_info d-flex flex-row">
-                        <form action="#">
+                        <form action="{{ route('cart.store',$product) }}" method="POST">
+                            @csrf
                             <div class="clearfix" style="z-index: 1000;">
 
                                 <!-- Product Quantity -->
@@ -87,13 +88,9 @@
                                 @endforeach
                             </div>
 
-
-
-
                             <div class="product_price">{{ presentPrice($product->flat->price) }}</div>
                             <div class="button_container">
-                                <a href="{{ route('cart.store',$product)}}" class="button cart_button">Add to
-                                    Cart</a>
+                                <button type="submit" class="button cart_button">Add to Cart</button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                             </div>
 

@@ -105,7 +105,7 @@ class ProductRepository extends BaseRepository
             'type' => 'product-variant',
             'sku' => $data['sku'],
             'slug' => $product->slug,
-            'categories_id' => $product->categories_id,
+            'category_id' => $product->category_id,
         ]);
 
         $attributes_ids = Arr::pluck($variant['attributes'], 'id');

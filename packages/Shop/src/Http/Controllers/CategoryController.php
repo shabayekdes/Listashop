@@ -53,7 +53,9 @@ class CategoryController extends Controller
             });
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;
         } else {
-            $products = Product::where('featured', true);
+            $products = Product::whereHas('flat', function ($query) {
+                $query->where('featured', true);
+            });
             $categoryName = 'Featured';
         }
 

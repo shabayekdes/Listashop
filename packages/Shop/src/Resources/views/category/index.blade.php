@@ -61,12 +61,17 @@
                         <div class="product_item is_new">
 
                             <div class="product_border"></div>
-                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img
-                                    src="{{ $product->thumbnail }}" alt=""></div>
+                            <div class="product_image d-flex flex-column align-items-center justify-content-center">
+                                @if (empty($product->flat->thumbnail))
+                                <img src="{{ url( 'img/products/default.png') }}" alt="">
+                                @else
+                                <img src="{{ url( 'storage/' . $product->flat->thumbnail) }}" alt="">
+                                @endif
+                            </div>
                             <div class="product_content">
-                                <div class="product_price">{{ $product->price }}</div>
+                                <div class="product_price">{{ $product->flat->price }}</div>
                                 <div class="product_name">
-                                    <div><a href="#" tabindex="0">{{ $product->name }}</a></div>
+                                    <div><a href="#" tabindex="0">{{ $product->flat->name }}</a></div>
                                 </div>
                             </div>
                             <div class="product_fav"><i class="fas fa-heart"></i></div>
