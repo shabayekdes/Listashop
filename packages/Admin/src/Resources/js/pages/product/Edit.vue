@@ -314,6 +314,7 @@ export default {
       "storeProduct",
       "updateProduct",
       "setProduct",
+      "showProduct",
       "fetchListCategories",
       "fetchListAttributes",
       "addThumb",
@@ -359,12 +360,12 @@ export default {
   created() {
     this.fetchListAttributes("all");
     this.SET_LOADING();
-    if (this.$route.params.id == undefined) {
-      this.setMode(false);
-    } else {
-      this.setMode(true);
-      this.setProduct(this.product);
-    }
+    // if (this.$route.params.id == undefined) {
+    //   this.setMode(false);
+    // } else {
+    //   this.setMode(true);
+    this.showProduct(this.$route.params.id);
+    // }
     this.SET_STATUS("");
     this.fetchListCategories("all");
   },

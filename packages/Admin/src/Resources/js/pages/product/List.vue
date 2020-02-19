@@ -87,13 +87,10 @@
                           <i class="fas fa-folder"></i>
                           View
                         </a>
-                        <router-link
-                          :to="{ name: 'product.edit',  params: { id: product.id } }"
-                          class="btn btn-info btn-sm"
-                        >
+                        <a class="btn btn-info btn-sm" @click="editProduct(product.id)" href="#">
                           <i class="fas fa-pencil-alt"></i>
                           Edit
-                        </router-link>
+                        </a>
                         <a
                           class="btn btn-danger btn-sm"
                           @click="deleteProduct(product.id)"
@@ -146,7 +143,16 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchListProducts", "deleteProduct"])
+    ...mapActions([
+      "fetchListProducts",
+      "setProduct",
+      "setMode",
+      "deleteProduct"
+    ]),
+    editProduct(id) {
+      this.setMode(true);
+      this.$router.push({ name: "product.edit", params: { id } });
+    }
   },
   created() {
     this.fetchListProducts();

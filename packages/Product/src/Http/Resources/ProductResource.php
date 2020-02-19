@@ -19,7 +19,7 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'sku' => $this->sku,
             'slug' => $this->slug,
-            'categories_id' => $this->categories_id,
+            'category_id' => $this->category_id,
             'status' => $this->status,
             'details' => $this->flat == null ? "" : new ProductFlat($this->flat),
             'images' => $this->images,
