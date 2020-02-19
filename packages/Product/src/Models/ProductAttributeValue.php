@@ -4,9 +4,9 @@ namespace Product\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductAttributeOption extends Model
+class ProductAttributeValue extends Model
 {
-    protected $table = 'product_attribute_options';
+    protected $table = 'product_attribute_values';
 
     /**
      * The attributes that are mass assignable.
@@ -15,10 +15,10 @@ class ProductAttributeOption extends Model
      */
     protected $fillable = [
         'product_id',
-        'attribute_option_id',
+        'attribute_value_id',
         'price',
         'sku',
-        'quantity'
+        'qty'
     ];
     /**
      * Indicates if the model should be timestamped.
