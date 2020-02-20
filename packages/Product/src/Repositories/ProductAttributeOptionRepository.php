@@ -23,7 +23,7 @@ class ProductAttributeOptionRepository extends BaseRepository
      */
     public function model()
     {
-        return 'Product\Models\ProductAttributeOption';
+        return 'Product\Models\ProductAttributeValue';
     }
     /**
      * Create a new product flat record in the database with thumb.

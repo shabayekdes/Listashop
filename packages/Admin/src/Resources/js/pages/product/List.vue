@@ -64,20 +64,20 @@
                       <td>
                         <img
                           src="/img/default-150x150.png"
-                          v-if="product.details.thumbnail == null"
+                          v-if="product.thumbnail == null"
                           alt="Product"
                           class="img-circle img-size-64 mr-2"
                         />
                         <img
-                          :src="product.details.thumbnail"
+                          :src="product.thumbnail"
                           v-else
                           alt="Product"
                           class="img-circle img-size-64 mr-2"
                         />
                       </td>
-                      <td>{{ product.details.name | slug }}</td>
-                      <td>{{ product.details.price }}</td>
-                      <td>{{ product.details.quantity }}</td>
+                      <td>{{ product.name | slug }}</td>
+                      <td>{{ product.price }}</td>
+                      <td>{{ product.qty }}</td>
                       <td class="project-state text-center">
                         <span v-show="product.status" class="badge badge-success">Active</span>
                         <span v-show="!product.status" class="badge badge-warning">Non-Active</span>
@@ -136,7 +136,7 @@ export default {
         { width: "10%", label: "", name: "thumbnail", active: true },
         { width: "23%", label: "Name", name: "name", active: true },
         { width: "15%", label: "Price", name: "price", active: true },
-        { width: "20%", label: "Quantity", name: "quantity", active: true },
+        { width: "20%", label: "Quantity", name: "qty", active: true },
         { width: "15%", label: "Status", name: "status", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]

@@ -3684,7 +3684,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         width: "20%",
         label: "Quantity",
-        name: "quantity",
+        name: "qty",
         active: true
       }, {
         width: "15%",
@@ -44791,7 +44791,7 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", [
-                                product.details.thumbnail == null
+                                product.thumbnail == null
                                   ? _c("img", {
                                       staticClass:
                                         "img-circle img-size-64 mr-2",
@@ -44804,23 +44804,19 @@ var render = function() {
                                       staticClass:
                                         "img-circle img-size-64 mr-2",
                                       attrs: {
-                                        src: product.details.thumbnail,
+                                        src: product.thumbnail,
                                         alt: "Product"
                                       }
                                     })
                               ]),
                               _vm._v(" "),
                               _c("td", [
-                                _vm._v(
-                                  _vm._s(_vm._f("slug")(product.details.name))
-                                )
+                                _vm._v(_vm._s(_vm._f("slug")(product.name)))
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(product.details.price))]),
+                              _c("td", [_vm._v(_vm._s(product.price))]),
                               _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(product.details.quantity))
-                              ]),
+                              _c("td", [_vm._v(_vm._s(product.qty))]),
                               _vm._v(" "),
                               _c(
                                 "td",

@@ -15,12 +15,6 @@ use Product\Repositories\ProductAttributeOptionRepository;
 class ProductRepository extends BaseRepository
 {
     /**
-     * ProductFlatRepository Repository Object
-     *
-     * @var object
-     */
-    protected $productFlat;
-    /**
      * ProductAttributeOptionRepository Repository Object
      *
      * @var object
@@ -38,14 +32,12 @@ class ProductRepository extends BaseRepository
      * @return void
      */
     public function __construct(
-        ProductFlatRepository $productFlat,
         ProductAttributeOptionRepository $pAttributeOption,
         AttributeOptionRepository $attributeOption,
         App $app
         )
     {
         parent::__construct($app);
-        $this->productFlat = $productFlat;
         $this->pAttributeOption = $pAttributeOption;
         $this->attributeOption = $attributeOption;
     }

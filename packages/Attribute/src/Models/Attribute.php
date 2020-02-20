@@ -18,9 +18,9 @@ class Attribute extends Model
     /**
      * The images that belong to the product.
      */
-    public function options()
+    public function values()
     {
-        return $this->hasMany('Attribute\Models\AttributeOption');
+        return $this->hasMany('Attribute\Models\AttributeValue');
     }
 
     /**

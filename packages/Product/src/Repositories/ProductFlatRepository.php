@@ -26,7 +26,7 @@ class ProductFlatRepository extends BaseRepository
      */
     public function model()
     {
-        return 'Product\Models\ProductFlat';
+        return 'Product\Models\Product';
     }
     /**
      * Create a new product flat record in the database with thumb.
