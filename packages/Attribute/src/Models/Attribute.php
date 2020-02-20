@@ -13,7 +13,7 @@ class Attribute extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['key', 'name'];
 
     /**
      * The images that belong to the product.
