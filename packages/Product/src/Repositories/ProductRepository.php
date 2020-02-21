@@ -3,43 +3,22 @@
 namespace Product\Repositories;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Core\Eloquent\BaseRepository;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Container\Container as App;
-use Attribute\Repositories\AttributeOptionRepository;
-use Product\Repositories\ProductAttributeOptionRepository;
 
 
 class ProductRepository extends BaseRepository
 {
     /**
-     * ProductAttributeOptionRepository Repository Object
-     *
-     * @var object
-     */
-    protected $pAttributeOption;
-    /**
-     * ProductAttributeOptionRepository Repository Object
-     *
-     * @var object
-     */
-    protected $attributeOption;
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(
-        ProductAttributeOptionRepository $pAttributeOption,
-        AttributeOptionRepository $attributeOption,
-        App $app
-        )
+    public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->pAttributeOption = $pAttributeOption;
-        $this->attributeOption = $attributeOption;
     }
     /**
      * Specify Model class name

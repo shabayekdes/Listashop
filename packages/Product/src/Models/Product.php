@@ -49,20 +49,6 @@ class Product extends Model
         'new' => 'boolean'
     ];
     /**
-     * Get children of product items record associated.
-     */
-    public function children()
-    {
-        return $this->hasMany( 'Product\Models\Product', 'parent_id', 'id' );
-    }
-    /**
-     * Get parent of product items record associated.
-     */
-    public function parent()
-    {
-        return $this->hasOne( 'Product\Models\Product', 'id', 'parent_id' );
-    }
-    /**
      * Get the product items record associated with the order.
      */
     public function orders()

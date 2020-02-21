@@ -40,13 +40,11 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();
 
-            $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('category_id');
 
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('parent_id')->references('id')->on('products');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
