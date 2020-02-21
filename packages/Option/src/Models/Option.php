@@ -2,6 +2,7 @@
 
 namespace Option\Models;
 
+use Value\Models\Value;
 use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
@@ -21,4 +22,12 @@ class Option extends Model
     protected $casts = [
         'is_required' => 'boolean',
     ];
+
+    /**
+     * Get all of the option's values.
+     */
+    public function values()
+    {
+        return $this->morphMany(Value::class, 'valuable');
+    }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Valuable\Providers;
+namespace Value\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class ValuableServiceProvider extends ServiceProvider
+class ValueServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.

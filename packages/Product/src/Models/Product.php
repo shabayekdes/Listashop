@@ -88,14 +88,14 @@ class Product extends Model
      */
     public function options()
     {
-        return $this->belongsToMany('Attribute\Models\AttributeOption');
+        return $this->belongsToMany('Option\Models\Option')->withPivot('id');
     }
     /**
      * The roles that belong to the user.
      */
     public function attributes()
     {
-        return $this->belongsToMany('Attribute\Models\Attribute');
+        return $this->belongsToMany('Attribute\Models\Attribute')->withPivot('id');
     }
     /**
      * Scope a query to only include popular users.

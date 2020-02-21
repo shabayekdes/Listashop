@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateValuablesTable extends Migration
+class CreateValuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateValuablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('valuables', function (Blueprint $table) {
+        Schema::create('values', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('value');
             $table->decimal('price', 18, 4)->nullable();
@@ -32,6 +32,6 @@ class CreateValuablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('valuables');
+        Schema::dropIfExists('values');
     }
 }

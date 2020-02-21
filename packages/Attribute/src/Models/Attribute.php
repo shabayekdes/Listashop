@@ -2,32 +2,23 @@
 
 namespace Attribute\Models;
 
+use Value\Models\Value;
 use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
-    protected $table = 'attributes';
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = ['key', 'name'];
-
     /**
-     * The images that belong to the product.
+     * Get all of the option's values.
      */
     public function values()
     {
-        return $this->hasMany('Attribute\Models\AttributeValue');
+        return $this->morphMany(Value::class, 'valuable');
     }
 
-    /**
-     * The category that belong to the product.
-     */
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 }
