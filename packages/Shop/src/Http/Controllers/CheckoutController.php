@@ -115,7 +115,7 @@ class CheckoutController extends Controller
     {
         foreach (Cart::content() as $item) {
             $product = Product::find($item->model->id);
-            $product->update(['quantity' => $product->quantity - $item->qty]);
+            $product->update(['quantity' => $product->qty - $item->qty]);
         }
     }
 
@@ -123,7 +123,7 @@ class CheckoutController extends Controller
     {
         foreach (Cart::content() as $item) {
             $product = Product::find($item->model->id);
-            if ($product->flat->quantity < $item->qty) {
+            if ($product->qty < $item->qty) {
                 return true;
             }
         }

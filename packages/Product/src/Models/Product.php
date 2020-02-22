@@ -81,7 +81,7 @@ class Product extends Model
      */
     public function attributes()
     {
-        return $this->belongsToMany('Attribute\Models\Attribute')->withPivot('id');
+        return $this->belongsToMany('Attribute\Models\Attribute','product_attributes')->withPivot('id');
     }
     /**
      * Scope a query to only include popular users.

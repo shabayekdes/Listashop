@@ -21,16 +21,16 @@
                             @foreach( Cart::content() as $item)
                             <li class="cart_item clearfix">
                                 <div class="cart_item_image">
-                                    @if (empty($item->model->flat->thumbnail))
+                                    @if (empty($item->model->thumbnail))
                                     <img src="{{ url( 'img/products/default.png') }}" alt="">
                                     @else
-                                    <img src="{{ url( 'storage/' . $item->model->flat->thumbnail) }}" alt="">
+                                    <img src="{{ url( 'storage/' . $item->model->thumbnail) }}" alt="">
                                     @endif
                                 </div>
                                 <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                     <div class="cart_item_name cart_info_col">
                                         <div class="cart_item_title">Name</div>
-                                        <div class="cart_item_text">{{ Str::words($item->model->flat->name, 3, '') }}
+                                        <div class="cart_item_text">{{ Str::words($item->model->name, 3, '') }}
                                         </div>
                                     </div>
                                     <div class="cart_item_color cart_info_col">
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="cart_item_price cart_info_col">
                                         <div class="cart_item_title">Price</div>
-                                        <div class="cart_item_text">${{ $item->model->flat->price }}</div>
+                                        <div class="cart_item_text">${{ $item->model->price }}</div>
                                     </div>
                                     <div class="cart_item_total cart_info_col">
                                         <div class="cart_item_title">Total</div>

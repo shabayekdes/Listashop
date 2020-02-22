@@ -53,9 +53,7 @@ class CategoryController extends Controller
             });
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;
         } else {
-            $products = Product::whereHas('flat', function ($query) {
-                $query->where('featured', true);
-            });
+            $products = Product::where('featured', true);
             $categoryName = 'Featured';
         }
 
@@ -75,9 +73,9 @@ class CategoryController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::with('flat','images','attributes.options')->where('slug', $slug)->firstOrFail();
+        $product = Product::with('images','attributes')->where('slug', $slug)->firstOrFail();
         // dd($product->attributes);
-        $mightAlsoLike = Product::with('flat','images')->where('slug', '!=', $slug)->get();
+        $mightAlsoLike = Product::with('images')->where('slug', '!=', $slug)->get();
          return view('shop::product.index')->with([
             'product' => $product,
             'mightAlsoLike' => $mightAlsoLike,

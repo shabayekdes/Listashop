@@ -15,21 +15,23 @@ class AttributeTableSeeder extends Seeder
     public function run()
     {
         $attribute = Attribute::create([
+            'key' => 'color',
             'name' => 'Color'
         ]);
-        $attribute->options()->createMany([
-            ['label' => 'Red'],
-            ['label' => 'Black'],
-            ['label' => 'Blue'],
+        $attribute->values()->createMany([
+            ['value' => 'Red', 'position' => 0],
+            ['value' => 'Black', 'position' => 0],
+            ['value' => 'Blue', 'position' => 0],
         ]);
 
         $attribute = Attribute::create([
+            'key' => 'size',
             'name' => 'Size'
         ]);
-        $attribute->options()->createMany([
-            ['label' => 'Medium'],
-            ['label' => 'Large'],
-            ['label' => 'XLarge'],
+        $attribute->values()->createMany([
+            ['value' => 'Medium', 'position' => 0],
+            ['value' => 'Large', 'position' => 0],
+            ['value' => 'XLarge', 'position' => 0],
         ]);
     }
 }

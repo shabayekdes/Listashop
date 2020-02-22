@@ -13,7 +13,7 @@ $factory->define(Product::class, function (Faker\Generator $faker) {
         'cost' => $faker->numberBetween(10, 9000),
         'type' => Arr::random($type),
         'slug' => $faker->slug(),
-        'sku' => $faker->word(),
+        'sku' => $faker->unique()->word(),
         'is_active' => $faker->boolean(),
         'featured' => ceil(rand(0, 1)),
         'special_price' => $faker->numberBetween(10, 9000),

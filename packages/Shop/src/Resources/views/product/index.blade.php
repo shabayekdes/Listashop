@@ -30,10 +30,10 @@
             <!-- Selected Image -->
             <div class="col-lg-5 order-lg-2 order-1">
                 <div class="image_selected">
-                    @if (empty($product->flat->thumbnail))
+                    @if (empty($product->thumbnail))
                     <img src="{{ url( 'img/products/default.png') }}" alt="">
                     @else
-                    <img src="{{ url( 'storage/' . $product->flat->thumbnail) }}" alt="">
+                    <img src="{{ url( 'storage/' . $product->thumbnail) }}" alt="">
                     @endif
                 </div>
             </div>
@@ -42,10 +42,10 @@
             <div class="col-lg-5 order-3">
                 <div class="product_description">
                     <div class="product_category">Laptops</div>
-                    <div class="product_name">{{ $product->flat->name }}</div>
+                    <div class="product_name">{{ $product->name }}</div>
                     <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                     <div class="product_text">
-                        <p>{{ $product->flat->description }}</p>
+                        <p>{{ $product->description }}</p>
                     </div>
                     <div class="order_info d-flex flex-row">
                         <form action="{{ route('cart.store',$product) }}" method="POST">
@@ -88,7 +88,7 @@
                                 @endforeach
                             </div>
 
-                            <div class="product_price">{{ presentPrice($product->flat->price) }}</div>
+                            <div class="product_price">{{ presentPrice($product->price) }}</div>
                             <div class="button_container">
                                 <button type="submit" class="button cart_button">Add to Cart</button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
