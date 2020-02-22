@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $pagination = 9;
         $categories = $this->category->all();
         if (request()->category) {
-            $products = Product::with('categories')->whereHas('categories', function ($query) {
+            $products = Product::whereHas('category', function ($query) {
                 $query->where('slug', request()->category);
             });
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;
@@ -73,8 +73,9 @@ class CategoryController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-        $mightAlsoLike = Product::where('slug', '!=', $slug)->get();
+        $product = Product::with('images','attributes')->where('slug', $slug)->firstOrFail();
+        // dd($product->attributes);
+        $mightAlsoLike = Product::with('images')->where('slug', '!=', $slug)->get();
          return view('shop::product.index')->with([
             'product' => $product,
             'mightAlsoLike' => $mightAlsoLike,

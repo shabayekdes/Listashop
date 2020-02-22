@@ -11,31 +11,32 @@ class ProductTableSeeder extends Seeder
 {
     public function run(Faker $faker)
     {
-        // factory(Product::class,10)->create();
+        factory(Product::class,10)->create();
 
-        $type = ['simple', 'configurable'];
+        // $type = ['simple', 'configurable'];
 
-        for ($i=0; $i < 10 ; $i++) {
+        // for ($i=0; $i < 10 ; $i++) {
 
-            $id = $i+1;
+        //     $id = $i+1;
 
-            $product = Product::create([
-                'sku' => $faker->unique()->randomNumber,
-                'slug' => $faker->unique()->randomNumber,
-                'type' => Arr::random($type),
-                'categories_id' => ceil(rand(1, 7))
-            ]);
-            $product->flat()->create([
-                'sku' => $faker->unique()->randomNumber,
-                'name' => $faker->sentence(),
-                'price' => rand(1999, 9999),
-                'thumbnail' => 'products/'. $id .'/product-'. $id .'.jpg',
-                'cost' => rand(599, 2000),
-                'description' => $faker->text(),
-                'featured' => ceil(rand(0, 1)),
-                'special_price' => rand(599, 2000)
-            ]);
-        }
+        //     $product = Product::create([
+        //         'type' => Arr::random($type),
+        //         'category_id' => ceil(rand(1, 5)),
+        //         'sku' => $faker->unique()->randomNumber,
+        //         'thumbnail' => 'products/'. $id .'/product-'. $id .'.jpg',
+        //         'cost' => rand(599, 2000),
+        //         'description' => $faker->text(),
+        //         'featured' => ceil(rand(0, 1)),
+        //         'name' => $faker->text(60),
+        //         'description' => $faker->paragraph(),
+        //         'price' => $faker->numberBetween(10, 9000),
+        //         'type' => Arr::random($type),
+        //         'slug' => $faker->unique()->slug(),
+        //         'sku' => $faker->unique()->word(),
+        //         'is_active' => $faker->boolean(),
+        //     ]);
+
+        // }
 
 
     }

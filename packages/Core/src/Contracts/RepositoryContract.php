@@ -6,15 +6,6 @@ namespace Core\Contracts;
 interface RepositoryContract
 {
     /**
-     * Retrieve data array for populate field select
-     * Compatible with Laravel 5.3
-     * @param string $column
-     * @param string|null $key
-     *
-     * @return \Illuminate\Support\Collection|array
-     */
-    public function pluck($column, $key = null);
-    /**
      * Sync relations
      *
      * @param $id

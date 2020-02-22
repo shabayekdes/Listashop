@@ -53,7 +53,7 @@ class ShopServiceProvider extends ServiceProvider
      */
     protected function composeView()
     {
-        view()->composer(['shop::layouts.header.*','shop::category.*'], function ($view) {
+        view()->composer(['shop::layouts.header.*','shop::category.*','shop::home'], function ($view) {
             $categories = Category::all();
 
             $view->with('categories', $categories);

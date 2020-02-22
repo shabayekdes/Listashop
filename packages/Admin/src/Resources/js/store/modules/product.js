@@ -10,7 +10,7 @@ const state = {
         price: "",
         cost: "",
         type: "simple",
-        categories_id: ""
+        category_id: ""
     },
     variations: []
 };
@@ -28,6 +28,7 @@ const actions = {
 
         commit("SHOW_LIST_PRODUCTS", response.data);
         commit("SET_META_DATA", response.data, { root: true });
+        commit("SET_LOADING", { root: true });
     },
     async storeProduct({ commit, rootState }, data) {
         try {
@@ -40,10 +41,18 @@ const actions = {
 
             commit("NEW_PRODUCT", response.data);
             commit("RESET_NEW_PRODUCT");
+            commit("RESET_SELECTED_ATTR");
+            commit("SET_LOADING", { root: true });
+
             rootState.status = "ok";
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
+    },
+    async showProduct({ commit }, id) {
+        const response = await axios.get(`${urlApi}product/${id}`);
+
+        commit("SET_PRODUCT", response.data.data);
     },
     async updateProduct({ commit, rootState }, data) {
         try {
@@ -115,7 +124,7 @@ const mutations = {
             price: "",
             cost: "",
             type: "simple",
-            categories_id: ""
+            category_id: ""
         };
     }
 };

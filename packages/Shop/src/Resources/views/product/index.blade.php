@@ -19,7 +19,7 @@
             <!-- Images -->
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
-                    @foreach ($product->images()->limit(3)->get() as $image)
+                    @foreach ($product->images as $image)
                     <li data-image="{{ url('storage/'.$image->path) }}"><img src="{{ url('storage/'.$image->path) }}"
                             alt=""></li>
                     @endforeach
@@ -48,7 +48,8 @@
                         <p>{{ $product->description }}</p>
                     </div>
                     <div class="order_info d-flex flex-row">
-                        <form action="#">
+                        <form action="{{ route('cart.store',$product) }}" method="POST">
+                            @csrf
                             <div class="clearfix" style="z-index: 1000;">
 
                                 <!-- Product Quantity -->
@@ -62,35 +63,34 @@
                                                 class="fas fa-chevron-down"></i></div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="clearfix" style="z-index: 1000;">
 
                                 <!-- Product Color -->
+                                @foreach ($product->attributes as $attribute)
                                 <ul class="product_color">
                                     <li>
-                                        <span>Color: </span>
+                                        <span>{{ $attribute->name }}:</span>
                                         <div class="color_mark_container">
-                                            <div id="selected_color" class="color_mark"></div>
+                                            <div id="selected_color"></div>
                                         </div>
                                         <div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
 
                                         <ul class="color_list">
-                                            <li>
-                                                <div class="color_mark" style="background: #999999;"></div>
-                                            </li>
-                                            <li>
-                                                <div class="color_mark" style="background: #b19c83;"></div>
-                                            </li>
-                                            <li>
-                                                <div class="color_mark" style="background: #000000;"></div>
-                                            </li>
+
+                                            @foreach ($attribute->options as $option)
+
+                                            <li>{{ $option->label }}</li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                 </ul>
-
+                                @endforeach
                             </div>
 
-                            <div class="product_price">{{ $product->price }}</div>
+                            <div class="product_price">{{ presentPrice($product->price) }}</div>
                             <div class="button_container">
-                                <a href="{{ route('cart.store',$product)}}" class="button cart_button">Add to Cart</a>
+                                <button type="submit" class="button cart_button">Add to Cart</button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                             </div>
 

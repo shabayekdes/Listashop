@@ -115,8 +115,11 @@
                 @foreach( Cart::content() as $item)
                 <div class="checkout-table-row">
                     <div class="checkout-table-row-left">
-                        <img src="{{ url('/img/products/'.$item->model->thumb_url) }}" alt="item"
-                            class="checkout-table-img">
+                            @if (empty($item->model->thumbnail))
+                                <img src="{{ url( 'img/products/default.png') }}" alt="item" class="checkout-table-img">
+                            @else
+                                <img src="{{ url( 'storage/' . $item->model->thumbnail) }}" alt="item" class="checkout-table-img">
+                            @endif
                         <div class="checkout-item-details">
                             <div class="checkout-table-item">{{ Str::words($item->model->name, 3, '') }}</div>
                             <div class="checkout-table-description">15 inch, 1TB SSD, 32GB RAM</div>

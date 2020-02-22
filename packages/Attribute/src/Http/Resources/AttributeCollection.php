@@ -18,7 +18,7 @@ class AttributeCollection extends ResourceCollection
             return [
                 'id' => $item->id,
                 'name' =>$item->name,
-                'options' => AttributeOptionResource::collection($item->options)
+                'options' => AttributeValueResource::collection($item->values)
             ];
         });
     }

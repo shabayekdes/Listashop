@@ -19,6 +19,14 @@ class TestController extends Controller
      */
     public function index()
     {
+
+        $price = 8759;
+        $new_price = 1980;
+        $discount = (int) 100 - ceil($new_price * 100 / $price). "%";
+
+        dd($discount);
+
+
         $product = Product::with('flat','images','options','options.attribute')->where('id', 1)->first();
 
         dd($product->attributes()->get());

@@ -136,11 +136,11 @@
             <div class="form-group">
               <label>Select Category</label>
               <select
-                v-model="getSingleProduct.categories_id"
-                name="categories_id"
-                id="categories_id"
+                v-model="getSingleProduct.category_id"
+                name="category_id"
+                id="category_id"
                 class="custom-select"
-                :class="{ 'is-invalid': hasError('categories_id') }"
+                :class="{ 'is-invalid': hasError('category_id') }"
               >
                 <option value disabled>Select Category</option>
                 <option
@@ -149,7 +149,7 @@
                   :value="category.id"
                 >{{ category.name }}</option>
               </select>
-              <has-error field="categories_id"></has-error>
+              <has-error field="category_id"></has-error>
             </div>
           </div>
           <!-- /.card-body -->
@@ -314,6 +314,7 @@ export default {
       "storeProduct",
       "updateProduct",
       "setProduct",
+      "showProduct",
       "fetchListCategories",
       "fetchListAttributes",
       "addThumb",
@@ -321,7 +322,7 @@ export default {
       "setMode",
       "setError"
     ]),
-    ...mapMutations(["SET_STATUS"]),
+    ...mapMutations(["SET_STATUS", "SET_LOADING"]),
     createProduct() {
       const formData = new FormData();
       for (const [key, value] of Object.entries(this.getSingleProduct)) {
@@ -334,6 +335,13 @@ export default {
         formData.append("images[thumb]", this.getThumb.file);
       }
       formData.append("variations", JSON.stringify(this.getVariations));
+
+      let result = this.getSelectedAttr.map(a => a.id);
+
+      result.forEach(r => {
+        formData.append("attributes[]", r);
+      });
+
       this.storeProduct(formData);
     },
     patchProduct() {
@@ -351,12 +359,13 @@ export default {
   },
   created() {
     this.fetchListAttributes("all");
-    if (this.$route.params.id == undefined) {
-      this.setMode(false);
-    } else {
-      this.setMode(true);
-      this.setProduct(this.product);
-    }
+    this.SET_LOADING();
+    // if (this.$route.params.id == undefined) {
+    //   this.setMode(false);
+    // } else {
+    //   this.setMode(true);
+    this.showProduct(this.$route.params.id);
+    // }
     this.SET_STATUS("");
     this.fetchListCategories("all");
   },
@@ -372,6 +381,7 @@ export default {
     "getSingleProduct",
     "getAllCategories",
     "getVariations",
+    "getSelectedAttr",
     "getMode",
     "getFiles",
     "getImages",

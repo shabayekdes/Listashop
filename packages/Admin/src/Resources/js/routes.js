@@ -10,6 +10,7 @@ import ListProducts from "@Admin/pages/product/List.vue";
 import EditProducts from "@Admin/pages/product/Edit.vue";
 
 import ListOrders from "@Admin/pages/order/List.vue";
+import ViewOrder from "@Admin/pages/order/View.vue";
 
 import ListAttributes from "@Admin/pages/attribute/List.vue";
 import ShowAttribute from "@Admin/pages/attribute/Show.vue";
@@ -80,6 +81,15 @@ export const routes = [
                 component: ListOrders,
                 meta: {
                     text: "Orders"
+                }
+            },
+            {
+                path: "order/view/:id",
+                name: "order.view",
+                component: ViewOrder,
+                props: true,
+                meta: {
+                    text: "View Order"
                 }
             },
             {

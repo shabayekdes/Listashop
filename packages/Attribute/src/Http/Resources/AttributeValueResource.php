@@ -4,7 +4,7 @@ namespace Attribute\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AttributeOptionResource extends JsonResource
+class AttributeValueResource extends JsonResource
 {
 
     /**

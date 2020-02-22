@@ -15,6 +15,7 @@ class ProductServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadFactoriesFrom(__DIR__ . '/../Database/Factories');
 
     }
 
@@ -25,6 +26,6 @@ class ProductServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
+
     }
 }

@@ -21,7 +21,7 @@ Route::namespace('Shop\Http\Controllers')->group(function(){
     Route::get('/store/{product}', 'CategoryController@show')->name('store.show');
 
     Route::get('/cart', 'CartController@index')->name('cart.index');
-    Route::get('/cart/{product}', 'CartController@store')->name('cart.store');
+    Route::post('/cart/{product}', 'CartController@store')->name('cart.store');
 
 
 

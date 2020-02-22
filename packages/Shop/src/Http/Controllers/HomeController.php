@@ -3,35 +3,23 @@
 namespace Shop\Http\Controllers;
 
 use Product\Models\Product;
-use Category\Models\Category;
 use App\Http\Controllers\Controller;
-use Product\Repositories\ProductRepository;
 
 /**
  * Home page controller
  */
 class HomeController extends Controller
 {
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(ProductRepository $product)
-    {
-
-    }
-
     public function index()
     {
-        $product = Product::latest();
+        $products = Product::whereIn('type', ['simple', 'configurable'])->take(20)->get();
 
-        $products = $product->get();
+        // dd($products);
 
-        $saleProducts = $product->get();
+        $featuredProducts = Product::where('featured','=', true)->whereIn('type', ['simple', 'configurable'])->get();
 
-        $featuredProducts = $product->get();
+        $saleProducts = Product::where('special_price','!=', null)->whereIn('type', ['simple', 'configurable'])->get();
+
         return view('shop::home', compact('featuredProducts', 'saleProducts', 'products'));
     }
 

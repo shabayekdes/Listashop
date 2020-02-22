@@ -61,8 +61,13 @@
                         <div class="product_item is_new">
 
                             <div class="product_border"></div>
-                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img
-                                    src="{{ $product->thumbnail }}" alt=""></div>
+                            <div class="product_image d-flex flex-column align-items-center justify-content-center">
+                                @if (empty($product->thumbnail))
+                                <img src="{{ url( 'img/products/default.png') }}" alt="">
+                                @else
+                                <img src="{{ url( 'storage/' . $product->thumbnail) }}" alt="">
+                                @endif
+                            </div>
                             <div class="product_content">
                                 <div class="product_price">{{ $product->price }}</div>
                                 <div class="product_name">

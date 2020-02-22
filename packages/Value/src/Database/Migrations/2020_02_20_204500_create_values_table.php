@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttributeOptionsTable extends Migration
+class CreateValuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateAttributeOptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('attribute_options', function (Blueprint $table) {
+        Schema::create('values', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('label');
-            $table->unsignedInteger('attribute_id');
-            $table->foreign('attribute_id')->references('id')->on('attributes');
+            $table->string('value');
+            $table->decimal('price', 18, 4)->nullable();
+            $table->string('price_type', 10)->nullable();
+            $table->unsignedInteger('position');
+            $table->unsignedInteger('valuable_id');
+            $table->string('valuable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateAttributeOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attribute_options');
+        Schema::dropIfExists('values');
     }
 }

@@ -38,7 +38,7 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
         }
 
-        Cart::add($id, $product->name, 1, $product->price)
+        Cart::add($id, $product->first()->name, 1, $product->first()->price)
             ->associate('Product\Models\Product');
 
         return redirect()->back()->with('success', 'Product was added');

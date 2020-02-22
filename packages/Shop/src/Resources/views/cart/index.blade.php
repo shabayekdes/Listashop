@@ -13,21 +13,25 @@
     <div class="container">
         <div class="row">
             @if (Cart::count() > 0)
-            <h2>{{ Cart::count() }} item(s) in Shopping Cart</h2>
-
             <div class="col-lg-10 offset-lg-1">
                 <div class="cart_container">
-                    <div class="cart_title">Shopping Cart</div>
+                    <div class="cart_title">{{ Cart::count() }} item(s) in Shopping Cart</div>
                     <div class="cart_items">
                         <ul class="cart_list">
                             @foreach( Cart::content() as $item)
                             <li class="cart_item clearfix">
-                                <div class="cart_item_image"><img
-                                        src="{{ url('/img/products/'.$item->model->thumb_url) }}" alt=""></div>
+                                <div class="cart_item_image">
+                                    @if (empty($item->model->thumbnail))
+                                    <img src="{{ url( 'img/products/default.png') }}" alt="">
+                                    @else
+                                    <img src="{{ url( 'storage/' . $item->model->thumbnail) }}" alt="">
+                                    @endif
+                                </div>
                                 <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                     <div class="cart_item_name cart_info_col">
                                         <div class="cart_item_title">Name</div>
-                                        <div class="cart_item_text">{{ Str::words($item->model->name, 3, '') }}</div>
+                                        <div class="cart_item_text">{{ Str::words($item->model->name, 3, '') }}
+                                        </div>
                                     </div>
                                     <div class="cart_item_color cart_info_col">
                                         <div class="cart_item_title">Color</div>

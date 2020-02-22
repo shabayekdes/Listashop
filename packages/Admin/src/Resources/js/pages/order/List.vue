@@ -75,7 +75,7 @@
                           View
                         </a>
                         <router-link
-                          :to="{ name: 'product.create',  params: { order, editMode: true } }"
+                          :to="{ name: 'order.view',  params: { id: order.id } }"
                           class="btn btn-info btn-sm"
                         >
                           <i class="fas fa-pencil-alt"></i>
