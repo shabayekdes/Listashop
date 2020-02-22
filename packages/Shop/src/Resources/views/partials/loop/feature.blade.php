@@ -1,24 +1,24 @@
-<div class="product_item d-flex flex-column align-items-center justify-content-center text-center {{ $product->flat->new ? 'is_new' : 'discount' }}">
+<div class="product_item d-flex flex-column align-items-center justify-content-center text-center {{ $product->new ? 'is_new' : 'discount' }}">
 
     <div class="product_image d-flex flex-column align-items-center justify-content-center">
 
-        <img src="{{ empty($product->flat->thumbnail) ?url( 'img/products/default.png') : url( 'storage/' . $product->flat->thumbnail) }}" alt="">
+        <img src="{{ empty($product->thumbnail) ?url( 'img/products/default.png') : url( 'storage/' . $product->thumbnail) }}" alt="">
 
 
     </div>
 
         <div class="product_content">
-            @if (empty($product->flat->special_price))
-            <div class="product_price">{{ $product->flat->present_price }}</div>
+            @if (empty($product->special_price))
+            <div class="product_price">{{ $product->present_price }}</div>
 
             @else
             <div class="product_price discount">
-                {{ presentPrice($product->flat->special_price) }}<span>{{ $product->flat->present_price }}</span>
+                {{ presentPrice($product->special_price) }}<span>{{ $product->present_price }}</span>
             </div>
 
             @endif
             <div class="product_name">
-                <div><a href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->flat->name, 3, '') }}</a>
+                <div><a href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
                 </div>
             </div>
             <div class="product_extras">
@@ -39,7 +39,7 @@
 
         <ul class="product_marks">
             <li class="product_mark product_discount">
-                -{{ $product->flat->discount }}</li>
+                -{{ $product->discount }}</li>
             <li class="product_mark product_new">new</li>
         </ul>
     </div>

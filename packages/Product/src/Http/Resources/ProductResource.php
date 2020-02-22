@@ -19,10 +19,17 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'sku' => $this->sku,
             'slug' => $this->slug,
-            'categories_id' => $this->categories_id,
+            'category_id' => $this->category_id,
             'status' => $this->status,
-            'details' => $this->flat == null ? "" : new ProductFlat($this->flat),
+            'name' => $this->name,
+            'thumbnail' => $this->thumbnail != null ? url("/storage". "/". $this->thumbnail) : null,
+            'price' => $this->price,
+            'cost' => $this->cost,
+            'status' => $this->is_active,
+            'qty' => $this->qty,
+            'description' => $this->description,
             'images' => $this->images,
+
             // 'options' => $this->options->load('attribute')->first()->attribute
         ];
     }

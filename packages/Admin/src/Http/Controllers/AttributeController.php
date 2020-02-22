@@ -17,7 +17,6 @@ use Attribute\Repositories\AttributeOptionRepository;
 class AttributeController extends Controller
 {
     protected $attribute;
-    protected $option;
 
     /**
      * Attribute Controller constructor.
@@ -25,10 +24,9 @@ class AttributeController extends Controller
      * @param AttributeRepository $attribute
      * @param AttributeOptionRepository $option
      */
-    public function __construct(AttributeRepository $attribute, AttributeOptionRepository $option)
+    public function __construct(AttributeRepository $attribute)
     {
         $this->attribute = $attribute;
-        $this->option = $option;
     }
 
     /**
@@ -41,7 +39,7 @@ class AttributeController extends Controller
         if(request('show')){
             return new AttributeCollection($this->attribute->all());
         }
-        return AttributeResource::collection($this->attribute->with('options')->paginate());
+        return AttributeResource::collection($this->attribute->with('values')->paginate());
     }
 
     /**

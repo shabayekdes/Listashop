@@ -1,18 +1,28 @@
 <?php
 
-namespace Attribute\Models;
+namespace Option\Models;
 
 use Value\Models\Value;
 use Illuminate\Database\Eloquent\Model;
 
-class Attribute extends Model
+class Option extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['key', 'name'];
+    protected $fillable = ['key', 'name', 'type', 'is_required'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_required' => 'boolean',
+    ];
+
     /**
      * Get all of the option's values.
      */
@@ -20,5 +30,4 @@ class Attribute extends Model
     {
         return $this->morphMany(Value::class, 'valuable');
     }
-
 }

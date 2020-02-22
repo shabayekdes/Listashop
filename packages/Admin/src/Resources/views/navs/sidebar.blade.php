@@ -41,15 +41,6 @@
                         </p>
                     </router-link>
                 </li>
-                {{-- Category --}}
-                <li class="nav-item">
-                    <router-link to="/admin/categories" class="nav-link">
-                        <i class="nav-icon fas fa-tags"></i>
-                        <p>
-                            Category
-                        </p>
-                    </router-link>
-                </li>
                 {{-- Product --}}
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -64,15 +55,15 @@
                             <router-link to="/admin/products" class="nav-link">
                                 <i class="nav-icon fas fa-cart-arrow-down"></i>
                                 <p>
-                                    All Products
+                                    Catalog
                                 </p>
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/admin/product/create" class="nav-link">
-                                <i class="nav-icon fas fa-cart-arrow-down"></i>
+                            <router-link to="/admin/categories" class="nav-link">
+                                <i class="nav-icon fas fa-tags"></i>
                                 <p>
-                                    Add New
+                                    Category
                                 </p>
                             </router-link>
                         </li>
@@ -86,14 +77,25 @@
                         </li>
                     </ul>
                 </li>
-                {{-- Order --}}
-                <li class="nav-item">
-                    <router-link to="/admin/orders" class="nav-link">
+                {{-- Sales --}}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cart-arrow-down"></i>
                         <p>
-                            Order
+                            Sales
+                            <i class="right fas fa-angle-left"></i>
                         </p>
-                    </router-link>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <router-link to="/admin/orders" class="nav-link">
+                                <i class="nav-icon fas fa-cart-arrow-down"></i>
+                                <p>
+                                    Order
+                                </p>
+                            </router-link>
+                        </li>
+                    </ul>
                 </li>
                 {{-- Logout --}}
                 <li class="nav-item">

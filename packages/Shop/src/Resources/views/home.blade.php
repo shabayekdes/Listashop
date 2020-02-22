@@ -291,10 +291,10 @@
 
                                         @foreach ($products as $product)
                                         <!-- Best Sellers Item -->
-                                        @if ($product->flat->new)
+                                        @if ($product->new)
                                         <div class="bestsellers_item discount">
 
-                                            @elseif($product->flat->special_price != null)
+                                            @elseif($product->special_price != null)
                                             <div class="bestsellers_item is_new">
 
                                                 @else
@@ -304,10 +304,10 @@
                                                     <div
                                                         class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
                                                         <div class="bestsellers_image">
-                                                            @if (empty($product->flat->thumbnail))
+                                                            @if (empty($product->thumbnail))
                                                             <img src="{{ url( 'img/products/default.png') }}" alt="">
                                                             @else
-                                                            <img src="{{ url( 'storage/' . $product->flat->thumbnail) }}"
+                                                            <img src="{{ url( 'storage/' . $product->thumbnail) }}"
                                                                 alt="">
                                                             @endif
                                                         </div>
@@ -315,18 +315,18 @@
                                                             <div class="bestsellers_category"><a href="#">Headphones</a>
                                                             </div>
                                                             <div class="bestsellers_name"><a
-                                                                    href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->flat->name, 3, '') }}</a>
+                                                                    href="{{ url('store/'.$product->slug) }}">{{ Str::words($product->name, 3, '') }}</a>
                                                             </div>
                                                             <div class="rating_r rating_r_4 bestsellers_rating">
                                                                 <i></i><i></i><i></i><i></i><i></i></div>
 
-                                                            @if (empty($product->flat->special_price))
+                                                            @if (empty($product->special_price))
                                                             <div class="bestsellers_price">
-                                                                {{ $product->flat->present_price }}</div>
+                                                                {{ $product->present_price }}</div>
 
                                                             @else
                                                             <div class="bestsellers_price discount">
-                                                                {{ presentPrice($product->flat->special_price) }}<span>{{ $product->flat->present_price }}</span>
+                                                                {{ presentPrice($product->special_price) }}<span>{{ $product->present_price }}</span>
                                                             </div>
 
                                                             @endif

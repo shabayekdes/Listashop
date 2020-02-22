@@ -3,51 +3,22 @@
 namespace Product\Repositories;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Core\Eloquent\BaseRepository;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Container\Container as App;
-use Attribute\Repositories\AttributeOptionRepository;
-use Product\Repositories\ProductAttributeOptionRepository;
 
 
 class ProductRepository extends BaseRepository
 {
     /**
-     * ProductFlatRepository Repository Object
-     *
-     * @var object
-     */
-    protected $productFlat;
-    /**
-     * ProductAttributeOptionRepository Repository Object
-     *
-     * @var object
-     */
-    protected $pAttributeOption;
-    /**
-     * ProductAttributeOptionRepository Repository Object
-     *
-     * @var object
-     */
-    protected $attributeOption;
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(
-        ProductFlatRepository $productFlat,
-        ProductAttributeOptionRepository $pAttributeOption,
-        AttributeOptionRepository $attributeOption,
-        App $app
-        )
+    public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->productFlat = $productFlat;
-        $this->pAttributeOption = $pAttributeOption;
-        $this->attributeOption = $attributeOption;
     }
     /**
      * Specify Model class name
@@ -69,8 +40,6 @@ class ProductRepository extends BaseRepository
     {
         $product = $this->model->create($data);
         $variations = json_decode($data['variations'], true);
-
-        $this->productFlat->createProductFlat($data, $product);
 
         if($data['type'] == 'configurable'){
             $product->attributes()->attach($data['attributes']);
@@ -111,5 +80,43 @@ class ProductRepository extends BaseRepository
         $attributes_ids = Arr::pluck($variant['attributes'], 'id');
         $productVariant->options()->attach($attributes_ids);
         $this->productFlat->createProductFlat($data, $productVariant);
+    }
+    private function uploadImages($productFlat, $product)
+    {
+        if (request()->has('images')) {
+            foreach (request('images') as $key => $image) {
+                // Get filename with the extension
+                $filenameWithExt = $image->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just ext
+                $extension = $image->getClientOriginalExtension();
+                if($key == 'thumb'){
+
+                    $fileNameToStore= 'product-' . $product->id .'.'.$extension;
+                    $path = $image->storeAs('public/products/' . $product->id,  $fileNameToStore);
+                    $fileNameToStore = Str::replaceFirst('public/', '', $path);
+                    $productImage = $productFlat->update([
+                        'thumbnail' => $fileNameToStore
+                    ]);
+
+                }else{
+                    // Filename to store
+                    $fileNameToStore= $filename.'.'.$extension;
+                    // Upload Image
+                    $path = $image->store('public/products/' . $product->id);
+
+                    $fileNameToStore = Str::replaceFirst('public/', '', $path);
+
+                    $productImage = $product->images()->create([
+                        'path' => $fileNameToStore
+                    ]);
+                    $img = Image::make(public_path('storage/'.$productImage->path))->fit(130, 150, null, 'center');
+                    $img->save();
+                }
+
+            }
+        }
+        return $productFlat;
     }
 }

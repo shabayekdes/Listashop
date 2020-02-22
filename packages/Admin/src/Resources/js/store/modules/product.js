@@ -49,6 +49,11 @@ const actions = {
             commit("SET_ERRORS", e.response.data.errors);
         }
     },
+    async showProduct({ commit }, id) {
+        const response = await axios.get(`${urlApi}product/${id}`);
+
+        commit("SET_PRODUCT", response.data.data);
+    },
     async updateProduct({ commit, rootState }, data) {
         try {
             const response = await axios.put(

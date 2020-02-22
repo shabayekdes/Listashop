@@ -188,6 +188,8 @@ return [
         Cart\Providers\CartServiceProvider::class,
         Order\Providers\OrderServiceProvider::class,
         Attribute\Providers\AttributeServiceProvider::class,
+        Option\Providers\OptionServiceProvider::class,
+        Value\Providers\ValueServiceProvider::class,
 
 
 
