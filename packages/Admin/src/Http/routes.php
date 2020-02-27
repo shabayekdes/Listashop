@@ -1,5 +1,16 @@
 <?php
 
+
+Route::group([
+    'middleware' => ['web']
+], function () {
+    Route::namespace('\Admin\Http\Controllers')->group(function () {
+        Route::get('admin-login','Auth\LoginController@showAdminLoginForm')->name('show.admin.login');
+        Route::post('admin-login','Auth\LoginController@login')->name('admin.login');
+
+    });
+});
+
 Route::group([
     'middleware' => ['auth:api-admin', 'admin', 'api']
 ], function () {
