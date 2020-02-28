@@ -21,6 +21,7 @@ Route::group([
         Route::apiResource('order', 'OrderController');
         Route::apiResource('attribute', 'AttributeController');
         // Route::apiResource('attribute-options', 'AttributeOptionController');
+        Route::apiResource('option', 'OptionController');
 
         Route::post('attribute-options/{id}', 'AttributeController@storeOption');
         Route::put('attribute-options/{option}', 'AttributeController@updateOption');
