@@ -54,29 +54,24 @@
               <div class="row">
                 <div class="col-sm-12">
                   <datatable :columns="columns" :length="getAllOptions.length">
-                    <tr role="row" v-for="attribute in getAllOptions" :key="attribute.id">
-                      <td class="sorting_1">{{ attribute.id }}</td>
-                      <td>{{ attribute.name }}</td>
-                      <td v-if="attribute.options != ''">{{ attribute.options }}</td>
-                      <td v-else>-</td>
+                    <tr role="row" v-for="option in getAllOptions" :key="option.id">
+                      <td class="sorting_1">{{ option.id }}</td>
+                      <td>{{ option.name }}</td>
+                      <td>{{ option.type }}</td>
                       <td class="project-actions text-right">
                         <router-link
-                          :to="{ name: 'attribute.show',  params: { id: attribute.id } }"
+                          :to="{ name: 'option.show',  params: { id: option.id } }"
                           class="btn btn-primary btn-sm"
                         >
                           View
                           <i class="fas fa-folder"></i>
                         </router-link>
 
-                        <a class="btn btn-info btn-sm" @click="editModel(attribute)" href="#">
+                        <a class="btn btn-info btn-sm" @click="editModel(option)" href="#">
                           <i class="fas fa-pencil-alt"></i>
                           Edit
                         </a>
-                        <a
-                          class="btn btn-danger btn-sm"
-                          @click="deleteAttribute(attribute.id)"
-                          href="#"
-                        >
+                        <a class="btn btn-danger btn-sm" href="#">
                           <i class="fas fa-trash"></i>
                           Delete
                         </a>
@@ -119,7 +114,7 @@ export default {
       columns: [
         { width: "2%", label: "#", name: "id", active: true },
         { width: "15%", label: "Name", name: "name", active: true },
-        { width: "15%", label: "Terms", name: "options", active: true },
+        { width: "15%", label: "Type", name: "type", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]
     };

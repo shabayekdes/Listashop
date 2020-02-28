@@ -13,9 +13,9 @@ const state = {
 const getters = {
     getAllAttributes: state => state.attributes,
     getSelectedAttr: state => state.selectedAttr,
-    getSingleAttribute: state => state.attribute,
+    getSingleAttribute: state => state.attribute
 
-    getAllOptions: state => state.options
+    // getAllOptions: state => state.options
 };
 
 const actions = {

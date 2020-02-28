@@ -2822,11 +2822,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -2852,8 +2847,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         active: true
       }, {
         width: "15%",
-        label: "Terms",
-        name: "options",
+        label: "Type",
+        name: "type",
         active: true
       }, {
         width: "18%",
@@ -43614,22 +43609,18 @@ var render = function() {
                               length: _vm.getAllOptions.length
                             }
                           },
-                          _vm._l(_vm.getAllOptions, function(attribute) {
+                          _vm._l(_vm.getAllOptions, function(option) {
                             return _c(
                               "tr",
-                              { key: attribute.id, attrs: { role: "row" } },
+                              { key: option.id, attrs: { role: "row" } },
                               [
                                 _c("td", { staticClass: "sorting_1" }, [
-                                  _vm._v(_vm._s(attribute.id))
+                                  _vm._v(_vm._s(option.id))
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(attribute.name))]),
+                                _c("td", [_vm._v(_vm._s(option.name))]),
                                 _vm._v(" "),
-                                attribute.options != ""
-                                  ? _c("td", [
-                                      _vm._v(_vm._s(attribute.options))
-                                    ])
-                                  : _c("td", [_vm._v("-")]),
+                                _c("td", [_vm._v(_vm._s(option.type))]),
                                 _vm._v(" "),
                                 _c(
                                   "td",
@@ -43641,8 +43632,8 @@ var render = function() {
                                         staticClass: "btn btn-primary btn-sm",
                                         attrs: {
                                           to: {
-                                            name: "attribute.show",
-                                            params: { id: attribute.id }
+                                            name: "option.show",
+                                            params: { id: option.id }
                                           }
                                         }
                                       },
@@ -43663,7 +43654,7 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.editModel(attribute)
+                                            return _vm.editModel(option)
                                           }
                                         }
                                       },
@@ -43681,14 +43672,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass: "btn btn-danger btn-sm",
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.deleteAttribute(
-                                              attribute.id
-                                            )
-                                          }
-                                        }
+                                        attrs: { href: "#" }
                                       },
                                       [
                                         _c("i", {
@@ -65696,10 +65680,8 @@ var getters = {
   },
   getSingleAttribute: function getSingleAttribute(state) {
     return state.attribute;
-  },
-  getAllOptions: function getAllOptions(state) {
-    return state.options;
-  }
+  } // getAllOptions: state => state.options
+
 };
 var actions = {
   fetchListAttributes: function fetchListAttributes(_ref) {

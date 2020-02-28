@@ -29,7 +29,7 @@ class OptionController extends Controller
      */
     public function index()
     {
-        return new OptionCollection($this->option->all());
+        return new OptionCollection($this->option->paginate());
     }
 
     /**

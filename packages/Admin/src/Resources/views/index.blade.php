@@ -34,10 +34,10 @@
 
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2019 <a href="#">Shabayekdes</a>.</strong>
+            <strong>Copyright &copy; 2019-2020 <a href="#">Shabayekdes</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 0.2.0-beta
+                <b>Version</b> 0.3.1-beta
             </div>
         </footer>
 
