@@ -16,6 +16,7 @@ import ListAttributes from "@Admin/pages/attribute/List.vue";
 import ShowAttribute from "@Admin/pages/attribute/Show.vue";
 
 import ListOptions from "@Admin/pages/option/List.vue";
+import EditOption from "@Admin/pages/option/Edit.vue";
 
 import NotFound from "@Admin/views/NotFound.vue";
 
@@ -116,6 +117,22 @@ export const routes = [
                 component: ListOptions,
                 meta: {
                     text: "Options"
+                }
+            },
+            {
+                path: "option/create",
+                name: "option.create",
+                component: EditOption,
+                meta: {
+                    text: "Create Option"
+                }
+            },
+            {
+                path: "option/:id/edit",
+                name: "option.edit",
+                component: EditOption,
+                meta: {
+                    text: "Edit Option"
                 }
             }
         ]

@@ -15,6 +15,15 @@ class Option extends Model
     protected $fillable = ['key', 'name', 'type', 'is_required'];
 
     /**
+     * Available option types.
+     *
+     * @var array
+     */
+    const types = [
+        'dropdown', 'checkbox', 'radio', 'multiple_select',
+    ];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
