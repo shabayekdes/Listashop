@@ -43966,8 +43966,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: value.name,
-                                  expression: "value.name"
+                                  value: value.value,
+                                  expression: "value.value"
                                 }
                               ],
                               staticClass: "form-control",
@@ -43976,13 +43976,13 @@ var render = function() {
                                 id: "inputName" + key,
                                 placeholder: "Enter Option name ..."
                               },
-                              domProps: { value: value.name },
+                              domProps: { value: value.value },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(value, "name", $event.target.value)
+                                  _vm.$set(value, "value", $event.target.value)
                                 }
                               }
                             })
@@ -44024,8 +44024,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: value.type,
-                                    expression: "value.type"
+                                    value: value.price_type,
+                                    expression: "value.price_type"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -44042,7 +44042,7 @@ var render = function() {
                                       })
                                     _vm.$set(
                                       value,
-                                      "type",
+                                      "price_type",
                                       $event.target.multiple
                                         ? $$selectedVal
                                         : $$selectedVal[0]
@@ -44089,8 +44089,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.optionValue.name,
-                              expression: "optionValue.name"
+                              value: _vm.optionValue.value,
+                              expression: "optionValue.value"
                             }
                           ],
                           staticClass: "form-control",
@@ -44098,7 +44098,7 @@ var render = function() {
                             type: "text",
                             placeholder: "Enter Option name ..."
                           },
-                          domProps: { value: _vm.optionValue.name },
+                          domProps: { value: _vm.optionValue.value },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
@@ -44106,7 +44106,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.optionValue,
-                                "name",
+                                "value",
                                 $event.target.value
                               )
                             }
@@ -44153,8 +44153,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.optionValue.type,
-                                expression: "optionValue.type"
+                                value: _vm.optionValue.price_type,
+                                expression: "optionValue.price_type"
                               }
                             ],
                             staticClass: "form-control",
@@ -44170,7 +44170,7 @@ var render = function() {
                                   })
                                 _vm.$set(
                                   _vm.optionValue,
-                                  "type",
+                                  "price_type",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]

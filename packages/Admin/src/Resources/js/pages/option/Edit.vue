@@ -71,7 +71,7 @@
                       <input
                         type="text"
                         :id="'inputName' + key"
-                        v-model="value.name"
+                        v-model="value.value"
                         class="form-control"
                         placeholder="Enter Option name ..."
                       />
@@ -86,7 +86,7 @@
                       />
                     </td>
                     <td>
-                      <select class="form-control" v-model="value.type">
+                      <select class="form-control" v-model="value.price_type">
                         <option v-for="type in priceTypes" :value="type" :key="type">{{ type }}</option>
                       </select>
                     </td>
@@ -104,7 +104,7 @@
                     <td>
                       <input
                         type="text"
-                        v-model="optionValue.name"
+                        v-model="optionValue.value"
                         class="form-control"
                         placeholder="Enter Option name ..."
                       />
@@ -118,7 +118,7 @@
                       />
                     </td>
                     <td>
-                      <select v-model="optionValue.type" class="form-control">
+                      <select v-model="optionValue.price_type" class="form-control">
                         <option v-for="type in priceTypes" :value="type" :key="type">{{ type }}</option>
                       </select>
                     </td>

@@ -40,7 +40,6 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         return $this->option->create($request->all());
     }
 
