@@ -28,14 +28,17 @@ const actions = {
         }
         commit("SHOW_LIST_OPTIONS", response.data);
     },
-    async storeOption({ commit }, data) {
+    async storeOption({ commit, rootState }, data) {
         try {
             const response = await axios.post(`${urlApi}option`, data);
 
             console.log(data);
             commit("NEW_OPTION", response.data);
-            // commit("RESET_NEW_OPTION");
+            commit("RESET_NEW_OPTION");
+            commit("RESET_NEW_OPTION_VALUE");
             commit("SET_ERRORS", {});
+
+            rootState.status = "ok";
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
@@ -51,6 +54,14 @@ const mutations = {
     },
     NEW_OPTION: (state, data) => {
         state.options.unshift(data);
+    },
+    RESET_NEW_OPTION: state => {
+        state.option = {
+            id: "",
+            name: "",
+            type: ""
+        };
+        state.optionValues = [];
     },
     NEW_SELECTED_OPTION_VAL: (state, value) => {
         state.optionValues.unshift(value);

@@ -4,6 +4,7 @@ namespace Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Option\Http\Requests\OptionRequest;
 use Option\Repositories\OptionRepository;
 use Option\Http\Resources\OptionCollection;
 
@@ -38,7 +39,7 @@ class OptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OptionRequest $request)
     {
         return $this->option->create($request->all());
     }

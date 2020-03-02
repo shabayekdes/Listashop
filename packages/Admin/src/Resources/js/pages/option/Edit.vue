@@ -27,9 +27,15 @@
               </div>
               <div class="form-group">
                 <label for="selectType">Type</label>
-                <select class="form-control" v-model="getSingleOption.type">
+                <select
+                  class="custom-select"
+                  v-model="getSingleOption.type"
+                  :class="{ 'is-invalid': hasError('type') }"
+                >
+                  <option value selected disabled>Select type</option>
                   <option v-for="type in optionTypes" :value="type" :key="type">{{ type }}</option>
                 </select>
+                <has-error field="type"></has-error>
               </div>
             </div>
             <!-- /.card-body -->
@@ -87,6 +93,7 @@
                     </td>
                     <td>
                       <select class="form-control" v-model="value.price_type">
+                        <option value selected disabled>Select price type</option>
                         <option v-for="type in priceTypes" :value="type" :key="type">{{ type }}</option>
                       </select>
                     </td>
@@ -106,19 +113,20 @@
                         type="text"
                         v-model="optionValue.value"
                         class="form-control"
-                        placeholder="Enter Option name ..."
+                        placeholder="Enter value name ..."
                       />
                     </td>
                     <td>
                       <input
-                        type="text"
+                        type="number"
                         v-model="optionValue.price"
                         class="form-control"
-                        placeholder="Enter Option name ..."
+                        placeholder="Enter amount price ..."
                       />
                     </td>
                     <td>
                       <select v-model="optionValue.price_type" class="form-control">
+                        <option value selected disabled>Select price type</option>
                         <option v-for="type in priceTypes" :value="type" :key="type">{{ type }}</option>
                       </select>
                     </td>
@@ -134,12 +142,8 @@
             <a
               href="#"
               @click.stop.prevent="addValue"
-              class="btn btn-sm btn-info float-left"
-            >Place New Order</a>
-            <a
-              href="javascript:void(0)"
-              class="btn btn-sm btn-secondary float-right"
-            >View All Orders</a>
+              class="btn btn-sm btn-default float-left"
+            >Add Value</a>
           </div>
           <!-- /.card-footer -->
         </div>
@@ -166,10 +170,10 @@ export default {
       optionTypes: ["Dropdown", "Checkbox"],
       priceTypes: ["Fixed", "Percentage"],
       optionType: {
-        type: "Dropdown"
+        type: ""
       },
       optionValue: {
-        type: "Fixed"
+        price_type: ""
       }
     };
   },
@@ -178,25 +182,37 @@ export default {
     ...mapMutations(["REMOVE_OPTION_VALUE"]),
     createOption() {
       this.storeOption({
-        option: this.getSingleOption,
+        name: this.getSingleOption.name,
+        type: this.getSingleOption.type,
         values: this.getAllOptionValues
       });
     },
     addValue() {
-      this.addSelectedOptionVal(this.optionValue);
-      this.optionValue = {
-        type: "Fixed"
-      };
+      if (this.optionValue.value != undefined) {
+        this.addSelectedOptionVal(this.optionValue);
+        this.optionValue = {
+          price_type: ""
+        };
+      }
     },
     removeValue(value) {
-      //   console.log(this.getAllOptionValues.indexOf(value));
-      // this.events.splice(this.events.indexOf(event), 1);
       this.REMOVE_OPTION_VALUE(value);
+      this.optionValue = {
+        price_type: ""
+      };
+    }
+  },
+  watch: {
+    getStatus(val, oldVal) {
+      if (val == "ok") {
+        this.$router.push({ path: "/admin/options" });
+      }
     }
   },
   computed: mapGetters([
     "getSingleOption",
     "getAllOptionValues",
+    "getStatus",
     "getMode",
     "hasError"
   ])

@@ -2876,6 +2876,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2888,33 +2892,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       optionTypes: ["Dropdown", "Checkbox"],
       priceTypes: ["Fixed", "Percentage"],
       optionType: {
-        type: "Dropdown"
+        type: ""
       },
       optionValue: {
-        type: "Fixed"
+        price_type: ""
       }
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["storeOption", "addSelectedOptionVal"]), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["REMOVE_OPTION_VALUE"]), {
     createOption: function createOption() {
       this.storeOption({
-        option: this.getSingleOption,
+        name: this.getSingleOption.name,
+        type: this.getSingleOption.type,
         values: this.getAllOptionValues
       });
     },
     addValue: function addValue() {
-      this.addSelectedOptionVal(this.optionValue);
-      this.optionValue = {
-        type: "Fixed"
-      };
+      if (this.optionValue.value != undefined) {
+        this.addSelectedOptionVal(this.optionValue);
+        this.optionValue = {
+          price_type: ""
+        };
+      }
     },
     removeValue: function removeValue(value) {
-      //   console.log(this.getAllOptionValues.indexOf(value));
-      // this.events.splice(this.events.indexOf(event), 1);
       this.REMOVE_OPTION_VALUE(value);
+      this.optionValue = {
+        price_type: ""
+      };
     }
   }),
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleOption", "getAllOptionValues", "getMode", "hasError"])
+  watch: {
+    getStatus: function getStatus(val, oldVal) {
+      if (val == "ok") {
+        this.$router.push({
+          path: "/admin/options"
+        });
+      }
+    }
+  },
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleOption", "getAllOptionValues", "getStatus", "getMode", "hasError"])
 });
 
 /***/ }),
@@ -43853,53 +43870,69 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "selectType" } }, [
-                    _vm._v("Type")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.getSingleOption.type,
-                          expression: "getSingleOption.type"
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("label", { attrs: { for: "selectType" } }, [
+                      _vm._v("Type")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.getSingleOption.type,
+                            expression: "getSingleOption.type"
+                          }
+                        ],
+                        staticClass: "custom-select",
+                        class: { "is-invalid": _vm.hasError("type") },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.getSingleOption,
+                              "type",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      ],
-                      staticClass: "form-control",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.getSingleOption,
-                            "type",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
+                      },
+                      [
+                        _c(
+                          "option",
+                          { attrs: { value: "", selected: "", disabled: "" } },
+                          [_vm._v("Select type")]
+                        ),
+                        _vm._v(" "),
+                        _vm._l(_vm.optionTypes, function(type) {
+                          return _c(
+                            "option",
+                            { key: type, domProps: { value: type } },
+                            [_vm._v(_vm._s(type))]
                           )
-                        }
-                      }
-                    },
-                    _vm._l(_vm.optionTypes, function(type) {
-                      return _c(
-                        "option",
-                        { key: type, domProps: { value: type } },
-                        [_vm._v(_vm._s(type))]
-                      )
-                    }),
-                    0
-                  )
-                ])
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("has-error", { attrs: { field: "type" } })
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-footer" }, [
@@ -44050,14 +44083,28 @@ var render = function() {
                                   }
                                 }
                               },
-                              _vm._l(_vm.priceTypes, function(type) {
-                                return _c(
+                              [
+                                _c(
                                   "option",
-                                  { key: type, domProps: { value: type } },
-                                  [_vm._v(_vm._s(type))]
-                                )
-                              }),
-                              0
+                                  {
+                                    attrs: {
+                                      value: "",
+                                      selected: "",
+                                      disabled: ""
+                                    }
+                                  },
+                                  [_vm._v("Select price type")]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.priceTypes, function(type) {
+                                  return _c(
+                                    "option",
+                                    { key: type, domProps: { value: type } },
+                                    [_vm._v(_vm._s(type))]
+                                  )
+                                })
+                              ],
+                              2
                             )
                           ]),
                           _vm._v(" "),
@@ -44096,7 +44143,7 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
-                            placeholder: "Enter Option name ..."
+                            placeholder: "Enter value name ..."
                           },
                           domProps: { value: _vm.optionValue.value },
                           on: {
@@ -44126,8 +44173,8 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
-                            placeholder: "Enter Option name ..."
+                            type: "number",
+                            placeholder: "Enter amount price ..."
                           },
                           domProps: { value: _vm.optionValue.price },
                           on: {
@@ -44178,14 +44225,24 @@ var render = function() {
                               }
                             }
                           },
-                          _vm._l(_vm.priceTypes, function(type) {
-                            return _c(
+                          [
+                            _c(
                               "option",
-                              { key: type, domProps: { value: type } },
-                              [_vm._v(_vm._s(type))]
-                            )
-                          }),
-                          0
+                              {
+                                attrs: { value: "", selected: "", disabled: "" }
+                              },
+                              [_vm._v("Select price type")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.priceTypes, function(type) {
+                              return _c(
+                                "option",
+                                { key: type, domProps: { value: type } },
+                                [_vm._v(_vm._s(type))]
+                              )
+                            })
+                          ],
+                          2
                         )
                       ]),
                       _vm._v(" "),
@@ -44202,7 +44259,7 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-sm btn-info float-left",
+                staticClass: "btn btn-sm btn-default float-left",
                 attrs: { href: "#" },
                 on: {
                   click: function($event) {
@@ -44212,16 +44269,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Place New Order")]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-sm btn-secondary float-right",
-                attrs: { href: "javascript:void(0)" }
-              },
-              [_vm._v("View All Orders")]
+              [_vm._v("Add Value")]
             )
           ])
         ])
@@ -66670,78 +66718,60 @@ var actions = {
     });
   },
   // Attribute Options
-  storeOption: function storeOption(_ref10, data) {
-    var commit, response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function storeOption$(_context6) {
+  // async storeOption({ commit }, data) {
+  //     try {
+  //         const response = await axios.post(
+  //             `${urlApi}attribute-options/${data.attribute_id}`,
+  //             data
+  //         );
+  //         commit("NEW_OPTION", response.data);
+  //         commit("RESET_NEW_OPTION");
+  //         commit("SET_ERRORS", {});
+  //     } catch (e) {
+  //         commit("SET_ERRORS", e.response.data.errors);
+  //     }
+  // },
+  updateOption: function updateOption(_ref10, data) {
+    var commit, rootState, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function updateOption$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            commit = _ref10.commit;
+            commit = _ref10.commit, rootState = _ref10.rootState;
             _context6.prev = 1;
             _context6.next = 4;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "attribute-options/").concat(data.attribute_id), data));
-
-          case 4:
-            response = _context6.sent;
-            commit("NEW_OPTION", response.data);
-            commit("RESET_NEW_OPTION");
-            commit("SET_ERRORS", {});
-            _context6.next = 13;
-            break;
-
-          case 10:
-            _context6.prev = 10;
-            _context6.t0 = _context6["catch"](1);
-            commit("SET_ERRORS", _context6.t0.response.data.errors);
-
-          case 13:
-          case "end":
-            return _context6.stop();
-        }
-      }
-    }, null, null, [[1, 10]]);
-  },
-  updateOption: function updateOption(_ref11, data) {
-    var commit, rootState, response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function updateOption$(_context7) {
-      while (1) {
-        switch (_context7.prev = _context7.next) {
-          case 0:
-            commit = _ref11.commit, rootState = _ref11.rootState;
-            _context7.prev = 1;
-            _context7.next = 4;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "attribute-options/").concat(data.id), data));
 
           case 4:
-            response = _context7.sent;
+            response = _context6.sent;
             commit("PUT_OPTION", response.data);
             commit("RESET_NEW_OPTION");
             $("#addNew").modal("hide");
             rootState.editMode = false;
             commit("SET_ERRORS", {});
-            _context7.next = 15;
+            _context6.next = 15;
             break;
 
           case 12:
-            _context7.prev = 12;
-            _context7.t0 = _context7["catch"](1);
-            commit("SET_ERRORS", _context7.t0.response.data.errors);
+            _context6.prev = 12;
+            _context6.t0 = _context6["catch"](1);
+            commit("SET_ERRORS", _context6.t0.response.data.errors);
 
           case 15:
           case "end":
-            return _context7.stop();
+            return _context6.stop();
         }
       }
     }, null, null, [[1, 12]]);
   },
-  deleteOption: function deleteOption(_ref12, id) {
+  deleteOption: function deleteOption(_ref11, id) {
     var commit;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function deleteOption$(_context8) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function deleteOption$(_context7) {
       while (1) {
-        switch (_context8.prev = _context8.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
-            commit = _ref12.commit;
-            _context8.next = 3;
+            commit = _ref11.commit;
+            _context7.next = 3;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "attribute-options/").concat(id)));
 
           case 3:
@@ -66749,13 +66779,13 @@ var actions = {
 
           case 4:
           case "end":
-            return _context8.stop();
+            return _context7.stop();
         }
       }
     });
   },
-  resetOption: function resetOption(_ref13) {
-    var commit = _ref13.commit;
+  resetOption: function resetOption(_ref12) {
+    var commit = _ref12.commit;
     $("#addNew").on("hide.bs.modal", function (e) {
       commit("RESET_NEW_OPTION");
     });
@@ -67256,12 +67286,12 @@ var actions = {
     });
   },
   storeOption: function storeOption(_ref2, data) {
-    var commit, response;
+    var commit, rootState, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function storeOption$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            commit = _ref2.commit;
+            commit = _ref2.commit, rootState = _ref2.rootState;
             _context2.prev = 1;
             _context2.next = 4;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "option"), data));
@@ -67269,23 +67299,25 @@ var actions = {
           case 4:
             response = _context2.sent;
             console.log(data);
-            commit("NEW_OPTION", response.data); // commit("RESET_NEW_OPTION");
-
+            commit("NEW_OPTION", response.data);
+            commit("RESET_NEW_OPTION");
+            commit("RESET_NEW_OPTION_VALUE");
             commit("SET_ERRORS", {});
-            _context2.next = 13;
+            rootState.status = "ok";
+            _context2.next = 16;
             break;
 
-          case 10:
-            _context2.prev = 10;
+          case 13:
+            _context2.prev = 13;
             _context2.t0 = _context2["catch"](1);
             commit("SET_ERRORS", _context2.t0.response.data.errors);
 
-          case 13:
+          case 16:
           case "end":
             return _context2.stop();
         }
       }
-    }, null, null, [[1, 10]]);
+    }, null, null, [[1, 13]]);
   },
   addSelectedOptionVal: function addSelectedOptionVal(_ref3, value) {
     var commit = _ref3.commit;
@@ -67298,6 +67330,14 @@ var mutations = {
   },
   NEW_OPTION: function NEW_OPTION(state, data) {
     state.options.unshift(data);
+  },
+  RESET_NEW_OPTION: function RESET_NEW_OPTION(state) {
+    state.option = {
+      id: "",
+      name: "",
+      type: ""
+    };
+    state.optionValues = [];
   },
   NEW_SELECTED_OPTION_VAL: function NEW_SELECTED_OPTION_VAL(state, value) {
     state.optionValues.unshift(value);

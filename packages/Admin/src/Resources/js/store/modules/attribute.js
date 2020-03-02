@@ -89,20 +89,20 @@ const actions = {
         });
     },
     // Attribute Options
-    async storeOption({ commit }, data) {
-        try {
-            const response = await axios.post(
-                `${urlApi}attribute-options/${data.attribute_id}`,
-                data
-            );
+    // async storeOption({ commit }, data) {
+    //     try {
+    //         const response = await axios.post(
+    //             `${urlApi}attribute-options/${data.attribute_id}`,
+    //             data
+    //         );
 
-            commit("NEW_OPTION", response.data);
-            commit("RESET_NEW_OPTION");
-            commit("SET_ERRORS", {});
-        } catch (e) {
-            commit("SET_ERRORS", e.response.data.errors);
-        }
-    },
+    //         commit("NEW_OPTION", response.data);
+    //         commit("RESET_NEW_OPTION");
+    //         commit("SET_ERRORS", {});
+    //     } catch (e) {
+    //         commit("SET_ERRORS", e.response.data.errors);
+    //     }
+    // },
     async updateOption({ commit, rootState }, data) {
         try {
             const response = await axios.put(
