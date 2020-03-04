@@ -17,6 +17,7 @@ import ShowAttribute from "@Admin/pages/attribute/Show.vue";
 
 import ListOptions from "@Admin/pages/option/List.vue";
 import EditOption from "@Admin/pages/option/Edit.vue";
+import CreateOption from "@Admin/pages/option/Create.vue";
 
 import NotFound from "@Admin/views/NotFound.vue";
 
@@ -122,7 +123,7 @@ export const routes = [
             {
                 path: "option/create",
                 name: "option.create",
-                component: EditOption,
+                component: CreateOption,
                 meta: {
                     text: "Create Option"
                 }

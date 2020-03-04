@@ -103,23 +103,23 @@ const actions = {
     //         commit("SET_ERRORS", e.response.data.errors);
     //     }
     // },
-    async updateOption({ commit, rootState }, data) {
-        try {
-            const response = await axios.put(
-                `${urlApi}attribute-options/${data.id}`,
-                data
-            );
+    // async updateOption({ commit, rootState }, data) {
+    //     try {
+    //         const response = await axios.put(
+    //             `${urlApi}attribute-options/${data.id}`,
+    //             data
+    //         );
 
-            commit("PUT_OPTION", response.data);
-            commit("RESET_NEW_OPTION");
-            $("#addNew").modal("hide");
-            rootState.editMode = false;
+    //         commit("PUT_OPTION", response.data);
+    //         commit("RESET_NEW_OPTION");
+    //         $("#addNew").modal("hide");
+    //         rootState.editMode = false;
 
-            commit("SET_ERRORS", {});
-        } catch (e) {
-            commit("SET_ERRORS", e.response.data.errors);
-        }
-    },
+    //         commit("SET_ERRORS", {});
+    //     } catch (e) {
+    //         commit("SET_ERRORS", e.response.data.errors);
+    //     }
+    // },
     async deleteOption({ commit }, id) {
         await axios.delete(`${urlApi}attribute-options/${id}`);
         commit("REMOVE_OPTION", id);

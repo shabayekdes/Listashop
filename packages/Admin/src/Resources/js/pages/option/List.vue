@@ -68,7 +68,7 @@
                           <i class="fas fa-folder"></i>
                         </router-link>
 
-                        <a class="btn btn-info btn-sm" @click="editModel(option)" href="#">
+                        <a class="btn btn-info btn-sm" @click="editOption(option.id)" href="#">
                           <i class="fas fa-pencil-alt"></i>
                           Edit
                         </a>
@@ -121,7 +121,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchListOptions"])
+    ...mapActions(["fetchListOptions", "setMode"]),
+    editOption(id) {
+      this.setMode(true);
+      this.$router.push({ name: "option.edit", params: { id } });
+    }
   },
   created() {
     this.fetchListOptions();

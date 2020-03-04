@@ -15,6 +15,6 @@ class OptionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return paren::toArray();
+        return parent::toArray($request);
     }
 }

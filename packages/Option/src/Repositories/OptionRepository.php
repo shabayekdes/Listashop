@@ -27,7 +27,7 @@ class OptionRepository extends BaseRepository
     {
         return Option::class;
     }
-        /**
+    /**
      * Create a new option record in the database with values.
      *
      * @param array $data
@@ -36,10 +36,24 @@ class OptionRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        $data['option']['key'] = Str::slug($data['option']['name']);
-        $product = $this->model->create($data['option']);
-        $product->values()->createMany($data['values']);
-        return $product;
+        $data['key'] = Str::slug($data['name']);
+        $option = $this->model->create($data);
+        $option->values()->createMany($data['values']);
+        return $option;
     }
+     /**
+     * Update a new option record in the database with values.
+     *
+     * @param array $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function update(array $data, $id)
+    {
+        $data['key'] = Str::slug($data['name']);
+        $option = $this->model->find($id);
+        $option->update($data);
 
+        return $option;
+    }
 }

@@ -8,7 +8,7 @@
             <h3 class="card-title">Create New Option</h3>
           </div>
           <!-- /.card-header -->
-          <form @submit.prevent="patchOption">
+          <form @submit.prevent="createOption">
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">Name</label>
@@ -37,8 +37,13 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <button type="submit" class="btn btn-success">Update</button>
-              <button type="submit" class="btn btn-primary" data-dismiss="modal">close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button
+                type="submit"
+                v-show="getMode"
+                class="btn btn-primary"
+                data-dismiss="modal"
+              >close</button>
             </div>
             <!-- /.card-footer -->
           </form>
@@ -169,17 +174,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions([
-      "storeOption",
-      "updateOption",
-      "showOption",
-      "addSelectedOptionVal",
-      "setMode"
-    ]),
+    ...mapActions(["storeOption", "addSelectedOptionVal", "setMode"]),
     ...mapMutations(["RESET_NEW_OPTION", "REMOVE_OPTION_VALUE"]),
-    patchOption() {
-      this.updateOption({
-        id: this.$route.params.id,
+    createOption() {
+      this.storeOption({
         name: this.getSingleOption.name,
         type: this.getSingleOption.type,
         values: this.getAllOptionValues
@@ -208,7 +206,7 @@ export default {
     }
   },
   created() {
-    this.showOption(this.$route.params.id);
+    this.RESET_NEW_OPTION();
   },
   computed: mapGetters([
     "getSingleOption",

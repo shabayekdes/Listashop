@@ -2,9 +2,11 @@
 
 namespace Admin\Http\Controllers;
 
+use Option\Models\Option;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Option\Http\Requests\OptionRequest;
+use Option\Http\Resources\OptionResource;
 use Option\Repositories\OptionRepository;
 use Option\Http\Resources\OptionCollection;
 
@@ -50,9 +52,10 @@ class OptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Option $option)
     {
-
+        return response()->json(["option" => $option, "values" => $option->values()->get() ]);
+        // return new OptionResource($option);
     }
 
     /**
@@ -64,7 +67,10 @@ class OptionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $option = $this->option->update($request->all(), $id);
+        return response()->json(["option" => $option]);
 
+        // return new OptionResource($this->option->update($request->all(), $id));
     }
 
     /**

@@ -364,7 +364,9 @@ export default {
     //   this.setMode(false);
     // } else {
     //   this.setMode(true);
-    this.showProduct(this.$route.params.id);
+    if (this.getMode) {
+      this.showProduct(this.$route.params.id);
+    }
     // }
     this.SET_STATUS("");
     this.fetchListCategories("all");
