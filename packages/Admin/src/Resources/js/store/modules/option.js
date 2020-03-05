@@ -32,7 +32,9 @@ const actions = {
         try {
             const response = await axios.post(`${urlApi}option`, data);
 
-            commit("NEW_OPTION", response);
+            console.log(response);
+
+            commit("NEW_OPTION", response.data);
             commit("RESET_NEW_OPTION");
             commit("SET_ERRORS", {});
 
@@ -47,7 +49,7 @@ const actions = {
                 `${urlApi}option/${data.id}`,
                 data
             );
-            console.log(response.data.option);
+            // console.log(response.data.option);
             commit("PUT_OPTION", response.data.option);
             commit("RESET_NEW_OPTION");
             rootState.editMode = false;
@@ -76,6 +78,7 @@ const mutations = {
         state.options.unshift(data);
     },
     PUT_OPTION: (state, data) => {
+        // console.log(data);
         const index = state.options.findIndex(option => option.id === data.id);
         if (index !== -1) {
             state.options.splice(index, 1, data);

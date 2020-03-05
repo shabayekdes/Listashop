@@ -174,12 +174,12 @@ const mutations = {
     NEW_OPTION: (state, data) => {
         state.options.unshift(data);
     },
-    PUT_OPTION: (state, data) => {
-        const index = state.options.findIndex(option => option.id === data.id);
-        if (index !== -1) {
-            state.options.splice(index, 1, data);
-        }
-    },
+    // PUT_OPTION: (state, data) => {
+    //     const index = state.options.findIndex(option => option.id === data.id);
+    //     if (index !== -1) {
+    //         state.options.splice(index, 1, data);
+    //     }
+    // },
     REMOVE_OPTION: (state, id) =>
         (state.options = state.options.filter(option => option.id !== id)),
     SET_OPTION: (state, oldOption) => {

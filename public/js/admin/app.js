@@ -67627,15 +67627,12 @@ var mutations = {
   NEW_OPTION: function NEW_OPTION(state, data) {
     state.options.unshift(data);
   },
-  PUT_OPTION: function PUT_OPTION(state, data) {
-    var index = state.options.findIndex(function (option) {
-      return option.id === data.id;
-    });
-
-    if (index !== -1) {
-      state.options.splice(index, 1, data);
-    }
-  },
+  // PUT_OPTION: (state, data) => {
+  //     const index = state.options.findIndex(option => option.id === data.id);
+  //     if (index !== -1) {
+  //         state.options.splice(index, 1, data);
+  //     }
+  // },
   REMOVE_OPTION: function REMOVE_OPTION(state, id) {
     return state.options = state.options.filter(function (option) {
       return option.id !== id;
@@ -68086,24 +68083,25 @@ var actions = {
 
           case 4:
             response = _context2.sent;
-            commit("NEW_OPTION", response);
+            console.log(response);
+            commit("NEW_OPTION", response.data);
             commit("RESET_NEW_OPTION");
             commit("SET_ERRORS", {});
             rootState.status = "ok";
-            _context2.next = 14;
+            _context2.next = 15;
             break;
 
-          case 11:
-            _context2.prev = 11;
+          case 12:
+            _context2.prev = 12;
             _context2.t0 = _context2["catch"](1);
             commit("SET_ERRORS", _context2.t0.response.data.errors);
 
-          case 14:
+          case 15:
           case "end":
             return _context2.stop();
         }
       }
-    }, null, null, [[1, 11]]);
+    }, null, null, [[1, 12]]);
   },
   updateOption: function updateOption(_ref3, data) {
     var commit, rootState, response;
@@ -68118,26 +68116,26 @@ var actions = {
 
           case 4:
             response = _context3.sent;
-            console.log(response.data.option);
+            // console.log(response.data.option);
             commit("PUT_OPTION", response.data.option);
             commit("RESET_NEW_OPTION");
             rootState.editMode = false;
             rootState.status = "ok";
             commit("SET_ERRORS", {});
-            _context3.next = 16;
+            _context3.next = 15;
             break;
 
-          case 13:
-            _context3.prev = 13;
+          case 12:
+            _context3.prev = 12;
             _context3.t0 = _context3["catch"](1);
             commit("SET_ERRORS", _context3.t0.response.data.errors);
 
-          case 16:
+          case 15:
           case "end":
             return _context3.stop();
         }
       }
-    }, null, null, [[1, 13]]);
+    }, null, null, [[1, 12]]);
   },
   showOption: function showOption(_ref4, id) {
     var commit, response;
@@ -68173,6 +68171,7 @@ var mutations = {
     state.options.unshift(data);
   },
   PUT_OPTION: function PUT_OPTION(state, data) {
+    // console.log(data);
     var index = state.options.findIndex(function (option) {
       return option.id === data.id;
     });
