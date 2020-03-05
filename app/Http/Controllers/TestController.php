@@ -20,6 +20,12 @@ class TestController extends Controller
     public function index()
     {
 
+        $product = Product::find(1);
+        $option = $product->options()->first();
+        dd($option);
+
+        dd($option,$option->option()->first(), $option->values()->get());
+
         $price = 8759;
         $new_price = 1980;
         $discount = (int) 100 - ceil($new_price * 100 / $price). "%";

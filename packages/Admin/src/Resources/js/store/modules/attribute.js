@@ -13,9 +13,9 @@ const state = {
 const getters = {
     getAllAttributes: state => state.attributes,
     getSelectedAttr: state => state.selectedAttr,
-    getSingleAttribute: state => state.attribute,
+    getSingleAttribute: state => state.attribute
 
-    getAllOptions: state => state.options
+    // getAllOptions: state => state.options
 };
 
 const actions = {
@@ -89,37 +89,37 @@ const actions = {
         });
     },
     // Attribute Options
-    async storeOption({ commit }, data) {
-        try {
-            const response = await axios.post(
-                `${urlApi}attribute-options/${data.attribute_id}`,
-                data
-            );
+    // async storeOption({ commit }, data) {
+    //     try {
+    //         const response = await axios.post(
+    //             `${urlApi}attribute-options/${data.attribute_id}`,
+    //             data
+    //         );
 
-            commit("NEW_OPTION", response.data);
-            commit("RESET_NEW_OPTION");
-            commit("SET_ERRORS", {});
-        } catch (e) {
-            commit("SET_ERRORS", e.response.data.errors);
-        }
-    },
-    async updateOption({ commit, rootState }, data) {
-        try {
-            const response = await axios.put(
-                `${urlApi}attribute-options/${data.id}`,
-                data
-            );
+    //         commit("NEW_OPTION", response.data);
+    //         commit("RESET_NEW_OPTION");
+    //         commit("SET_ERRORS", {});
+    //     } catch (e) {
+    //         commit("SET_ERRORS", e.response.data.errors);
+    //     }
+    // },
+    // async updateOption({ commit, rootState }, data) {
+    //     try {
+    //         const response = await axios.put(
+    //             `${urlApi}attribute-options/${data.id}`,
+    //             data
+    //         );
 
-            commit("PUT_OPTION", response.data);
-            commit("RESET_NEW_OPTION");
-            $("#addNew").modal("hide");
-            rootState.editMode = false;
+    //         commit("PUT_OPTION", response.data);
+    //         commit("RESET_NEW_OPTION");
+    //         $("#addNew").modal("hide");
+    //         rootState.editMode = false;
 
-            commit("SET_ERRORS", {});
-        } catch (e) {
-            commit("SET_ERRORS", e.response.data.errors);
-        }
-    },
+    //         commit("SET_ERRORS", {});
+    //     } catch (e) {
+    //         commit("SET_ERRORS", e.response.data.errors);
+    //     }
+    // },
     async deleteOption({ commit }, id) {
         await axios.delete(`${urlApi}attribute-options/${id}`);
         commit("REMOVE_OPTION", id);
@@ -174,12 +174,12 @@ const mutations = {
     NEW_OPTION: (state, data) => {
         state.options.unshift(data);
     },
-    PUT_OPTION: (state, data) => {
-        const index = state.options.findIndex(option => option.id === data.id);
-        if (index !== -1) {
-            state.options.splice(index, 1, data);
-        }
-    },
+    // PUT_OPTION: (state, data) => {
+    //     const index = state.options.findIndex(option => option.id === data.id);
+    //     if (index !== -1) {
+    //         state.options.splice(index, 1, data);
+    //     }
+    // },
     REMOVE_OPTION: (state, id) =>
         (state.options = state.options.filter(option => option.id !== id)),
     SET_OPTION: (state, oldOption) => {

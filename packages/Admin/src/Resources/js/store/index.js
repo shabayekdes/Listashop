@@ -6,6 +6,7 @@ import Product from "./modules/product";
 import Order from "./modules/order";
 import Image from "./modules/image";
 import Attribute from "./modules/attribute";
+import Option from "./modules/option";
 
 Vue.use(Vuex);
 
@@ -65,6 +66,7 @@ export default new Vuex.Store({
         Product,
         Order,
         Attribute,
+        Option,
         Image
     }
 });

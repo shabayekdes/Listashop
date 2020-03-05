@@ -75,6 +75,14 @@
                                 </p>
                             </router-link>
                         </li>
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'option.show'}" class="nav-link">
+                                <i class="nav-icon fas fa-cart-arrow-down"></i>
+                                <p>
+                                    Options
+                                </p>
+                            </router-link>
+                        </li>
                     </ul>
                 </li>
                 {{-- Sales --}}

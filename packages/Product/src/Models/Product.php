@@ -74,7 +74,9 @@ class Product extends Model
      */
     public function options()
     {
-        return $this->belongsToMany('Option\Models\Option')->withPivot('id');
+        return $this->hasMany(ProductOption::class);
+
+        // return $this->belongsToMany('Option\Models\Option','product_options')->withPivot('id');
     }
     /**
      * The roles that belong to the user.
