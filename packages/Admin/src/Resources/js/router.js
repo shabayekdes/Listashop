@@ -1,3 +1,9 @@
+import Vue from "vue";
+
+import VueRouter from "vue-router";
+
+Vue.use(VueRouter);
+
 import Wrapper from "@Admin/layouts/Wrapper";
 
 import Dashboard from "@Admin/pages/dashboard/Dashboard.vue";
@@ -21,7 +27,7 @@ import CreateOption from "@Admin/pages/option/Create.vue";
 
 import NotFound from "@Admin/views/NotFound.vue";
 
-export const routes = [
+const routes = [
     {
         path: "/admin",
         component: Wrapper,
@@ -114,7 +120,7 @@ export const routes = [
             },
             {
                 path: "options",
-                name: "option.show",
+                name: "option.index",
                 component: ListOptions,
                 meta: {
                     text: "Options"
@@ -143,3 +149,10 @@ export const routes = [
         component: NotFound
     }
 ];
+
+const router = new VueRouter({
+    routes,
+    mode: "history"
+});
+
+export default router;

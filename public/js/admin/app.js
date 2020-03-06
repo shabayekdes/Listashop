@@ -2918,15 +2918,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   }),
-  watch: {
-    getStatus: function getStatus(val, oldVal) {
-      if (val == "ok") {
-        this.$router.push({
-          path: "/admin/options"
-        });
-      }
-    }
-  },
+  //   watch: {
+  //     getStatus(val, oldVal) {
+  //       if (val == "ok") {
+  //         this.$router.push({ path: "/admin/options" });
+  //       }
+  //     }
+  //   },
   created: function created() {
     this.RESET_NEW_OPTION();
   },
@@ -45140,27 +45138,6 @@ var render = function() {
                                   { staticClass: "project-actions text-right" },
                                   [
                                     _c(
-                                      "router-link",
-                                      {
-                                        staticClass: "btn btn-primary btn-sm",
-                                        attrs: {
-                                          to: {
-                                            name: "option.show",
-                                            params: { id: option.id }
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                        View\n                        "
-                                        ),
-                                        _c("i", {
-                                          staticClass: "fas fa-folder"
-                                        })
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
                                       "a",
                                       {
                                         staticClass: "btn btn-info btn-sm",
@@ -45196,8 +45173,7 @@ var render = function() {
                                         )
                                       ]
                                     )
-                                  ],
-                                  1
+                                  ]
                                 )
                               ]
                             )
@@ -65487,16 +65463,13 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./packages/admin/src/resources/js/store/index.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes */ "./packages/admin/src/resources/js/routes.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./packages/admin/src/resources/js/store/index.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./packages/admin/src/resources/js/router.js");
 __webpack_require__(/*! ./bootstrap */ "./packages/admin/src/resources/js/bootstrap.js");
 
 
 
 
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("not-found", __webpack_require__(/*! @Admin/views/NotFound.vue */ "./packages/admin/src/resources/js/views/NotFound.vue"));
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter("slug", function (value) {
   if (!value) return "";
@@ -65510,14 +65483,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
     }
   }
 });
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  routes: _routes__WEBPACK_IMPORTED_MODULE_3__["routes"],
-  mode: "history"
-});
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: "#app",
-  router: router,
-  store: _store__WEBPACK_IMPORTED_MODULE_2__["default"]
+  router: _router__WEBPACK_IMPORTED_MODULE_3__["default"],
+  store: _store__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 
 /***/ }),
@@ -67052,30 +67021,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./packages/admin/src/resources/js/routes.js":
+/***/ "./packages/admin/src/resources/js/router.js":
 /*!***************************************************!*\
-  !*** ./packages/admin/src/resources/js/routes.js ***!
+  !*** ./packages/admin/src/resources/js/router.js ***!
   \***************************************************/
-/*! exports provided: routes */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
-/* harmony import */ var _Admin_layouts_Wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @Admin/layouts/Wrapper */ "./packages/admin/src/resources/js/layouts/Wrapper.vue");
-/* harmony import */ var _Admin_pages_dashboard_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @Admin/pages/dashboard/Dashboard.vue */ "./packages/admin/src/resources/js/pages/dashboard/Dashboard.vue");
-/* harmony import */ var _Admin_pages_user_Users_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @Admin/pages/user/Users.vue */ "./packages/admin/src/resources/js/pages/user/Users.vue");
-/* harmony import */ var _Admin_pages_category_List_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @Admin/pages/category/List.vue */ "./packages/admin/src/resources/js/pages/category/List.vue");
-/* harmony import */ var _Admin_pages_product_List_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @Admin/pages/product/List.vue */ "./packages/admin/src/resources/js/pages/product/List.vue");
-/* harmony import */ var _Admin_pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @Admin/pages/product/Edit.vue */ "./packages/admin/src/resources/js/pages/product/Edit.vue");
-/* harmony import */ var _Admin_pages_order_List_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @Admin/pages/order/List.vue */ "./packages/admin/src/resources/js/pages/order/List.vue");
-/* harmony import */ var _Admin_pages_order_View_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @Admin/pages/order/View.vue */ "./packages/admin/src/resources/js/pages/order/View.vue");
-/* harmony import */ var _Admin_pages_attribute_List_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @Admin/pages/attribute/List.vue */ "./packages/admin/src/resources/js/pages/attribute/List.vue");
-/* harmony import */ var _Admin_pages_attribute_Show_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @Admin/pages/attribute/Show.vue */ "./packages/admin/src/resources/js/pages/attribute/Show.vue");
-/* harmony import */ var _Admin_pages_option_List_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @Admin/pages/option/List.vue */ "./packages/admin/src/resources/js/pages/option/List.vue");
-/* harmony import */ var _Admin_pages_option_Edit_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @Admin/pages/option/Edit.vue */ "./packages/admin/src/resources/js/pages/option/Edit.vue");
-/* harmony import */ var _Admin_pages_option_Create_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @Admin/pages/option/Create.vue */ "./packages/admin/src/resources/js/pages/option/Create.vue");
-/* harmony import */ var _Admin_views_NotFound_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @Admin/views/NotFound.vue */ "./packages/admin/src/resources/js/views/NotFound.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _Admin_layouts_Wrapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @Admin/layouts/Wrapper */ "./packages/admin/src/resources/js/layouts/Wrapper.vue");
+/* harmony import */ var _Admin_pages_dashboard_Dashboard_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @Admin/pages/dashboard/Dashboard.vue */ "./packages/admin/src/resources/js/pages/dashboard/Dashboard.vue");
+/* harmony import */ var _Admin_pages_user_Users_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @Admin/pages/user/Users.vue */ "./packages/admin/src/resources/js/pages/user/Users.vue");
+/* harmony import */ var _Admin_pages_category_List_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @Admin/pages/category/List.vue */ "./packages/admin/src/resources/js/pages/category/List.vue");
+/* harmony import */ var _Admin_pages_product_List_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @Admin/pages/product/List.vue */ "./packages/admin/src/resources/js/pages/product/List.vue");
+/* harmony import */ var _Admin_pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @Admin/pages/product/Edit.vue */ "./packages/admin/src/resources/js/pages/product/Edit.vue");
+/* harmony import */ var _Admin_pages_order_List_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @Admin/pages/order/List.vue */ "./packages/admin/src/resources/js/pages/order/List.vue");
+/* harmony import */ var _Admin_pages_order_View_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @Admin/pages/order/View.vue */ "./packages/admin/src/resources/js/pages/order/View.vue");
+/* harmony import */ var _Admin_pages_attribute_List_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @Admin/pages/attribute/List.vue */ "./packages/admin/src/resources/js/pages/attribute/List.vue");
+/* harmony import */ var _Admin_pages_attribute_Show_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @Admin/pages/attribute/Show.vue */ "./packages/admin/src/resources/js/pages/attribute/Show.vue");
+/* harmony import */ var _Admin_pages_option_List_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @Admin/pages/option/List.vue */ "./packages/admin/src/resources/js/pages/option/List.vue");
+/* harmony import */ var _Admin_pages_option_Edit_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @Admin/pages/option/Edit.vue */ "./packages/admin/src/resources/js/pages/option/Edit.vue");
+/* harmony import */ var _Admin_pages_option_Create_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @Admin/pages/option/Create.vue */ "./packages/admin/src/resources/js/pages/option/Create.vue");
+/* harmony import */ var _Admin_views_NotFound_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @Admin/views/NotFound.vue */ "./packages/admin/src/resources/js/views/NotFound.vue");
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
 
@@ -67092,42 +67066,42 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [{
   path: "/admin",
-  component: _Admin_layouts_Wrapper__WEBPACK_IMPORTED_MODULE_0__["default"],
+  component: _Admin_layouts_Wrapper__WEBPACK_IMPORTED_MODULE_2__["default"],
   meta: {
     text: "Admin"
   },
   children: [{
     path: "",
     name: "dashboard",
-    component: _Admin_pages_dashboard_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    component: _Admin_pages_dashboard_Dashboard_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     meta: {
       text: "Dashboard"
     }
   }, {
     path: "users",
     name: "users.index",
-    component: _Admin_pages_user_Users_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    component: _Admin_pages_user_Users_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     meta: {
       text: "Users"
     }
   }, {
     path: "categories",
     name: "Categories.index",
-    component: _Admin_pages_category_List_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    component: _Admin_pages_category_List_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     meta: {
       text: "Categories"
     }
   }, {
     path: "products",
     name: "Products.index",
-    component: _Admin_pages_product_List_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    component: _Admin_pages_product_List_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     meta: {
       text: "Products"
     }
   }, {
     path: "product/create",
     name: "product.create",
-    component: _Admin_pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _Admin_pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     props: true,
     meta: {
       text: "New Product"
@@ -67135,7 +67109,7 @@ var routes = [{
   }, {
     path: "product/edit/:id",
     name: "product.edit",
-    component: _Admin_pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _Admin_pages_product_Edit_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     props: true,
     meta: {
       text: "Edit Product"
@@ -67143,14 +67117,14 @@ var routes = [{
   }, {
     path: "orders",
     name: "order.index",
-    component: _Admin_pages_order_List_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    component: _Admin_pages_order_List_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
     meta: {
       text: "Orders"
     }
   }, {
     path: "order/view/:id",
     name: "order.view",
-    component: _Admin_pages_order_View_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    component: _Admin_pages_order_View_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
     props: true,
     meta: {
       text: "View Order"
@@ -67158,43 +67132,48 @@ var routes = [{
   }, {
     path: "attributes",
     name: "attribute.index",
-    component: _Admin_pages_attribute_List_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    component: _Admin_pages_attribute_List_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
     meta: {
       text: "Attributes"
     }
   }, {
     path: "attribute/:id",
     name: "attribute.show",
-    component: _Admin_pages_attribute_Show_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    component: _Admin_pages_attribute_Show_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
     meta: {
       text: "Attributes"
     }
   }, {
     path: "options",
-    name: "option.show",
-    component: _Admin_pages_option_List_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    name: "option.index",
+    component: _Admin_pages_option_List_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
     meta: {
       text: "Options"
     }
   }, {
     path: "option/create",
     name: "option.create",
-    component: _Admin_pages_option_Create_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+    component: _Admin_pages_option_Create_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
     meta: {
       text: "Create Option"
     }
   }, {
     path: "option/:id/edit",
     name: "option.edit",
-    component: _Admin_pages_option_Edit_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    component: _Admin_pages_option_Edit_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
     meta: {
       text: "Edit Option"
     }
   }]
 }, {
   path: "/admin/*",
-  component: _Admin_views_NotFound_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _Admin_views_NotFound_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }];
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  routes: routes,
+  mode: "history"
+});
+/* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
 
@@ -67215,15 +67194,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/product */ "./packages/admin/src/resources/js/store/modules/product.js");
 /* harmony import */ var _modules_order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/order */ "./packages/admin/src/resources/js/store/modules/order.js");
 /* harmony import */ var _modules_image__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/image */ "./packages/admin/src/resources/js/store/modules/image.js");
-/* harmony import */ var _modules_attribute__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/attribute */ "./packages/admin/src/resources/js/store/modules/attribute.js");
-/* harmony import */ var _modules_option__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/option */ "./packages/admin/src/resources/js/store/modules/option.js");
+/* harmony import */ var _modules_option__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/option */ "./packages/admin/src/resources/js/store/modules/option.js");
 
 
 
 
 
 
-
+ // import Attribute from "./modules/attribute";
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -67296,361 +67274,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     Category: _modules_category__WEBPACK_IMPORTED_MODULE_3__["default"],
     Product: _modules_product__WEBPACK_IMPORTED_MODULE_4__["default"],
     Order: _modules_order__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Attribute: _modules_attribute__WEBPACK_IMPORTED_MODULE_7__["default"],
-    Option: _modules_option__WEBPACK_IMPORTED_MODULE_8__["default"],
+    // Attribute,
+    Option: _modules_option__WEBPACK_IMPORTED_MODULE_7__["default"],
     Image: _modules_image__WEBPACK_IMPORTED_MODULE_6__["default"]
   }
 }));
-
-/***/ }),
-
-/***/ "./packages/admin/src/resources/js/store/modules/attribute.js":
-/*!********************************************************************!*\
-  !*** ./packages/admin/src/resources/js/store/modules/attribute.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
-
-var state = {
-  attributes: [],
-  selectedAttr: [],
-  options: [],
-  attribute: {
-    id: "",
-    name: ""
-  }
-};
-var getters = {
-  getAllAttributes: function getAllAttributes(state) {
-    return state.attributes;
-  },
-  getSelectedAttr: function getSelectedAttr(state) {
-    return state.selectedAttr;
-  },
-  getSingleAttribute: function getSingleAttribute(state) {
-    return state.attribute;
-  } // getAllOptions: state => state.options
-
-};
-var actions = {
-  fetchListAttributes: function fetchListAttributes(_ref) {
-    var commit,
-        paged,
-        response,
-        query,
-        _args = arguments;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchListAttributes$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            commit = _ref.commit;
-            paged = _args.length > 1 && _args[1] !== undefined ? _args[1] : null;
-            response = "";
-
-            if (!(paged == "all")) {
-              _context.next = 9;
-              break;
-            }
-
-            _context.next = 6;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat(urlApi, "attribute?show=all")));
-
-          case 6:
-            response = _context.sent;
-            _context.next = 14;
-            break;
-
-          case 9:
-            query = paged !== null ? "?page=".concat(paged) : "";
-            _context.next = 12;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat(urlApi, "attribute").concat(query)));
-
-          case 12:
-            response = _context.sent;
-            commit("SET_META_DATA", response.data, {
-              root: true
-            });
-
-          case 14:
-            commit("SHOW_LIST_ATTRIBUTES", response.data);
-
-          case 15:
-          case "end":
-            return _context.stop();
-        }
-      }
-    });
-  },
-  storeAttribute: function storeAttribute(_ref2, data) {
-    var commit, response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function storeAttribute$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            commit = _ref2.commit;
-            _context2.prev = 1;
-            _context2.next = 4;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "attribute"), data));
-
-          case 4:
-            response = _context2.sent;
-            commit("NEW_ATTRIBUTE", response.data);
-            commit("RESET_NEW_ATTRIBUTE");
-            commit("SET_ERRORS", {});
-            _context2.next = 13;
-            break;
-
-          case 10:
-            _context2.prev = 10;
-            _context2.t0 = _context2["catch"](1);
-            commit("SET_ERRORS", _context2.t0.response.data.errors);
-
-          case 13:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, null, null, [[1, 10]]);
-  },
-  updateAttribute: function updateAttribute(_ref3, data) {
-    var commit, rootState, response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function updateAttribute$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            commit = _ref3.commit, rootState = _ref3.rootState;
-            _context3.prev = 1;
-            _context3.next = 4;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "attribute/").concat(data.id), data));
-
-          case 4:
-            response = _context3.sent;
-            commit("PUT_ATTRIBUTE", response.data);
-            commit("RESET_NEW_ATTRIBUTE");
-            $("#addNew").modal("hide");
-            rootState.editMode = false;
-            commit("SET_ERRORS", {});
-            _context3.next = 15;
-            break;
-
-          case 12:
-            _context3.prev = 12;
-            _context3.t0 = _context3["catch"](1);
-            commit("SET_ERRORS", _context3.t0.response.data.errors);
-
-          case 15:
-          case "end":
-            return _context3.stop();
-        }
-      }
-    }, null, null, [[1, 12]]);
-  },
-  showAttribute: function showAttribute(_ref4, id) {
-    var commit, state, response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function showAttribute$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            commit = _ref4.commit, state = _ref4.state;
-            _context4.prev = 1;
-            _context4.next = 4;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat(urlApi, "attribute/").concat(id)));
-
-          case 4:
-            response = _context4.sent;
-            commit("SET_ATTRIBUTE", response.data.data);
-            commit("SHOW_LIST_OPTIONS", response.data.data.options);
-            _context4.next = 12;
-            break;
-
-          case 9:
-            _context4.prev = 9;
-            _context4.t0 = _context4["catch"](1);
-            commit("SET_ERRORS", _context4.t0.response.data.errors);
-
-          case 12:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, null, null, [[1, 9]]);
-  },
-  deleteAttribute: function deleteAttribute(_ref5, id) {
-    var commit;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function deleteAttribute$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            commit = _ref5.commit;
-            _context5.next = 3;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "attribute/").concat(id)));
-
-          case 3:
-            commit("REMOVE_ATTRIBUTE", id);
-
-          case 4:
-          case "end":
-            return _context5.stop();
-        }
-      }
-    });
-  },
-  addSelectedAttr: function addSelectedAttr(_ref6, selected) {
-    var commit = _ref6.commit;
-    commit("NEW_SELECTED_ATTR", selected);
-    commit("REMOVE_ATTRIBUTE", selected.id);
-  },
-  removeSelectedAttr: function removeSelectedAttr(_ref7, selected) {
-    var commit = _ref7.commit;
-    commit("NEW_ATTRIBUTE", selected);
-    commit("REMOVE_SELECTED_ATTR", selected.id);
-  },
-  setAttribute: function setAttribute(_ref8, oldAttribute) {
-    var commit = _ref8.commit;
-    commit("SET_ATTRIBUTE", oldAttribute);
-  },
-  resetAttribute: function resetAttribute(_ref9) {
-    var commit = _ref9.commit;
-    $("#addNew").on("hide.bs.modal", function (e) {
-      commit("RESET_NEW_ATTRIBUTE");
-    });
-  },
-  // Attribute Options
-  // async storeOption({ commit }, data) {
-  //     try {
-  //         const response = await axios.post(
-  //             `${urlApi}attribute-options/${data.attribute_id}`,
-  //             data
-  //         );
-  //         commit("NEW_OPTION", response.data);
-  //         commit("RESET_NEW_OPTION");
-  //         commit("SET_ERRORS", {});
-  //     } catch (e) {
-  //         commit("SET_ERRORS", e.response.data.errors);
-  //     }
-  // },
-  // async updateOption({ commit, rootState }, data) {
-  //     try {
-  //         const response = await axios.put(
-  //             `${urlApi}attribute-options/${data.id}`,
-  //             data
-  //         );
-  //         commit("PUT_OPTION", response.data);
-  //         commit("RESET_NEW_OPTION");
-  //         $("#addNew").modal("hide");
-  //         rootState.editMode = false;
-  //         commit("SET_ERRORS", {});
-  //     } catch (e) {
-  //         commit("SET_ERRORS", e.response.data.errors);
-  //     }
-  // },
-  deleteOption: function deleteOption(_ref10, id) {
-    var commit;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function deleteOption$(_context6) {
-      while (1) {
-        switch (_context6.prev = _context6.next) {
-          case 0:
-            commit = _ref10.commit;
-            _context6.next = 3;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "attribute-options/").concat(id)));
-
-          case 3:
-            commit("REMOVE_OPTION", id);
-
-          case 4:
-          case "end":
-            return _context6.stop();
-        }
-      }
-    });
-  },
-  resetOption: function resetOption(_ref11) {
-    var commit = _ref11.commit;
-    $("#addNew").on("hide.bs.modal", function (e) {
-      commit("RESET_NEW_OPTION");
-    });
-  }
-};
-var mutations = {
-  SHOW_LIST_ATTRIBUTES: function SHOW_LIST_ATTRIBUTES(state, data) {
-    state.attributes = data.data;
-  },
-  NEW_ATTRIBUTE: function NEW_ATTRIBUTE(state, data) {
-    state.attributes.unshift(data);
-  },
-  NEW_SELECTED_ATTR: function NEW_SELECTED_ATTR(state, selected) {
-    state.selectedAttr.unshift(selected);
-  },
-  PUT_ATTRIBUTE: function PUT_ATTRIBUTE(state, data) {
-    var index = state.attributes.findIndex(function (attribute) {
-      return attribute.id === data.id;
-    });
-
-    if (index !== -1) {
-      state.attributes.splice(index, 1, data);
-    }
-  },
-  REMOVE_ATTRIBUTE: function REMOVE_ATTRIBUTE(state, id) {
-    return state.attributes = state.attributes.filter(function (attr) {
-      return attr.id !== id;
-    });
-  },
-  REMOVE_SELECTED_ATTR: function REMOVE_SELECTED_ATTR(state, id) {
-    return state.selectedAttr = state.selectedAttr.filter(function (attr) {
-      return attr.id !== id;
-    });
-  },
-  SET_ATTRIBUTE: function SET_ATTRIBUTE(state, oldAttribute) {
-    state.attribute = oldAttribute;
-  },
-  RESET_NEW_ATTRIBUTE: function RESET_NEW_ATTRIBUTE(state) {
-    state.attribute = {
-      id: "",
-      name: ""
-    };
-  },
-  RESET_SELECTED_ATTR: function RESET_SELECTED_ATTR(state) {
-    state.selectedAttr = [];
-  },
-  // Attribute Options
-  SHOW_LIST_OPTIONS: function SHOW_LIST_OPTIONS(state, data) {
-    state.options = data;
-  },
-  NEW_OPTION: function NEW_OPTION(state, data) {
-    state.options.unshift(data);
-  },
-  // PUT_OPTION: (state, data) => {
-  //     const index = state.options.findIndex(option => option.id === data.id);
-  //     if (index !== -1) {
-  //         state.options.splice(index, 1, data);
-  //     }
-  // },
-  REMOVE_OPTION: function REMOVE_OPTION(state, id) {
-    return state.options = state.options.filter(function (option) {
-      return option.id !== id;
-    });
-  },
-  SET_OPTION: function SET_OPTION(state, oldOption) {
-    state.option = oldOption;
-  },
-  RESET_OPTIONS: function RESET_OPTIONS(state) {
-    state.options = [];
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = ({
-  state: state,
-  getters: getters,
-  actions: actions,
-  mutations: mutations
-});
 
 /***/ }),
 
@@ -67999,6 +67627,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Admin_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @Admin/router */ "./packages/admin/src/resources/js/router.js");
+
 
 
 var state = {
@@ -68087,7 +67717,8 @@ var actions = {
             commit("NEW_OPTION", response.data);
             commit("RESET_NEW_OPTION");
             commit("SET_ERRORS", {});
-            rootState.status = "ok";
+            _Admin_router__WEBPACK_IMPORTED_MODULE_2__["default"].push("/admin/options"); // rootState.status = "ok";
+
             _context2.next = 15;
             break;
 

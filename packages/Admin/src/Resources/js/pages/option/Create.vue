@@ -198,13 +198,13 @@ export default {
       };
     }
   },
-  watch: {
-    getStatus(val, oldVal) {
-      if (val == "ok") {
-        this.$router.push({ path: "/admin/options" });
-      }
-    }
-  },
+//   watch: {
+//     getStatus(val, oldVal) {
+//       if (val == "ok") {
+//         this.$router.push({ path: "/admin/options" });
+//       }
+//     }
+//   },
   created() {
     this.RESET_NEW_OPTION();
   },

@@ -60,13 +60,13 @@
                       <td>{{ option.name }}</td>
                       <td>{{ option.type }}</td>
                       <td class="project-actions text-right">
-                        <router-link
+                        <!-- <router-link
                           :to="{ name: 'option.show',  params: { id: option.id } }"
                           class="btn btn-primary btn-sm"
                         >
                           View
                           <i class="fas fa-folder"></i>
-                        </router-link>
+                        </router-link>-->
 
                         <a class="btn btn-info btn-sm" @click="editOption(option.id)" href="#">
                           <i class="fas fa-pencil-alt"></i>

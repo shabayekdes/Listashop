@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "@Admin/router";
 
 const state = {
     options: [],
@@ -37,8 +38,9 @@ const actions = {
             commit("NEW_OPTION", response.data);
             commit("RESET_NEW_OPTION");
             commit("SET_ERRORS", {});
+            router.push("/admin/options");
 
-            rootState.status = "ok";
+            // rootState.status = "ok";
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
