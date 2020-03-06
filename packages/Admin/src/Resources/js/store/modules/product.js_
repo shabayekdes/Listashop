@@ -12,11 +12,14 @@ const state = {
         cost: "",
         type: "simple",
         category_id: ""
-    }
+    },
+    variations: []
 };
+
 const getters = {
     getAllProducts: state => state.products,
-    getSingleProduct: state => state.product
+    getSingleProduct: state => state.product,
+    getVariations: state => state.variations
 };
 
 const actions = {
@@ -28,7 +31,7 @@ const actions = {
         commit("SET_META_DATA", response.data, { root: true });
         commit("SET_LOADING", { root: true });
     },
-    async storeProduct({ commit }, data) {
+    async storeProduct({ commit, rootState }, data) {
         try {
             const config = {
                 headers: {
@@ -51,7 +54,7 @@ const actions = {
 
         commit("SET_PRODUCT", response.data.data);
     },
-    async updateProduct({ commit }, data) {
+    async updateProduct({ commit, rootState }, data) {
         try {
             const response = await axios.put(
                 `${urlApi}product/${data.id}`,
@@ -61,7 +64,7 @@ const actions = {
             commit("PUT_PRODUCT", response.data);
             commit("RESET_NEW_PRODUCT");
             commit("RESET_IMAGE");
-            router.push("/admin/products");
+            rootState.status = "ok";
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
@@ -104,6 +107,13 @@ const mutations = {
         (state.products = state.products.filter(product => product.id !== id)),
     SET_PRODUCT: (state, oldProduct) => {
         state.product = oldProduct;
+    },
+    SET_VARIATION: (state, newVariation) => {
+        state.variations = [];
+        state.variations.push(...newVariation);
+    },
+    REMOVE_VARIATION: state => {
+        state.variations = [];
     },
     RESET_NEW_PRODUCT: state => {
         state.product = {

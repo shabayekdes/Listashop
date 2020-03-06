@@ -10,10 +10,7 @@
                 <h3 class="card-title">Products List</h3>
               </div>
               <div class="col-sm-12 col-md-7">
-                <router-link
-                  :to="{ name: 'product.create',  params: { editMode: false } }"
-                  class="btn btn-success float-right"
-                >
+                <router-link :to="{ name: 'product.create' }" class="btn btn-success float-right">
                   Add New
                   <i class="fas fa-cart-plus"></i>
                 </router-link>
@@ -87,10 +84,19 @@
                           <i class="fas fa-folder"></i>
                           View
                         </a>
-                        <a class="btn btn-info btn-sm" @click="editProduct(product.id)" href>
+                        <!-- <a class="btn btn-info btn-sm" @click="editProduct(product.id)" href>
                           <i class="fas fa-pencil-alt"></i>
                           Edit
-                        </a>
+                        </a>-->
+
+                        <router-link
+                          :to="{ name: 'product.edit',  params: { id: product.id } }"
+                          class="btn btn-info btn-sm"
+                        >
+                          <i class="fas fa-pencil-alt"></i>
+                          Edit
+                        </router-link>
+
                         <a
                           class="btn btn-danger btn-sm"
                           @click="deleteProduct(product.id)"
@@ -160,4 +166,3 @@ export default {
   computed: mapGetters(["getAllProducts", "getMetaData"])
 };
 </script>
-

@@ -3,6 +3,7 @@
 namespace Product\Repositories;
 
 use Illuminate\Support\Arr;
+use Product\Models\Product;
 use Core\Eloquent\BaseRepository;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,7 @@ class ProductRepository extends BaseRepository
      */
     public function model()
     {
-        return 'Product\Models\Product';
+        return Product::class;
     }
     /**
      * Create a new product record in the database with thumb.
@@ -39,15 +40,27 @@ class ProductRepository extends BaseRepository
     public function create(array $data)
     {
         $product = $this->model->create($data);
-        $variations = json_decode($data['variations'], true);
+        // $variations = json_decode($data['variations'], true);
 
-        if($data['type'] == 'configurable'){
-            $product->attributes()->attach($data['attributes']);
-            foreach ($variations as $variant) {
-                $this->createVariant($variant, $product, $data);
-            }
-        }
+        // if($data['type'] == 'configurable'){
+        //     $product->attributes()->attach($data['attributes']);
+        //     foreach ($variations as $variant) {
+        //         $this->createVariant($variant, $product, $data);
+        //     }
+        // }
 
+        return $product;
+    }
+    /**
+     * Update a product record in the database with thumb.
+     *
+     * @param array $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function update(array $data, $product)
+    {
+        $product->update($data);
         return $product;
     }
     /**
@@ -56,7 +69,7 @@ class ProductRepository extends BaseRepository
      * @param array $data
      * @return mixed
      */
-    public function createVariant($variant ,$product, $data)
+    public function createVariant($variant, $product, $data)
     {
         $attributes_ids = Arr::pluck($variant['attributes'], 'id');
 
@@ -66,7 +79,7 @@ class ProductRepository extends BaseRepository
             "price" => $variant['price'] ?? $data['price'],
             "cost" => $variant['cost'] ?? $data['cost'],
         ];
-        if(Arr::has($variant, 'quantity') || Arr::has($data, 'quantity')){
+        if (Arr::has($variant, 'quantity') || Arr::has($data, 'quantity')) {
             $data['quantity'] = $variant['quantity'] ?? $data['quantity'];
         }
 
@@ -91,18 +104,17 @@ class ProductRepository extends BaseRepository
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                 // Get just ext
                 $extension = $image->getClientOriginalExtension();
-                if($key == 'thumb'){
+                if ($key == 'thumb') {
 
-                    $fileNameToStore= 'product-' . $product->id .'.'.$extension;
+                    $fileNameToStore = 'product-' . $product->id . '.' . $extension;
                     $path = $image->storeAs('public/products/' . $product->id,  $fileNameToStore);
                     $fileNameToStore = Str::replaceFirst('public/', '', $path);
                     $productImage = $productFlat->update([
                         'thumbnail' => $fileNameToStore
                     ]);
-
-                }else{
+                } else {
                     // Filename to store
-                    $fileNameToStore= $filename.'.'.$extension;
+                    $fileNameToStore = $filename . '.' . $extension;
                     // Upload Image
                     $path = $image->store('public/products/' . $product->id);
 
@@ -111,10 +123,9 @@ class ProductRepository extends BaseRepository
                     $productImage = $product->images()->create([
                         'path' => $fileNameToStore
                     ]);
-                    $img = Image::make(public_path('storage/'.$productImage->path))->fit(130, 150, null, 'center');
+                    $img = Image::make(public_path('storage/' . $productImage->path))->fit(130, 150, null, 'center');
                     $img->save();
                 }
-
             }
         }
         return $productFlat;

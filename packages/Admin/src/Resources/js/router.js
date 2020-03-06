@@ -13,7 +13,8 @@ import Users from "@Admin/pages/user/Users.vue";
 import ListCategories from "@Admin/pages/category/List.vue";
 
 import ListProducts from "@Admin/pages/product/List.vue";
-import EditProducts from "@Admin/pages/product/Edit.vue";
+import EditProduct from "@Admin/pages/product/Edit.vue";
+import CreateProduct from "@Admin/pages/product/Create.vue";
 
 import ListOrders from "@Admin/pages/order/List.vue";
 import ViewOrder from "@Admin/pages/order/View.vue";
@@ -70,7 +71,7 @@ const routes = [
             {
                 path: "product/create",
                 name: "product.create",
-                component: EditProducts,
+                component: CreateProduct,
                 props: true,
                 meta: {
                     text: "New Product"
@@ -79,7 +80,7 @@ const routes = [
             {
                 path: "product/edit/:id",
                 name: "product.edit",
-                component: EditProducts,
+                component: EditProduct,
                 props: true,
                 meta: {
                     text: "Edit Product"

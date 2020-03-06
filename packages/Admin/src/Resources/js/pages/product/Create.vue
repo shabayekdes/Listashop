@@ -51,18 +51,18 @@
                   id="exampleFormControlSelect1"
                 >
                   <option value="simple">Simple product</option>
-                  <option value="configurable">Attribute product</option>
+                  <!-- <option value="configurable">Attribute product</option> -->
                 </select>
               </div>
             </div>
           </div>
           <!-- /.card-header -->
-          <product-simple />
-          <!-- <product-simple v-if="getSingleProduct.type == 'simple'" /> -->
-          <!-- <product-attribute v-else /> -->
+          <product-simple v-if="getSingleProduct.type == 'simple'" />
+          <product-attribute v-else />
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
+        <!-- Description -->
         <div class="card card-primary collapsed-card">
           <div class="card-header">
             <h3 class="card-title">Description</h3>
@@ -90,7 +90,7 @@
         </div>
         <!-- /.card -->
       </div>
-
+      <!-- Publish Button -->
       <div class="col-md-3">
         <div class="card card-outline card-primary">
           <div class="card-header">
@@ -107,13 +107,13 @@
           <div class="card-body">
             <button
               type="button"
-              @click="patchProduct"
-              class="btn btn-block bg-gradient-success btn-lg"
-            >Update</button>
+              @click="createProduct"
+              class="btn btn-block bg-gradient-primary btn-lg"
+            >Save</button>
           </div>
           <!-- /.card-body -->
         </div>
-
+        <!-- Select Category -->
         <div class="card card-outline card-primary">
           <div class="card-header">
             <h3 class="card-title">Categories</h3>
@@ -148,6 +148,7 @@
           </div>
           <!-- /.card-body -->
         </div>
+        <!-- Upload Thumbnail -->
         <div class="card card-outline card-primary">
           <div class="card-header">
             <h3 class="card-title">Upload Thumbnail</h3>
@@ -192,6 +193,7 @@
           </div>
           <!-- /.card-body -->
         </div>
+        <!-- Upload Galley -->
         <div class="card card-outline card-primary">
           <div class="card-header">
             <h3 class="card-title">Upload Galley</h3>
@@ -300,20 +302,41 @@ export default {
     model,
     HasError
   },
+  data() {
+    return {};
+  },
   methods: {
     ...mapActions([
-      "updateProduct",
+      "storeProduct",
       "setProduct",
       "showProduct",
       "fetchListCategories",
-      //   "fetchListAttributes",
       "addThumb",
       "resetImages",
+      "setMode",
       "setError"
     ]),
     ...mapMutations(["SET_STATUS", "SET_LOADING"]),
-    patchProduct() {
-      this.updateProduct(this.getSingleProduct);
+    createProduct() {
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(this.getSingleProduct)) {
+        formData.append(key, value);
+      }
+      this.getFiles.forEach(file => {
+        formData.append("images[]", file, file.name);
+      });
+      if (this.getThumb.file) {
+        formData.append("images[thumb]", this.getThumb.file);
+      }
+      //   formData.append("variations", JSON.stringify(this.getVariations));
+
+      //   let result = this.getSelectedAttr.map(a => a.id);
+
+      //   result.forEach(r => {
+      //     formData.append("attributes[]", r);
+      //   });
+
+      this.storeProduct(formData);
     },
     newModel() {
       $("#addNew").modal("show");
@@ -328,15 +351,31 @@ export default {
   created() {
     // this.fetchListAttributes("all");
     this.SET_LOADING();
-    this.showProduct(this.$route.params.id);
+    // if (this.$route.params.id == undefined) {
+    //   this.setMode(false);
+    // } else {
+    //   this.setMode(true);
+    // if (this.getMode) {
+    // this.showProduct(this.$route.params.id);
+    // }
+    // }
     // this.SET_STATUS("");
     this.fetchListCategories("all");
   },
+  //   watch: {
+  //     getStatus(val, oldVal) {
+  //       if (val == "ok") {
+  //         this.$router.push({ path: "/admin/products" });
+  //         this.resetImages();
+  //       }
+  //     }
+  //   },
   computed: mapGetters([
     "getSingleProduct",
     "getAllCategories",
     // "getVariations",
     // "getSelectedAttr",
+    "getMode",
     "getFiles",
     "getImages",
     "getThumb",

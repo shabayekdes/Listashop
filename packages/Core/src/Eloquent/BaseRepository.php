@@ -14,7 +14,7 @@ use Illuminate\Container\Container as Application;
  */
 abstract class BaseRepository implements RepositoryContract
 {
-   /**
+    /**
      * @var Application
      */
     protected $app;
@@ -99,7 +99,7 @@ abstract class BaseRepository implements RepositoryContract
      */
     public function count(array $where = [], $columns = '*')
     {
-        if($where) {
+        if ($where) {
             $this->applyConditions($where);
         }
         $result = $this->model->count($columns);

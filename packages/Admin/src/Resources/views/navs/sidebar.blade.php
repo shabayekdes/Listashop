@@ -76,7 +76,7 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link :to="{ name: 'option.show'}" class="nav-link">
+                            <router-link :to="{ name: 'option.index'}" class="nav-link">
                                 <i class="nav-icon fas fa-cart-arrow-down"></i>
                                 <p>
                                     Options
