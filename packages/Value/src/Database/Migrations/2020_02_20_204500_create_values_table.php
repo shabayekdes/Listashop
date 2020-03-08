@@ -16,8 +16,6 @@ class CreateValuesTable extends Migration
         Schema::create('values', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('value');
-            $table->decimal('price', 18, 4)->nullable();
-            $table->string('price_type', 10)->nullable();
             $table->unsignedInteger('position')->default(1);
             $table->unsignedInteger('valuable_id');
             $table->string('valuable_type');

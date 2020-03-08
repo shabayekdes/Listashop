@@ -18,7 +18,6 @@ class CreateOptionsTable extends Migration
             $table->string('key')->unique();
             $table->string('name');
             $table->string('type');
-            $table->boolean('is_required')->default(false);
             $table->timestamps();
         });
     }
