@@ -80,31 +80,38 @@
                         <span v-show="!product.status" class="badge badge-warning">Non-Active</span>
                       </td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" :href="'/store/'+product.slug">
-                          <i class="fas fa-folder"></i>
-                          View
-                        </a>
+                        <div class="row">
+                          <div class="col-sm-3 border-right">
+                            <a class="btn btn-primary btn-xs" :href="'/store/'+product.slug">
+                              <i class="fas fa-folder"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3 border-right">
+                            <router-link
+                              :to="{ name: 'product.edit',  params: { id: product.id } }"
+                              class="btn btn-info btn-xs"
+                            >
+                              <i class="fas fa-pencil-alt"></i>
+                            </router-link>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3">
+                            <a
+                              class="btn btn-danger btn-xs"
+                              @click="deleteProduct(product.id)"
+                              href="#"
+                            >
+                              <i class="fas fa-trash"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                        </div>
+
                         <!-- <a class="btn btn-info btn-sm" @click="editProduct(product.id)" href>
                           <i class="fas fa-pencil-alt"></i>
                           Edit
                         </a>-->
-
-                        <router-link
-                          :to="{ name: 'product.edit',  params: { id: product.id } }"
-                          class="btn btn-info btn-sm"
-                        >
-                          <i class="fas fa-pencil-alt"></i>
-                          Edit
-                        </router-link>
-
-                        <a
-                          class="btn btn-danger btn-sm"
-                          @click="deleteProduct(product.id)"
-                          href="#"
-                        >
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
                       </td>
                     </tr>
                   </datatable>

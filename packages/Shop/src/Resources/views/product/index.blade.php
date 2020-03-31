@@ -67,24 +67,9 @@
                             <div class="clearfix" style="z-index: 1000;">
 
                                 <!-- Product Color -->
-                                @foreach ($product->attributes as $attribute)
-                                <ul class="product_color">
-                                    <li>
-                                        <span>{{ $attribute->name }}:</span>
-                                        <div class="color_mark_container">
-                                            <div id="selected_color"></div>
-                                        </div>
-                                        <div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
 
-                                        <ul class="color_list">
-
-                                            @foreach ($attribute->options as $option)
-
-                                            <li>{{ $option->label }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
+                                @foreach ($product->options as $option)
+                                @includeIf("shop::product.partials.options.{$option->option->type}")
                                 @endforeach
                             </div>
 
@@ -115,6 +100,6 @@
 
 @section('scripts')
 
-<script src="/frontend/js/product_custom.js"></script>
+{{-- <script src="/frontend/js/product_custom.js"></script> --}}
 
 @endsection

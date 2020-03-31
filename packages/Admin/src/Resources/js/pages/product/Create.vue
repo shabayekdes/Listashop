@@ -51,14 +51,14 @@
                   id="exampleFormControlSelect1"
                 >
                   <option value="simple">Simple product</option>
-                  <!-- <option value="configurable">Attribute product</option> -->
+                  <option value="configurable">Attribute product</option>
                 </select>
               </div>
             </div>
           </div>
           <!-- /.card-header -->
           <product-simple v-if="getSingleProduct.type == 'simple'" />
-          <product-attribute v-else />
+          <product-configurable v-else />
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -289,21 +289,25 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
 import ProductSimple from "@Admin/pages/product/views/ProductSimple";
-// import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
+import ProductConfigurable from "@Admin/pages/product/views/ProductConfigurable";
 import model from "@Admin/components/Model.vue";
 import HasError from "@Admin/components/HasError.vue";
-
+import Multiselect from "vue-multiselect";
 export default {
   name: "ProductEdit",
   components: {
     ImageUploader,
     ProductSimple,
-    // ProductAttribute,
+    ProductConfigurable,
     model,
+    Multiselect,
     HasError
   },
   data() {
-    return {};
+    return {
+      selected: null,
+      options: ["list", "of", "options"]
+    };
   },
   methods: {
     ...mapActions([

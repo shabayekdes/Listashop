@@ -20,6 +20,7 @@ class TestController extends Controller
     public function index()
     {
 
+        dd(mail('sddf','sadasd','sadasd'));
         $product = Product::find(1);
         $option = $product->options()->first();
         dd($option);

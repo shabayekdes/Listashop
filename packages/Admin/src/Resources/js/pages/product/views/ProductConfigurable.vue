@@ -43,8 +43,8 @@
             role="tab"
             aria-controls="v-pills-attribute"
             aria-selected="false"
-          >Attributes</a>
-          <a
+          >Options</a>
+          <!-- <a
             class="nav-link"
             id="v-pills-variations-tab"
             data-toggle="pill"
@@ -52,7 +52,7 @@
             role="tab"
             aria-controls="v-pills-variations"
             aria-selected="false"
-          >Variations</a>
+          >Variations</a> -->
         </div>
       </div>
       <div class="col-9">
@@ -173,6 +173,161 @@
             role="tabpanel"
             aria-labelledby="v-pills-attribute-tab"
           >
+        <div class="card collapsed-card">
+          <div class="card-header">
+            <h3 class="card-title">Name Option</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body" style="display: none;">
+            <div class="info-box bg-gradient-info">
+              <div class="info-box-content">
+                <div class="d-flex bd-highlight">
+                  <div class="mr-auto p-2 bd-highlight">
+                    <div class="form-group">
+                      <label for="optionName">Option name</label>
+                      <multiselect v-model="selected" :options="options" id="optionName"></multiselect>
+                    </div>
+                  </div>
+                  <div class="mr-auto p-2 bd-highlight">
+                    <div class="form-group">
+                      <label for="type">Type</label>
+                      <select class="form-control" id="type">
+                        <option value="simple">Simple product</option>
+                        <option value="configurable">Attribute product</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="align-self-center p-2 bd-highlight">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" />
+                      <label class="form-check-label">Required</label>
+                    </div>
+                  </div>
+                  <div class="align-self-center p-2 bd-highlight">
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Value</th>
+                  <th>Price</th>
+                  <th>Price Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>
+                    <multiselect v-model="selected" :options="options" id="optionName"></multiselect>
+                  </td>
+                  <td>
+                    <input class="form-control" type="number" />
+                  </td>
+                  <td>
+                    <select class="form-control" id="type">
+                      <option value="simple">Simple product</option>
+                      <option value="configurable">Attribute product</option>
+                    </select>
+                  </td>
+                </tr>
+                <a href="compose.html" class="btn btn-primary btn-block mb-3">Compose</a>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>        <div class="card collapsed-card">
+          <div class="card-header">
+            <h3 class="card-title">Name Option</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body" style="display: none;">
+            <div class="info-box bg-gradient-info">
+              <div class="info-box-content">
+                <div class="d-flex bd-highlight">
+                  <div class="mr-auto p-2 bd-highlight">
+                    <div class="form-group">
+                      <label for="optionName">Option name</label>
+                      <multiselect v-model="selected" :options="options" id="optionName"></multiselect>
+                    </div>
+                  </div>
+                  <div class="mr-auto p-2 bd-highlight">
+                    <div class="form-group">
+                      <label for="type">Type</label>
+                      <select class="form-control" id="type">
+                        <option value="simple">Simple product</option>
+                        <option value="configurable">Attribute product</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="align-self-center p-2 bd-highlight">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" />
+                      <label class="form-check-label">Required</label>
+                    </div>
+                  </div>
+                  <div class="align-self-center p-2 bd-highlight">
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Value</th>
+                  <th>Price</th>
+                  <th>Price Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>
+                    <multiselect v-model="selected" :options="options" id="optionName"></multiselect>
+                  </td>
+                  <td>
+                    <input class="form-control" type="number" />
+                  </td>
+                  <td>
+                    <select class="form-control" id="type">
+                      <option value="simple">Simple product</option>
+                      <option value="configurable">Attribute product</option>
+                    </select>
+                  </td>
+                </tr>
+                <a href="compose.html" class="btn btn-primary btn-block mb-3">Compose</a>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
             <div class="card">
               <div class="card-header">
                 <div class="form-group row">
@@ -180,17 +335,16 @@
                   <div class="col-sm-3">
                     <select class="form-control" v-model="attribute" id="exampleFormControlSelect1">
                       <option value disabled>Select Category</option>
-                      <option
+                      <!-- <option
                         v-for="attribute in getAllAttributes"
                         :key="attribute.id"
                         :value="attribute"
-                      >{{ attribute.name }}</option>
+                      >{{ attribute.name }}</option> -->
                     </select>
                   </div>
                   <div class="col-sm-3">
                     <button
                       type="button"
-                      @click="addSelectedAttr(attribute)"
                       class="btn btn-primary"
                     >
                       <i class="fas fa-plus"></i>
@@ -200,27 +354,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <div
-                  class="card card-primary collapsed-card"
-                  v-for="attribute in getSelectedAttr"
-                  :key="attribute.id"
-                >
-                  <div class="card-header">
-                    <h3 class="card-title">{{ attribute.name }}</h3>
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                      <button
-                        type="button"
-                        @click="removeSelectedAttr(attribute)"
-                        data-card-widget="remove"
-                        class="btn btn-tool"
-                      >
-                        <i class="fas fa-times"></i>
-                      </button>
-                    </div>
-                    <!-- /.card-tools -->
+
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">{{ attribute.name }}</div>
@@ -231,7 +365,7 @@
               <!-- /.card-body -->
             </div>
           </div>
-          <product-variation />
+          <!-- <product-variation /> -->
         </div>
       </div>
     </div>
@@ -240,23 +374,27 @@
 
 <script>
 import { mapGetters, mapActions, mapMutations } from "vuex";
-import ProductVariation from "@Admin/views/forms/ProductVariation";
+// import ProductVariation from "@Admin/views/forms/ProductVariation";
 import HasError from "@Admin/components/HasError.vue";
+  import Multiselect from 'vue-multiselect'
 
 export default {
-  name: "ProductAttribute",
+  name: "ProductConfigurable",
   components: {
-    ProductVariation,
-    HasError
+    // ProductVariation,
+    HasError,
+    Multiselect
   },
   data() {
     return {
-      attribute: ""
+      attribute: "",
+      selected: null,
+        options: ['list', 'of', 'options']
     };
   },
   methods: {
-    ...mapActions(["addSelectedAttr", "removeSelectedAttr", "setError"]),
-    ...mapMutations(["REMOVE_VARIATION", "SET_VARIATION", "RESET_OPTIONS"]),
+    ...mapActions(["removeSelectedAttr", "setError"]),
+    // ...mapMutations(["REMOVE_VARIATION", "SET_VARIATION", "RESET_OPTIONS"]),
     cartesian() {
       var r = [],
         arg = arguments,
@@ -270,32 +408,30 @@ export default {
         }
       }
       helper([], 0);
-      this.SET_VARIATION(r);
+    //   this.SET_VARIATION(r);
       return r;
     }
   },
   watch: {
-    getSelectedAttr(val, oldVal) {
-      this.RESET_OPTIONS();
-      val.map(attr => {
-        this.getAllOptions.push(attr.options);
-      });
-      if (this.getAllOptions.length > 0) {
-        this.cartesian(...this.getAllOptions);
-      } else {
-        this.REMOVE_VARIATION([]);
-      }
-    }
+    // getSelectedAttr(val, oldVal) {
+    //   this.RESET_OPTIONS();
+    //   val.map(attr => {
+    //     this.getAllOptions.push(attr.options);
+    //   });
+    //   if (this.getAllOptions.length > 0) {
+    //     this.cartesian(...this.getAllOptions);
+    //   } else {
+    //     this.REMOVE_VARIATION([]);
+    //   }
+    // }
   },
   computed: mapGetters([
     "getSingleProduct",
     "getAllOptions",
-    "getAllAttributes",
-    "getSelectedAttr",
+    // "getAllAttributes",
+    // "getSelectedAttr",
     "hasError"
   ])
 };
 </script>
-
-<style>
-</style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
