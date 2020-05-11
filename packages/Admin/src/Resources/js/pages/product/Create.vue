@@ -42,23 +42,10 @@
 
         <div class="card card-outline card-primary">
           <div class="card-header">
-            <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label card-title">Product Data -</label>
-              <div class="col-sm-3">
-                <select
-                  class="form-control"
-                  v-model="getSingleProduct.type"
-                  id="exampleFormControlSelect1"
-                >
-                  <option value="simple">Simple product</option>
-                  <option value="configurable">Attribute product</option>
-                </select>
-              </div>
-            </div>
+            <h3 class="card-title">Details</h3>
           </div>
           <!-- /.card-header -->
-          <product-simple v-if="getSingleProduct.type == 'simple'" />
-          <product-configurable v-else />
+          <product-simple />
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -289,7 +276,6 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
 import ProductSimple from "@Admin/pages/product/views/ProductSimple";
-import ProductConfigurable from "@Admin/pages/product/views/ProductConfigurable";
 import model from "@Admin/components/Model.vue";
 import HasError from "@Admin/components/HasError.vue";
 import Multiselect from "vue-multiselect";
@@ -298,7 +284,6 @@ export default {
   components: {
     ImageUploader,
     ProductSimple,
-    ProductConfigurable,
     model,
     Multiselect,
     HasError
@@ -317,7 +302,7 @@ export default {
       "fetchListCategories",
       "addThumb",
       "resetImages",
-      "setMode",
+      "resetProduct",
       "setError"
     ]),
     ...mapMutations(["SET_STATUS", "SET_LOADING"]),
@@ -355,6 +340,7 @@ export default {
   created() {
     // this.fetchListAttributes("all");
     this.SET_LOADING();
+    this.resetProduct();
     // if (this.$route.params.id == undefined) {
     //   this.setMode(false);
     // } else {
@@ -366,24 +352,14 @@ export default {
     // this.SET_STATUS("");
     this.fetchListCategories("all");
   },
-  //   watch: {
-  //     getStatus(val, oldVal) {
-  //       if (val == "ok") {
-  //         this.$router.push({ path: "/admin/products" });
-  //         this.resetImages();
-  //       }
-  //     }
-  //   },
   computed: mapGetters([
     "getSingleProduct",
     "getAllCategories",
     // "getVariations",
     // "getSelectedAttr",
-    "getMode",
     "getFiles",
     "getImages",
     "getThumb",
-    // "getStatus",
     "hasError"
   ])
 };

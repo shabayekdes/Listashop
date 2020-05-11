@@ -3,6 +3,7 @@
 namespace Product\Repositories;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Product\Models\Product;
 use Core\Eloquent\BaseRepository;
 use Intervention\Image\Facades\Image;
@@ -40,6 +41,8 @@ class ProductRepository extends BaseRepository
     public function create(array $data)
     {
         $product = $this->model->create($data);
+        $this->uploadImages($product);
+
         // $variations = json_decode($data['variations'], true);
 
         // if($data['type'] == 'configurable'){
@@ -60,7 +63,9 @@ class ProductRepository extends BaseRepository
      */
     public function update(array $data, $product)
     {
+        Arr::forget($data, 'thumbnail');
         $product->update($data);
+        $this->uploadImages($product);
         return $product;
     }
     /**
@@ -94,7 +99,7 @@ class ProductRepository extends BaseRepository
         $productVariant->options()->attach($attributes_ids);
         $this->productFlat->createProductFlat($data, $productVariant);
     }
-    private function uploadImages($productFlat, $product)
+    private function uploadImages($product)
     {
         if (request()->has('images')) {
             foreach (request('images') as $key => $image) {
@@ -106,10 +111,14 @@ class ProductRepository extends BaseRepository
                 $extension = $image->getClientOriginalExtension();
                 if ($key == 'thumb') {
 
+                    if (Storage::exists('public/' . $product->thumbnail)) {
+                        Storage::delete('public/' . $product->thumbnail);
+                    }
+
                     $fileNameToStore = 'product-' . $product->id . '.' . $extension;
                     $path = $image->storeAs('public/products/' . $product->id,  $fileNameToStore);
                     $fileNameToStore = Str::replaceFirst('public/', '', $path);
-                    $productImage = $productFlat->update([
+                    $productImage = $product->update([
                         'thumbnail' => $fileNameToStore
                     ]);
                 } else {
@@ -128,6 +137,6 @@ class ProductRepository extends BaseRepository
                 }
             }
         }
-        return $productFlat;
+        return $product;
     }
 }

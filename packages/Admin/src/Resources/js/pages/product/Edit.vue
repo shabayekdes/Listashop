@@ -42,24 +42,10 @@
 
         <div class="card card-outline card-primary">
           <div class="card-header">
-            <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label card-title">Product Data -</label>
-              <div class="col-sm-3">
-                <select
-                  class="form-control"
-                  v-model="getSingleProduct.type"
-                  id="exampleFormControlSelect1"
-                >
-                  <option value="simple">Simple product</option>
-                  <option value="configurable">Attribute product</option>
-                </select>
-              </div>
-            </div>
+            <h3 class="card-title">Details</h3>
           </div>
           <!-- /.card-header -->
           <product-simple />
-          <!-- <product-simple v-if="getSingleProduct.type == 'simple'" /> -->
-          <!-- <product-attribute v-else /> -->
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -308,12 +294,22 @@ export default {
       "fetchListCategories",
       //   "fetchListAttributes",
       "addThumb",
-      "resetImages",
       "setError"
     ]),
     ...mapMutations(["SET_STATUS", "SET_LOADING"]),
     patchProduct() {
-      this.updateProduct(this.getSingleProduct);
+             const formData = new FormData();
+      for (const [key, value] of Object.entries(this.getSingleProduct)) {
+        formData.append(key, value);
+      }
+      this.getFiles.forEach(file => {
+        formData.append("images[]", file, file.name);
+      });
+      if (this.getThumb.file) {
+        formData.append("images[thumb]", this.getThumb.file);
+      }
+
+      this.updateProduct(formData);
     },
     newModel() {
       $("#addNew").modal("show");

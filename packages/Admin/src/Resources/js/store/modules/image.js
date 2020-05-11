@@ -49,6 +49,9 @@ const actions = {
         };
         reader.readAsDataURL(file);
     },
+    setImage({ commit }, data) {
+        commit("SET_IMAGE", data);
+    },
     resetImages({ state }) {
         state.files = [];
         state.images = [];
@@ -60,7 +63,11 @@ const actions = {
     }
 };
 
-const mutations = {};
+const mutations = {
+    SET_IMAGE: (state, image) => {
+        state.thumb = image;
+    }
+};
 
 export default {
     state,

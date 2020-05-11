@@ -5,9 +5,8 @@ Route::group([
     'middleware' => ['web']
 ], function () {
     Route::namespace('\Admin\Http\Controllers')->group(function () {
-        Route::get('admin-login','Auth\LoginController@showAdminLoginForm')->name('show.admin.login');
-        Route::post('admin-login','Auth\LoginController@login')->name('admin.login');
-
+        Route::get('admin-login', 'Auth\LoginController@showAdminLoginForm')->name('show.admin.login');
+        Route::post('admin-login', 'Auth\LoginController@login')->name('admin.login');
     });
 });
 
@@ -17,7 +16,10 @@ Route::group([
     Route::namespace('\Admin\Http\Controllers')->prefix('api/admin')->group(function () {
         Route::apiResource('user', 'UserController');
         Route::apiResource('category', 'CategoryController');
-        Route::apiResource('product', 'ProductController');
+        Route::apiResource('product', 'ProductController', [
+            'only' => ['index', 'show', 'store']
+        ]);
+        Route::post('product/{id}', 'ProductController@update');
         Route::apiResource('order', 'OrderController');
         Route::apiResource('attribute', 'AttributeController');
         // Route::apiResource('attribute-options', 'AttributeOptionController');

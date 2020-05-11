@@ -20,30 +20,30 @@ class TestController extends Controller
     public function index()
     {
 
-        dd(mail('sddf','sadasd','sadasd'));
+        dd(Storage::exists('public/products/15/product-15.png'));
         $product = Product::find(1);
         $option = $product->options()->first();
         dd($option);
 
-        dd($option,$option->option()->first(), $option->values()->get());
+        dd($option, $option->option()->first(), $option->values()->get());
 
         $price = 8759;
         $new_price = 1980;
-        $discount = (int) 100 - ceil($new_price * 100 / $price). "%";
+        $discount = (int) 100 - ceil($new_price * 100 / $price) . "%";
 
         dd($discount);
 
 
-        $product = Product::with('flat','images','options','options.attribute')->where('id', 1)->first();
+        $product = Product::with('flat', 'images', 'options', 'options.attribute')->where('id', 1)->first();
 
         dd($product->attributes()->get());
         return new ProductResource($product);
 
 
         $child = $product->children()->create([
-            'sku'  =>'sadasdasdasd',
-            'type'=>'simple',
-            'slug'=>'sdadasdasd',
+            'sku'  => 'sadasdasdasd',
+            'type' => 'simple',
+            'slug' => 'sdadasdasd',
             'categories_id' => 1
         ]);
 

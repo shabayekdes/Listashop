@@ -28,7 +28,7 @@ const actions = {
         commit("SET_META_DATA", response.data, { root: true });
         commit("SET_LOADING", { root: true });
     },
-    async storeProduct({ commit }, data) {
+    async storeProduct({ commit, dispatch }, data) {
         try {
             const config = {
                 headers: {
@@ -38,29 +38,39 @@ const actions = {
             const response = await axios.post(`${urlApi}product`, data, config);
 
             commit("NEW_PRODUCT", response.data);
-            commit("RESET_NEW_PRODUCT");
-            commit("RESET_SELECTED_ATTR");
+            dispatch("resetProduct");
             commit("SET_LOADING", { root: true });
             router.push("/admin/products");
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
     },
-    async showProduct({ commit }, id) {
+    async showProduct({ commit, dispatch }, id) {
         const response = await axios.get(`${urlApi}product/${id}`);
 
+        let thumb = {};
+        thumb.url = response.data.data.thumbnail;
+        thumb.name = response.data.data.thumbnail.split(id + "/").pop();
+
         commit("SET_PRODUCT", response.data.data);
+        dispatch("setImage", thumb, { root: true });
     },
-    async updateProduct({ commit }, data) {
+    async updateProduct({ commit, dispatch }, data) {
         try {
-            const response = await axios.put(
-                `${urlApi}product/${data.id}`,
-                data
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            };
+            const response = await axios.post(
+                `${urlApi}product/${data.get("id")}`,
+                data,
+                config
             );
 
             commit("PUT_PRODUCT", response.data);
-            commit("RESET_NEW_PRODUCT");
-            commit("RESET_IMAGE");
+            dispatch("resetProduct");
+
             router.push("/admin/products");
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
@@ -82,6 +92,10 @@ const actions = {
                 { root: true }
             );
         }
+    },
+    resetProduct({ commit, dispatch }) {
+        commit("RESET_NEW_PRODUCT");
+        dispatch("resetImages", { root: true });
     }
 };
 
