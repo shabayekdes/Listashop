@@ -60,22 +60,20 @@
                       <td>{{ option.name }}</td>
                       <td>{{ option.type }}</td>
                       <td class="project-actions text-right">
-                        <!-- <router-link
-                          :to="{ name: 'option.show',  params: { id: option.id } }"
-                          class="btn btn-primary btn-sm"
-                        >
-                          View
-                          <i class="fas fa-folder"></i>
-                        </router-link>-->
-
-                        <a class="btn btn-info btn-sm" @click="editOption(option.id)" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
+                        <div class="row">
+                          <div class="col-sm-3 border-right">
+                            <a class="btn btn-info btn-sm" @click="editOption(option.id)" href="#">
+                              <i class="fas fa-pencil-alt"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3">
+                            <a class="btn btn-danger btn-sm" href="#">
+                              <i class="fas fa-trash"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                        </div>
                       </td>
                     </tr>
                   </datatable>

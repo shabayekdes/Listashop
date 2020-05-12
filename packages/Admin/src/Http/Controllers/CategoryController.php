@@ -78,7 +78,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->category->deleteById($id);
+        $this->category->delete($id);
         return ["message" => "Category delete!!"];
     }
 }

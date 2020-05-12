@@ -17,7 +17,7 @@ Route::group([
         Route::apiResource('user', 'UserController');
         Route::apiResource('category', 'CategoryController');
         Route::apiResource('product', 'ProductController', [
-            'only' => ['index', 'show', 'store']
+            'except' => ['update']
         ]);
         Route::post('product/{id}', 'ProductController@update');
         Route::apiResource('order', 'OrderController');
