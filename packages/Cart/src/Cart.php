@@ -53,7 +53,7 @@ class Cart
         $this->instance = sprintf('%s.%s', 'cart', $instance);
         return $this;
     }
-   /**
+    /**
      * Get the current cart instance.
      *
      * @return string
@@ -89,6 +89,7 @@ class Cart
             $cartItem->qty += $content->get($cartItem->rowId)->qty;
         }
         $content->put($cartItem->rowId, $cartItem);
+
         $this->events->dispatch('cart.added', $cartItem);
         $this->session->put($this->instance, $content);
         return $cartItem;
@@ -151,7 +152,7 @@ class Cart
     public function get($rowId)
     {
         $content = $this->getContent();
-        if ( ! $content->has($rowId))
+        if (!$content->has($rowId))
             throw new InvalidRowIDException("The cart does not contain rowId {$rowId}.");
         return $content->get($rowId);
     }
@@ -254,7 +255,7 @@ class Cart
      */
     public function associate($rowId, $model)
     {
-        if(is_string($model) && ! class_exists($model)) {
+        if (is_string($model) && !class_exists($model)) {
             throw new UnknownModelException("The supplied model {$model} does not exist.");
         }
         $cartItem = $this->get($rowId);
@@ -288,14 +289,14 @@ class Cart
     {
         $content = $this->getContent();
         $this->getConnection()
-             ->table($this->getTableName())
-             ->where('identifier', $identifier)
-             ->delete();
+            ->table($this->getTableName())
+            ->where('identifier', $identifier)
+            ->delete();
         $this->getConnection()->table($this->getTableName())->insert([
             'identifier' => $identifier,
             'instance' => $this->currentInstance(),
             'content' => serialize($content),
-            'created_at'=> new \DateTime()
+            'created_at' => new \DateTime()
         ]);
         $this->events->dispatch('cart.stored');
     }
@@ -307,7 +308,7 @@ class Cart
      */
     public function restore($identifier)
     {
-        if( ! $this->storedCartWithIdentifierExists($identifier)) {
+        if (!$this->storedCartWithIdentifierExists($identifier)) {
             return;
         }
         $stored = $this->getConnection()->table($this->getTableName())
@@ -328,11 +329,12 @@ class Cart
      *
      * @param mixed $identifier
      */
-    protected function deleteStoredCart($identifier) {
+    protected function deleteStoredCart($identifier)
+    {
         $this->getConnection()
-             ->table($this->getTableName())
-             ->where('identifier', $identifier)
-             ->delete();
+            ->table($this->getTableName())
+            ->where('identifier', $identifier)
+            ->delete();
     }
     /**
      * Magic method to make accessing the total, tax and subtotal properties possible.
@@ -342,13 +344,13 @@ class Cart
      */
     public function __get($attribute)
     {
-        if($attribute === 'total') {
+        if ($attribute === 'total') {
             return $this->total();
         }
-        if($attribute === 'tax') {
+        if ($attribute === 'tax') {
             return $this->tax();
         }
-        if($attribute === 'subtotal') {
+        if ($attribute === 'subtotal') {
             return $this->subtotal();
         }
         return null;
@@ -399,7 +401,7 @@ class Cart
      */
     private function isMulti($item)
     {
-        if ( ! is_array($item)) return false;
+        if (!is_array($item)) return false;
         return is_array(head($item)) || head($item) instanceof Buyable;
     }
     /**
@@ -450,13 +452,13 @@ class Cart
      */
     private function numberFormat($value, $decimals, $decimalPoint, $thousandSeperator)
     {
-        if(is_null($decimals)){
+        if (is_null($decimals)) {
             $decimals = is_null(config('cart.format.decimals')) ? 2 : config('cart.format.decimals');
         }
-        if(is_null($decimalPoint)){
+        if (is_null($decimalPoint)) {
             $decimalPoint = is_null(config('cart.format.decimal_point')) ? '.' : config('cart.format.decimal_point');
         }
-        if(is_null($thousandSeperator)){
+        if (is_null($thousandSeperator)) {
             $thousandSeperator = is_null(config('cart.format.thousand_seperator')) ? ',' : config('cart.format.thousand_seperator');
         }
         return number_format($value, $decimals, $decimalPoint, $thousandSeperator);
