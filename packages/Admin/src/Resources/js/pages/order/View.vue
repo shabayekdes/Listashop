@@ -2,79 +2,76 @@
   <!-- Main content -->
   <section class="content">
     <div class="row">
+      <div class="col-6">
+        <div class="card card-outline card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Customer Information</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            To
+            <address>
+              <strong v-if="getSingleOrder.is_guest">{{ getSingleOrder.customer_name }}</strong>
+              <strong v-else>{{ getSingleOrder.user.name }}</strong>
+              <br />795 Folsom Ave, Suite 600
+              <br />San Francisco, CA 94107
+              <br />Phone: (555) 539-1037
+              <br />Email: john.doe@example.com
+            </address>
+            <!-- /.card-body -->
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card card-outline card-primary">
+          <div class="card-body">
+            <p class="lead">Order Information</p>
+            <div class="table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th style="width:50%">Invoice:</th>
+                    <td>{{ getSingleOrder.key }}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <b>Order ID:</b>
+                    </th>
+                    <td>#OR{{ getSingleOrder.id }}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <b>Payment Due:</b>
+                    </th>
+                    <td>{{ getSingleOrder.created_at }}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <b>Order Status:</b>
+                    </th>
+                    <td>{{ getSingleOrder.order_status }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <button type="button" class="btn btn-success">
+              <i class="fas fa-stopwatch"></i> Update Status
+            </button>
+            <!-- /.card-body -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <div class="row">
-              <div class="col-sm-12 col-md-5">
-                <h3 class="card-title">Order List</h3>
-              </div>
-              <div class="col-sm-12 col-md-7">
-                <router-link
-                  :to="{ name: 'product.create',  params: { editMode: false } }"
-                  class="btn btn-success float-right"
-                >
-                  Add New
-                  <i class="fas fa-cart-plus"></i>
-                </router-link>
-              </div>
-            </div>
+            <h3 class="card-title">Order Items</h3>
           </div>
-
           <!-- /.card-header -->
           <div class="card-body">
             <div class="invoice p-3 mb-3">
-              <!-- title row -->
-              <div class="row">
-                <div class="col-12">
-                  <h4>
-                    <i class="fas fa-globe"></i> AdminLTE, Inc.
-                    <small class="float-right">Date: 2/10/2014</small>
-                  </h4>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- info row -->
-              <div class="row invoice-info">
-                <div class="col-sm-4 invoice-col">
-                  From
-                  <address>
-                    <strong>Admin, Inc.</strong>
-
-                    <br />795 Folsom Ave, Suite 600
-                    <br />San Francisco, CA 94107
-                    <br />Phone: (804) 123-5432
-                    <br />Email: info@almasaeedstudio.com
-                  </address>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                  To
-                  <address>
-                    <strong v-if="getSingleOrder.is_guest">{{ getSingleOrder.customer_name }}</strong>
-                    <strong v-else>{{ getSingleOrder.user.name }}</strong>
-                    <br />795 Folsom Ave, Suite 600
-                    <br />San Francisco, CA 94107
-                    <br />Phone: (555) 539-1037
-                    <br />Email: john.doe@example.com
-                  </address>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                  <b>Invoice #{{ getSingleOrder.sku }}</b>
-                  <br />
-                  <br />
-                  <b>Order ID:</b>
-                  {{ getSingleOrder.id }}
-                  <br />
-                  <b>Payment Due:</b> 2/22/2014
-                  <br />
-                  <b>Account:</b> 968-34567
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-
               <!-- Table row -->
               <div class="row">
                 <div class="col-12 table-responsive">
@@ -105,22 +102,7 @@
               <!-- /.row -->
 
               <div class="row">
-                <!-- accepted payments column -->
-                <div class="col-6">
-                  <p class="lead">Payment Methods:</p>
-                  <img src="/img/credit/visa.png" alt="Visa" />
-                  <img src="/img/credit/mastercard.png" alt="Mastercard" />
-                  <img src="/img/credit/american-express.png" alt="American Express" />
-                  <img src="/img/credit/paypal2.png" alt="Paypal" />
-
-                  <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                    plugg
-                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-                  </p>
-                </div>
-                <!-- /.col -->
-                <div class="col-6">
+                <div class="col-6 offset-6">
                   <p class="lead">Amount Due 2/22/2014</p>
 
                   <div class="table-responsive">
@@ -149,26 +131,6 @@
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-
-              <!-- this row will not appear when printing -->
-              <div class="row no-print">
-                <div class="col-12">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-default">
-                    <i class="fas fa-print"></i> Print
-                  </a>
-                  <button type="button" class="btn btn-success float-right">
-                    <i class="far fa-credit-card"></i> Submit
-                    Payment
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary float-right"
-                    style="margin-right: 5px;"
-                  >
-                    <i class="fas fa-download"></i> Generate PDF
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
           <!-- /.card-body -->
@@ -183,10 +145,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "ViewOrder",
+  methods: {
+    ...mapActions(["showOrder"])
+  },
+  created() {
+    this.showOrder(this.$route.params.id);
+  },
   computed: mapGetters(["getSingleOrder"])
 };
 </script>

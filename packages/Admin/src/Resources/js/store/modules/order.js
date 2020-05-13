@@ -18,6 +18,11 @@ const actions = {
         commit("SHOW_LIST_ORDERS", response.data);
         commit("SET_META_DATA", response.data, { root: true });
     },
+    async showOrder({ commit }, id) {
+        const response = await axios.get(`${urlApi}order/${id}`);
+
+        commit("SET_ORDER", response.data.data);
+    },
     setOrder({ state }, oldOrder) {
         state.order = oldOrder;
     }
@@ -26,6 +31,9 @@ const actions = {
 const mutations = {
     SHOW_LIST_ORDERS: (state, data) => {
         state.orders = data.data;
+    },
+    SET_ORDER: (state, order) => {
+        state.order = order;
     }
 };
 

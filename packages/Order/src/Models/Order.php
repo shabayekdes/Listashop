@@ -15,17 +15,27 @@ class Order extends Model
         'user_id',
         'grand_total',
         'item_count',
-        'error'];
+        'error'
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'order_status_label'
+    ];
 
     /**
      * Status label.
      */
     protected $statusLabel = [
-        'pending' => 'Pending',
-        'processing' => 'Processing',
-        'completed' => 'Completed',
-        'canceled' => 'Canceled',
-        'closed' => 'Closed'
+        1 => 'Pending',
+        2 => 'Processing',
+        3 => 'Completed',
+        4 => 'Canceled',
+        5 => 'Closed'
     ];
     /**
      * The attributes that should be cast to native types.
@@ -45,7 +55,7 @@ class Order extends Model
     /**
      * Returns the status label from status code
      */
-    public function getStatusLabelAttribute()
+    public function getOrderStatusLabelAttribute()
     {
         return $this->statusLabel[$this->status];
     }
@@ -75,5 +85,4 @@ class Order extends Model
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y/m/d H:m');
     }
-
 }

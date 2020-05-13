@@ -18,15 +18,16 @@ class OrderResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'key' => $this->key,
             'customer_name' => $this->customer_full_name,
             'item_count' => $this->item_count,
             'total' => presentPrice($this->grand_total),
             'payment_gateway' => $this->payment_gateway,
-            'status' => $this->status,
+            'order_status' => $this->order_status_label,
             'is_guest' => $this->is_guest,
             'products' => ProductResource::collection($this->products),
             'user' => new UserResource($this->user),
-            'date' => $this->created_at
+            'created_at' => $this->created_at
         ];
     }
 }

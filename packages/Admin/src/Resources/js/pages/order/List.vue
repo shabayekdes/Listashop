@@ -9,15 +9,6 @@
               <div class="col-sm-12 col-md-5">
                 <h3 class="card-title">Order List</h3>
               </div>
-              <div class="col-sm-12 col-md-7">
-                <router-link
-                  :to="{ name: 'product.create',  params: { editMode: false } }"
-                  class="btn btn-success float-right"
-                >
-                  Add New
-                  <i class="fas fa-cart-plus"></i>
-                </router-link>
-              </div>
             </div>
           </div>
 
@@ -70,25 +61,33 @@
                       <td>{{ order.payment_gateway }}</td>
                       <td>{{ order.date }}</td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" @click="newModel(order)" href="#">
-                          <i class="fas fa-folder"></i>
-                          View
-                        </a>
-                        <router-link
-                          :to="{ name: 'order.view',  params: { id: order.id } }"
-                          class="btn btn-info btn-sm"
-                        >
-                          <i class="fas fa-pencil-alt"></i>
-                          Edit
-                        </router-link>
-                        <a
-                          class="btn btn-danger btn-sm"
-                          @click="deleteProduct(product.id)"
-                          href="#"
-                        >
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
+                        <div class="row">
+                          <div class="col-sm-3 border-right">
+                            <a class="btn btn-primary btn-sm" @click="newModel(order)" href="#">
+                              <i class="fas fa-folder"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3 border-right">
+                            <router-link
+                              :to="{ name: 'order.view',  params: { id: order.id } }"
+                              class="btn btn-info btn-sm"
+                            >
+                              <i class="fas fa-pencil-alt"></i>
+                            </router-link>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3">
+                            <a
+                              class="btn btn-danger btn-sm"
+                              @click="deleteProduct(product.id)"
+                              href="#"
+                            >
+                              <i class="fas fa-trash"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                        </div>
                       </td>
                     </tr>
                   </datatable>
@@ -168,4 +167,3 @@ export default {
   computed: mapGetters(["getAllOrders", "getMetaData"])
 };
 </script>
-

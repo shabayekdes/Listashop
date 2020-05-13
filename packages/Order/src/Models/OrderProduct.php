@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderProduct extends Model
 {
-    protected $table = 'order_products';
+    protected $table = 'order_product';
     /**
      * Get the order record associated with the order item.
      */
