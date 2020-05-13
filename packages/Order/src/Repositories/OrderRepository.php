@@ -39,7 +39,7 @@ class OrderRepository extends BaseRepository
     }
 
     /**
-     * @param User  $user
+     * @param Order  $user
      * @param array $data
      *
      * @throws GeneralException
@@ -47,11 +47,9 @@ class OrderRepository extends BaseRepository
      * @throws \Throwable
      * @return User
      */
-    public function update(array $data, $order) : Order
+    public function update(array $data, $order): Order
     {
         $order->update($data);
         return $order;
     }
-
-
 }

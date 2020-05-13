@@ -61,12 +61,15 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Order  $order
+
      */
     public function update(Request $request, Order $order)
     {
-        return $this->order->update($request->all(), $order);
+        $request->validate([
+            'order_status' => 'between:1,2'
+        ]);
+        return new OrderResource($this->order->update($request->all(), $order));
     }
 
     /**

@@ -3773,10 +3773,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ViewOrder",
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["showOrder"])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["showOrder", "updateOrder"])), {}, {
+    updateOrderStatus: function updateOrderStatus() {
+      this.updateOrder({
+        id: this.$route.params.id,
+        order_status: Number(this.getSingleOrder.order_status) + 1
+      });
+    }
+  }),
   created: function created() {
     this.showOrder(this.$route.params.id);
   },
@@ -46036,13 +46045,32 @@ var render = function() {
                   _c("tr", [
                     _vm._m(3),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.getSingleOrder.order_status))])
+                    _c("td", [
+                      _c("span", { staticClass: "badge badge-warning" }, [
+                        _vm._v(_vm._s(_vm.getSingleOrder.order_status_label))
+                      ])
+                    ])
                   ])
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(4)
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-success",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.updateOrderStatus()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas fa-stopwatch" }),
+                _vm._v(" Update Status\n          ")
+              ]
+            )
           ])
         ])
       ])
@@ -46051,14 +46079,14 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(5),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "invoice p-3 mb-3" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-12 table-responsive" }, [
                   _c("table", { staticClass: "table table-striped" }, [
-                    _vm._m(6),
+                    _vm._m(5),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -46096,11 +46124,11 @@ var render = function() {
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table" }, [
                       _c("tbody", [
+                        _vm._m(6),
+                        _vm._v(" "),
                         _vm._m(7),
                         _vm._v(" "),
                         _vm._m(8),
-                        _vm._v(" "),
-                        _vm._m(9),
                         _vm._v(" "),
                         _c("tr", [
                           _c("th", [_vm._v("Total:")]),
@@ -46145,19 +46173,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("th", [_c("b", [_vm._v("Order Status:")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-success", attrs: { type: "button" } },
-      [
-        _c("i", { staticClass: "fas fa-stopwatch" }),
-        _vm._v(" Update Status\n          ")
-      ]
-    )
   },
   function() {
     var _vm = this
@@ -67977,11 +67992,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Admin_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @Admin/router */ "./packages/admin/src/resources/js/router.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 var state = {
@@ -68049,14 +68066,55 @@ var actions = {
       }, _callee2);
     }))();
   },
-  setOrder: function setOrder(_ref3, oldOrder) {
-    var state = _ref3.state;
+  updateOrder: function updateOrder(_ref3, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "order/").concat(data.id), data);
+
+            case 4:
+              response = _context3.sent;
+              commit("PUT_ORDER", response.data);
+              _Admin_router__WEBPACK_IMPORTED_MODULE_2__["default"].push("/admin/orders");
+              _context3.next = 12;
+              break;
+
+            case 9:
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](1);
+              commit("SET_ERRORS", _context3.t0.response.data.errors);
+
+            case 12:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 9]]);
+    }))();
+  },
+  setOrder: function setOrder(_ref4, oldOrder) {
+    var state = _ref4.state;
     state.order = oldOrder;
   }
 };
 var mutations = {
   SHOW_LIST_ORDERS: function SHOW_LIST_ORDERS(state, data) {
     state.orders = data.data;
+  },
+  PUT_ORDER: function PUT_ORDER(state, data) {
+    var index = state.orders.findIndex(function (order) {
+      return order.id === data.id;
+    });
+
+    if (index !== -1) {
+      state.orders.splice(index, 1, data);
+    }
   },
   SET_ORDER: function SET_ORDER(state, order) {
     state.order = order;

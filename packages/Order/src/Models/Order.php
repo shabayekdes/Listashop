@@ -9,6 +9,7 @@ class Order extends Model
 {
     protected $fillable = [
         'is_guest',
+        'order_status',
         'customer_email',
         'customer_first_name',
         'customer_last_name',
@@ -57,7 +58,7 @@ class Order extends Model
      */
     public function getOrderStatusLabelAttribute()
     {
-        return $this->statusLabel[$this->status];
+        return $this->statusLabel[$this->order_status];
     }
     /**
      * Get the order items record associated with the order.

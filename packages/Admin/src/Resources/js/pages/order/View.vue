@@ -49,14 +49,16 @@
                     <th>
                       <b>Order Status:</b>
                     </th>
-                    <td>{{ getSingleOrder.order_status }}</td>
+                    <td>
+                      <span class="badge badge-warning">{{ getSingleOrder.order_status_label }}</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <button type="button" class="btn btn-success">
+            <a href="#" class="btn btn-success" @click="updateOrderStatus()">
               <i class="fas fa-stopwatch"></i> Update Status
-            </button>
+            </a>
             <!-- /.card-body -->
           </div>
         </div>
@@ -150,7 +152,13 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "ViewOrder",
   methods: {
-    ...mapActions(["showOrder"])
+    ...mapActions(["showOrder", "updateOrder"]),
+    updateOrderStatus() {
+      this.updateOrder({
+        id: this.$route.params.id,
+        order_status: Number(this.getSingleOrder.order_status) + 1
+      });
+    }
   },
   created() {
     this.showOrder(this.$route.params.id);
