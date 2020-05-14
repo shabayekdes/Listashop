@@ -67,7 +67,7 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $request->validate([
-            'order_status' => 'between:1,2'
+            'order_status' => 'between:1,3'
         ]);
         return new OrderResource($this->order->update($request->all(), $order));
     }

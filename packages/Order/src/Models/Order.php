@@ -35,8 +35,7 @@ class Order extends Model
         1 => 'Pending',
         2 => 'Processing',
         3 => 'Completed',
-        4 => 'Canceled',
-        5 => 'Closed'
+        4 => 'Canceled'
     ];
     /**
      * The attributes that should be cast to native types.
