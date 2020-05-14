@@ -9,7 +9,6 @@ Route::group([
         Route::post('admin-login', 'Auth\LoginController@login')->name('admin.login');
     });
 });
-
 Route::group([
     'middleware' => ['auth:api-admin', 'admin', 'api']
 ], function () {

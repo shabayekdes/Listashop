@@ -3544,7 +3544,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -3622,42 +3621,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3809,6 +3778,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ViewOrder",
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["showOrder", "updateOrder"])), {}, {
+    updateOrderStatus: function updateOrderStatus() {
+      this.updateOrder({
+        id: this.$route.params.id,
+        order_status: Number(this.getSingleOrder.order_status) + 1
+      });
+    }
+  }),
+  created: function created() {
+    this.showOrder(this.$route.params.id);
+  },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleOrder"])
 });
 
@@ -45728,35 +45708,7 @@ var render = function() {
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-12" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _c("div", { staticClass: "row" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-sm-12 col-md-7" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "btn btn-success float-right",
-                        attrs: {
-                          to: {
-                            name: "product.create",
-                            params: { editMode: false }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v("\n                Add New\n                "),
-                        _c("i", { staticClass: "fas fa-cart-plus" })
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ])
-            ]),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c(
@@ -45820,72 +45772,86 @@ var render = function() {
                                   "td",
                                   { staticClass: "project-actions text-right" },
                                   [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "btn btn-primary btn-sm",
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.newModel(order)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "fas fa-folder"
-                                        }),
-                                        _vm._v(
-                                          "\n                        View\n                      "
+                                    _c("div", { staticClass: "row" }, [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "col-sm-3 border-right"
+                                        },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "btn btn-primary btn-sm",
+                                              attrs: { href: "#" },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.newModel(order)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-folder"
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "col-sm-3 border-right"
+                                        },
+                                        [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              staticClass:
+                                                "btn btn-info btn-sm",
+                                              attrs: {
+                                                to: {
+                                                  name: "order.view",
+                                                  params: { id: order.id }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-pencil-alt"
+                                              })
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "col-sm-3" }, [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-danger btn-sm",
+                                            attrs: { href: "#" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.deleteProduct(
+                                                  _vm.product.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-trash"
+                                            })
+                                          ]
                                         )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "router-link",
-                                      {
-                                        staticClass: "btn btn-info btn-sm",
-                                        attrs: {
-                                          to: {
-                                            name: "order.view",
-                                            params: { id: order.id }
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "fas fa-pencil-alt"
-                                        }),
-                                        _vm._v(
-                                          "\n                        Edit\n                      "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "btn btn-danger btn-sm",
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.deleteProduct(
-                                              _vm.product.id
-                                            )
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "fas fa-trash"
-                                        }),
-                                        _vm._v(
-                                          "\n                        Delete\n                      "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
+                                      ])
+                                    ])
+                                  ]
                                 )
                               ]
                             )
@@ -45924,8 +45890,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12 col-md-5" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Order List")])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12 col-md-5" }, [
+          _c("h3", { staticClass: "card-title" }, [_vm._v("Order List")])
+        ])
+      ])
     ])
   },
   function() {
@@ -46018,97 +45988,105 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "content" }, [
     _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "card card-outline card-primary" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v("\n          To\n          "),
+            _c("address", [
+              _vm.getSingleOrder.is_guest
+                ? _c("strong", [
+                    _vm._v(_vm._s(_vm.getSingleOrder.customer_name))
+                  ])
+                : _c("strong", [_vm._v(_vm._s(_vm.getSingleOrder.user.name))]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v("795 Folsom Ave, Suite 600\n            "),
+              _c("br"),
+              _vm._v("San Francisco, CA 94107\n            "),
+              _c("br"),
+              _vm._v("Phone: (555) 539-1037\n            "),
+              _c("br"),
+              _vm._v("Email: john.doe@example.com\n          ")
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "card card-outline card-primary" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("p", { staticClass: "lead" }, [_vm._v("Order Information")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("th", { staticStyle: { width: "50%" } }, [
+                      _vm._v("Invoice:")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.getSingleOrder.key))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("#OR" + _vm._s(_vm.getSingleOrder.id))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.getSingleOrder.created_at))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("span", { staticClass: "badge badge-warning" }, [
+                        _vm._v(_vm._s(_vm.getSingleOrder.order_status_label))
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-success",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.updateOrderStatus()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas fa-stopwatch" }),
+                _vm._v(" Update Status\n          ")
+              ]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("div", { staticClass: "row" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-12 col-md-7" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-success float-right",
-                      attrs: {
-                        to: {
-                          name: "product.create",
-                          params: { editMode: false }
-                        }
-                      }
-                    },
-                    [
-                      _vm._v("\n                Add New\n                "),
-                      _c("i", { staticClass: "fas fa-cart-plus" })
-                    ]
-                  )
-                ],
-                1
-              )
-            ])
-          ]),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "invoice p-3 mb-3" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "row invoice-info" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-4 invoice-col" }, [
-                  _vm._v("\n                To\n                "),
-                  _c("address", [
-                    _vm.getSingleOrder.is_guest
-                      ? _c("strong", [
-                          _vm._v(_vm._s(_vm.getSingleOrder.customer_name))
-                        ])
-                      : _c("strong", [
-                          _vm._v(_vm._s(_vm.getSingleOrder.user.name))
-                        ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v("795 Folsom Ave, Suite 600\n                  "),
-                    _c("br"),
-                    _vm._v("San Francisco, CA 94107\n                  "),
-                    _c("br"),
-                    _vm._v("Phone: (555) 539-1037\n                  "),
-                    _c("br"),
-                    _vm._v("Email: john.doe@example.com\n                ")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-4 invoice-col" }, [
-                  _c("b", [
-                    _vm._v("Invoice #" + _vm._s(_vm.getSingleOrder.sku))
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("b", [_vm._v("Order ID:")]),
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.getSingleOrder.id) +
-                      "\n                "
-                  ),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("b", [_vm._v("Payment Due:")]),
-                  _vm._v(" 2/22/2014\n                "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("b", [_vm._v("Account:")]),
-                  _vm._v(" 968-34567\n              ")
-                ])
-              ]),
-              _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-12 table-responsive" }, [
                   _c("table", { staticClass: "table table-striped" }, [
-                    _vm._m(3),
+                    _vm._m(5),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -46138,9 +46116,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _vm._m(4),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-6" }, [
+                _c("div", { staticClass: "col-6 offset-6" }, [
                   _c("p", { staticClass: "lead" }, [
                     _vm._v("Amount Due 2/22/2014")
                   ]),
@@ -46148,11 +46124,11 @@ var render = function() {
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table" }, [
                       _c("tbody", [
-                        _vm._m(5),
-                        _vm._v(" "),
                         _vm._m(6),
                         _vm._v(" "),
                         _vm._m(7),
+                        _vm._v(" "),
+                        _vm._m(8),
                         _vm._v(" "),
                         _c("tr", [
                           _c("th", [_vm._v("Total:")]),
@@ -46163,9 +46139,7 @@ var render = function() {
                     ])
                   ])
                 ])
-              ]),
-              _vm._v(" "),
-              _vm._m(8)
+              ])
             ])
           ])
         ])
@@ -46178,44 +46152,34 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12 col-md-5" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Order List")])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Customer Information")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("h4", [
-          _c("i", { staticClass: "fas fa-globe" }),
-          _vm._v(" AdminLTE, Inc.\n                  "),
-          _c("small", { staticClass: "float-right" }, [
-            _vm._v("Date: 2/10/2014")
-          ])
-        ])
-      ])
-    ])
+    return _c("th", [_c("b", [_vm._v("Order ID:")])])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-4 invoice-col" }, [
-      _vm._v("\n                From\n                "),
-      _c("address", [
-        _c("strong", [_vm._v("Admin, Inc.")]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v("795 Folsom Ave, Suite 600\n                  "),
-        _c("br"),
-        _vm._v("San Francisco, CA 94107\n                  "),
-        _c("br"),
-        _vm._v("Phone: (804) 123-5432\n                  "),
-        _c("br"),
-        _vm._v("Email: info@almasaeedstudio.com\n                ")
-      ])
+    return _c("th", [_c("b", [_vm._v("Payment Due:")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [_c("b", [_vm._v("Order Status:")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Order Items")])
     ])
   },
   function() {
@@ -46234,42 +46198,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Subtotal")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
-      _c("p", { staticClass: "lead" }, [_vm._v("Payment Methods:")]),
-      _vm._v(" "),
-      _c("img", { attrs: { src: "/img/credit/visa.png", alt: "Visa" } }),
-      _vm._v(" "),
-      _c("img", {
-        attrs: { src: "/img/credit/mastercard.png", alt: "Mastercard" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        attrs: {
-          src: "/img/credit/american-express.png",
-          alt: "American Express"
-        }
-      }),
-      _vm._v(" "),
-      _c("img", { attrs: { src: "/img/credit/paypal2.png", alt: "Paypal" } }),
-      _vm._v(" "),
-      _c(
-        "p",
-        {
-          staticClass: "text-muted well well-sm shadow-none",
-          staticStyle: { "margin-top": "10px" }
-        },
-        [
-          _vm._v(
-            "\n                  Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem\n                  plugg\n                  dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.\n                "
-          )
-        ]
-      )
     ])
   },
   function() {
@@ -46300,51 +46228,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Shipping:")]),
       _vm._v(" "),
       _c("td", [_vm._v("$5.80")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row no-print" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-default",
-            attrs: { href: "invoice-print.html", target: "_blank" }
-          },
-          [
-            _c("i", { staticClass: "fas fa-print" }),
-            _vm._v(" Print\n                ")
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "button" }
-          },
-          [
-            _c("i", { staticClass: "far fa-credit-card" }),
-            _vm._v(" Submit\n                  Payment\n                ")
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary float-right",
-            staticStyle: { "margin-right": "5px" },
-            attrs: { type: "button" }
-          },
-          [
-            _c("i", { staticClass: "fas fa-download" }),
-            _vm._v(" Generate PDF\n                ")
-          ]
-        )
-      ])
     ])
   }
 ]
@@ -68109,11 +67992,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Admin_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @Admin/router */ "./packages/admin/src/resources/js/router.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 var state = {
@@ -68158,14 +68043,81 @@ var actions = {
       }, _callee);
     }))();
   },
-  setOrder: function setOrder(_ref2, oldOrder) {
-    var state = _ref2.state;
+  showOrder: function showOrder(_ref2, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat(urlApi, "order/").concat(id));
+
+            case 3:
+              response = _context2.sent;
+              commit("SET_ORDER", response.data.data);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  updateOrder: function updateOrder(_ref3, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "order/").concat(data.id), data);
+
+            case 4:
+              response = _context3.sent;
+              commit("PUT_ORDER", response.data);
+              _Admin_router__WEBPACK_IMPORTED_MODULE_2__["default"].push("/admin/orders");
+              _context3.next = 12;
+              break;
+
+            case 9:
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](1);
+              commit("SET_ERRORS", _context3.t0.response.data.errors);
+
+            case 12:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 9]]);
+    }))();
+  },
+  setOrder: function setOrder(_ref4, oldOrder) {
+    var state = _ref4.state;
     state.order = oldOrder;
   }
 };
 var mutations = {
   SHOW_LIST_ORDERS: function SHOW_LIST_ORDERS(state, data) {
     state.orders = data.data;
+  },
+  PUT_ORDER: function PUT_ORDER(state, data) {
+    var index = state.orders.findIndex(function (order) {
+      return order.id === data.id;
+    });
+
+    if (index !== -1) {
+      state.orders.splice(index, 1, data);
+    }
+  },
+  SET_ORDER: function SET_ORDER(state, order) {
+    state.order = order;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
