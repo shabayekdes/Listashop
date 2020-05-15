@@ -98,8 +98,8 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts')
 
 {{-- <script src="/frontend/js/product_custom.js"></script> --}}
 
-@endsection
+@endpush
