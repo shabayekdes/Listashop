@@ -1,9 +1,11 @@
 {
     "private": true,
     "scripts": {
-        "dev-all": "npm --section=admin run dev",
+        "dev-admin": "npm --section=admin run dev",
+        "dev-shop": "npm --section=shop run dev",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch-admin": "npm --section=admin run watch",
+        "watch-shop": "npm --section=shop run watch",
         "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch-poll": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",

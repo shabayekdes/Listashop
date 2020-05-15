@@ -1,4 +1,4 @@
-if (["admin"].includes(process.env.npm_config_section)) {
+if (["shop", "admin"].includes(process.env.npm_config_section)) {
     require(`${__dirname}/webpack.${process.env.npm_config_section}.mix.js`);
 } else {
     console.log(

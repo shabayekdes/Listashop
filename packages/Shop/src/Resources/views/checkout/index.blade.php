@@ -81,6 +81,15 @@
 
                 <h2>Payment Details</h2>
 
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
+                </div>
+
                 <div class="form-group">
                     <label for="name_on_card">Name on Card</label>
                     <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
@@ -115,11 +124,12 @@
                 @foreach( Cart::content() as $item)
                 <div class="checkout-table-row">
                     <div class="checkout-table-row-left">
-                            @if (empty($item->model->thumbnail))
-                                <img src="{{ url( 'img/products/default.png') }}" alt="item" class="checkout-table-img">
-                            @else
-                                <img src="{{ url( 'storage/' . $item->model->thumbnail) }}" alt="item" class="checkout-table-img">
-                            @endif
+                        @if (empty($item->model->thumbnail))
+                        <img src="{{ url( 'img/products/default.png') }}" alt="item" class="checkout-table-img">
+                        @else
+                        <img src="{{ url( 'storage/' . $item->model->thumbnail) }}" alt="item"
+                            class="checkout-table-img">
+                        @endif
                         <div class="checkout-item-details">
                             <div class="checkout-table-item">{{ Str::words($item->model->name, 3, '') }}</div>
                             <div class="checkout-table-description">15 inch, 1TB SSD, 32GB RAM</div>
@@ -159,7 +169,7 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script src="/frontend/plugins/Isotope/isotope.pkgd.min.js"></script>
 <script src="/frontend/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="/frontend/plugins/parallax-js-master/parallax.min.js"></script>
@@ -250,4 +260,4 @@
     form.submit();
     }
 </script>
-@endsection
+@endpush
