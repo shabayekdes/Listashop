@@ -82,33 +82,53 @@
                 <h2>Payment Details</h2>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+                    <input type="radio" id="cod" name="payment_method" value="1"
+                        class="custom-control-input" checked>
+                    <label class="custom-control-label" for="cod">Cash on Delivery ( COD )</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
+                    <input type="radio" id="credit_card" name="payment_method" value="2"
+                        class="custom-control-input">
+                    <label class="custom-control-label" for="credit_card">Credit card</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="paypal" name="payment_method" value="3"
+                        class="custom-control-input">
+                    <label class="custom-control-label" for="paypal">PayPal</label>
                 </div>
 
-                <div class="form-group">
-                    <label for="name_on_card">Name on Card</label>
-                    <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
-                </div>
-
-                <div class="form-group">
-                    <label for="card-element">
-                        Credit or debit card
-                    </label>
-                    <div id="card-element">
-                        <!-- a Stripe Element will be inserted here. -->
-                    </div>
-
-                    <!-- Used to display form errors -->
-                    <div id="card-errors" role="alert"></div>
-                </div>
                 <div class="spacer"></div>
 
-                <button type="submit" id="complete-order" class="button checkout_button">Complete Order</button>
+                <div class="card mt-3 d-none payment_method" id="credit_card_input">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name_on_card">Name on Card</label>
+                            <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="card-element">
+                                Credit or debit card
+                            </label>
+                            <div id="card-element">
+                                <!-- a Stripe Element will be inserted here. -->
+                            </div>
+
+                            <!-- Used to display form errors -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+                </div>
+                <div class="card mt-3 d-none payment_method" id="paypal_input">
+                    <div class="card-body">
+                        test
+                    </div>
+                </div>
+
+
+
+                <button type="submit" id="complete-order" class="button checkout_button mt-3">Complete Order</button>
 
 
             </form>
@@ -166,6 +186,7 @@
 
     </div> <!-- end checkout-section -->
 </div>
+</div>
 
 @endsection
 
@@ -176,6 +197,17 @@
 <script src="/frontend/js/shop_custom.js"></script>
 
 <script>
+    $(document).ready(function(){
+        $('input[type=radio][name="payment_method"]').on('change', function() {
+
+            $(`.payment_method`).hide()
+            $(`.payment_method`).removeClass('d-none')
+
+            $(`#${this.id}_input`).show("slow");
+
+        });
+    });
+
     // Create a Stripe client.
     var stripe = Stripe('pk_test_sMKSH12Vb2yYtP7GTpMwSZn2');
 
