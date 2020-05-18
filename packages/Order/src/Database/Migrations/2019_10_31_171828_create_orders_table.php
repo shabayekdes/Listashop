@@ -29,7 +29,8 @@ class CreateOrdersTable extends Migration
 
             $table->decimal('grand_total', 12, 4)->default(0);
 
-            $table->string('payment_gateway')->default('stripe');
+            // $table->string('payment_gateway')->default('stripe');
+            $table->integer('payment_method')->comment("1- COD, 2- credit card, 3- paypal");
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
