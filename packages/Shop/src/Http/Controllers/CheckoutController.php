@@ -7,6 +7,7 @@ use Order\Models\Order;
 use Product\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Order\Repositories\OrderRepository;
 use Order\Http\Requests\CheckoutRequest;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Cartalyst\Stripe\Exception\CardErrorException;
@@ -16,6 +17,18 @@ use Cartalyst\Stripe\Exception\CardErrorException;
  */
 class CheckoutController extends Controller
 {
+    protected $order;
+
+    /**
+     * Order Controller constructor.
+     *
+     * @param OrderRepository $order
+     */
+    public function __construct(OrderRepository $order)
+    {
+        $this->order = $order;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -49,6 +62,8 @@ class CheckoutController extends Controller
         $contents = Cart::content()->map(function ($item) {
             return $item->model->slug.', '.$item->qty;
         })->values()->toJson();
+
+        // dd($request->all());
 
         try {
             $charge = Stripe::charges()->create([
@@ -86,6 +101,7 @@ class CheckoutController extends Controller
             'is_guest' => auth()->user() ? false : true,
             'grand_total' => Cart::total(),
             'item_count' => Cart::count(),
+            'payment_method' => $request->payment_method,
             'error' => $error,
         ]);
 
