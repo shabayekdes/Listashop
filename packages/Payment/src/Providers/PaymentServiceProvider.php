@@ -3,6 +3,7 @@
 namespace Payment\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Payment\PaymentManager;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -22,5 +23,19 @@ class PaymentServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerFacades();
     }
+
+    /**
+     * Register Bouncer as a singleton.
+     *
+     * @return void
+     */
+    protected function registerFacades()
+    {
+        $this->app->singleton('payment', function () {
+            return new PaymentManager();
+        });
+    }
+
 }
