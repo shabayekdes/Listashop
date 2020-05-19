@@ -198,6 +198,7 @@
 
 <script>
     $(document).ready(function(){
+        console.log($('input[type=radio][name="payment_method"]:checked').val())
         $('input[type=radio][name="payment_method"]').on('change', function() {
 
             $(`.payment_method`).hide()
@@ -257,39 +258,49 @@
         event.preventDefault();
         // Disable the submit button to prevent repeated clicks
         document.getElementById('complete-order').disabled = true;
-        var options = {
-        name: document.getElementById('name_on_card').value,
-        address_line1: document.getElementById('address').value,
-        address_city: document.getElementById('city').value,
-        address_state: document.getElementById('province').value,
-        address_zip: document.getElementById('postalcode').value
+        let payment_method = $('input[type=radio][name="payment_method"]:checked').val();
+
+        if(payment_method == 2){
+            var options = {
+                name: document.getElementById('name_on_card').value,
+                address_line1: document.getElementById('address').value,
+                address_city: document.getElementById('city').value,
+                address_state: document.getElementById('province').value,
+                address_zip: document.getElementById('postalcode').value
+            }
+            stripe.createToken(card, options).then(function(result) {
+                if (result.error) {
+                    // Inform the user if there was an error
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                    // Enable the submit button
+                    document.getElementById('complete-order').disabled = false;
+                } else {
+                    // Send the token to your server
+                    stripeTokenHandler(result.token);
+                }
+            });
+        }else{
+            // Submit the form
+            form.submit();
         }
-        stripe.createToken(card, options).then(function(result) {
-        if (result.error) {
-            // Inform the user if there was an error
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
-            // Enable the submit button
-            document.getElementById('complete-order').disabled = false;
-        } else {
-            // Send the token to your server
-            stripeTokenHandler(result.token);
-        }
-        });
+
+
+
     });
 
     // Submit the form with the token ID.
     function stripeTokenHandler(token) {
-    // Insert the token ID into the form so it gets submitted to the server
-    var form = document.getElementById('payment-form');
-    var hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'stripeToken');
-    hiddenInput.setAttribute('value', token.id);
-    form.appendChild(hiddenInput);
+        // Insert the token ID into the form so it gets submitted to the server
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
 
-    // Submit the form
-    form.submit();
+        // Submit the form
+        form.submit();
     }
 </script>
 @endpush
