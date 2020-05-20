@@ -82,17 +82,17 @@
                 <h2>Payment Details</h2>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="cod" name="payment_method" value="1"
+                    <input type="radio" id="cod" name="payment_method" value="cod"
                         class="custom-control-input" checked>
                     <label class="custom-control-label" for="cod">Cash on Delivery ( COD )</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="credit_card" name="payment_method" value="2"
+                    <input type="radio" id="credit_card" name="payment_method" value="credit_card"
                         class="custom-control-input">
                     <label class="custom-control-label" for="credit_card">Credit card</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="paypal" name="payment_method" value="3"
+                    <input type="radio" id="paypal" name="payment_method" value="paypal"
                         class="custom-control-input">
                     <label class="custom-control-label" for="paypal">PayPal</label>
                 </div>
@@ -260,7 +260,7 @@
         document.getElementById('complete-order').disabled = true;
         let payment_method = $('input[type=radio][name="payment_method"]:checked').val();
 
-        if(payment_method == 2){
+        if(payment_method == "credit_card"){
             var options = {
                 name: document.getElementById('name_on_card').value,
                 address_line1: document.getElementById('address').value,
@@ -295,7 +295,7 @@
         var form = document.getElementById('payment-form');
         var hiddenInput = document.createElement('input');
         hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('name', 'stripe_token');
         hiddenInput.setAttribute('value', token.id);
         form.appendChild(hiddenInput);
 
