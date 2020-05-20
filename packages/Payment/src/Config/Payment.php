@@ -31,6 +31,9 @@ return [
         'paypal' => [
             'driver' => 'pay_pal_express',
         ],
+        'stripe' => [
+            'driver' => 'stripe',
+        ],
 
     ],
 

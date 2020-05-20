@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Payment\Gateways\PayPalExpress;
 use Payment\Contracts\GatewayInterface;
+use Payment\Gateways\Stripe;
 use Payment\Repositories\GatewayRepository;
 
 class PaymentManager
@@ -112,6 +113,17 @@ class PaymentManager
     protected function createPayPalExpressDriver(array $config)
     {
         return $this->repository(new PayPalExpress($config));
+    }
+
+    /**
+     * Create an instance of the Stripe payment driver.
+     *
+     * @param  array  $config
+     * @return GatewayRepository
+     */
+    protected function createStripeDriver(array $config)
+    {
+        return $this->repository(new Stripe($config));
     }
 
     /**

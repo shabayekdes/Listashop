@@ -2,6 +2,7 @@
 
 namespace Payment\Repositories;
 
+use Order\Models\Order;
 use Payment\Contracts\GatewayInterface;
 
 class GatewayRepository
@@ -27,10 +28,13 @@ class GatewayRepository
     /**
      * Purchase the invoice
      *
+     * @param Order $order
+     * @param array $data
      * @return string
      */
-    public function purchase()
+    public function purchase(Order $order, $data)
     {
+        return $this->store->purchase($order, $data);
     }
 
     /**

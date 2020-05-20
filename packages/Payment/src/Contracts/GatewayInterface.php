@@ -11,7 +11,7 @@ interface GatewayInterface
      *
      * @return string
      */
-    public function purchase();
+    public function purchase($order, $data);
 
     /**
      * Pay the invoice

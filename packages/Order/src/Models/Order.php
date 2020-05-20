@@ -7,17 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = [
-        'is_guest',
-        'order_status',
-        'customer_email',
-        'customer_first_name',
-        'customer_last_name',
-        'user_id',
-        'grand_total',
-        'item_count',
-        'error'
-    ];
+    // protected $fillable = [
+    //     'key',
+    //     'is_guest',
+    //     'order_status',
+    //     'customer_email',
+    //     'customer_first_name',
+    //     'customer_last_name',
+    //     'user_id',
+    //     'grand_total',
+    //     'item_count',
+    //     'error'
+    // ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
     /**
      * The accessors to append to the model's array form.

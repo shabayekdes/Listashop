@@ -3,6 +3,7 @@
 namespace Payment\Gateways;
 
 use Payment\Contracts\GatewayInterface;
+use Order\Models\Order;
 
 class PayPalExpress implements GatewayInterface
 {
@@ -28,11 +29,13 @@ class PayPalExpress implements GatewayInterface
     /**
      * Purchase the invoice
      *
+     * @param Order $order
+     * @param array $data
      * @return string
      */
-    public function purchase()
+    public function purchase($order, $data)
     {
-        return 'purchase';
+        return true;
     }
 
     /**
