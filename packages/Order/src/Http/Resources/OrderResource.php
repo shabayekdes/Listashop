@@ -22,7 +22,7 @@ class OrderResource extends JsonResource
             'customer_name' => $this->customer_full_name,
             'item_count' => $this->item_count,
             'total' => presentPrice($this->grand_total),
-            'payment_gateway' => $this->payment_gateway,
+            'payment_method_label' => $this->payment_method_label,
             'order_status_label' => $this->order_status_label,
             'order_status' => $this->order_status,
             'is_guest' => $this->is_guest,

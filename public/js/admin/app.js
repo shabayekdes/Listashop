@@ -45758,12 +45758,12 @@ var render = function() {
                                   _c(
                                     "span",
                                     { staticClass: "badge badge-warning" },
-                                    [_vm._v("Pending")]
+                                    [_vm._v(_vm._s(order.order_status_label))]
                                   )
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
-                                  _vm._v(_vm._s(order.payment_gateway))
+                                  _vm._v(_vm._s(order.payment_method_label))
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(order.date))]),

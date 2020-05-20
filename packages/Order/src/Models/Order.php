@@ -3,6 +3,7 @@
 namespace Order\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -33,17 +34,26 @@ class Order extends Model
      * @var array
      */
     protected $appends = [
-        'order_status_label'
+        'order_status_label',
+        'payment_method_label',
     ];
 
     /**
-     * Status label.
+     * Order status label.
      */
-    protected $statusLabel = [
+    protected $orderStatusLabel = [
         1 => 'Pending',
         2 => 'Processing',
         3 => 'Completed',
         4 => 'Canceled'
+    ];
+    /**
+     * Order status label.
+     */
+    protected $paymentMethodLabel = [
+        1 => 'Cash On Delivery',
+        2 => 'Stripe',
+        3 => 'Paypal'
     ];
     /**
      * The attributes that should be cast to native types.
@@ -61,11 +71,34 @@ class Order extends Model
         return $this->customer_first_name . ' ' . $this->customer_last_name;
     }
     /**
-     * Returns the status label from status code
+     * Returns the order status label from status code
      */
     public function getOrderStatusLabelAttribute()
     {
-        return $this->statusLabel[$this->order_status];
+        return $this->orderStatusLabel[$this->order_status];
+    }
+    /**
+     * Returns the payment method label from status code
+     */
+    public function getPaymentMethodLabelAttribute()
+    {
+        return $this->paymentMethodLabel[$this->payment_method];
+    }
+    /**
+     * Set the payment method.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPaymentMethodAttribute($value)
+    {
+        $method = [
+            'cod' => 1,
+            'stripe' => 2,
+            'paypal' => 3
+        ];
+
+        $this->attributes['payment_method'] = $method[$value];
     }
     /**
      * Get the order items record associated with the order.

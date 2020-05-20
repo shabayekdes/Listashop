@@ -56,9 +56,9 @@
                       <td v-else>{{ order.user.name }}</td>
                       <td>{{ order.total }}</td>
                       <td>
-                        <span class="badge badge-warning">Pending</span>
+                        <span class="badge badge-warning">{{ order.order_status_label }}</span>
                       </td>
-                      <td>{{ order.payment_gateway }}</td>
+                      <td>{{ order.payment_method_label }}</td>
                       <td>{{ order.date }}</td>
                       <td class="project-actions text-right">
                         <div class="row">
