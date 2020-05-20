@@ -24,6 +24,7 @@ class PaymentServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerFacades();
+        $this->registerConfig();
     }
 
     /**
@@ -33,9 +34,25 @@ class PaymentServiceProvider extends ServiceProvider
      */
     protected function registerFacades()
     {
-        $this->app->singleton('payment', function () {
-            return new PaymentManager();
+        /**
+         * Bind to service container.
+         */
+        $this->app->bind('payment', function ($app) {
+            return new PaymentManager($app);
         });
+    }
+
+    /**
+     * Register package config.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/payment.php',
+            'payment'
+        );
     }
 
 }
