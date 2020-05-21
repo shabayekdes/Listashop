@@ -3544,6 +3544,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -3570,19 +3571,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "customer_name",
         active: true
       }, {
-        width: "20%",
+        width: "15%",
         label: "Grand Total",
         name: "grand_total",
         active: true
       }, {
         width: "15%",
-        label: "Status",
-        name: "status",
+        label: "Payment Method",
+        name: "payment_method",
         active: true
       }, {
         width: "15%",
-        label: "Payment Gateway",
-        name: "payment_gateway",
+        label: "Payment Status",
+        name: "payment_status",
+        active: true
+      }, {
+        width: "15%",
+        label: "Order Status",
+        name: "order_status",
         active: true
       }, {
         width: "18%",
@@ -3627,6 +3633,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -45755,6 +45769,14 @@ var render = function() {
                                 _c("td", [_vm._v(_vm._s(order.total))]),
                                 _vm._v(" "),
                                 _c("td", [
+                                  _vm._v(_vm._s(order.payment_method_label))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(order.payment_status_label))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
                                   _c(
                                     "span",
                                     { staticClass: "badge badge-warning" },
@@ -45762,11 +45784,7 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(_vm._s(order.payment_method_label))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(order.date))]),
+                                _c("td", [_vm._v(_vm._s(order.created_at))]),
                                 _vm._v(" "),
                                 _c(
                                   "td",
@@ -46047,6 +46065,16 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [
                       _c("span", { staticClass: "badge badge-warning" }, [
+                        _vm._v(_vm._s(_vm.getSingleOrder.payment_status_label))
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("span", { staticClass: "badge badge-warning" }, [
                         _vm._v(_vm._s(_vm.getSingleOrder.order_status_label))
                       ])
                     ])
@@ -46079,14 +46107,14 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(4),
+          _vm._m(5),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "invoice p-3 mb-3" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-12 table-responsive" }, [
                   _c("table", { staticClass: "table table-striped" }, [
-                    _vm._m(5),
+                    _vm._m(6),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -46124,11 +46152,11 @@ var render = function() {
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table" }, [
                       _c("tbody", [
-                        _vm._m(6),
-                        _vm._v(" "),
                         _vm._m(7),
                         _vm._v(" "),
                         _vm._m(8),
+                        _vm._v(" "),
+                        _vm._m(9),
                         _vm._v(" "),
                         _c("tr", [
                           _c("th", [_vm._v("Total:")]),
@@ -46166,7 +46194,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("th", [_c("b", [_vm._v("Payment Due:")])])
+    return _c("th", [_c("b", [_vm._v("Date:")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [_c("b", [_vm._v("Payment Status:")])])
   },
   function() {
     var _vm = this

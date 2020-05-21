@@ -36,6 +36,7 @@ class Order extends Model
     protected $appends = [
         'order_status_label',
         'payment_method_label',
+        'payment_status_label',
     ];
 
     /**
@@ -48,12 +49,19 @@ class Order extends Model
         4 => 'Canceled'
     ];
     /**
-     * Order status label.
+     * Payment method label.
      */
     protected $paymentMethodLabel = [
         1 => 'Cash On Delivery',
         2 => 'Stripe',
         3 => 'Paypal'
+    ];
+    /**
+     * Payment status label.
+     */
+    protected $paymentStatusLabel = [
+        1 => 'Pending',
+        2 => 'Paid',
     ];
     /**
      * The attributes that should be cast to native types.
@@ -83,6 +91,13 @@ class Order extends Model
     public function getPaymentMethodLabelAttribute()
     {
         return $this->paymentMethodLabel[$this->payment_method];
+    }
+    /**
+     * Returns the payment method label from status code
+     */
+    public function getPaymentStatusLabelAttribute()
+    {
+        return $this->paymentStatusLabel[$this->payment_status];
     }
     /**
      * Set the payment method.

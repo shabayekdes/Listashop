@@ -41,9 +41,17 @@
                   </tr>
                   <tr>
                     <th>
-                      <b>Payment Due:</b>
+                      <b>Date:</b>
                     </th>
                     <td>{{ getSingleOrder.created_at }}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <b>Payment Status:</b>
+                    </th>
+                    <td>
+                      <span class="badge badge-warning">{{ getSingleOrder.payment_status_label }}</span>
+                    </td>
                   </tr>
                   <tr>
                     <th>

@@ -55,11 +55,12 @@
                       <td v-if="order.is_guest">{{ order.customer_name }}</td>
                       <td v-else>{{ order.user.name }}</td>
                       <td>{{ order.total }}</td>
+                      <td>{{ order.payment_method_label }}</td>
+                      <td>{{ order.payment_status_label }}</td>
                       <td>
                         <span class="badge badge-warning">{{ order.order_status_label }}</span>
                       </td>
-                      <td>{{ order.payment_method_label }}</td>
-                      <td>{{ order.date }}</td>
+                      <td>{{ order.created_at }}</td>
                       <td class="project-actions text-right">
                         <div class="row">
                           <div class="col-sm-3 border-right">
@@ -137,18 +138,24 @@ export default {
           active: true
         },
         {
-          width: "20%",
+          width: "15%",
           label: "Grand Total",
           name: "grand_total",
           active: true
         },
-        { width: "15%", label: "Status", name: "status", active: true },
         {
           width: "15%",
-          label: "Payment Gateway",
-          name: "payment_gateway",
+          label: "Payment Method",
+          name: "payment_method",
           active: true
         },
+        {
+          width: "15%",
+          label: "Payment Status",
+          name: "payment_status",
+          active: true
+        },
+        { width: "15%", label: "Order Status", name: "order_status", active: true },
         { width: "18%", label: "Date", name: "date", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]
