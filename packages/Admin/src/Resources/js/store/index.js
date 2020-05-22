@@ -5,7 +5,8 @@ import Category from "./modules/category";
 import Product from "./modules/product";
 import Order from "./modules/order";
 import Image from "./modules/image";
-import Attribute from "./modules/attribute";
+// import Attribute from "./modules/attribute";
+import Option from "./modules/option";
 
 Vue.use(Vuex);
 
@@ -64,7 +65,8 @@ export default new Vuex.Store({
         Category,
         Product,
         Order,
-        Attribute,
+        // Attribute,
+        Option,
         Image
     }
 });

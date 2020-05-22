@@ -67,11 +67,19 @@
                                 </p>
                             </router-link>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <router-link to="/admin/attributes" class="nav-link">
                                 <i class="nav-icon fas fa-cart-arrow-down"></i>
                                 <p>
                                     Attributes
+                                </p>
+                            </router-link>
+                        </li>--}}
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'option.index'}" class="nav-link">
+                                <i class="nav-icon fas fa-cart-arrow-down"></i>
+                                <p>
+                                    Options
                                 </p>
                             </router-link>
                         </li>

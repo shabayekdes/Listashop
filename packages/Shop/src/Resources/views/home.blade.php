@@ -1450,9 +1450,9 @@
 
 
 
-                    @section('scripts')
+                    @push('scripts')
 
 
                     <script src="frontend/plugins/slick-1.8.0/slick.js"></script>
                     <script src="frontend/js/custom.js"></script>
-                    @endsection
+                    @endpush

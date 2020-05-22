@@ -1,3 +1,9 @@
+import Vue from "vue";
+
+import VueRouter from "vue-router";
+
+Vue.use(VueRouter);
+
 import Wrapper from "@Admin/layouts/Wrapper";
 
 import Dashboard from "@Admin/pages/dashboard/Dashboard.vue";
@@ -7,7 +13,8 @@ import Users from "@Admin/pages/user/Users.vue";
 import ListCategories from "@Admin/pages/category/List.vue";
 
 import ListProducts from "@Admin/pages/product/List.vue";
-import EditProducts from "@Admin/pages/product/Edit.vue";
+import EditProduct from "@Admin/pages/product/Edit.vue";
+import CreateProduct from "@Admin/pages/product/Create.vue";
 
 import ListOrders from "@Admin/pages/order/List.vue";
 import ViewOrder from "@Admin/pages/order/View.vue";
@@ -15,9 +22,13 @@ import ViewOrder from "@Admin/pages/order/View.vue";
 import ListAttributes from "@Admin/pages/attribute/List.vue";
 import ShowAttribute from "@Admin/pages/attribute/Show.vue";
 
+import ListOptions from "@Admin/pages/option/List.vue";
+import EditOption from "@Admin/pages/option/Edit.vue";
+import CreateOption from "@Admin/pages/option/Create.vue";
+
 import NotFound from "@Admin/views/NotFound.vue";
 
-export const routes = [
+const routes = [
     {
         path: "/admin",
         component: Wrapper,
@@ -60,7 +71,7 @@ export const routes = [
             {
                 path: "product/create",
                 name: "product.create",
-                component: EditProducts,
+                component: CreateProduct,
                 props: true,
                 meta: {
                     text: "New Product"
@@ -69,7 +80,7 @@ export const routes = [
             {
                 path: "product/edit/:id",
                 name: "product.edit",
-                component: EditProducts,
+                component: EditProduct,
                 props: true,
                 meta: {
                     text: "Edit Product"
@@ -107,6 +118,30 @@ export const routes = [
                 meta: {
                     text: "Attributes"
                 }
+            },
+            {
+                path: "options",
+                name: "option.index",
+                component: ListOptions,
+                meta: {
+                    text: "Options"
+                }
+            },
+            {
+                path: "option/create",
+                name: "option.create",
+                component: CreateOption,
+                meta: {
+                    text: "Create Option"
+                }
+            },
+            {
+                path: "option/:id/edit",
+                name: "option.edit",
+                component: EditOption,
+                meta: {
+                    text: "Edit Option"
+                }
             }
         ]
     },
@@ -115,3 +150,10 @@ export const routes = [
         component: NotFound
     }
 ];
+
+const router = new VueRouter({
+    routes,
+    mode: "history"
+});
+
+export default router;

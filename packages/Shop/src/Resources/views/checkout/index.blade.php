@@ -81,25 +81,54 @@
 
                 <h2>Payment Details</h2>
 
-                <div class="form-group">
-                    <label for="name_on_card">Name on Card</label>
-                    <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="cod" name="payment_method" value="cod"
+                        class="custom-control-input" checked>
+                    <label class="custom-control-label" for="cod">Cash on Delivery ( COD )</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="credit_card" name="payment_method" value="credit_card"
+                        class="custom-control-input">
+                    <label class="custom-control-label" for="credit_card">Credit card</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="paypal" name="payment_method" value="paypal"
+                        class="custom-control-input">
+                    <label class="custom-control-label" for="paypal">PayPal</label>
                 </div>
 
-                <div class="form-group">
-                    <label for="card-element">
-                        Credit or debit card
-                    </label>
-                    <div id="card-element">
-                        <!-- a Stripe Element will be inserted here. -->
-                    </div>
-
-                    <!-- Used to display form errors -->
-                    <div id="card-errors" role="alert"></div>
-                </div>
                 <div class="spacer"></div>
 
-                <button type="submit" id="complete-order" class="button checkout_button">Complete Order</button>
+                <div class="card mt-3 d-none payment_method" id="credit_card_input">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name_on_card">Name on Card</label>
+                            <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="card-element">
+                                Credit or debit card
+                            </label>
+                            <div id="card-element">
+                                <!-- a Stripe Element will be inserted here. -->
+                            </div>
+
+                            <!-- Used to display form errors -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+                </div>
+                <div class="card mt-3 d-none payment_method" id="paypal_input">
+                    <div class="card-body">
+                        test
+                    </div>
+                </div>
+
+
+
+                <button type="submit" id="complete-order" class="button checkout_button mt-3">Complete Order</button>
 
 
             </form>
@@ -115,11 +144,12 @@
                 @foreach( Cart::content() as $item)
                 <div class="checkout-table-row">
                     <div class="checkout-table-row-left">
-                            @if (empty($item->model->thumbnail))
-                                <img src="{{ url( 'img/products/default.png') }}" alt="item" class="checkout-table-img">
-                            @else
-                                <img src="{{ url( 'storage/' . $item->model->thumbnail) }}" alt="item" class="checkout-table-img">
-                            @endif
+                        @if (empty($item->model->thumbnail))
+                        <img src="{{ url( 'img/products/default.png') }}" alt="item" class="checkout-table-img">
+                        @else
+                        <img src="{{ url( 'storage/' . $item->model->thumbnail) }}" alt="item"
+                            class="checkout-table-img">
+                        @endif
                         <div class="checkout-item-details">
                             <div class="checkout-table-item">{{ Str::words($item->model->name, 3, '') }}</div>
                             <div class="checkout-table-description">15 inch, 1TB SSD, 32GB RAM</div>
@@ -156,16 +186,29 @@
 
     </div> <!-- end checkout-section -->
 </div>
+</div>
 
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script src="/frontend/plugins/Isotope/isotope.pkgd.min.js"></script>
 <script src="/frontend/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="/frontend/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="/frontend/js/shop_custom.js"></script>
 
 <script>
+    $(document).ready(function(){
+        console.log($('input[type=radio][name="payment_method"]:checked').val())
+        $('input[type=radio][name="payment_method"]').on('change', function() {
+
+            $(`.payment_method`).hide()
+            $(`.payment_method`).removeClass('d-none')
+
+            $(`#${this.id}_input`).show("slow");
+
+        });
+    });
+
     // Create a Stripe client.
     var stripe = Stripe('pk_test_sMKSH12Vb2yYtP7GTpMwSZn2');
 
@@ -215,39 +258,49 @@
         event.preventDefault();
         // Disable the submit button to prevent repeated clicks
         document.getElementById('complete-order').disabled = true;
-        var options = {
-        name: document.getElementById('name_on_card').value,
-        address_line1: document.getElementById('address').value,
-        address_city: document.getElementById('city').value,
-        address_state: document.getElementById('province').value,
-        address_zip: document.getElementById('postalcode').value
+        let payment_method = $('input[type=radio][name="payment_method"]:checked').val();
+
+        if(payment_method == "credit_card"){
+            var options = {
+                name: document.getElementById('name_on_card').value,
+                address_line1: document.getElementById('address').value,
+                address_city: document.getElementById('city').value,
+                address_state: document.getElementById('province').value,
+                address_zip: document.getElementById('postalcode').value
+            }
+            stripe.createToken(card, options).then(function(result) {
+                if (result.error) {
+                    // Inform the user if there was an error
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                    // Enable the submit button
+                    document.getElementById('complete-order').disabled = false;
+                } else {
+                    // Send the token to your server
+                    stripeTokenHandler(result.token);
+                }
+            });
+        }else{
+            // Submit the form
+            form.submit();
         }
-        stripe.createToken(card, options).then(function(result) {
-        if (result.error) {
-            // Inform the user if there was an error
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
-            // Enable the submit button
-            document.getElementById('complete-order').disabled = false;
-        } else {
-            // Send the token to your server
-            stripeTokenHandler(result.token);
-        }
-        });
+
+
+
     });
 
     // Submit the form with the token ID.
     function stripeTokenHandler(token) {
-    // Insert the token ID into the form so it gets submitted to the server
-    var form = document.getElementById('payment-form');
-    var hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'stripeToken');
-    hiddenInput.setAttribute('value', token.id);
-    form.appendChild(hiddenInput);
+        // Insert the token ID into the form so it gets submitted to the server
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripe_token');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
 
-    // Submit the form
-    form.submit();
+        // Submit the form
+        form.submit();
     }
 </script>
-@endsection
+@endpush

@@ -50,23 +50,26 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
+        return new OrderResource($order);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Order  $order
+
      */
     public function update(Request $request, Order $order)
     {
-        return $this->order->update($request->all(), $order);
+        $request->validate([
+            'order_status' => 'between:1,3'
+        ]);
+        return new OrderResource($this->order->update($request->all(), $order));
     }
 
     /**

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Cart\Facades\Cart;
 use Order\Models\Order;
+use Illuminate\Support\Arr;
 use Product\Models\Product;
 use Illuminate\Http\Request;
+use Payment\Facades\Payment;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Product\Http\Resources\ProductResource;
 
@@ -19,24 +22,45 @@ class TestController extends Controller
      */
     public function index()
     {
+        $paymentMethodLabel = [
+        1 => 'cod',
+        2 => 'stripe',
+        3 => 'paypal'
+    ];
+               $method = Arr::get($paymentMethodLabel, '1');
+
+               dd($method);
+
+        // dd(config('payment.gateways.COD'));
+        $cache = Cache::get('test');
+        $payment = Payment::via('paypal')->pay();
+
+        dd($payment);
+
+        dd(Storage::exists('public/products/15/product-15.png'));
+        $product = Product::find(1);
+        $option = $product->options()->first();
+        dd($option);
+
+        dd($option, $option->option()->first(), $option->values()->get());
 
         $price = 8759;
         $new_price = 1980;
-        $discount = (int) 100 - ceil($new_price * 100 / $price). "%";
+        $discount = (int) 100 - ceil($new_price * 100 / $price) . "%";
 
         dd($discount);
 
 
-        $product = Product::with('flat','images','options','options.attribute')->where('id', 1)->first();
+        $product = Product::with('flat', 'images', 'options', 'options.attribute')->where('id', 1)->first();
 
         dd($product->attributes()->get());
         return new ProductResource($product);
 
 
         $child = $product->children()->create([
-            'sku'  =>'sadasdasdasd',
-            'type'=>'simple',
-            'slug'=>'sdadasdasd',
+            'sku'  => 'sadasdasdasd',
+            'type' => 'simple',
+            'slug' => 'sdadasdasd',
             'categories_id' => 1
         ]);
 

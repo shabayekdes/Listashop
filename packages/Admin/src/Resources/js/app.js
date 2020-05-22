@@ -1,11 +1,8 @@
 require("./bootstrap");
 
 import Vue from "vue";
-import VueRouter from "vue-router";
 import store from "./store";
-import { routes } from "./routes";
-
-Vue.use(VueRouter);
+import router from "./router";
 
 Vue.component("not-found", require("@Admin/views/NotFound.vue"));
 
@@ -24,11 +21,6 @@ Vue.mixin({
     methods: {
         truncate: (str, no_word) => str.substr(0, no_word) + "..."
     }
-});
-
-const router = new VueRouter({
-    routes,
-    mode: "history"
 });
 
 const app = new Vue({

@@ -15,20 +15,23 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status')->default('Pending');
+            $table->string('key');
 
             $table->boolean('is_guest')->default(true);
             $table->string('customer_email')->nullable();
             $table->string('customer_first_name')->nullable();
             $table->string('customer_last_name')->nullable();
 
-            $table->string('coupon_code')->nullable();
+            // $table->string('coupon_code')->nullable();
 
             $table->integer('item_count');
 
             $table->decimal('grand_total', 12, 4)->default(0);
 
-            $table->string('payment_gateway')->default('stripe');
+            // $table->string('payment_gateway')->default('stripe');
+            $table->integer('payment_method')->comment("1- COD, 2- credit card, 3- paypal");
+            $table->integer('payment_status')->default(1)->comment("1- Pending, 2- Paid");
+            $table->integer('order_status')->default(1);
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

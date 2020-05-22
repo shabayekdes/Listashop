@@ -27,5 +27,6 @@ class OrderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadFactoriesFrom(__DIR__ . '/../Database/Factories');
     }
 }

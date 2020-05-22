@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "@Admin/router";
 
 const state = {
     products: [],
@@ -11,14 +12,11 @@ const state = {
         cost: "",
         type: "simple",
         category_id: ""
-    },
-    variations: []
+    }
 };
-
 const getters = {
     getAllProducts: state => state.products,
-    getSingleProduct: state => state.product,
-    getVariations: state => state.variations
+    getSingleProduct: state => state.product
 };
 
 const actions = {
@@ -30,7 +28,7 @@ const actions = {
         commit("SET_META_DATA", response.data, { root: true });
         commit("SET_LOADING", { root: true });
     },
-    async storeProduct({ commit, rootState }, data) {
+    async storeProduct({ commit, dispatch }, data) {
         try {
             const config = {
                 headers: {
@@ -40,31 +38,40 @@ const actions = {
             const response = await axios.post(`${urlApi}product`, data, config);
 
             commit("NEW_PRODUCT", response.data);
-            commit("RESET_NEW_PRODUCT");
-            commit("RESET_SELECTED_ATTR");
+            dispatch("resetProduct");
             commit("SET_LOADING", { root: true });
-
-            rootState.status = "ok";
+            router.push("/admin/products");
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
     },
-    async showProduct({ commit }, id) {
+    async showProduct({ commit, dispatch }, id) {
         const response = await axios.get(`${urlApi}product/${id}`);
 
+        let thumb = {};
+        thumb.url = response.data.data.thumbnail;
+        thumb.name = response.data.data.thumbnail.split(id + "/").pop();
+
         commit("SET_PRODUCT", response.data.data);
+        dispatch("setImage", thumb, { root: true });
     },
-    async updateProduct({ commit, rootState }, data) {
+    async updateProduct({ commit, dispatch }, data) {
         try {
-            const response = await axios.put(
-                `${urlApi}product/${data.id}`,
-                data
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            };
+            const response = await axios.post(
+                `${urlApi}product/${data.get("id")}`,
+                data,
+                config
             );
 
             commit("PUT_PRODUCT", response.data);
-            commit("RESET_NEW_PRODUCT");
-            commit("RESET_IMAGE");
-            rootState.status = "ok";
+            dispatch("resetProduct");
+
+            router.push("/admin/products");
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
@@ -85,6 +92,10 @@ const actions = {
                 { root: true }
             );
         }
+    },
+    resetProduct({ commit, dispatch }) {
+        commit("RESET_NEW_PRODUCT");
+        dispatch("resetImages", { root: true });
     }
 };
 
@@ -107,13 +118,6 @@ const mutations = {
         (state.products = state.products.filter(product => product.id !== id)),
     SET_PRODUCT: (state, oldProduct) => {
         state.product = oldProduct;
-    },
-    SET_VARIATION: (state, newVariation) => {
-        state.variations = [];
-        state.variations.push(...newVariation);
-    },
-    REMOVE_VARIATION: state => {
-        state.variations = [];
     },
     RESET_NEW_PRODUCT: state => {
         state.product = {

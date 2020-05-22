@@ -8,9 +8,19 @@
     <meta name="description" content="OneTech shop project">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" type="text/css" href="/frontend/styles/bootstrap4/bootstrap.min.css">
-    <link href="/frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+    <!-- Scripts -->
+    <script src="{{ asset('js/shop/app.js') }}"></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/shop/app.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="/frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="/frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="/frontend/plugins/OwlCarousel2-2.2.1/animate.css">
@@ -34,10 +44,6 @@
 
     </div>
 
-
-    <script src="/frontend/js/jquery-3.3.1.min.js"></script>
-    <script src="/frontend/styles/bootstrap4/popper.js"></script>
-    <script src="/frontend/styles/bootstrap4/bootstrap.min.js"></script>
     <script src="/frontend/plugins/greensock/TweenMax.min.js"></script>
     <script src="/frontend/plugins/greensock/TimelineMax.min.js"></script>
     <script src="/frontend/plugins/scrollmagic/ScrollMagic.min.js"></script>
@@ -46,8 +52,7 @@
     <script src="/frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
     <script src="/frontend/plugins/easing/easing.js"></script>
 
-
-    @yield('scripts')
+    @stack('scripts')
 
 </body>
 

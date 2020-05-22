@@ -1,4 +1,5 @@
 <?php
+
 namespace Admin\Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -6,6 +7,8 @@ use Attribute\Database\Seeders\AttributeTableSeeder as AttributeSeeder;
 use User\Database\Seeders\DatabaseSeeder as UserSeeder;
 use Product\Database\Seeders\ProductTableSeeder as ProductSeeder;
 use Category\Database\Seeders\CategoryTableSeeder as CategorySeeder;
+use Option\Database\Seeders\OptionTableSeeder as OptionSeeder;
+use Order\Database\Seeders\OrdersTableSeeder as OrderSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(AttributeSeeder::class);
+        // $this->call(AttributeSeeder::class);
+        $this->call(OptionSeeder::class);
+        $this->call(OrderSeeder::class);
     }
 }

@@ -44,7 +44,7 @@ class ProductController extends Controller
     {
         // dd($request->all());
         // dd(json_decode($request->variations));
-        $product = $this->product->create(array_merge($request->all(), ['sku'=> Str::random(10)]));
+        $product = $this->product->create(array_merge($request->all(), ['sku' => Str::random(10)]));
         return new ProductResource($product);
     }
 
@@ -66,8 +66,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        // dd($request->all());
         return new ProductResource($this->product->update($request->all(), $this->product->find($id)));
     }
 
@@ -81,6 +82,5 @@ class ProductController extends Controller
     {
         $this->product->delete($id);
         return ['message' => 'product deleted!!'];
-
     }
 }

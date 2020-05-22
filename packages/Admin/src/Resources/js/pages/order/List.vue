@@ -9,15 +9,6 @@
               <div class="col-sm-12 col-md-5">
                 <h3 class="card-title">Order List</h3>
               </div>
-              <div class="col-sm-12 col-md-7">
-                <router-link
-                  :to="{ name: 'product.create',  params: { editMode: false } }"
-                  class="btn btn-success float-right"
-                >
-                  Add New
-                  <i class="fas fa-cart-plus"></i>
-                </router-link>
-              </div>
             </div>
           </div>
 
@@ -64,31 +55,40 @@
                       <td v-if="order.is_guest">{{ order.customer_name }}</td>
                       <td v-else>{{ order.user.name }}</td>
                       <td>{{ order.total }}</td>
+                      <td>{{ order.payment_method_label }}</td>
+                      <td>{{ order.payment_status_label }}</td>
                       <td>
-                        <span class="badge badge-warning">Pending</span>
+                        <span class="badge badge-warning">{{ order.order_status_label }}</span>
                       </td>
-                      <td>{{ order.payment_gateway }}</td>
-                      <td>{{ order.date }}</td>
+                      <td>{{ order.created_at }}</td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" @click="newModel(order)" href="#">
-                          <i class="fas fa-folder"></i>
-                          View
-                        </a>
-                        <router-link
-                          :to="{ name: 'order.view',  params: { id: order.id } }"
-                          class="btn btn-info btn-sm"
-                        >
-                          <i class="fas fa-pencil-alt"></i>
-                          Edit
-                        </router-link>
-                        <a
-                          class="btn btn-danger btn-sm"
-                          @click="deleteProduct(product.id)"
-                          href="#"
-                        >
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
+                        <div class="row">
+                          <div class="col-sm-3 border-right">
+                            <a class="btn btn-primary btn-sm" @click="newModel(order)" href="#">
+                              <i class="fas fa-folder"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3 border-right">
+                            <router-link
+                              :to="{ name: 'order.view',  params: { id: order.id } }"
+                              class="btn btn-info btn-sm"
+                            >
+                              <i class="fas fa-pencil-alt"></i>
+                            </router-link>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3">
+                            <a
+                              class="btn btn-danger btn-sm"
+                              @click="deleteProduct(product.id)"
+                              href="#"
+                            >
+                              <i class="fas fa-trash"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                        </div>
                       </td>
                     </tr>
                   </datatable>
@@ -138,18 +138,24 @@ export default {
           active: true
         },
         {
-          width: "20%",
+          width: "15%",
           label: "Grand Total",
           name: "grand_total",
           active: true
         },
-        { width: "15%", label: "Status", name: "status", active: true },
         {
           width: "15%",
-          label: "Payment Gateway",
-          name: "payment_gateway",
+          label: "Payment Method",
+          name: "payment_method",
           active: true
         },
+        {
+          width: "15%",
+          label: "Payment Status",
+          name: "payment_status",
+          active: true
+        },
+        { width: "15%", label: "Order Status", name: "order_status", active: true },
         { width: "18%", label: "Date", name: "date", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]
@@ -168,4 +174,3 @@ export default {
   computed: mapGetters(["getAllOrders", "getMetaData"])
 };
 </script>
-

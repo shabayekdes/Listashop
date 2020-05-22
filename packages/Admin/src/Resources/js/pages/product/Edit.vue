@@ -42,23 +42,10 @@
 
         <div class="card card-outline card-primary">
           <div class="card-header">
-            <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label card-title">Product Data -</label>
-              <div class="col-sm-3">
-                <select
-                  class="form-control"
-                  v-model="getSingleProduct.type"
-                  id="exampleFormControlSelect1"
-                >
-                  <option value="simple">Simple product</option>
-                  <option value="configurable">Attribute product</option>
-                </select>
-              </div>
-            </div>
+            <h3 class="card-title">Details</h3>
           </div>
           <!-- /.card-header -->
-          <product-simple v-if="getSingleProduct.type == 'simple'" />
-          <product-attribute v-else />
+          <product-simple />
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -106,13 +93,6 @@
           <div class="card-body">
             <button
               type="button"
-              v-show="!getMode"
-              @click="createProduct"
-              class="btn btn-block bg-gradient-primary btn-lg"
-            >Save</button>
-            <button
-              type="button"
-              v-show="getMode"
               @click="patchProduct"
               class="btn btn-block bg-gradient-success btn-lg"
             >Update</button>
@@ -293,7 +273,7 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
 import ProductSimple from "@Admin/pages/product/views/ProductSimple";
-import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
+// import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
 import model from "@Admin/components/Model.vue";
 import HasError from "@Admin/components/HasError.vue";
 
@@ -302,29 +282,23 @@ export default {
   components: {
     ImageUploader,
     ProductSimple,
-    ProductAttribute,
+    // ProductAttribute,
     model,
     HasError
   },
-  data() {
-    return {};
-  },
   methods: {
     ...mapActions([
-      "storeProduct",
       "updateProduct",
       "setProduct",
       "showProduct",
       "fetchListCategories",
-      "fetchListAttributes",
+      //   "fetchListAttributes",
       "addThumb",
-      "resetImages",
-      "setMode",
       "setError"
     ]),
     ...mapMutations(["SET_STATUS", "SET_LOADING"]),
-    createProduct() {
-      const formData = new FormData();
+    patchProduct() {
+             const formData = new FormData();
       for (const [key, value] of Object.entries(this.getSingleProduct)) {
         formData.append(key, value);
       }
@@ -334,18 +308,8 @@ export default {
       if (this.getThumb.file) {
         formData.append("images[thumb]", this.getThumb.file);
       }
-      formData.append("variations", JSON.stringify(this.getVariations));
 
-      let result = this.getSelectedAttr.map(a => a.id);
-
-      result.forEach(r => {
-        formData.append("attributes[]", r);
-      });
-
-      this.storeProduct(formData);
-    },
-    patchProduct() {
-      this.updateProduct(this.getSingleProduct);
+      this.updateProduct(formData);
     },
     newModel() {
       $("#addNew").modal("show");
@@ -358,35 +322,21 @@ export default {
     }
   },
   created() {
-    this.fetchListAttributes("all");
+    // this.fetchListAttributes("all");
     this.SET_LOADING();
-    // if (this.$route.params.id == undefined) {
-    //   this.setMode(false);
-    // } else {
-    //   this.setMode(true);
     this.showProduct(this.$route.params.id);
-    // }
-    this.SET_STATUS("");
+    // this.SET_STATUS("");
     this.fetchListCategories("all");
-  },
-  watch: {
-    getStatus(val, oldVal) {
-      if (val == "ok") {
-        this.$router.push({ path: "/admin/products" });
-        this.resetImages();
-      }
-    }
   },
   computed: mapGetters([
     "getSingleProduct",
     "getAllCategories",
-    "getVariations",
-    "getSelectedAttr",
-    "getMode",
+    // "getVariations",
+    // "getSelectedAttr",
     "getFiles",
     "getImages",
     "getThumb",
-    "getStatus",
+    // "getStatus",
     "hasError"
   ])
 };

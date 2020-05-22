@@ -190,7 +190,7 @@ return [
         Attribute\Providers\AttributeServiceProvider::class,
         Option\Providers\OptionServiceProvider::class,
         Value\Providers\ValueServiceProvider::class,
-
+        Payment\Providers\PaymentServiceProvider::class,
 
 
     ],

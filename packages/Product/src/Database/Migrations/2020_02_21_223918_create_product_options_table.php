@@ -17,7 +17,7 @@ class CreateProductOptionsTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('product_id')->index();
             $table->unsignedInteger('option_id')->index();
-
+            $table->boolean('is_required')->default(false);
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('option_id')->references('id')->on('options')->onDelete('cascade');
 

@@ -10,10 +10,7 @@
                 <h3 class="card-title">Products List</h3>
               </div>
               <div class="col-sm-12 col-md-7">
-                <router-link
-                  :to="{ name: 'product.create',  params: { editMode: false } }"
-                  class="btn btn-success float-right"
-                >
+                <router-link :to="{ name: 'product.create' }" class="btn btn-success float-right">
                   Add New
                   <i class="fas fa-cart-plus"></i>
                 </router-link>
@@ -83,22 +80,38 @@
                         <span v-show="!product.status" class="badge badge-warning">Non-Active</span>
                       </td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" :href="'/store/'+product.slug">
-                          <i class="fas fa-folder"></i>
-                          View
-                        </a>
-                        <a class="btn btn-info btn-sm" @click="editProduct(product.id)" href="#">
+                        <div class="row">
+                          <div class="col-sm-3 border-right">
+                            <a class="btn btn-primary btn-xs" :href="'/store/'+product.slug">
+                              <i class="fas fa-folder"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3 border-right">
+                            <router-link
+                              :to="{ name: 'product.edit',  params: { id: product.id } }"
+                              class="btn btn-info btn-xs"
+                            >
+                              <i class="fas fa-pencil-alt"></i>
+                            </router-link>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3">
+                            <a
+                              class="btn btn-danger btn-xs"
+                              @click="deleteProduct(product.id)"
+                              href="#"
+                            >
+                              <i class="fas fa-trash"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                        </div>
+
+                        <!-- <a class="btn btn-info btn-sm" @click="editProduct(product.id)" href>
                           <i class="fas fa-pencil-alt"></i>
                           Edit
-                        </a>
-                        <a
-                          class="btn btn-danger btn-sm"
-                          @click="deleteProduct(product.id)"
-                          href="#"
-                        >
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
+                        </a>-->
                       </td>
                     </tr>
                   </datatable>
@@ -160,4 +173,3 @@ export default {
   computed: mapGetters(["getAllProducts", "getMetaData"])
 };
 </script>
-

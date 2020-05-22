@@ -3,19 +3,30 @@
 namespace Shop\Http\Controllers;
 
 use Cart\Facades\Cart;
-use Order\Models\Order;
 use Product\Models\Product;
 use Illuminate\Http\Request;
+use Payment\Facades\Payment;
 use App\Http\Controllers\Controller;
+use Order\Repositories\OrderRepository;
 use Order\Http\Requests\CheckoutRequest;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
-use Cartalyst\Stripe\Exception\CardErrorException;
 
 /**
  * Checkout page controller
  */
 class CheckoutController extends Controller
 {
+    protected $order;
+
+    /**
+     * Order Controller constructor.
+     *
+     * @param OrderRepository $order
+     */
+    public function __construct(OrderRepository $order)
+    {
+        $this->order = $order;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,46 +57,39 @@ class CheckoutController extends Controller
             return back()->withErrors('Sorry! One of the items in your cart is no longer available.');
         }
 
-        $contents = Cart::content()->map(function ($item) {
-            return $item->model->slug.', '.$item->qty;
-        })->values()->toJson();
+        $order = $this->addToOrdersTables($request, null);
+        $payment = Payment::via($request->payment_method)->purchase($order, $request->all());
 
-        try {
-            $charge = Stripe::charges()->create([
-                'amount' => Cart::subtotal(),
-                'currency' => 'EGP',
-                'source' => $request->stripeToken,
-                'description' => 'Order',
-                'receipt_email' => $request->email,
-                'metadata' => [
-                    'contents' => $contents,
-                    'quantity' => Cart::instance('default')->count(),
-                    'discount' => collect(session('coupon'))->toJson(),
-                ],
-            ]);
-            $order = $this->addToOrdersTables($request, null);
+        if($payment){
 
             // decrease the quantities of all the products in the cart
             $this->decreaseQuantities();
-            Cart::instance('default')->destroy();
             return redirect()->route('store.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
-        } catch (CardErrorException $e) {
-            $this->addToOrdersTables($request, $e->getMessage());
-            return back()->withErrors('Error! ' . $e->getMessage());
+
         }
+
+        return back()->withErrors('Error! ' . $e->getMessage());
     }
 
+    /**
+     * Add order
+     *
+     * @param Request $request
+     * @param string $error
+     * @return void
+     */
     protected function addToOrdersTables($request, $error)
     {
-
         // Insert into orders table
-        $order = Order::create([
+        $order = $this->order->create([
+            'key' => $request->name,
             'customer_first_name' => $request->name,
             'customer_last_name' => $request->name,
             'user_id' => auth()->user() ? auth()->user()->id : null,
             'is_guest' => auth()->user() ? false : true,
             'grand_total' => Cart::total(),
             'item_count' => Cart::count(),
+            'payment_method' => $request->payment_method,
             'error' => $error,
         ]);
 
@@ -111,6 +115,11 @@ class CheckoutController extends Controller
         return $order;
     }
 
+    /**
+     * Decrease quantity of order
+     *
+     * @return void
+     */
     protected function decreaseQuantities()
     {
         foreach (Cart::content() as $item) {
@@ -119,6 +128,11 @@ class CheckoutController extends Controller
         }
     }
 
+    /**
+     * Check quantity of product Available
+     *
+     * @return void
+     */
     protected function productsAreNoLongerAvailable()
     {
         foreach (Cart::content() as $item) {
