@@ -17,7 +17,7 @@ $factory->define(Product::class, function (Faker\Generator $faker) {
         'is_active' => $faker->boolean(),
         'featured' => ceil(rand(0, 1)),
         'special_price' => $faker->numberBetween(10, 9000),
-        // 'thumbnail' => 'products/'. $id .'/product-'. $id .'.jpg',
+        'thumbnail' => 'img/products/' . $id . '/product-' . $id . '.jpg',
         'category_id' => ceil(rand(1, 5))
     ];
 });

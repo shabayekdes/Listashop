@@ -20,8 +20,7 @@
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
                     @foreach ($product->images as $image)
-                    <li data-image="{{ url('storage/'.$image->path) }}"><img src="{{ url('storage/'.$image->path) }}"
-                            alt=""></li>
+                    <li data-image="{{ url($image->path) }}"><img src="{{ url($image->path) }}" alt=""></li>
                     @endforeach
 
                 </ul>
@@ -33,7 +32,7 @@
                     @if (empty($product->thumbnail))
                     <img src="{{ url( 'img/products/default.png') }}" alt="">
                     @else
-                    <img src="{{ url( 'storage/' . $product->thumbnail) }}" alt="">
+                    <img src="{{ url( $product->thumbnail) }}" alt="">
                     @endif
                 </div>
             </div>
@@ -64,14 +63,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="clearfix" style="z-index: 1000;">
+                            {{-- <div class="clearfix" style="z-index: 1000;">
 
                                 <!-- Product Color -->
 
                                 @foreach ($product->options as $option)
                                 @includeIf("shop::product.partials.options.{$option->option->type}")
                                 @endforeach
-                            </div>
+                            </div> --}}
 
                             <div class="product_price">{{ presentPrice($product->price) }}</div>
                             <div class="button_container">

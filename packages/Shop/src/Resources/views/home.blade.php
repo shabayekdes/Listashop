@@ -307,8 +307,7 @@
                                                             @if (empty($product->thumbnail))
                                                             <img src="{{ url( 'img/products/default.png') }}" alt="">
                                                             @else
-                                                            <img src="{{ url( 'storage/' . $product->thumbnail) }}"
-                                                                alt="">
+                                                            <img src="{{ url( $product->thumbnail) }}" alt="">
                                                             @endif
                                                         </div>
                                                         <div class="bestsellers_content">

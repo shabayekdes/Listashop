@@ -22,7 +22,7 @@ class ProductResource extends JsonResource
             'category_id' => $this->category_id,
             'status' => $this->status,
             'name' => $this->name,
-            'thumbnail' => $this->thumbnail != null ? url("/storage". "/". $this->thumbnail) : null,
+            'thumbnail' => $this->thumbnail != null ? url($this->thumbnail) : null,
             'price' => $this->price,
             'cost' => $this->cost,
             'status' => $this->is_active,

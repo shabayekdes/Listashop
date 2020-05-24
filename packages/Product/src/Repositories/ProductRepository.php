@@ -117,7 +117,7 @@ class ProductRepository extends BaseRepository
 
                     $fileNameToStore = 'product-' . $product->id . '.' . $extension;
                     $path = $image->storeAs('public/products/' . $product->id,  $fileNameToStore);
-                    $fileNameToStore = Str::replaceFirst('public/', '', $path);
+                    $fileNameToStore = Str::replaceFirst('public/', 'storage/', $path);
                     $productImage = $product->update([
                         'thumbnail' => $fileNameToStore
                     ]);
