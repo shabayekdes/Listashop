@@ -75,12 +75,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => User\Models\User::class,
+            'model' => ListaShop\User\Models\User::class,
         ],
 
         'admins' => [
             'driver' => 'eloquent',
-            'model' => User\Models\Admin::class,
+            'model' => ListaShop\User\Models\Admin::class,
         ]
         // 'users' => [
         //     'driver' => 'database',

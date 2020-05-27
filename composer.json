@@ -39,25 +39,14 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Shop\\": "packages/Shop/src",
-            "Category\\": "packages/Category/src",
-            "Product\\": "packages/Product/src",
-            "Admin\\": "packages/Admin/src",
-            "User\\": "packages/User/src",
-            "Core\\": "packages/Core/src",
-            "Cart\\": "packages/Cart/src",
-            "Order\\": "packages/Order/src",
-            "Attribute\\": "packages/Attribute/src",
-            "Option\\": "packages/Option/src",
-            "Value\\": "packages/Value/src",
-            "Payment\\": "packages/Payment/src"
+            "ListaShop\\": "modules/"
         },
         "classmap": [
             "database/seeds",
             "database/factories"
         ],
         "files": [
-            "packages/Core/src/Helpers/helpers.php"
+            "modules/Core/Helpers/helpers.php"
         ]
     },
     "autoload-dev": {
