@@ -35,7 +35,7 @@
                         </div>
                         <div class="top_bar_user">
                             <div class="user_icon"><img src="/frontend/images/user.svg" alt=""></div>
-                            @guest
+                            @guest('customer')
                             <div><a href="/register">Register</a></div>
                             <div><a href="/login">Sign in</a></div>
                             @else
@@ -43,13 +43,13 @@
                                 <a href="{{ route('myAccount.index') }}">My Account</a>
                             </div>
                             <div>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a href="{{ route('customer.logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
                             </div>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                             @endguest
