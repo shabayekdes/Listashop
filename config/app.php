@@ -191,6 +191,7 @@ return [
         ListaShop\Option\Providers\OptionServiceProvider::class,
         ListaShop\Value\Providers\ValueServiceProvider::class,
         ListaShop\Payment\Providers\PaymentServiceProvider::class,
+        ListaShop\Customer\Providers\CustomerServiceProvider::class,
 
 
     ],

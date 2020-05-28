@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Admin\Database\Seeders\DatabaseSeeder as ListashopDatabaseSeeder;
+use ListaShop\Admin\Database\Seeders\DatabaseSeeder as ListashopDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
