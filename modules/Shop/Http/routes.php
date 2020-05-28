@@ -6,6 +6,9 @@ Route::group([
     Route::namespace('\ListaShop\Shop\Http\Controllers')->group(function () {
         Route::get('login', 'Auth\LoginController@showLoginForm')->name('show.customer.login');
         Route::post('login', 'Auth\LoginController@login')->name('customer.login');
+
+        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('show.customer.register');
+        Route::post('register', 'Auth\RegisterController@register')->name('customer.register');
     });
 });
 
