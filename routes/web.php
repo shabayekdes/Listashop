@@ -19,10 +19,11 @@ Route::group(['middleware' => 'auth:admin'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'TestController@index')->name('test');
 
-Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('login.admin');
+/**@deprecated v0.4 */
+/*Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('login.admin');
 Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm')->name('register.admin');
 
 Route::post('/login/admin', 'Auth\LoginController@adminLogin');
 Route::post('/register/admin', 'Auth\RegisterController@createAdmin')->name('register.admin');
 
-Auth::routes();
+Auth::routes();*/

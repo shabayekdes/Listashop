@@ -1,16 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Customer Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+Route::group([
+    'middleware' => ['web']
+], function () {
+    Route::namespace('\ListaShop\Shop\Http\Controllers')->group(function () {
+        Route::get('login', 'Auth\LoginController@showLoginForm')->name('show.customer.login');
+        Route::post('login', 'Auth\LoginController@login')->name('customer.login');
+    });
+});
 
 Route::namespace('\ListaShop\Shop\Http\Controllers')->group(function () {
 
