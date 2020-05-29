@@ -13,7 +13,6 @@
 
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('admin/{path?}', '\ListaShop\Admin\Http\Controllers\HomeController@index')->name('admin')->where('path', '.*');
-    
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
