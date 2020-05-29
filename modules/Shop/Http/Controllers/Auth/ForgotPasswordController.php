@@ -1,6 +1,6 @@
 <?php
 
-namespace ListaShop\Admin\Http\Controllers\Auth;
+namespace ListaShop\Shop\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
@@ -22,21 +22,12 @@ class ForgotPasswordController extends Controller
     use SendsPasswordResetEmails;
 
     /**
-     * Display the form to request a password reset link.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showAdminLinkRequestForm()
-    {
-        return view('admin.auth.forgot');
-    }
-    /**
      * Get the broker to be used during password reset.
      *
      * @return \Illuminate\Contracts\Auth\PasswordBroker
      */
     public function broker()
     {
-        return Password::broker('admins');
+        return Password::broker('customers');
     }
 }
