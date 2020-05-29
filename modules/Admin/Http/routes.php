@@ -16,7 +16,7 @@ Route::group([
     'middleware' => ['auth:api-admin', 'admin', 'api']
 ], function () {
     Route::namespace('\ListaShop\Admin\Http\Controllers')->prefix('api/admin')->group(function () {
-        Route::apiResource('user', 'UserController');
+        Route::apiResource('customer', 'CustomerController');
         Route::apiResource('category', 'CategoryController');
         Route::apiResource('product', 'ProductController', [
             'except' => ['update']

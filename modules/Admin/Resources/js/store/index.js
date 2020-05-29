@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import User from "./modules/user";
+import Customer from "./modules/customer";
 import Category from "./modules/category";
 import Product from "./modules/product";
 import Order from "./modules/order";
@@ -62,6 +63,7 @@ export default new Vuex.Store({
     },
     modules: {
         User,
+        Customer,
         Category,
         Product,
         Order,
