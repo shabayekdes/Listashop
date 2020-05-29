@@ -17,7 +17,7 @@ Route::group([
 Route::namespace('\ListaShop\Shop\Http\Controllers')->group(function () {
 
     Route::group([
-        'middleware' => ['web', 'auth:customer']
+        'middleware' => 'web'
     ], function () {
 
         Route::get('/', 'HomeController@index')->name('home');

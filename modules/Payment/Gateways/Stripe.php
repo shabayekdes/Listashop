@@ -58,8 +58,6 @@ class Stripe implements GatewayInterface
                 ],
             ]);
 
-
-            Cart::instance('default')->destroy();
         } catch (CardErrorException $e) {
 
             // return back()->withErrors('Error! ' . $e->getMessage());

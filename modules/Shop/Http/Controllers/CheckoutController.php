@@ -64,6 +64,7 @@ class CheckoutController extends Controller
 
             // decrease the quantities of all the products in the cart
             $this->decreaseQuantities();
+            Cart::instance('default')->destroy();
             return redirect()->route('store.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
         }
 
@@ -84,7 +85,7 @@ class CheckoutController extends Controller
             'key' => $request->name,
             'customer_first_name' => $request->name,
             'customer_last_name' => $request->name,
-            'user_id' => auth()->user() ? auth()->user()->id : null,
+            'customer_id' => auth('customer')->user() ? auth('customer')->user()->id : null,
             'is_guest' => auth()->user() ? false : true,
             'grand_total' => Cart::total(),
             'item_count' => Cart::count(),
@@ -94,7 +95,7 @@ class CheckoutController extends Controller
 
 
         $order->addresses()->create([
-            'user_id' => auth()->user() ? auth()->user()->id : null,
+            'customer_id' => auth('customer')->user() ? auth('customer')->user()->id : null,
             'first_name' => $request->name,
             'last_name' => $request->name,
             'email' => $request->email,
