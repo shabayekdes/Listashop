@@ -27,7 +27,7 @@
             @include('shop::account.navs.sidebar')
 
             <div class="col-lg-9">
-                <h4>welcome, {{ auth()->user()->name }}</h4>
+                <h4>welcome, {{ auth('customer')->user()->name }}</h4>
                 <div class="card">
                 </div>
             </div>

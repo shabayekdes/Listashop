@@ -36,7 +36,7 @@ class OrdersController extends Controller
     public function index()
     {
 
-        $orders = auth()->user()->orders()->with('products')->get();
+        $orders = auth('customer')->user()->orders()->with('products')->get();
         return view('shop::account.orders')->with('orders', $orders);
     }
     /**

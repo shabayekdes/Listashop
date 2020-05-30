@@ -39,7 +39,7 @@ class CartController extends Controller
         }
 
         Cart::add($id, $product->name, 1, $product->price)
-            ->associate('Product\Models\Product');
+            ->associate('ListaShop\Product\Models\Product');
 
         return redirect()->back()->with('success', 'Product was added');
     }

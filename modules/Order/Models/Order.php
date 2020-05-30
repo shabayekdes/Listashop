@@ -4,9 +4,9 @@ namespace ListaShop\Order\Models;
 
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
-use ListaShop\User\Models\User;
 use ListaShop\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use ListaShop\Customer\Models\Customer;
 
 class Order extends Model
 {
@@ -134,9 +134,9 @@ class Order extends Model
     /**
      * Get the addresses for the order.
      */
-    public function user()
+    public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function getCreatedAtAttribute($date)

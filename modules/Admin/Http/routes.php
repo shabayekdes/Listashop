@@ -9,11 +9,14 @@ Route::group([
         Route::post('admin-login', 'Auth\LoginController@login')->name('admin.login');
     });
 });
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::post('admin-logout', '\ListaShop\Admin\Http\Controllers\Auth\LoginController@logout')->name('admin.logout');
+});
 Route::group([
     'middleware' => ['auth:api-admin', 'admin', 'api']
 ], function () {
     Route::namespace('\ListaShop\Admin\Http\Controllers')->prefix('api/admin')->group(function () {
-        Route::apiResource('user', 'UserController');
+        Route::apiResource('customer', 'CustomerController');
         Route::apiResource('category', 'CategoryController');
         Route::apiResource('product', 'ProductController', [
             'except' => ['update']

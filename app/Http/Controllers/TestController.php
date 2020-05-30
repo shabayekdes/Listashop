@@ -22,6 +22,7 @@ class TestController extends Controller
      */
     public function index()
     {
+        dd(app());
         $paymentMethodLabel = [
         1 => 'cod',
         2 => 'stripe',

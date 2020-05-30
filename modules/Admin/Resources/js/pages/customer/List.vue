@@ -44,30 +44,52 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <datatable :columns="columns" :length="getAllUsers.length">
-                    <tr role="row" class="odd" v-for="user in getAllUsers" :key="user.id">
-                      <td class="sorting_1">{{ user.id }}</td>
-                      <td>{{ user.name }}</td>
-                      <td>{{ user.email }}</td>
+                  <datatable :columns="columns" :length="getAllCustomers.length">
+                    <tr
+                      role="row"
+                      class="odd"
+                      v-for="customer in getAllCustomers"
+                      :key="customer.id"
+                    >
+                      <td class="sorting_1">{{ customer.id }}</td>
+                      <td>{{ customer.name }}</td>
+                      <td>{{ customer.email }}</td>
+                      <td>{{ customer.phone }}</td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder"></i>
-                          View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="#">
+                        <div class="row">
+                                                      <div class="col-sm-3 border-right">
+                            <router-link
+                              :to="{ name: 'customer.view',  params: { id: customer.id } }"
+                              class="btn btn-primary btn-xs"
+                            >
+                              <i class="fas fa-folder"></i>
+                            </router-link>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3 border-right">
+                            <a class="btn btn-primary btn-xs" href="#">
+                              <i class="fas fa-folder"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-3">
+                            <a class="btn btn-danger btn-xs" href="#">
+                              <i class="fas fa-trash"></i>
+                            </a>
+                          </div>
+                          <!-- /.col -->
+                        </div>
+
+                        <!-- <a class="btn btn-info btn-sm" @click="editProduct(product.id)" href>
                           <i class="fas fa-pencil-alt"></i>
                           Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
+                        </a>-->
                       </td>
                     </tr>
                   </datatable>
                 </div>
               </div>
-              <pagination :meta_data="getMetaData" v-on:next="fetchListUsers"></pagination>
+              <pagination :meta_data="getMetaData" v-on:next="fetchListCustomers"></pagination>
             </div>
           </div>
           <!-- /.card-body -->
@@ -96,19 +118,19 @@ export default {
     return {
       columns: [
         { width: "2%", label: "#", name: "id", active: true },
-        { width: "40%", label: "Name", name: "name", active: true },
+        { width: "20%", label: "Name", name: "name", active: true },
         { width: "40%", label: "Email", name: "email", active: true },
+        { width: "20%", label: "Phone", name: "phone", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]
     };
   },
   methods: {
-    ...mapActions(["fetchListUsers"])
+    ...mapActions(["fetchListCustomers"])
   },
   created() {
-    this.fetchListUsers();
+    this.fetchListCustomers();
   },
-  computed: mapGetters(["getAllUsers", "getMetaData"])
+  computed: mapGetters(["getAllCustomers", "getMetaData"])
 };
 </script>
-

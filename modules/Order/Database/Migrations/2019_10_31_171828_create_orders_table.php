@@ -33,8 +33,7 @@ class CreateOrdersTable extends Migration
             $table->integer('payment_status')->default(1)->comment("1- Pending, 2- Paid");
             $table->integer('order_status')->default(1);
 
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreignId('customer_id')->nullable()->references('id')->on('customers')->onDelete('set null');
 
             $table->json('error')->nullable();
             $table->timestamps();

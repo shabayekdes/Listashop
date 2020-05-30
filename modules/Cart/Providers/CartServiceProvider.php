@@ -4,7 +4,7 @@ namespace ListaShop\Cart\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
-use ListaShop\Cart\Facades\Cart;
+use ListaShop\Cart\Cart;
 
 class CartServiceProvider extends ServiceProvider
 {
@@ -32,14 +32,14 @@ class CartServiceProvider extends ServiceProvider
     {
         //to make the cart facade and bind the
         //alias to the class needed to be called.
-        $loader = AliasLoader::getInstance();
+        // $loader = AliasLoader::getInstance();
 
-        $loader->alias('cart', Cart::class);
+        // $loader->alias('cart', Cart::class);
 
-        $this->app->singleton('cart', function () {
-            return new cart();
-        });
+        // $this->app->singleton('cart', function () {
+        //     return new cart();
+        // });
 
-        $this->app->bind('cart', 'Cart\Cart');
+        $this->app->bind('cart', 'ListaShop\Cart\Cart');
     }
 }
