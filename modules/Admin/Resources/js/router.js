@@ -9,6 +9,7 @@ import Wrapper from "@Admin/layouts/Wrapper";
 import Dashboard from "@Admin/pages/dashboard/Dashboard.vue";
 
 import ListCustomers from "@Admin/pages/customer/List.vue";
+import ViewCustomer from "@Admin/pages/customer/View.vue";
 
 import ListCategories from "@Admin/pages/category/List.vue";
 
@@ -50,6 +51,15 @@ const routes = [
                 component: ListCustomers,
                 meta: {
                     text: "Customers"
+                }
+            },
+            {
+                path: "customer/view/:id",
+                name: "customer.view",
+                component: ViewCustomer,
+                props: true,
+                meta: {
+                    text: "View Customer"
                 }
             },
             {

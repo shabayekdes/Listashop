@@ -4,6 +4,7 @@ namespace ListaShop\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use ListaShop\Customer\Models\Customer;
 use ListaShop\Customer\Http\Resources\CustomerResource;
 use ListaShop\Customer\Repositories\CustomerRepository;
 
@@ -43,11 +44,12 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
+        return new CustomerResource($customer);
     }
 
     /**

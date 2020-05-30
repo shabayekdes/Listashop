@@ -57,19 +57,19 @@
                       <td>{{ customer.phone }}</td>
                       <td class="project-actions text-right">
                         <div class="row">
+                                                      <div class="col-sm-3 border-right">
+                            <router-link
+                              :to="{ name: 'customer.view',  params: { id: customer.id } }"
+                              class="btn btn-primary btn-xs"
+                            >
+                              <i class="fas fa-folder"></i>
+                            </router-link>
+                          </div>
+                          <!-- /.col -->
                           <div class="col-sm-3 border-right">
                             <a class="btn btn-primary btn-xs" href="#">
                               <i class="fas fa-folder"></i>
                             </a>
-                          </div>
-                          <!-- /.col -->
-                          <div class="col-sm-3 border-right">
-                            <router-link
-                              :to="{ name: 'product.edit',  params: { id: customer.id } }"
-                              class="btn btn-info btn-xs"
-                            >
-                              <i class="fas fa-pencil-alt"></i>
-                            </router-link>
                           </div>
                           <!-- /.col -->
                           <div class="col-sm-3">

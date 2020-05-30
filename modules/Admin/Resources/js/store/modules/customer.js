@@ -1,11 +1,14 @@
 import axios from "axios";
 
 const state = {
-    customers: []
+    customers: [],
+    customer: {}
 };
 
 const getters = {
-    getAllCustomers: state => state.customers
+    getAllCustomers: state => state.customers,
+    getSingleCustomer: state => state.customer
+
 };
 
 const actions = {
@@ -15,12 +18,20 @@ const actions = {
 
         commit("SHOW_LIST_CUSTOMERS", response.data);
         commit("SET_META_DATA", response.data, { root: true });
-    }
+    },
+    async showCustomer({ commit }, id) {
+        const response = await axios.get(`${urlApi}customer/${id}`);
+
+        commit("SET_CUSTOMER", response.data.data);
+    },
 };
 
 const mutations = {
     SHOW_LIST_CUSTOMERS: (state, data) => {
         state.customers = data.data;
+    },
+    SET_CUSTOMER: (state, customer) => {
+        state.customer = customer;
     }
 };
 
