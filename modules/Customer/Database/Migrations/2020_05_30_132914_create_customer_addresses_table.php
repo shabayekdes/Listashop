@@ -18,8 +18,8 @@ class CreateCustomerAddressesTable extends Migration
             $table->string('address');
             $table->string('state');
             $table->string('city');
-            $table->decimal('address_lat');
-            $table->decimal('address_lng');
+            $table->decimal('address_lat')->nullable();
+            $table->decimal('address_lng')->nullable();
             $table->string('postcode');
             $table->foreignId('customer_id')->references('id')->on('customers');
             $table->timestamps();

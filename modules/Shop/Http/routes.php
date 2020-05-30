@@ -29,14 +29,26 @@ Route::namespace('\ListaShop\Shop\Http\Controllers')->group(function () {
         Route::get('/cart', 'CartController@index')->name('cart.index');
         Route::post('/cart/{product}', 'CartController@store')->name('cart.store');
 
-        Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth:customer');
-        Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+
 
         Route::get('/guest-checkout', 'CheckoutController@index')->name('guestCheckout.index');
 
-        Route::get('/my-account', 'UserController@index')->name('myAccount.index')->middleware('auth:customer');
 
-        Route::get('/my-orders', 'OrdersController@index')->name('orders.index');
-        Route::get('/my-orders/{order}', 'OrdersController@show')->name('orders.show');
+
+
+        Route::group([
+            'middleware' => 'auth:customer'
+        ], function () {
+
+            Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+            Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+
+            Route::get('/my-account', 'UserController@index')->name('myAccount.index');
+
+            Route::get('/my-orders', 'OrdersController@index')->name('orders.index');
+            Route::get('/my-orders/{order}', 'OrdersController@show')->name('orders.show');
+
+            Route::get('my-address', 'AddressController@index')->name('address.index');
+        });
     });
 });

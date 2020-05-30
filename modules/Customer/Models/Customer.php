@@ -6,6 +6,7 @@ use ListaShop\Order\Models\Order;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use ListaShop\Customer\Models\CustomerAddress;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Customer extends Authenticatable
@@ -42,5 +43,10 @@ class Customer extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(CustomerAddress::class);
     }
 }
