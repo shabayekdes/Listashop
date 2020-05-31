@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="p-2 bd-highlight"><a href="#" data-toggle="modal"
-                                                    data-target="#address{{ $address->id }}"
+                                                    data-target="#addressModal{{ $address->id }}"
                                                     class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                             </div>
                                             <div class="p-2 bd-highlight"><a href="#" class="btn btn-danger btn-sm"><i
@@ -56,56 +56,54 @@
                                     </div>
                                 </div>
                                 <!-- Modal -->
-                                <div class="modal fade" id="address{{ $address->id }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="addressModal{{ $address->id }}" tabindex="-1" role="dialog" aria-labelledby="addressModalLabel{{ $address->id }}"
+                                    aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit Address</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
+                                                <h5 class="modal-title" id="addressModalLabel{{ $address->id }}">Edit Address</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form>
+                                            <form action="{{ route('address.update', ['address' => $address->id ]) }}" method="POST">
+                                                @method('PUT')
+                                                @csrf
                                                 <div class="modal-body">
                                                     <div class="form-group">
                                                         <label for="address">Address</label>
-                                                        <input type="text" class="form-control" id="address"
-                                                            name="address" value="{{ $address->address }}">
+                                                        <input type="text" class="form-control" id="address" name="address"
+                                                            value="{{ $address->address }}">
                                                     </div>
 
                                                     <div class="form-row">
                                                         <div class="form-group col-md-4">
                                                             <label for="city">City</label>
-                                                            <input type="text" class="form-control" id="city"
-                                                                name="city" value="{{ $address->city }}"></div>
-                                                        <div class="form-group col-md-4"><label
-                                                                for="state">State</label>
-                                                            <input type="text" class="form-control" id="state"
-                                                                name="state" value="{{ $address->state }}"></div>
+                                                            <input type="text" class="form-control" id="city" name="city" value="{{ $address->city }}">
+                                                        </div>
+                                                        <div class="form-group col-md-4"><label for="state">State</label>
+                                                            <input type="text" class="form-control" id="state" name="state"
+                                                                value="{{ $address->state }}"></div>
                                                         <div class="form-group col-md-4"><label for="postcode">Postal
                                                                 Code</label>
-                                                            <input type="text" class="form-control" id="postcode"
-                                                                name="postcode" value="{{ $address->postcode }}"></div>
+                                                            <input type="text" class="form-control" id="postcode" name="postcode"
+                                                                value="{{ $address->postcode }}"></div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label for="address_lat">Latitude</label>
-                                                            <input type="text" class="form-control" id="address_lat"
-                                                                name="address_lat" value="{{ $address->address_lat }}">
+                                                            <input type="text" class="form-control" id="address_lat" name="address_lat"
+                                                                value="{{ $address->address_lat }}">
                                                         </div>
-                                                        <div class="form-group col-md-6"><label
-                                                                for="address_lng">Longitude</label>
-                                                            <input type="text" class="form-control" id="address_lng"
-                                                                name="address_lng" value="{{ $address->address_lng }}">
+                                                        <div class="form-group col-md-6"><label for="address_lng">Longitude</label>
+                                                            <input type="text" class="form-control" id="address_lng" name="address_lng"
+                                                                value="{{ $address->address_lng }}">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-success">Update</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success">Update</button>
                                                 </div>
                                             </form>
                                         </div>

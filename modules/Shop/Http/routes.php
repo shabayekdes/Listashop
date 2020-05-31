@@ -49,6 +49,7 @@ Route::namespace('\ListaShop\Shop\Http\Controllers')->group(function () {
             Route::get('/my-orders/{order}', 'OrdersController@show')->name('orders.show');
 
             Route::get('my-address', 'AddressController@index')->name('address.index');
+            Route::put('my-address/{address}', 'AddressController@update')->name('address.update');
         });
     });
 });
