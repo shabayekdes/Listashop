@@ -1,13 +1,9 @@
 <div class="col-lg-3">
 
-    <!-- Shop Sidebar -->
-    <div class="shop_sidebar">
-        <div class="sidebar_section">
-            <ul class="sidebar_categories">
-                <li class="active"><a href="{{ route('myAccount.index') }}">My Account</a></li>
-                <li><a href="{{ route('orders.index') }}">My Orders</a></li>
-            </ul>
-        </div>
-    </div>
+<div class="nav flex-column nav-pills" aria-orientation="vertical">
+<a class="nav-link{{ request()->is('my-account') ? " active": " " }}" href="{{ route('myAccount.index') }}">My Account</a>
+    <a class="nav-link{{ request()->is('my-orders') || request()->is('my-orders/*') ? " active": " " }}" href="{{ route('orders.index') }}">My Orders</a>
+    <a class="nav-link{{ request()->is('my-address') ? " active": " " }}" href="{{ route('address.index') }}">My Address</a>
+</div>
 
 </div>

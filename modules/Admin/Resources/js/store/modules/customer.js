@@ -2,13 +2,15 @@ import axios from "axios";
 
 const state = {
     customers: [],
-    customer: {}
+    customer: {
+        address : {}
+    }
 };
 
 const getters = {
     getAllCustomers: state => state.customers,
-    getSingleCustomer: state => state.customer
-
+    getSingleCustomer: state => state.customer,
+    getSingleCustomerAddress: state => state.customer.address
 };
 
 const actions = {
@@ -32,6 +34,7 @@ const mutations = {
     },
     SET_CUSTOMER: (state, customer) => {
         state.customer = customer;
+        state.customer.address = customer.address;
     }
 };
 
