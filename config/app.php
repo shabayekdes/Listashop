@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -245,7 +246,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Cart' => ListaShop\Cart\Facades\Cart::class
+        'Cart' => ListaShop\Cart\Facades\Cart::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
 
     ],
 

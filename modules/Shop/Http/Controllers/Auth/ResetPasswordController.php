@@ -1,6 +1,6 @@
 <?php
 
-namespace ListaShop\Admin\Http\Controllers\Auth;
+namespace ListaShop\Shop\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
