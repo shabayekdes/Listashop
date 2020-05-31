@@ -50,6 +50,8 @@ Route::namespace('\ListaShop\Shop\Http\Controllers')->group(function () {
 
             Route::get('my-address', 'AddressController@index')->name('address.index');
             Route::put('my-address/{address}', 'AddressController@update')->name('address.update');
+            Route::post('my-address', 'AddressController@store')->name('address.store');
+            Route::delete('my-address/{address}', 'AddressController@destroy')->name('address.destroy');
         });
     });
 });

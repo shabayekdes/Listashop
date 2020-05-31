@@ -30,7 +30,7 @@
                     <div class="container">
                         <div class="row">
                             @if ($addresses->count() > 0)
-                            <h3>{{ $addresses->count() }} address registered</h3>
+                            <h3>( {{ $addresses->count() }} ) address(es) registered</h3>
 
                             <div class="col-lg-10 offset-lg-1">
                                 @foreach ($addresses as $address)
@@ -47,21 +47,30 @@
                                                 </div>
                                             </div>
                                             <div class="p-2 bd-highlight"><a href="#" data-toggle="modal"
-                                                    data-target="#addressModal{{ $address->id }}"
+                                                    data-target="#editAddressModal{{ $address->id }}"
                                                     class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                             </div>
-                                            <div class="p-2 bd-highlight"><a href="#" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-trash"></i></a></div>
+                                            <div class="p-2 bd-highlight">
+                                                <a href="{{ route('address.destroy', ['address' => $address->id]) }}" class="btn btn-danger btn-sm" onclick="event.preventDefault();
+                                                                                                 document.getElementById('delete-address-form-{{$address->id}}').submit();"><i
+                                                        class="fas fa-trash"></i></a>
+
+                                                <form id="delete-address-form-{{$address->id}}" action="{{ route('address.destroy', ['address' => $address->id]) }}" method="POST"
+                                                    style="display: none;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </div><!-- Card Body -->
                                 </div>
                                 <!-- Modal -->
-                                <div class="modal fade" id="addressModal{{ $address->id }}" tabindex="-1" role="dialog" aria-labelledby="addressModalLabel{{ $address->id }}"
+                                <div class="modal fade" id="editAddressModal{{ $address->id }}" tabindex="-1" role="dialog" aria-labelledby="editAddressModalLabel{{ $address->id }}"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="addressModalLabel{{ $address->id }}">Edit Address</h5>
+                                                <h5 class="modal-title" id="editAddressModalLabel{{ $address->id }}">Edit Address</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -113,7 +122,62 @@
                                 @endforeach
 
                             </div>
-                            <a href="http://listashop.test/checkout" class="btn btn-primary">Add a new address</a>
+                            <a href="#" data-toggle="modal" data-target="#createAddressModal" class="btn btn-primary btn-sm"><i
+                                    class="fas fa-pencil-alt"></i> Add new address</a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="createAddressModal" tabindex="-1" role="dialog"
+                                aria-labelledby="createAddressModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="createAddressModalLabel">Edit Address</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ route('address.store') }}" method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="address">Address</label>
+                                                    <input type="text" class="form-control" id="address" name="address"
+                                                        placeholder="Enter address" value="">
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="city">City</label>
+                                                        <input type="text" class="form-control" id="city" name="city" value="">
+                                                    </div>
+                                                    <div class="form-group col-md-4"><label for="state">State</label>
+                                                        <input type="text" class="form-control" id="state" name="state"
+                                                            value=""></div>
+                                                    <div class="form-group col-md-4"><label for="postcode">Postal
+                                                            Code</label>
+                                                        <input type="text" class="form-control" id="postcode" name="postcode"
+                                                            value=""></div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="address_lat">Latitude</label>
+                                                        <input type="text" class="form-control" id="address_lat" name="address_lat"
+                                                            placeholder="Enter address latitude" value="">
+                                                    </div>
+                                                    <div class="form-group col-md-6"><label for="address_lng">Longitude</label>
+                                                        <input type="text" class="form-control" id="address_lng" name="address_lng"
+                                                            placeholder="Enter address longitude" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Add New</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             @else
                             <p>There are no items in the cart</p>
 

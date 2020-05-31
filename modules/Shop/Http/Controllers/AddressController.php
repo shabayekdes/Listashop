@@ -45,4 +45,43 @@ class AddressController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Store resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'address' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'postcode' => 'required'
+        ]);
+
+        $customer = auth('customer')->user();
+
+        $customer->addresses()->create($request->all());
+
+        return redirect()->back();
+    }
+
+    /**
+     * Delete resource in storage.
+     *
+     * @param CustomerAddress  $address
+     * @return Response
+     */
+    public function destroy(CustomerAddress $address)
+    {
+        $customer_id = auth('customer')->user()->id;
+
+        abort_if($customer_id != $address->customer_id, 404);
+
+        $address->delete();
+
+        return redirect()->back();
+    }
+
 }
