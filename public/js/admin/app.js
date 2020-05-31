@@ -2285,7 +2285,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   customers: [],
-  customer: {}
+  customer: {
+    address: {}
+  }
 };
 var getters = {
   getAllCustomers: function getAllCustomers(state) {
@@ -2293,6 +2295,9 @@ var getters = {
   },
   getSingleCustomer: function getSingleCustomer(state) {
     return state.customer;
+  },
+  getSingleCustomerAddress: function getSingleCustomerAddress(state) {
+    return state.customer.address;
   }
 };
 var actions = {
@@ -2355,6 +2360,7 @@ var mutations = {
   },
   SET_CUSTOMER: function SET_CUSTOMER(state, customer) {
     state.customer = customer;
+    state.customer.address = customer.address;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6741,6 +6747,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6784,7 +6810,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.showCustomer(this.$route.params.id);
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleCustomer"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleCustomer", "getSingleCustomerAddress"])
 });
 
 /***/ }),
@@ -48548,7 +48574,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "text-muted text-center" }, [
-                _vm._v(_vm._s(_vm.getSingleCustomer.status))
+                _vm._v(_vm._s(_vm.getSingleCustomer.status_label))
               ])
             ])
           ]),
@@ -48574,7 +48600,82 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(4)
+        _c("div", { staticClass: "col-md-9" }, [
+          _c("div", { staticClass: "card" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "tab-content" }, [
+                _c(
+                  "div",
+                  { staticClass: "active tab-pane", attrs: { id: "activity" } },
+                  [_vm._v("...")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "address" } },
+                  [
+                    _c("h3", [
+                      _vm._v(
+                        "( " +
+                          _vm._s(_vm.getSingleCustomerAddress.length) +
+                          " ) address(es) registered"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.getSingleCustomerAddress, function(address) {
+                      return _c(
+                        "div",
+                        { key: address.id, staticClass: "card mb-3 mt-2" },
+                        [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("div", { staticClass: "d-flex bd-highlight" }, [
+                              _c(
+                                "div",
+                                { staticClass: "p-2 flex-grow-1 bd-highlight" },
+                                [
+                                  _c("div", [
+                                    _c("b", [_vm._v("Address:")]),
+                                    _vm._v(" " + _vm._s(address.address))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c("b", [_vm._v("State:")]),
+                                    _vm._v(" " + _vm._s(address.state) + ", "),
+                                    _c("b", [_vm._v("City:")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(address.city) +
+                                        ",\n                          "
+                                    ),
+                                    _c("b", [_vm._v("Postal Code:")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(address.postcode) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "settings" } },
+                  [_vm._v("...")]
+                )
+              ])
+            ])
+          ])
+        ])
       ])
     ])
   ])
@@ -48621,61 +48722,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-9" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header p-2" }, [
-          _c("ul", { staticClass: "nav nav-pills" }, [
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link active",
-                  attrs: { href: "#activity", "data-toggle": "tab" }
-                },
-                [_vm._v("Activity")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { href: "#timeline", "data-toggle": "tab" }
-                },
-                [_vm._v("Timeline")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { href: "#settings", "data-toggle": "tab" }
-                },
-                [_vm._v("Settings")]
-              )
-            ])
-          ])
+    return _c("div", { staticClass: "card-header p-2" }, [
+      _c("ul", { staticClass: "nav nav-pills" }, [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: { href: "#activity", "data-toggle": "tab" }
+            },
+            [_vm._v("Activity")]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "tab-content" }, [
-            _c(
-              "div",
-              { staticClass: "active tab-pane", attrs: { id: "activity" } },
-              [_vm._v("...")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "tab-pane", attrs: { id: "timeline" } }, [
-              _vm._v("...")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "tab-pane", attrs: { id: "settings" } }, [
-              _vm._v("...")
-            ])
-          ])
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: { href: "#address", "data-toggle": "tab" }
+            },
+            [_vm._v("Address")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: { href: "#settings", "data-toggle": "tab" }
+            },
+            [_vm._v("Settings")]
+          )
         ])
       ])
     ])

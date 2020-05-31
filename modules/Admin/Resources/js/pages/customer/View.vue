@@ -15,7 +15,7 @@
               </div>
               <h3 class="profile-username text-center">{{ getSingleCustomer.name }}</h3>
 
-              <p class="text-muted text-center">{{ getSingleCustomer.status }}</p>
+              <p class="text-muted text-center">{{ getSingleCustomer.status_label }}</p>
             </div>
             <!-- /.card-body -->
           </div>
@@ -55,7 +55,7 @@
                   <a class="nav-link active" href="#activity" data-toggle="tab">Activity</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a>
+                  <a class="nav-link" href="#address" data-toggle="tab">Address</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#settings" data-toggle="tab">Settings</a>
@@ -67,7 +67,27 @@
               <div class="tab-content">
                 <div class="active tab-pane" id="activity">...</div>
                 <!-- /.tab-pane -->
-                <div class="tab-pane" id="timeline">...</div>
+                <div class="tab-pane" id="address">
+                  <h3>( {{ getSingleCustomerAddress.length }} ) address(es) registered</h3>
+                  <div
+                    class="card mb-3 mt-2"
+                    v-for="address in getSingleCustomerAddress"
+                    :key="address.id"
+                  >
+                    <div class="card-body">
+                      <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                          <div><b>Address:</b> {{ address.address }}</div>
+                          <div>
+                            <b>State:</b> {{ address.state }}, <b>City:</b> {{ address.city }},
+                            <b>Postal Code:</b> {{ address.postcode }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Card Body -->
+                  </div>
+                </div>
                 <!-- /.tab-pane -->
 
                 <div class="tab-pane" id="settings">...</div>
@@ -115,6 +135,6 @@ export default {
   created() {
     this.showCustomer(this.$route.params.id);
   },
-  computed: mapGetters(["getSingleCustomer"])
+  computed: mapGetters(["getSingleCustomer", "getSingleCustomerAddress"])
 };
 </script>
