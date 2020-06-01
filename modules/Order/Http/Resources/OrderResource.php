@@ -2,10 +2,11 @@
 
 namespace ListaShop\Order\Http\Resources;
 
-use ListaShop\User\Http\Resources\UserResource;
-use ListaShop\Product\Http\Resources\ProductResource;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
+use ListaShop\User\Http\Resources\UserResource;
+use Illuminate\Http\Resources\Json\JsonResource;
+use ListaShop\Product\Http\Resources\ProductResource;
+use ListaShop\Customer\Http\Resources\CustomerResource;
 
 class OrderResource extends JsonResource
 {
@@ -20,7 +21,6 @@ class OrderResource extends JsonResource
         return [
             'id' => $this->id,
             'key' => $this->key,
-            'customer_name' => $this->customer_full_name,
             'item_count' => $this->item_count,
             'total' => presentPrice($this->grand_total),
             'payment_method_label' => $this->payment_method_label,
@@ -28,9 +28,8 @@ class OrderResource extends JsonResource
             'order_status_label' => $this->order_status_label,
             'order_status' => $this->order_status,
             'order_status' => $this->order_status,
-            'is_guest' => $this->is_guest,
             'products' => ProductResource::collection($this->products),
-            'user' => new UserResource($this->user),
+            'customer' => new CustomerResource($this->customer),
             'created_at' => Carbon::parse($this->created_at)->diffForHumans()
         ];
     }

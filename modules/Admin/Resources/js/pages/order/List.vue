@@ -52,8 +52,7 @@
                   <datatable :columns="columns" :length="getAllOrders.length">
                     <tr role="row" class="odd" v-for="order in getAllOrders" :key="order.id">
                       <td class="sorting_1">{{ order.id }}</td>
-                      <td v-if="order.is_guest">{{ order.customer_name }}</td>
-                      <td v-else>{{ order.user.name }}</td>
+                      <td>{{ order.customer.name }}</td>
                       <td>{{ order.total }}</td>
                       <td>{{ order.payment_method_label }}</td>
                       <td>{{ order.payment_status_label }}</td>
@@ -81,7 +80,7 @@
                           <div class="col-sm-3">
                             <a
                               class="btn btn-danger btn-sm"
-                              @click="deleteProduct(product.id)"
+                              @click="deleteProduct(order.id)"
                               href="#"
                             >
                               <i class="fas fa-trash"></i>
@@ -106,7 +105,7 @@
     <!-- /.row -->
     <!-- Modal -->
     <model title="Invoice" size="modal-xl">
-      <invoice />
+      <!-- <invoice /> -->
     </model>
   </section>
   <!-- /.content -->
@@ -117,7 +116,7 @@ import { mapGetters, mapActions } from "vuex";
 import pagination from "@Admin/components/Pagination.vue";
 import datatable from "@Admin/components/DataTable.vue";
 import model from "@Admin/components/Model.vue";
-import Invoice from "@Admin/views/Invoice";
+// import Invoice from "@Admin/views/Invoice";
 
 export default {
   name: "OrderList",
@@ -125,7 +124,7 @@ export default {
     pagination,
     datatable,
     model,
-    Invoice
+    // Invoice
   },
   data() {
     return {
@@ -156,7 +155,7 @@ export default {
           active: true
         },
         { width: "15%", label: "Order Status", name: "order_status", active: true },
-        { width: "18%", label: "Date", name: "date", active: true },
+        { width: "10%", label: "Date", name: "date", active: true },
         { width: "18%", label: "Action", name: "action", active: false }
       ]
     };
