@@ -9,6 +9,7 @@ use ListaShop\Payment\Facades\Payment;
 use App\Http\Controllers\Controller;
 use ListaShop\Order\Repositories\OrderRepository;
 use ListaShop\Order\Http\Requests\CheckoutRequest;
+use Illuminate\Support\Str;
 
 /**
  * Checkout page controller
@@ -38,11 +39,13 @@ class CheckoutController extends Controller
             return redirect()->route('store.index');
         }
 
-        if (auth()->user() && request()->is('guestCheckout')) {
+        if (auth('customer')->user() && request()->is('guestCheckout')) {
             return redirect()->route('checkout.index');
         }
 
-        return view('shop::checkout.index');
+        $addresses = auth('customer')->user()->addresses;
+
+        return view('shop::checkout.index', compact('addresses'));
     }
     /**
      * Store a newly created resource in storage.
@@ -50,7 +53,7 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CheckoutRequest $request)
+    public function store(Request $request)
     {
         // Check race condition when there are less items available to purchase
         if ($this->productsAreNoLongerAvailable()) {
@@ -68,7 +71,7 @@ class CheckoutController extends Controller
             return redirect()->route('store.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
         }
 
-        return back()->withErrors('Error! ' . $e->getMessage());
+        return back()->withErrors('Sorry! Your payment have error.');
     }
 
     /**
@@ -82,31 +85,15 @@ class CheckoutController extends Controller
     {
         // Insert into orders table
         $order = $this->order->create([
-            'key' => $request->name,
-            'customer_first_name' => $request->name,
-            'customer_last_name' => $request->name,
+            'key' => Str::random(40),
             'customer_id' => auth('customer')->user() ? auth('customer')->user()->id : null,
-            'is_guest' => auth()->user() ? false : true,
+            'customer_address_id' => $request->customer_address_id,
             'grand_total' => Cart::total(),
             'item_count' => Cart::count(),
             'payment_method' => $request->payment_method,
             'error' => $error,
         ]);
 
-
-        $order->addresses()->create([
-            'customer_id' => auth('customer')->user() ? auth('customer')->user()->id : null,
-            'first_name' => $request->name,
-            'last_name' => $request->name,
-            'email' => $request->email,
-            'address1' => $request->address,
-            'address2' => $request->address,
-            'country' => $request->city,
-            'state' => $request->city,
-            'city' => $request->city,
-            'postcode' => $request->postalcode,
-            'phone' => $request->phone
-        ]);
         // Insert into order_product table
         foreach (Cart::content() as $item) {
             $order->products()->attach($item->model->id, ['quantity' => $item->qty, 'total' => $item->subtotal]);

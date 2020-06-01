@@ -19,7 +19,8 @@ $factory->define(Order::class, function (Faker\Generator $faker) {
         'key' => Str::random(),
         'item_count' => 1,
         'grand_total' => $faker->numberBetween(10, 9000),
-        'payment_method' => 'cod',
-        'customer_id' => $faker->numberBetween(1, 10)
+        'payment_method' => $faker->numberBetween(1, 3),
+        'customer_id' => $faker->numberBetween(1, 10),
+        'customer_address_id' => $faker->numberBetween(1, 10)
     ];
 });

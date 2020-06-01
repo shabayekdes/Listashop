@@ -49,7 +49,7 @@ class Stripe implements GatewayInterface
                 'currency' => 'EGP',
                 'source' => $data['stripe_token'],
                 'description' => 'Order',
-                'receipt_email' => $data['email'],
+                'receipt_email' => $order->customer->name,
                 'metadata' => [
                     'order_id' => $order->id,
                     'contents' => $contents,

@@ -40,9 +40,30 @@
         <div>
             <form action="{{ route('checkout.store') }}" method="POST" id="payment-form">
                 @csrf
-                <h2>Billing Details</h2>
+                <h2>Address Details</h2>
 
-                <div class="form-group">
+                <div class="half-form">
+                    @if ($addresses->count() > 0)
+                    <div class="form-group">
+                        <label for="addressFormControlSelect">Select your address</label>
+                        <select class="form-control" id="addressFormControlSelect" name="customer_address_id">
+                            <option selected>Select one address</option>
+                            @foreach ($addresses as $address)
+                            <option value="{{ $address->id }}">{{ $address->address }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @else
+                    <p>don't have any address please add new</p>
+                    @endif
+                    <a href="#" data-toggle="modal" data-target="#createAddressModal" class="btn btn-primary btn-sm"><i
+                            class="fas fa-pencil-alt"></i> Add new address</a>
+
+                </div> <!-- end half-form -->
+
+
+
+                {{-- <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" class="form-control" id="email" name="email" value="">
                 </div>
@@ -75,15 +96,14 @@
                         <label for="phone">Phone</label>
                         <input type="text" class="form-control" id="phone" name="phone" value="">
                     </div>
-                </div> <!-- end half-form -->
+                </div> <!-- end half-form --> --}}
 
                 <div class="spacer"></div>
 
                 <h2>Payment Details</h2>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="cod" name="payment_method" value="cod"
-                        class="custom-control-input" checked>
+                    <input type="radio" id="cod" name="payment_method" value="cod" class="custom-control-input" checked>
                     <label class="custom-control-label" for="cod">Cash on Delivery ( COD )</label>
                 </div>
                 <div class="custom-control custom-radio">
@@ -92,8 +112,7 @@
                     <label class="custom-control-label" for="credit_card">Credit card</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="paypal" name="payment_method" value="paypal"
-                        class="custom-control-input">
+                    <input type="radio" id="paypal" name="payment_method" value="paypal" class="custom-control-input">
                     <label class="custom-control-label" for="paypal">PayPal</label>
                 </div>
 
@@ -126,15 +145,62 @@
                     </div>
                 </div>
 
-
-
                 <button type="submit" id="complete-order" class="button checkout_button mt-3">Complete Order</button>
-
 
             </form>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="createAddressModal" tabindex="-1" role="dialog" aria-labelledby="createAddressModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createAddressModalLabel">Edit Address</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('address.store') }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Enter address"
+                                    value="">
+                            </div>
 
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" id="city" name="city" value="">
+                                </div>
+                                <div class="form-group col-md-4"><label for="state">State</label>
+                                    <input type="text" class="form-control" id="state" name="state" value=""></div>
+                                <div class="form-group col-md-4"><label for="postcode">Postal
+                                        Code</label>
+                                    <input type="text" class="form-control" id="postcode" name="postcode" value=""></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="address_lat">Latitude</label>
+                                    <input type="text" class="form-control" id="address_lat" name="address_lat"
+                                        placeholder="Enter address latitude" value="">
+                                </div>
+                                <div class="form-group col-md-6"><label for="address_lng">Longitude</label>
+                                    <input type="text" class="form-control" id="address_lng" name="address_lng"
+                                        placeholder="Enter address longitude" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Add New</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <div class="checkout-table-container">
             <h2>Your Order</h2>
@@ -147,8 +213,7 @@
                         @if (empty($item->model->thumbnail))
                         <img src="{{ url( 'img/products/default.png') }}" alt="item" class="checkout-table-img">
                         @else
-                        <img src="{{ url( 'storage/' . $item->model->thumbnail) }}" alt="item"
-                            class="checkout-table-img">
+                        <img src="{{ url( $item->model->thumbnail) }}" alt="item" class="checkout-table-img">
                         @endif
                         <div class="checkout-item-details">
                             <div class="checkout-table-item">{{ Str::words($item->model->name, 3, '') }}</div>

@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('key');
 
-            $table->boolean('is_guest')->default(true);
-            $table->string('customer_email')->nullable();
-            $table->string('customer_first_name')->nullable();
-            $table->string('customer_last_name')->nullable();
+            // $table->boolean('is_guest')->default(true);
+            // $table->string('customer_email')->nullable();
+            // $table->string('customer_first_name')->nullable();
+            // $table->string('customer_last_name')->nullable();
 
             // $table->string('coupon_code')->nullable();
 
@@ -34,6 +34,7 @@ class CreateOrdersTable extends Migration
             $table->integer('order_status')->default(1);
 
             $table->foreignId('customer_id')->nullable()->references('id')->on('customers')->onDelete('set null');
+            $table->foreignId('customer_address_id')->nullable()->references('id')->on('customer_addresses');
 
             $table->json('error')->nullable();
             $table->timestamps();
