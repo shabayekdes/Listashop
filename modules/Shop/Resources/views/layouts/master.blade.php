@@ -20,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/shop/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/shop/style.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="/frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
