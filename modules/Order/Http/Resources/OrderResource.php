@@ -30,6 +30,7 @@ class OrderResource extends JsonResource
             'order_status' => $this->order_status,
             'products' => ProductResource::collection($this->products),
             'customer' => new CustomerResource($this->customer),
+            'address' => $this->address,
             'created_at' => Carbon::parse($this->created_at)->diffForHumans()
         ];
     }

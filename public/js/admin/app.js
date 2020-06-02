@@ -2736,7 +2736,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   orders: [],
-  order: {}
+  order: {
+    customer: {},
+    address: {}
+  }
 };
 var getters = {
   getAllOrders: function getAllOrders(state) {
@@ -7615,6 +7618,15 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50129,25 +50141,46 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-6" }, [
         _c("div", { staticClass: "card card-outline card-primary" }, [
-          _vm._m(0),
-          _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _vm._v("\n          To\n          "),
-            _c("address", [
-              _vm.getSingleOrder.is_guest
-                ? _c("strong", [
-                    _vm._v(_vm._s(_vm.getSingleOrder.customer_name))
+            _c("p", { staticClass: "lead" }, [_vm._v("Customer Information")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("th", { staticStyle: { width: "50%" } }, [
+                      _vm._v("Customer Name:")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.getSingleOrder.customer.name))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.getSingleOrder.address.address))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", { attrs: { colspan: "2" } }, [
+                      _c("b", [_vm._v("State:")]),
+                      _vm._v(
+                        " " + _vm._s(_vm.getSingleOrder.address.state) + ", "
+                      ),
+                      _c("b", [_vm._v("City:")]),
+                      _vm._v(
+                        " " +
+                          _vm._s(_vm.getSingleOrder.address.city) +
+                          ",\n                          "
+                      ),
+                      _c("b", [_vm._v("Postal Code:")]),
+                      _vm._v(" " + _vm._s(_vm.getSingleOrder.address.postcode))
+                    ])
                   ])
-                : _c("strong", [_vm._v(_vm._s(_vm.getSingleOrder.user.name))]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v("795 Folsom Ave, Suite 600\n            "),
-              _c("br"),
-              _vm._v("San Francisco, CA 94107\n            "),
-              _c("br"),
-              _vm._v("Phone: (555) 539-1037\n            "),
-              _c("br"),
-              _vm._v("Email: john.doe@example.com\n          ")
+                ])
+              ])
             ])
           ])
         ])
@@ -50301,9 +50334,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Customer Information")])
-    ])
+    return _c("th", [_c("b", [_vm._v("Customer Address:")])])
   },
   function() {
     var _vm = this

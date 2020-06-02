@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cart\Facades\Cart;
-use Order\Models\Order;
+use ListaShop\Order\Models\Order;
 use Illuminate\Support\Arr;
 use Product\Models\Product;
 use Illuminate\Http\Request;
@@ -22,6 +22,8 @@ class TestController extends Controller
      */
     public function index()
     {
+        $order = Order::find(1);
+        dd($order->address);
         dd(app());
         $paymentMethodLabel = [
         1 => 'cod',

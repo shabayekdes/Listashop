@@ -3,7 +3,10 @@ import router from "@Admin/router";
 
 const state = {
     orders: [],
-    order: {}
+    order: {
+        customer : {},
+        address : {}
+    }
 };
 
 const getters = {

@@ -4,20 +4,29 @@
     <div class="row">
       <div class="col-6">
         <div class="card card-outline card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Customer Information</h3>
-          </div>
-          <!-- /.card-header -->
           <div class="card-body">
-            To
-            <address>
-              <strong v-if="getSingleOrder.is_guest">{{ getSingleOrder.customer_name }}</strong>
-              <strong v-else>{{ getSingleOrder.user.name }}</strong>
-              <br />795 Folsom Ave, Suite 600
-              <br />San Francisco, CA 94107
-              <br />Phone: (555) 539-1037
-              <br />Email: john.doe@example.com
-            </address>
+            <p class="lead">Customer Information</p>
+            <div class="table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th style="width:50%">Customer Name:</th>
+                    <td>{{ getSingleOrder.customer.name }}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <b>Customer Address:</b>
+                    </th>
+                    <td>{{ getSingleOrder.address.address }}</td>
+                  </tr>
+                  <tr>
+                    
+                    <td colspan="2"><b>State:</b> {{ getSingleOrder.address.state }}, <b>City:</b> {{ getSingleOrder.address.city }},
+                            <b>Postal Code:</b> {{ getSingleOrder.address.postcode }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <!-- /.card-body -->
           </div>
         </div>

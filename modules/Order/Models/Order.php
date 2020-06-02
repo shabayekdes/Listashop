@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use ListaShop\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use ListaShop\Customer\Models\Customer;
+use ListaShop\Customer\Models\CustomerAddress;
 
 class Order extends Model
 {
@@ -126,11 +127,22 @@ class Order extends Model
     }
     /**
      * Get the addresses for the order.
+     * 
+     * @depercated
      */
     public function addresses()
     {
         return $this->hasOne(OrderAddress::class);
     }
+
+    /**
+     * Get the customer address for the order.
+     */
+    public function address()
+    {
+        return $this->belongsTo(CustomerAddress::class, 'customer_address_id');
+    }
+
     /**
      * Get the addresses for the order.
      */
