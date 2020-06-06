@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Cart</title>
+<title>Chaeckout</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -345,61 +345,204 @@
 
 	</header>
 
-	<!-- Cart -->
 
-	<div class="cart_section">
-		<div class="container">
+    <div class="checkout-section">
+        <div class="container">
+            <h1 class="checkout-heading stylish-heading">Checkout</h1>
 			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="cart_container">
-						<div class="cart_title">Shopping Cart</div>
-						<div class="cart_items">
-							<ul class="cart_list">
-								<li class="cart_item clearfix">
-									<div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
-									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-										<div class="cart_item_name cart_info_col">
-											<div class="cart_item_title">Name</div>
-											<div class="cart_item_text">MacBook Air 13</div>
-										</div>
-										<div class="cart_item_color cart_info_col">
-											<div class="cart_item_title">Color</div>
-											<div class="cart_item_text"><span style="background-color:#999999;"></span>Silver</div>
-										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">1</div>
-										</div>
-										<div class="cart_item_price cart_info_col">
-											<div class="cart_item_title">Price</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-										<div class="cart_item_total cart_info_col">
-											<div class="cart_item_title">Total</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-						
-						<!-- Order Total -->
-						<div class="order_total">
-							<div class="order_total_content text-md-right">
-								<div class="order_total_title">Order Total:</div>
-								<div class="order_total_amount">$2000</div>
-							</div>
-						</div>
+				<div class="col-lg-6">
+                    <div class="checkout-section">
+                        <form action="#" method="POST" id="payment-form">
 
-						<div class="cart_buttons">
-							<button type="button" class="button cart_button_clear">Add to Cart</button>
-							<button type="button" class="button cart_button_checkout">Add to Cart</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                            <h2>Address Details</h2>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" value="">
+                            </div>
+
+                            <div class="half-form">
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" id="city" name="city" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="province">Province</label>
+                                    <input type="text" class="form-control" id="province" name="province" value="">
+                                </div>
+                            </div> <!-- end half-form -->
+
+                            <div class="half-form">
+                                <div class="form-group">
+                                    <label for="postalcode">Postal Code</label>
+                                    <input type="text" class="form-control" id="postalcode" name="postalcode" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" value="">
+                                </div>
+                            </div> <!-- end half-form -->
+
+                            <div class="spacer"></div>
+
+                            <h2>Payment Details</h2>
+
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="cod" name="payment_method" value="cod" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="cod">Cash on Delivery ( COD )</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="credit_card" name="payment_method" value="credit_card"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="credit_card">Credit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="paypal" name="payment_method" value="paypal" class="custom-control-input">
+                                <label class="custom-control-label" for="paypal">PayPal</label>
+                            </div>
+
+                            <div class="spacer"></div>
+
+                            <div class="card mt-3 d-none payment_method" id="credit_card_input">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="name_on_card">Name on Card</label>
+                                        <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="card-element">
+                                            Credit or debit card
+                                        </label>
+                                        <div id="card-element">
+                                            <!-- a Stripe Element will be inserted here. -->
+                                        </div>
+
+                                        <!-- Used to display form errors -->
+                                        <div id="card-errors" role="alert"></div>
+                                    </div>
+                                    <div class="spacer"></div>
+                                </div>
+                            </div>
+                            <div class="card mt-3 d-none payment_method" id="paypal_input">
+                                <div class="card-body">
+                                    test
+                                </div>
+                            </div>
+
+                            <button type="submit" id="complete-order" class="button checkout_button mt-3">Complete Order</button>
+
+                        </form>
+                        <!-- Modal -->
+                    <div class="modal fade" id="createAddressModal" tabindex="-1" role="dialog" aria-labelledby="createAddressModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="createAddressModalLabel">Edit Address</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="#" method="POST">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter address"
+                                            value="">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="city">City</label>
+                                            <input type="text" class="form-control" id="city" name="city" value="">
+                                        </div>
+                                        <div class="form-group col-md-4"><label for="state">State</label>
+                                            <input type="text" class="form-control" id="state" name="state" value=""></div>
+                                        <div class="form-group col-md-4"><label for="postcode">Postal
+                                                Code</label>
+                                            <input type="text" class="form-control" id="postcode" name="postcode" value=""></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="address_lat">Latitude</label>
+                                            <input type="text" class="form-control" id="address_lat" name="address_lat"
+                                                placeholder="Enter address latitude" value="">
+                                        </div>
+                                        <div class="form-group col-md-6"><label for="address_lng">Longitude</label>
+                                            <input type="text" class="form-control" id="address_lng" name="address_lng"
+                                                placeholder="Enter address longitude" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Add New</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+
+                    
+                </div>
+                <div class="col-lg-6">
+                    <div class="checkout-table-container">
+                        <h2>Your Order</h2>
+
+                        <div class="checkout-table">
+
+                            <div class="checkout-table-row">
+                                <div class="checkout-table-row-left">
+                                    
+                                    <img src="images/default.png" alt="item" class="checkout-table-img">
+                                    
+                                    <div class="checkout-item-details">
+                                        <div class="checkout-table-item">MacBook Air 13</div>
+                                        <div class="checkout-table-description">15 inch, 1TB SSD, 32GB RAM</div>
+                                        <div class="checkout-table-price">$2000</div>
+                                    </div>
+                                </div> <!-- end checkout-table -->
+
+                                <div class="checkout-table-row-right">
+                                    <div class="checkout-table-quantity">1</div>
+                                </div>
+                            </div> <!-- end checkout-table-row -->
+
+                        </div> <!-- end checkout-table -->
+
+                        <div class="checkout-totals">
+                            <div class="checkout-totals-left">
+                                Subtotal <br>
+                                Discount (10OFF - 10%) <br>
+                                Tax <br>
+                                <span class="checkout-totals-total">Total</span>
+
+                            </div>
+
+                            <div class="checkout-totals-right">
+                                $7499.97 <br>
+                                -$750.00 <br>
+                                $975.00 <br>
+                                <span class="checkout-totals-total">$7499.97</span>
+
+                            </div>
+                        </div> <!-- end checkout-totals -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end checkout-section -->
 
 	<!-- Newsletter -->
 

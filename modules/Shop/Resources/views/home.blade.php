@@ -4,7 +4,7 @@
 @section('head')
 <link rel="stylesheet" type="text/css" href="frontend/plugins/slick-1.8.0/slick.css">
 
-<link rel="stylesheet" type="text/css" href="frontend/styles/main_styles.css">
+<!-- <link rel="stylesheet" type="text/css" href="frontend/styles/main_styles.css"> -->
 <link rel="stylesheet" type="text/css" href="frontend/styles/responsive.css">
 @endsection
 

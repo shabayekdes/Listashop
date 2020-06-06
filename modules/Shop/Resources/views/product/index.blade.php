@@ -3,7 +3,7 @@
 @section('head')
 <link rel="stylesheet" type="text/css" href="/frontend/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
 
-<link rel="stylesheet" type="text/css" href="/frontend/styles/product_styles.css">
+<!-- <link rel="stylesheet" type="text/css" href="/frontend/styles/product_styles.css"> -->
 <link rel="stylesheet" type="text/css" href="/frontend/styles/product_responsive.css">
 @endsection
 
