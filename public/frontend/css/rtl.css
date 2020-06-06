@@ -3688,7 +3688,7 @@ select option
 }
 .single_product .product_description
 {
-	padding-left: 50px;
+	padding-right: 50px;
 }
 .single_product .product_category
 {
@@ -3935,6 +3935,7 @@ select option
 	padding-right: 35px;
 	outline: none;
 	cursor: pointer;
+	float: left;
 }
 .cart_button:focus
 {
