@@ -4810,17 +4810,19 @@ select option
 4. checkout
 *********************************/
 h1.checkout-heading {
-    margin-top: 40px;
+	margin-top: 40px;
+	text-align: right;
   }
 
-  .checkout-section {
+.checkout-section {
 	width: 100%;
     padding-top: 35px;
-    padding-bottom: 111px;
-  }
+	padding-bottom: 111px;
+	text-align: right;
+}
 
-  .checkout-section .checkout-table-container {
-    margin-left: 124px;
+.checkout-table-container {
+    margin-right: 124px;
   }
 
   .checkout-section h2 {
