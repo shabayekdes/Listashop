@@ -3104,6 +3104,7 @@ select option
 	-ms-transform: translateX(-37px);
 	-o-transform: translateX(-37px);
 	transform: translateX(-37px);
+	text-align: right;
 }
 .sidebar_title
 {
@@ -3446,7 +3447,7 @@ select option
 {
 	position: absolute;
 	top: 33px;
-	right: 12px;
+	left: 12px;
 	width: 36px;
 	height: 36px;
 	background: #FFFFFF;
@@ -3498,7 +3499,7 @@ select option
 	display: block;
 	position: absolute;
 	top: 33px;
-	left: 24px;
+	right: 24px;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -4306,7 +4307,7 @@ select option
 	height: 263px;
 	width: 25%;
 }
-.product_item
+.featured .product_item
 {
 	position: relative;
 	right: -10px;
@@ -4326,49 +4327,49 @@ select option
 	box-shadow: 0px 5px 25px rgba(0,0,0,0.1);
 	z-index: 10;
 }
-.product_image
+.featured .product_image
 {
 	width: 100%;
 	height: 115px;
 }
-.product_image img
+.featured .product_image img
 {
 	display: block;
 	position: relative;
 	max-width: 100%;
 }
-.product_content
+.featured .product_content
 {
 	width: 100%;
 }
-.product_price
+.featured .product_price
 {
 	font-size: 16px;
 	font-weight: 500;
 	margin-top: 25px;
 }
-.product_price.discount
+.featured .product_price.discount
 {
 	color: #df3b3b;
 }
-.product_price span
+.featured .product_price span
 {
 	font-size: 12px;
 	font-weight: 400;
 	color: rgba(0,0,0,0.6);
 	margin-left: 10px;
 }
-.product_name
+.featured .product_name
 {
 	margin-top: 4px;
 	overflow: hidden;
 }
-.product_name div
+.featured .product_name div
 {
 	width: 100%;
 
 }
-.product_name div a
+.featured .product_name div a
 {
 	font-size: 14px;
 	font-weight: 400;
@@ -4380,11 +4381,11 @@ select option
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.product_name div a:hover
+.featured .product_name div a:hover
 {
 	color: #0e8ce4;
 }
-.product_color
+.featured .product_color
 {
 	visibility: hidden;
 	opacity: 0;
@@ -4395,7 +4396,7 @@ select option
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.product_extras
+.featured .product_extras
 {
 	width: 100%;
 	background: #FFFFFF;
@@ -4417,7 +4418,7 @@ select option
 	visibility: visible;
 	opacity: 1;
 }
-.product_color input
+.featured .product_color input
 {
 	-webkit-appearance: none;
     -moz-appearance: none;
@@ -4434,7 +4435,7 @@ select option
     cursor: pointer;
     font-size: 8px;
 }
-.product_color input:checked::after
+.featured .product_color input:checked::after
 {
 	display: block;
 	position: absolute;
@@ -4544,7 +4545,7 @@ select option
 	z-index: 1;
 	display: none;
 }
-.product_fav
+.featured .product_fav
 {
 	position: absolute;
 	top: 33px;
@@ -4562,15 +4563,15 @@ select option
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.product_fav:hover
+.featured .product_fav:hover
 {
 	box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
 }
-.product_item:hover .product_fav
+.featured .product_item:hover .product_fav
 {
 	top: 18px;
 }
-.product_fav i
+.featured .product_fav i
 {
 	display: block;
 	position: absolute;
@@ -4590,16 +4591,16 @@ select option
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.product_fav.active i
+.featured .product_fav.active i
 {
 	color: red;
 }
-.product_item:hover .product_fav
+.featured .product_item:hover .product_fav
 {
 	visibility: visible;
 	opacity: 1;
 }
-.product_marks
+.featured .product_marks
 {
 	display: none;
 	position: absolute;
@@ -4618,9 +4619,9 @@ select option
 .product_item:hover .product_marks
 {
 	top: 18px;
-	left: 18px;
+	right: 18px;
 }
-.product_mark
+.featured .product_mark
 {
 	display: inline-block;
 	width: 36px;
