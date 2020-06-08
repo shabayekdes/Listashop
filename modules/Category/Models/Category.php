@@ -3,6 +3,7 @@
 namespace ListaShop\Category\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use ListaShop\Product\Models\Product;
 
 class Category extends Model
 {

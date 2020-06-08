@@ -14,5 +14,6 @@
 Route::namespace('Customer')->group(function () {
 
     Route::get('home', 'HomeController@index');
+
 });
 
