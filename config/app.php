@@ -194,6 +194,9 @@ return [
         ListaShop\Payment\Providers\PaymentServiceProvider::class,
         ListaShop\Customer\Providers\CustomerServiceProvider::class,
         ListaShop\Setting\Providers\SettingServiceProvider::class,
+        ListaShop\Api\Providers\RouteServiceProvider::class,
+
+
     ],
 
     /*
