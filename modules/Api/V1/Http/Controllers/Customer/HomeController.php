@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use ListaShop\Category\Models\Category;
 use ListaShop\Api\V1\Http\Resources\CategoryResource;
 use ListaShop\Category\Repositories\CategoryRepository;
+use ListaShop\Product\Repositories\ProductRepository;
 
 class HomeController extends Controller
 {
@@ -16,14 +17,20 @@ class HomeController extends Controller
     protected $category;
 
     /**
+     * @var ProductRepository
+     */
+    protected $product;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CategoryRepository $category)
+    public function __construct(CategoryRepository $category, ProductRepository $product)
     {
         // $this->middleware('auth:api-customer');
         $this->category = $category;
+        $this->product = $product;
     }
     /**
      * Display a listing of the resource.
@@ -32,6 +39,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return response()->json(['data' => CategoryResource::collection($this->category->all())]);
+
+        $data = [
+            'list_categories' => CategoryResource::collection($this->category->all()),
+            'popular_categories' => $this->category->getPopularCategories(),
+            'feature_products' => $this->product->getFeaturedProducts(15),
+        ];
+
+        return response()->json(['status' => true, 'data' => $data]);
+
     }
 }
