@@ -101,6 +101,17 @@ class ProductRepository extends BaseRepository
 
         return $product;
     }
+
+    /**
+     * Get featured categories
+     *
+     * @return Collection
+     */
+    public function getFeaturedProducts($limit = null)
+    {
+        return  $this->model->featured()->limit($limit)->get();
+    }
+
     /**
      * @param mixed $product
      * @param array $permutation
