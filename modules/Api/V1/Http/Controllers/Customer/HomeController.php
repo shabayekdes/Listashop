@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function __construct(CategoryRepository $category, ProductRepository $product)
     {
-        // $this->middleware('auth:api-customer');
+        $this->middleware('auth:api-customer');
         $this->category = $category;
         $this->product = $product;
     }
@@ -47,6 +47,6 @@ class HomeController extends Controller
         ];
 
         return response()->json(['status' => true, 'data' => $data]);
-
+        // 'status' => $status,'data'=> $data,'message' => $msg,'errors' => $errors
     }
 }
