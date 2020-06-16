@@ -15,5 +15,7 @@ Route::namespace('Customer')->group(function () {
 
     Route::get('home', 'HomeController@index');
 
+    Route::post('auth/customer', 'AuthController@login');
+    
 });
 
