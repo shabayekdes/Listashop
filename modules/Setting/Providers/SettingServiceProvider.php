@@ -15,7 +15,6 @@ class SettingServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'settings');
-
     }
 
     /**
@@ -25,6 +24,10 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        // bind setting storage
+        $this->app->bind(
+            'ListaShop\Setting\Contracts\SettingContract',
+            'ListaShop\Setting\Setting\SettingStorage'
+        );
     }
 }
