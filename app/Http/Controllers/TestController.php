@@ -22,6 +22,7 @@ class TestController extends Controller
      */
     public function index()
     {
+        dd(trans('settings::settings.tabs.general'));
         $order = Order::find(1);
         dd($order->address);
         dd(app());
