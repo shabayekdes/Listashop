@@ -27,6 +27,8 @@ import ListOptions from "@Admin/pages/option/List.vue";
 import EditOption from "@Admin/pages/option/Edit.vue";
 import CreateOption from "@Admin/pages/option/Create.vue";
 
+import Setting from "@Admin/pages/setting/General";
+
 import NotFound from "@Admin/views/NotFound.vue";
 
 const routes = [
@@ -151,6 +153,14 @@ const routes = [
                 component: EditOption,
                 meta: {
                     text: "Edit Option"
+                }
+            },
+            {
+                path: "setting",
+                name: "setting.index",
+                component: Setting,
+                meta: {
+                    text: "Settings"
                 }
             }
         ]
