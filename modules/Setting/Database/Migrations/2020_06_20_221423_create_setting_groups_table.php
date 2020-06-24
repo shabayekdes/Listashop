@@ -18,7 +18,7 @@ class CreateSettingGroupsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('icon');
-            $table->forgienId('setting_group_id')->nullable()->references('id')->on('setting_groups');
+            $table->foreignId('setting_group_id')->nullable()->references('id')->on('setting_groups');
             $table->timestamps();
         });
     }

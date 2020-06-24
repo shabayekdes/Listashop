@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace ListaShop\Setting\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,4 +12,20 @@ class SettingGroup extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function settingGroups()
+    {
+        return $this->hasMany(SettingGroup::class);
+    }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function childrenSettingGroups()
+    {
+        return $this->hasMany(SettingGroup::class)->with('settingGroups');
+    }
 }

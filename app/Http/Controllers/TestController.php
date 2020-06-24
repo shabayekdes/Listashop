@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Product\Http\Resources\ProductResource;
+use ListaShop\Setting\Models\SettingGroup;
 
 class TestController extends Controller
 {
@@ -22,6 +23,11 @@ class TestController extends Controller
      */
     public function index()
     {
+        $categories = SettingGroup::whereNull('setting_group_id')
+        ->with('childrenSettingGroups')
+        ->get();
+        dd($categories);
+
         dd(trans('settings::settings.tabs.general'));
         $order = Order::find(1);
         dd($order->address);
