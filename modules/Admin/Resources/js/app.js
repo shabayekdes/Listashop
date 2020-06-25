@@ -19,7 +19,17 @@ Vue.filter("slug", function(value) {
 
 Vue.mixin({
     methods: {
-        truncate: (str, no_word) => str.substr(0, no_word) + "..."
+        truncate: (str, no_word) => str.substr(0, no_word) + "...",
+        slugify(value){
+            if (!value) return "";
+
+            value = value.toString();
+        
+            return value
+                .toLowerCase()
+                .replace(/[^\w ]+/g, "")
+                .replace(/ +/g, "-");
+        } 
     }
 });
 

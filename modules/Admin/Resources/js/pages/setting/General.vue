@@ -7,9 +7,9 @@
           <div class="card-body">
               <div class="row">
                   <div class="col-md-4">
-                      <div class="card">
+                        <div class="card" v-for="(setting, index) in getAllSettings" :key="setting.id" :class="{'collapsed-card' : index > 0}">
                             <div class="card-header">
-                                <h3 class="card-title">General</h3>
+                                <h3 class="card-title">{{ setting.title }}</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
@@ -20,8 +20,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-                                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                                    <a v-for="(childSetting, indexChild) in setting.children_setting_groups" :key="childSetting.id" class="nav-link" :class="{'active' : index === 0 && indexChild === 0}" :id="'v-pills-' + slugify( childSetting.title ) + '-tab'" data-toggle="pill" :href="'#v-pills-' + slugify( childSetting.title )" role="tab" :aria-controls="'v-pills-' + slugify( childSetting.title )" aria-selected="true">{{ childSetting.title }}</a>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -48,59 +47,14 @@
                   </div>
                   <div class="col-md-8">
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div v-for="(setting, index) in getAllChildSettings" :key="setting.id" :class="{'show active' : index === 0 }" class="tab-pane fade" :id="'v-pills-' + slugify( setting.title )" role="tabpanel" :aria-labelledby="'v-pills-' + slugify( setting.title ) + '-tab'">
                                 <form role="form">
                                     <div class="card-header">
-                                        <h3 class="card-title">Quick Example</h3>
+                                        <h3 class="card-title">{{ setting.title }}</h3>
                                     </div>
                                     <div class="card-body">
-                                        <div class="form-group row">
-                                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail3">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                                            <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3">
-                                            </div>
-                                        </div>
-                                        <fieldset class="form-group">
-                                            <div class="row">
-                                            <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                                            <div class="col-sm-10">
-                                                <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="gridRadios1">
-                                                    First radio
-                                                </label>
-                                                </div>
-                                                <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                                                <label class="form-check-label" for="gridRadios2">
-                                                    Second radio
-                                                </label>
-                                                </div>
-                                                <div class="form-check disabled">
-                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-                                                <label class="form-check-label" for="gridRadios3">
-                                                    Third disabled radio
-                                                </label>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </fieldset>
-                                        <div class="form-group row">
-                                            <div class="col-sm-2">Checkbox</div>
-                                            <div class="col-sm-10">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                                <label class="form-check-label" for="gridCheck1">
-                                                Example checkbox
-                                                </label>
-                                            </div>
-                                            </div>
+                                        <div class="form-group" v-for="settingField in setting.settings" :key="settingField.id">
+                                            <component :is="componentName(settingField.type)" :field="settingField"></component>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-10">
@@ -110,9 +64,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Profile</div>
-                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages</div>
-                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Settings</div>
+
                         </div>
                   </div>
               </div>
@@ -129,20 +81,39 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import formInput from "@Admin/pages/setting/fields/Input";
+import formSelect from "@Admin/pages/setting/fields/Select";
 
 export default {
   name: "AppSettings",
+    components: {
+    formInput,
+    formSelect
+  },
   data() {
     return {};
   },
   methods: {
     ...mapActions([
       "fetchListSettings"
-    ])
+    ]),
+    componentName(field) {
+        switch (field) {
+            case 'email':
+            case 'text':
+                    return "form-input";
+                break;
+            case 'select':
+                    return "form-select";
+                break;    
+            default:
+                break;
+        }
+    }
   },
   created() {
     this.fetchListSettings();
   },
-  computed: mapGetters(["getAllSettings"])
+  computed: mapGetters(["getAllSettings", "getAllChildSettings", "getAllChildSettings"])
 };
 </script>

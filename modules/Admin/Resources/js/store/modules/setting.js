@@ -2,6 +2,7 @@ import axios from "axios";
 
 const state = {
     settings: [],
+    childSettings: [],
     setting: {
         id: "",
         name: "",
@@ -12,7 +13,8 @@ const state = {
 
 const getters = {
     getAllSettings: state => state.settings,
-    getSingleSetting: state => state.setting
+    getSingleSetting: state => state.setting,
+    getAllChildSettings: state => state.childSettings
 };
 
 const actions = {
@@ -21,6 +23,8 @@ const actions = {
         const response = await axios.get(`${urlApi}setting${query}`);
 
         commit("SHOW_LIST_SETTING", response.data);
+        commit("SHOW_LIST_CHILDERN_SETTING");
+
     },
     async storeCategory({ commit, rootState }, data) {
         try {
@@ -92,6 +96,10 @@ const actions = {
 const mutations = {
     SHOW_LIST_SETTING: (state, data) => {
         state.settings = data.data;
+    },
+    SHOW_LIST_CHILDERN_SETTING: (state) => {
+        const childSettingsArr = state.settings.map( (setting) => state.childSettings.concat(setting.children_setting_groups)  )
+        state.childSettings = childSettingsArr.flat(1)
     },
     NEW_CATEGORY: (state, data) => {
         state.categories.unshift(data);
