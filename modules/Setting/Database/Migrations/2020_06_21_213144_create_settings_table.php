@@ -18,9 +18,7 @@ class CreateSettingsTable extends Migration
             $table->string('label');
             $table->string('setting_key')->unique();
             $table->string('value')->nullable();
-            $table->string('class')->default('form-control');
-            $table->string('placeholder')->nullable();
-            $table->string('hint')->nullable();
+            $table->json('attributes');
             $table->string('type')->default('text');
             $table->foreignId('setting_group_id')->references('id')->on('setting_groups');
             $table->timestamps();
