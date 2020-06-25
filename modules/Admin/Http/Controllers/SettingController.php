@@ -28,6 +28,6 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return SettingGroupResource::collection($this->settingGroup->paginate());
+        return SettingGroupResource::collection($this->settingGroup->whereSettingGroupIDNull());
     }
 }

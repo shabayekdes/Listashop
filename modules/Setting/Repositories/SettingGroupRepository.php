@@ -17,6 +17,7 @@ class SettingGroupRepository extends BaseRepository
     {
         parent::__construct($app);
     }
+
     /**
      * Specify Model class name
      *
@@ -25,6 +26,18 @@ class SettingGroupRepository extends BaseRepository
     public function model()
     {
         return SettingGroup::class;
+    }
+
+    /**
+     * Get setting group with childern group where settin group id equal null
+     *
+     * @return mixed
+     */
+    public function whereSettingGroupIDNull()
+    {
+        return $this->model->whereNull('setting_group_id')
+        ->with('childrenSettingGroups')
+        ->get();
     }
 
 }
