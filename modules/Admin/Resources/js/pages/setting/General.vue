@@ -128,4 +128,21 @@
   <!-- /.content -->
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  name: "AppSettings",
+  data() {
+    return {};
+  },
+  methods: {
+    ...mapActions([
+      "fetchListSettings"
+    ])
+  },
+  created() {
+    this.fetchListSettings();
+  },
+  computed: mapGetters(["getAllSettings"])
+};
 </script>
