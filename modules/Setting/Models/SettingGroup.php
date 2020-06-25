@@ -18,7 +18,7 @@ class SettingGroup extends Model
      */
     public function settingGroups()
     {
-        return $this->hasMany(SettingGroup::class);
+        return $this->hasMany(SettingGroup::class)->with('settings');
     }
 
     /**
@@ -26,6 +26,14 @@ class SettingGroup extends Model
      */
     public function childrenSettingGroups()
     {
-        return $this->hasMany(SettingGroup::class)->with('settingGroups');
+        return $this->hasMany(SettingGroup::class)->with('settings');
+    }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function settings()
+    {
+        return $this->hasMany(Setting::class);
     }
 }

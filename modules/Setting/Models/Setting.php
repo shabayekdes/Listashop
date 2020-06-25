@@ -4,7 +4,7 @@ namespace ListaShop\Setting\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Settings extends Model
+class Setting extends Model
 {
     /**
      * The attributes that aren't mass assignable.
