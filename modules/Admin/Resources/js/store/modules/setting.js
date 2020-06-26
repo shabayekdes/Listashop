@@ -21,6 +21,16 @@ const actions = {
         commit("SHOW_LIST_CHILDERN_SETTING");
         commit("SHOW_LIST_SETTINGS");
     },
+    async updateSetting({ commit }, data) {
+        try {
+            const response = await axios.put(`${urlApi}setting`, data);
+
+            commit("PUT_SETTING", response.data);
+
+        } catch (e) {
+            commit("SET_ERRORS", e.response.data.errors);
+        }
+    },
 };
 
 const mutations = {

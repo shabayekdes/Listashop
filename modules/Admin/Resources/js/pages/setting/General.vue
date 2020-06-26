@@ -26,7 +26,7 @@
                         </div>
                   </div>
                   <div class="col-md-8" id="tabs-setting">
-                        <form role="form">
+                        <form role="form" @submit.prevent="patchSetting">
                             <div class="tab-content" id="v-pills-tabContent">
                                 <div v-for="(setting, index) in getAllChildSettings" :key="setting.id" :class="{'show active' : index === 0 }" class="tab-pane fade" :id="'v-pills-' + slugify( setting.title )" role="tabpanel" :aria-labelledby="'v-pills-' + slugify( setting.title ) + '-tab'">
                                     <div class="card-header">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                <button type="submit" class="btn btn-primary">Update setting</button>
                             </div>
                         </form>
                   </div>
@@ -62,11 +62,15 @@
 import { mapGetters, mapActions } from "vuex";
 import formInput from "@Admin/pages/setting/fields/Input";
 import formSelect from "@Admin/pages/setting/fields/Select";
+import formCheckbox from "@Admin/pages/setting/fields/Checkbox";
+import formTextarea from "@Admin/pages/setting/fields/Textarea";
 
 export default {
   name: "AppSettings",
     components: {
     formInput,
+    formCheckbox,
+    formTextarea,
     formSelect
   },
   data() {
@@ -74,18 +78,28 @@ export default {
   },
   methods: {
     ...mapActions([
-      "fetchListSettings"
+      "fetchListSettings",
+      "updateSetting"
     ]),
+    patchSetting(){
+
+      this.updateSetting(this.getSingleSetting);
+    },
     componentName(field) {
         switch (field) {
             case 'email':
             case 'text':
-            case 'checkbox':
-                    return "form-input";
+                  return "form-input";
                 break;
             case 'select':
                     return "form-select";
-                break;    
+                break; 
+            case 'checkbox':
+                  return "form-checkbox";
+                break;   
+            case 'textarea':
+                  return "form-textarea";
+                break;             
             default:
                 break;
         }

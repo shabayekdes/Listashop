@@ -31,16 +31,46 @@ class SettingGroupTableSeeder extends Seeder
                 'setting_group_id' => null
             ],
             [
-                'title' => 'Store',
+                'title' => 'General',
                 'description' => 'General store settings.', // (optional)
                 'icon' => 'fa fa-cog', // (optional)
                 'setting_group_id' => 1
             ],
             [
-                'title' => 'Email',
-                'description' => 'Email settings.', // (optional)
+                'title' => 'Store',
+                'description' => 'Store settings.', // (optional)
                 'icon' => 'fa fa-cog', // (optional)
                 'setting_group_id' => 1
+            ],
+            [
+                'title' => 'Mail',
+                'description' => 'Mail settings.', // (optional)
+                'icon' => 'fa fa-cog', // (optional)
+                'setting_group_id' => 1
+            ],
+            [
+                'title' => 'Free Shipping',
+                'description' => 'Free shipping method settings.', // (optional)
+                'icon' => 'fa fa-cog', // (optional)
+                'setting_group_id' => 2
+            ],
+            [
+                'title' => 'Flat Shipping',
+                'description' => 'Flat shipping method settings.', // (optional)
+                'icon' => 'fa fa-cog', // (optional)
+                'setting_group_id' => 2
+            ],
+            [
+                'title' => 'PayPal',
+                'description' => 'Paypal method settings.', // (optional)
+                'icon' => 'fa fa-cog', // (optional)
+                'setting_group_id' => 3
+            ],
+            [
+                'title' => 'Strip',
+                'description' => 'Strip method settings.', // (optional)
+                'icon' => 'fa fa-cog', // (optional)
+                'setting_group_id' => 3
             ]
 
         ];
