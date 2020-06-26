@@ -3387,12 +3387,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   settings: [],
   childSettings: [],
-  setting: {
-    id: "",
-    name: "",
-    slug: "",
-    parent_id: ""
-  }
+  setting: {}
 };
 var getters = {
   getAllSettings: function getAllSettings(state) {
@@ -3424,132 +3419,15 @@ var actions = {
               response = _context.sent;
               commit("SHOW_LIST_SETTING", response.data);
               commit("SHOW_LIST_CHILDERN_SETTING");
+              commit("SHOW_LIST_SETTINGS");
 
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
     }))();
-  },
-  storeCategory: function storeCategory(_ref2, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var commit, rootState, config, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              commit = _ref2.commit, rootState = _ref2.rootState;
-              _context2.prev = 1;
-              config = {
-                headers: {
-                  "Content-Type": "multipart/form-data"
-                }
-              };
-              _context2.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "category"), data, config);
-
-            case 5:
-              response = _context2.sent;
-              commit("NEW_CATEGORY", response.data);
-              commit("RESET_NEW_CATEGORY");
-              commit("SET_ERRORS", {});
-              rootState.status = "ok";
-              _context2.next = 15;
-              break;
-
-            case 12:
-              _context2.prev = 12;
-              _context2.t0 = _context2["catch"](1);
-              commit("SET_ERRORS", _context2.t0.response.data.errors);
-
-            case 15:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, null, [[1, 12]]);
-    }))();
-  },
-  updateCategory: function updateCategory(_ref3, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var commit, rootState, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              commit = _ref3.commit, rootState = _ref3.rootState;
-              _context3.prev = 1;
-              _context3.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "category/").concat(data.id), data);
-
-            case 4:
-              response = _context3.sent;
-              commit("PUT_CATEGORY", response.data);
-              commit("RESET_NEW_CATEGORY");
-              commit("SET_ERRORS", {});
-              rootState.status = "ok";
-              $("#addNew").modal("hide");
-              _context3.next = 15;
-              break;
-
-            case 12:
-              _context3.prev = 12;
-              _context3.t0 = _context3["catch"](1);
-              commit("SET_ERRORS", _context3.t0.response.data.errors);
-
-            case 15:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3, null, [[1, 12]]);
-    }))();
-  },
-  deleteCategory: function deleteCategory(_ref4, id) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var commit;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              commit = _ref4.commit;
-              _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "category/").concat(id));
-
-            case 3:
-              commit("REMOVE_CATEGORY", id);
-
-            case 4:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    }))();
-  },
-  setCategory: function setCategory(_ref5, oldCategory) {
-    var commit = _ref5.commit;
-    commit("SET_CATEGORY", oldCategory);
-
-    if (oldCategory.image != null) {
-      commit("SET_IMAGE", {
-        name: oldCategory.image,
-        url: "/img/category/" + oldCategory.image
-      }, {
-        root: true
-      });
-    }
-  },
-  resetCategory: function resetCategory(_ref6) {
-    var commit = _ref6.commit,
-        rootState = _ref6.rootState;
-    $("#addNew").on("hide.bs.modal", function (e) {
-      commit("RESET_NEW_CATEGORY");
-      commit("RESET_IMAGE");
-      rootState.editMode = false; // commit("RESET_STATUS");
-    });
   }
 };
 var mutations = {
@@ -3562,32 +3440,19 @@ var mutations = {
     });
     state.childSettings = childSettingsArr.flat(1);
   },
-  NEW_CATEGORY: function NEW_CATEGORY(state, data) {
-    state.categories.unshift(data);
-  },
-  PUT_CATEGORY: function PUT_CATEGORY(state, data) {
-    var index = state.categories.findIndex(function (category) {
-      return category.id === data.id;
-    });
+  SHOW_LIST_SETTINGS: function SHOW_LIST_SETTINGS(state) {
+    var settingArrFlatten = state.childSettings.map(function (childSettings) {
+      return childSettings.settings;
+    }).flat(1);
 
-    if (index !== -1) {
-      state.categories.splice(index, 1, data);
+    if (settingArrFlatten.length > 0) {
+      settingArrFlatten.forEach(function (setting) {
+        // console.log(setting)
+        if (setting.value !== null) {
+          state.setting[setting.setting_key] = setting.value;
+        }
+      });
     }
-  },
-  REMOVE_CATEGORY: function REMOVE_CATEGORY(state, id) {
-    return state.categories = state.categories.filter(function (category) {
-      return category.id !== id;
-    });
-  },
-  SET_CATEGORY: function SET_CATEGORY(state, oldCategory) {
-    state.category = oldCategory;
-  },
-  RESET_NEW_CATEGORY: function RESET_NEW_CATEGORY(state) {
-    state.category = {
-      name: "",
-      slug: "",
-      image: ""
-    };
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9536,6 +9401,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       switch (field) {
         case 'email':
         case 'text':
+        case 'checkbox':
           return "form-input";
           break;
 
@@ -9551,7 +9417,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.fetchListSettings();
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getAllSettings", "getAllChildSettings", "getAllChildSettings"])
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getAllSettings", "getAllChildSettings", "getAllChildSettings", "getSingleSetting"])
 });
 
 /***/ }),
@@ -9577,7 +9443,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["field"]
+  props: ["field"],
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleSetting"])
 });
 
 /***/ }),
@@ -9606,7 +9473,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["field"]
+  props: ["field"],
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleSetting"])
 });
 
 /***/ }),
@@ -53143,15 +53011,112 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c(
       "label",
-      { staticClass: "col-sm-2 col-form-label", attrs: { for: "inputEmail3" } },
-      [_vm._v(_vm._s(_vm.field.label))]
+      {
+        staticClass: "col-sm-4 col-form-label",
+        attrs: { for: _vm.field.setting_key }
+      },
+      [_vm._v(_vm._s(_vm.field.attributes.label))]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-10" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: _vm.field.type, id: _vm.field.id }
-      })
+    _c("div", { staticClass: "col-sm-8" }, [
+      _vm.field.type === "checkbox"
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.getSingleSetting[_vm.field.setting_key],
+                expression: "getSingleSetting[field.setting_key]"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: _vm.field.setting_key, type: "checkbox" },
+            domProps: {
+              checked: Array.isArray(
+                _vm.getSingleSetting[_vm.field.setting_key]
+              )
+                ? _vm._i(_vm.getSingleSetting[_vm.field.setting_key], null) > -1
+                : _vm.getSingleSetting[_vm.field.setting_key]
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.getSingleSetting[_vm.field.setting_key],
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 &&
+                      _vm.$set(
+                        _vm.getSingleSetting,
+                        _vm.field.setting_key,
+                        $$a.concat([$$v])
+                      )
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.getSingleSetting,
+                        _vm.field.setting_key,
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
+                } else {
+                  _vm.$set(_vm.getSingleSetting, _vm.field.setting_key, $$c)
+                }
+              }
+            }
+          })
+        : _vm.field.type === "radio"
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.getSingleSetting[_vm.field.setting_key],
+                expression: "getSingleSetting[field.setting_key]"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: _vm.field.setting_key, type: "radio" },
+            domProps: {
+              checked: _vm._q(_vm.getSingleSetting[_vm.field.setting_key], null)
+            },
+            on: {
+              change: function($event) {
+                return _vm.$set(
+                  _vm.getSingleSetting,
+                  _vm.field.setting_key,
+                  null
+                )
+              }
+            }
+          })
+        : _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.getSingleSetting[_vm.field.setting_key],
+                expression: "getSingleSetting[field.setting_key]"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: _vm.field.setting_key, type: _vm.field.type },
+            domProps: { value: _vm.getSingleSetting[_vm.field.setting_key] },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.getSingleSetting,
+                  _vm.field.setting_key,
+                  $event.target.value
+                )
+              }
+            }
+          })
     ])
   ])
 }
@@ -53180,31 +53145,62 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c(
       "label",
-      { staticClass: "col-sm-2 col-form-label", attrs: { for: "inputEmail3" } },
-      [_vm._v(_vm._s(_vm.field.label))]
+      {
+        staticClass: "col-sm-4 col-form-label",
+        attrs: { for: _vm.field.setting_key }
+      },
+      [_vm._v(_vm._s(_vm.field.attributes.label))]
     ),
     _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-10" }, [
+    _c("div", { staticClass: "col-sm-8" }, [
       _c(
         "select",
-        { staticClass: "form-control", attrs: { id: "inputState" } },
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.getSingleSetting[_vm.field.setting_key],
+              expression: "getSingleSetting[field.setting_key]"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { id: _vm.field.setting_key },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.getSingleSetting,
+                _vm.field.setting_key,
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            }
+          }
+        },
         [
           _c("option", { attrs: { selected: "" } }, [_vm._v("Choose...")]),
           _vm._v(" "),
-          _c("option", [_vm._v("...")])
-        ]
+          _vm._l(_vm.field.attributes.options, function(option) {
+            return _c(
+              "option",
+              { key: option.value, domProps: { value: option.value } },
+              [_vm._v(_vm._s(option.text))]
+            )
+          })
+        ],
+        2
       )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -101,6 +101,7 @@ export default {
         switch (field) {
             case 'email':
             case 'text':
+            case 'checkbox':
                     return "form-input";
                 break;
             case 'select':
@@ -114,6 +115,6 @@ export default {
   created() {
     this.fetchListSettings();
   },
-  computed: mapGetters(["getAllSettings", "getAllChildSettings", "getAllChildSettings"])
+  computed: mapGetters(["getAllSettings", "getAllChildSettings", "getAllChildSettings", "getSingleSetting"])
 };
 </script>

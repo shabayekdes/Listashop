@@ -1,10 +1,10 @@
 <template>
     <div class="row">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">{{ field.label }}</label>
-        <div class="col-sm-10">
-            <select id="inputState" class="form-control">
+        <label :for="field.setting_key" class="col-sm-4 col-form-label">{{ field.attributes.label }}</label>
+        <div class="col-sm-8">
+            <select :id="field.setting_key" v-model="getSingleSetting[field.setting_key]" class="form-control">
                 <option selected>Choose...</option>
-                <option>...</option>
+                <option v-for="option in field.attributes.options" :key="option.value" :value="option.value">{{ option.text }}</option>
             </select>
         </div>
     </div>
@@ -15,5 +15,6 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   props: ["field"],
+  computed: mapGetters(["getSingleSetting"])
 };
 </script>
