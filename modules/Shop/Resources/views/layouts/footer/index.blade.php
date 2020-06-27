@@ -34,12 +34,12 @@
             <div class="col-lg-3 footer_col">
                 <div class="footer_column footer_contact">
                     <div class="logo_container">
-                        <div class="logo"><a href="/">Listashop</a></div>
+                        <div class="logo"><a href="/">{{ settings()->get('store_store_name', 'ListaShop') }}</a></div>
                     </div>
                     <div class="footer_title">Got Question? Call Us 24/7</div>
-                    <div class="footer_phone">+38 068 005 3570</div>
+                    <div class="footer_phone">{{ settings()->get('store_phone_number') }}</div>
                     <div class="footer_contact_text">
-                        <p>17 Princess Road, London</p>
+                        <p>{{ settings()->get('store_adress') }}</p>
                         <p>Grester London NW18JR, UK</p>
                     </div>
                     <div class="footer_social">

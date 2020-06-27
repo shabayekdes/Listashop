@@ -193,8 +193,7 @@ return [
         ListaShop\Value\Providers\ValueServiceProvider::class,
         ListaShop\Payment\Providers\PaymentServiceProvider::class,
         ListaShop\Customer\Providers\CustomerServiceProvider::class,
-
-
+        ListaShop\Setting\Providers\SettingServiceProvider::class,
     ],
 
     /*
@@ -248,7 +247,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Cart' => ListaShop\Cart\Facades\Cart::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
+        "Settings" => ListaShop\Setting\Facades\Settings::class,
 
     ],
 

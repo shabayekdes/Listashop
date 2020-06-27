@@ -10,6 +10,8 @@ use ListaShop\Category\Database\Seeders\CategoryTableSeeder as CategorySeeder;
 use ListaShop\Option\Database\Seeders\OptionTableSeeder as OptionSeeder;
 use ListaShop\Order\Database\Seeders\OrdersTableSeeder as OrderSeeder;
 use ListaShop\Customer\Database\Seeders\CustomersTableSeeder as CustomerSeeder;
+use ListaShop\Setting\Database\Seeders\SettingGroupTableSeeder as SettingGroupSeeder;
+use ListaShop\Setting\Database\Seeders\SettingTableSeeder as SettingSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,5 +29,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(AttributeSeeder::class);
         $this->call(OptionSeeder::class);
         $this->call(OrderSeeder::class);
+        $this->call(SettingGroupSeeder::class);
+        $this->call(SettingSeeder::class);
+
+        
     }
 }
