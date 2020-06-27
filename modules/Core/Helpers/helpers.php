@@ -14,3 +14,23 @@ if (! function_exists('presentPrice')) {
         return '$' . number_format($price, 2);
     }
 }
+if (! function_exists('settings')) {
+
+    /**
+     * Get app setting stored in db.
+     *
+     * @param $key
+     * @param null $default
+     * @return mixed
+     */
+    function settings($key = null, $default = null)
+    {
+        $setting = app()->make('ListaShop\Setting\Contracts\SettingContract');
+
+        if (is_null($key)) {
+            return $setting;
+        }
+
+        return $setting->get($key, value($default));
+    }
+}

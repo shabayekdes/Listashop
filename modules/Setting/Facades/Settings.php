@@ -13,6 +13,6 @@ class Settings extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'ListaShop\Setting\Setting\SettingStorage';
+        return 'ListaShop\Setting\SettingStorage';
     }
 }

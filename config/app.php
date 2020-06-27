@@ -247,7 +247,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Cart' => ListaShop\Cart\Facades\Cart::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
+        "Settings" => ListaShop\Setting\Facades\Settings::class,
 
     ],
 

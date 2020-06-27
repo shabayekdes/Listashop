@@ -25,7 +25,10 @@ class TestController extends Controller
      */
     public function index()
     {
-        $settings = Setting::all();
+        $settings = \ListaShop\Setting\Facades\Settings::get('general_default_languages', 'sss');
+        dd(settings()->get('general_default_languages'));
+
+        $settings = Setting::pluck('value', 'setting_key');
         $inputs = [
             [
                 'setting_key' => 'general_settings_store_store_name',

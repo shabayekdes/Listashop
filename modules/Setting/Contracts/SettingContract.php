@@ -33,15 +33,6 @@ interface SettingContract
     public function has($key);
 
     /**
-     * Save a setting in storage.
-     *
-     * @param $key string|array
-     * @param $val string|mixed
-     * @return mixed
-     */
-    public function set($key, $val = null);
-
-    /**
      * Remove a setting from storage.
      *
      * @param $key
@@ -56,11 +47,4 @@ interface SettingContract
      */
     public function flushCache();
 
-    /**
-     * Set the group name for settings.
-     *
-     * @param string $groupName
-     * @return $this
-     */
-    public function group($groupName);
 }

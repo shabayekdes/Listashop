@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use ListaShop\Setting\Repositories\SettingGroupRepository;
 use ListaShop\Setting\Repositories\SettingRepository;
 use ListaShop\Setting\Http\Resources\SettingGroupResource;
+use ListaShop\Setting\Facades\Settings;
 
 class SettingController extends Controller
 {
@@ -43,7 +44,7 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $this->settingRepository->updateBulkSettings($request->all());
-
+        Settings::flushCache();
         return SettingGroupResource::collection($this->settingGroup->whereSettingGroupIDNull());
     }
 }

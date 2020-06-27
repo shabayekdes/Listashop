@@ -28,7 +28,7 @@ class SettingServiceProvider extends ServiceProvider
         // bind setting storage
         $this->app->bind(
             'ListaShop\Setting\Contracts\SettingContract',
-            'ListaShop\Setting\Setting\SettingStorage'
+            'ListaShop\Setting\SettingStorage'
         );
     }
 }
