@@ -188,7 +188,7 @@ return [
         ListaShop\User\Providers\UserServiceProvider::class,
         ListaShop\Cart\Providers\CartServiceProvider::class,
         ListaShop\Order\Providers\OrderServiceProvider::class,
-        ListaShop\Attribute\Providers\AttributeServiceProvider::class,
+        // ListaShop\Attribute\Providers\AttributeServiceProvider::class,
         ListaShop\Option\Providers\OptionServiceProvider::class,
         ListaShop\Value\Providers\ValueServiceProvider::class,
         ListaShop\Payment\Providers\PaymentServiceProvider::class,
