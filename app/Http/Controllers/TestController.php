@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cart\Facades\Cart;
-use Order\Models\Order;
+use ListaShop\Order\Models\Order;
 use Illuminate\Support\Arr;
 use Product\Models\Product;
 use Illuminate\Http\Request;
@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Product\Http\Resources\ProductResource;
+use ListaShop\Setting\Models\SettingGroup;
+use ListaShop\Setting\Models\Setting;
+use ListaShop\Setting\Http\Resources\SettingGroupResource;
 
 class TestController extends Controller
 {
@@ -22,6 +25,70 @@ class TestController extends Controller
      */
     public function index()
     {
+        $settings = \ListaShop\Setting\Facades\Settings::get('general_default_languages', 'sss');
+        dd(settings()->get('general_default_languages'));
+
+        $settings = Setting::pluck('value', 'setting_key');
+        $inputs = [
+            [
+                'setting_key' => 'general_settings_store_store_name',
+                'setting_group_id' => '1',
+                'type' => 'text',
+                'attributes' => [
+                    'label' => 'Store Name', // label for input
+                    // optional properties
+                    'placeholder' => 'Application Name', // placeholder for input
+                    'class' => 'form-control', // override global input_class
+                    'hint' => 'You can set the app name here' // help block text for input
+                ]
+            ],
+            [
+                'setting_key' => 'general_settings_store_contact_email',
+                'setting_group_id' => '1',
+                'type' => 'email',
+                'attributes' => [
+                    'label' => 'Contact Email', // label for input
+                    // optional properties
+                    'class' => 'form-control', // override global input_class
+                    'hint' => 'You can set the contact email here' // help block text for input
+                ]
+            ],
+            [
+                'setting_key' => 'general_settings_store_default_language',
+                'setting_group_id' => '1',
+                'type' => 'email',
+                'attributes' => [
+                    'label' => 'Default Language', // label for input
+                    // optional properties
+                    'class' => 'form-control', // override global input_class
+                    'options' => [
+                        [
+                            'value' => 'eng',
+                            'text' => 'English'
+                        ],
+                        [
+                            'value' => 'ar',
+                            'text' => 'Arabic'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        foreach ($inputs as $input) {
+            $input['attributes'] = json_encode($input['attributes']);
+            Setting::create($input);
+        }
+
+        $categories = SettingGroup::whereNull('setting_group_id')
+        ->with('childrenSettingGroups')
+        ->get();
+        $setting = SettingGroupResource::collection($categories);
+        dd($setting);
+
+        dd(trans('settings::settings.tabs.general'));
+        $order = Order::find(1);
+        dd($order->address);
+        dd(app());
         $paymentMethodLabel = [
         1 => 'cod',
         2 => 'stripe',

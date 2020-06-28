@@ -16,13 +16,13 @@ mix.webpackConfig({
         alias: {
             "@Admin": path.resolve(
                 __dirname,
-                "packages/admin/src/resources/js/"
+                "modules/admin/resources/js/"
             )
         }
     }
 });
-mix.js("packages/admin/src/resources/js/app.js", "public/js/admin")
-    .sass("packages/admin/src/resources/sass/app.scss", "public/css/admin")
+mix.js("modules/admin/resources/js/app.js", "public/js/admin")
+    .sass("modules/admin/resources/sass/app.scss", "public/css/admin")
     .mergeManifest()
     .version();
 // .browserSync("http://listashop.test");

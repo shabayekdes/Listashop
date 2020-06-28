@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -180,19 +181,19 @@ return [
         /*
          * Modules Service Providers...
          */
-        Shop\Providers\ShopServiceProvider::class,
-        Category\Providers\CategoryServiceProvider::class,
-        Product\Providers\ProductServiceProvider::class,
-        Admin\Providers\AdminServiceProvider::class,
-        User\Providers\UserServiceProvider::class,
-        Cart\Providers\CartServiceProvider::class,
-        Order\Providers\OrderServiceProvider::class,
-        Attribute\Providers\AttributeServiceProvider::class,
-        Option\Providers\OptionServiceProvider::class,
-        Value\Providers\ValueServiceProvider::class,
-        Payment\Providers\PaymentServiceProvider::class,
-
-
+        ListaShop\Shop\Providers\ShopServiceProvider::class,
+        ListaShop\Category\Providers\CategoryServiceProvider::class,
+        ListaShop\Product\Providers\ProductServiceProvider::class,
+        ListaShop\Admin\Providers\AdminServiceProvider::class,
+        ListaShop\User\Providers\UserServiceProvider::class,
+        ListaShop\Cart\Providers\CartServiceProvider::class,
+        ListaShop\Order\Providers\OrderServiceProvider::class,
+        ListaShop\Attribute\Providers\AttributeServiceProvider::class,
+        ListaShop\Option\Providers\OptionServiceProvider::class,
+        ListaShop\Value\Providers\ValueServiceProvider::class,
+        ListaShop\Payment\Providers\PaymentServiceProvider::class,
+        ListaShop\Customer\Providers\CustomerServiceProvider::class,
+        ListaShop\Setting\Providers\SettingServiceProvider::class,
     ],
 
     /*
@@ -244,7 +245,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Cart' => Cart\Facades\Cart::class
+        'Cart' => ListaShop\Cart\Facades\Cart::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        "Settings" => ListaShop\Setting\Facades\Settings::class,
 
     ],
 

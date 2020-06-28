@@ -7,15 +7,21 @@
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/responsive.css"> -->
+
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 
 <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+
+<link rel="stylesheet" type="text/css" href="../css/shop/app.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
 
 </head>
 
@@ -32,40 +38,44 @@
 		<div class="top_bar">
 			<div class="container">
 				<div class="row">
-					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
-						<div class="top_bar_content ml-auto">
-							<div class="top_bar_menu">
-								<ul class="standard_dropdown top_bar_dropdown">
-									<li>
-										<a href="#">English<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">Italian</a></li>
-											<li><a href="#">Spanish</a></li>
-											<li><a href="#">Japanese</a></li>
-										</ul>
-									</li>
-									<li>
-										<a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">EUR Euro</a></li>
-											<li><a href="#">GBP British Pound</a></li>
-											<li><a href="#">JPY Japanese Yen</a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-							<div class="top_bar_user">
-								<div class="user_icon"><img src="images/user.svg" alt=""></div>
-								<div><a href="#">Register</a></div>
-								<div><a href="#">Sign in</a></div>
-							</div>
-						</div>
-					</div>
+                    <div class="col-md-6">
+                        <div class="col d-flex flex-row">
+                            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005 3570</div>
+                            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                        </div>
+                    </div>
+					<div class="col-md-6">
+                        <div class="top_bar_content">
+                            <div class="top_bar_menu">
+                                <ul class="standard_dropdown top_bar_dropdown">
+                                    <li>
+                                        <a href="#">English<i class="fas fa-chevron-down"></i></a>
+                                        <ul>
+                                            <li><a href="#">Italian</a></li>
+                                            <li><a href="#">Spanish</a></li>
+                                            <li><a href="#">Japanese</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
+                                        <ul>
+                                            <li><a href="#">EUR Euro</a></li>
+                                            <li><a href="#">GBP British Pound</a></li>
+                                            <li><a href="#">JPY Japanese Yen</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="top_bar_user">
+                                <div class="user_icon"><img src="images/user.svg" alt=""></div>
+                                <div><a href="#">Register</a></div>
+                                <div><a href="#">Sign in</a></div>
+                            </div>
+                        </div>
+				    </div>  
 				</div>
 			</div>		
-		</div>
+		</div><!-- Top bar -->
 
 		<!-- Header Main -->
 
@@ -441,16 +451,16 @@
 									<div class="deals_content">
 										<div class="deals_info_line d-flex flex-row justify-content-start">
 											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
+											<div class="deals_item_price_a">$300</div>
 										</div>
 										<div class="deals_info_line d-flex flex-row justify-content-start">
 											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
+											<div class="deals_item_price">$225</div>
 										</div>
 										<div class="available">
 											<div class="available_line d-flex flex-row justify-content-start">
 												<div class="available_title">Available: <span>6</span></div>
-												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
+												<div class="sold_title">Already sold: <span>28</span></div>
 											</div>
 											<div class="available_bar"><span style="width:17%"></span></div>
 										</div>
@@ -459,7 +469,7 @@
 												<div class="deals_timer_title">Hurry Up</div>
 												<div class="deals_timer_subtitle">Offer ends in:</div>
 											</div>
-											<div class="deals_timer_content ml-auto">
+											<div class="deals_timer_content">
 												<div class="deals_timer_box clearfix" data-target-time="">
 													<div class="deals_timer_unit">
 														<div id="deals_timer1_hr" class="deals_timer_hr"></div>
@@ -485,16 +495,16 @@
 									<div class="deals_content">
 										<div class="deals_info_line d-flex flex-row justify-content-start">
 											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
+											<div class="deals_item_price_a">$300</div>
 										</div>
 										<div class="deals_info_line d-flex flex-row justify-content-start">
 											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
+											<div class="deals_item_price">$225</div>
 										</div>
 										<div class="available">
 											<div class="available_line d-flex flex-row justify-content-start">
 												<div class="available_title">Available: <span>6</span></div>
-												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
+												<div class="sold_title">Already sold: <span>28</span></div>
 											</div>
 											<div class="available_bar"><span style="width:17%"></span></div>
 										</div>
@@ -503,7 +513,7 @@
 												<div class="deals_timer_title">Hurry Up</div>
 												<div class="deals_timer_subtitle">Offer ends in:</div>
 											</div>
-											<div class="deals_timer_content ml-auto">
+											<div class="deals_timer_content">
 												<div class="deals_timer_box clearfix" data-target-time="">
 													<div class="deals_timer_unit">
 														<div id="deals_timer2_hr" class="deals_timer_hr"></div>
@@ -529,16 +539,16 @@
 									<div class="deals_content">
 										<div class="deals_info_line d-flex flex-row justify-content-start">
 											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
+											<div class="deals_item_price_a">$300</div>
 										</div>
 										<div class="deals_info_line d-flex flex-row justify-content-start">
 											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
+											<div class="deals_item_price">$225</div>
 										</div>
 										<div class="available">
 											<div class="available_line d-flex flex-row justify-content-start">
 												<div class="available_title">Available: <span>6</span></div>
-												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
+												<div class="sold_title">Already sold: <span>28</span></div>
 											</div>
 											<div class="available_bar"><span style="width:17%"></span></div>
 										</div>
@@ -547,7 +557,7 @@
 												<div class="deals_timer_title">Hurry Up</div>
 												<div class="deals_timer_subtitle">Offer ends in:</div>
 											</div>
-											<div class="deals_timer_content ml-auto">
+											<div class="deals_timer_content">
 												<div class="deals_timer_box clearfix" data-target-time="">
 													<div class="deals_timer_unit">
 														<div id="deals_timer3_hr" class="deals_timer_hr"></div>

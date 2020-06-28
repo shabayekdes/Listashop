@@ -44,6 +44,15 @@ return [
             'driver' => 'passport',
             'provider' => 'users'
         ],
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+        'api-customer' => [
+            'driver' => 'passport',
+            'provider' => 'customers'
+
+        ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -52,7 +61,7 @@ return [
             'driver' => 'passport',
             'provider' => 'admins'
 
-        ]
+        ],
     ],
 
     /*
@@ -75,12 +84,17 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => User\Models\User::class,
+            'model' => ListaShop\User\Models\User::class,
+        ],
+
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => ListaShop\Customer\Models\Customer::class,
         ],
 
         'admins' => [
             'driver' => 'eloquent',
-            'model' => User\Models\Admin::class,
+            'model' => ListaShop\User\Models\Admin::class,
         ]
         // 'users' => [
         //     'driver' => 'database',
@@ -106,6 +120,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'customers' => [
+            'provider' => 'customers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
