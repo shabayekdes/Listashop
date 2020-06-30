@@ -2,11 +2,12 @@
 
 namespace ListaShop\Product\Models;
 
-use ListaShop\Value\Models\Value;
+use ListaShop\Option\Models\OptionValue;
 use ListaShop\Option\Models\Option;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ProductOption extends Model
+class ProductOption extends Pivot
 {
     /**
      * @var string Table name
@@ -18,14 +19,14 @@ class ProductOption extends Model
      * @var bool
      */
     public $timestamps = false;
+
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'option_id',
-    ];
+    protected $guarded = [];
+
     /**
      * The Option that belong to the Product Option.
      */
@@ -38,6 +39,17 @@ class ProductOption extends Model
      */
     public function values()
     {
-        return $this->belongsToMany(Value::class, 'product_option_value');
+        return $this->belongsToMany(OptionValue::class, 
+            'product_option_value',
+            'product_option_id',
+            'option_value_id'
+        )->withPivot('price','price_type');
     }
+    /**
+     * Get all of the option's values.
+     */
+    // public function values()
+    // {
+    //     return $this->belongsToMany(OptionValue::class, 'product_option_value');
+    // }
 }

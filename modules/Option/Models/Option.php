@@ -2,17 +2,16 @@
 
 namespace ListaShop\Option\Models;
 
-use ListaShop\Value\Models\Value;
 use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
 {
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['key', 'name', 'type', 'is_required'];
+    protected $guarded = [];
 
     /**
      * Available option types.
@@ -37,6 +36,6 @@ class Option extends Model
      */
     public function values()
     {
-        return $this->morphMany(Value::class, 'valuable');
+        return $this->hasMany(OptionValue::class);
     }
 }

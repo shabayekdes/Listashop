@@ -12,4 +12,12 @@ class OptionValue extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Get all of the option.
+     */
+    public function option()
+    {
+        return $this->belongsTo(Option::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace ListaShop\Product\Models;
 
+use ListaShop\Option\Models\Option;
 use ListaShop\Order\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use ListaShop\Category\Models\Category;
@@ -79,9 +80,9 @@ class Product extends Model
      */
     public function options()
     {
-        return $this->hasMany(ProductOption::class);
+        // return $this->hasMany(ProductOption::class);
 
-        // return $this->belongsToMany('Option\Models\Option','product_options')->withPivot('id');
+        return $this->belongsToMany(Option::class,'product_options')->using(ProductOption::class)->as('ProductOption')->withPivot('id');
     }
     /**
      * The roles that belong to the user.

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Cart\Facades\Cart;
 use ListaShop\Order\Models\Order;
 use Illuminate\Support\Arr;
-use Product\Models\Product;
+use ListaShop\Product\Models\Product;
 use Illuminate\Http\Request;
 use Payment\Facades\Payment;
 use Illuminate\Support\Facades\File;
@@ -15,6 +15,9 @@ use Product\Http\Resources\ProductResource;
 use ListaShop\Setting\Models\SettingGroup;
 use ListaShop\Setting\Models\Setting;
 use ListaShop\Setting\Http\Resources\SettingGroupResource;
+use ListaShop\Option\Models\Option;
+use ListaShop\Option\Models\OptionValue;
+use ListaShop\Product\Models\ProductOption;
 
 class TestController extends Controller
 {
@@ -25,6 +28,40 @@ class TestController extends Controller
      */
     public function index()
     {
+        $product = Product::with(['options'])->first();
+
+        dd($product->options->first()->ProductOption->values);
+
+
+        // $product->values()->attach([1]);
+
+        $productOption = ProductOption::find(1);
+
+        $productOption->values()->attach([2]);
+
+        dd($productOption);
+
+
+        $product = Product::find(1);
+
+        $product->options()->attach(1);
+
+        dd($product);
+
+
+        // $option = Option::create([
+        //     'code' => 'color',
+        //     'name' => 'color',
+        //     'type' => 'text',
+
+        // ]);
+
+        $option = Option::find(1);
+
+        $option->values()->create([
+            'value' => 'red'
+        ]);
+        dd($option);
         $settings = \ListaShop\Setting\Facades\Settings::get('general_default_languages', 'sss');
         dd(settings()->get('general_default_languages'));
 
