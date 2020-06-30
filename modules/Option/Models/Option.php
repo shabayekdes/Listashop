@@ -11,7 +11,7 @@ class Option extends Model
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = ['name', 'code', 'type'];
 
     /**
      * Available option types.

@@ -62,8 +62,8 @@
                 <thead>
                   <tr>
                     <th>Label</th>
-                    <th>Price</th>
-                    <th>Price Type</th>
+                    <!-- <th>Price</th> -->
+                    <!-- <th>Price Type</th> -->
                     <th></th>
                   </tr>
                 </thead>
@@ -78,7 +78,7 @@
                         placeholder="Enter Option name ..."
                       />
                     </td>
-                    <td>
+                    <!-- <td>
                       <input
                         type="text"
                         :id="'inputPrice' + key"
@@ -86,13 +86,13 @@
                         class="form-control"
                         placeholder="Enter Option name ..."
                       />
-                    </td>
-                    <td>
+                    </td> -->
+                    <!-- <td>
                       <select class="form-control" v-model="value.price_type">
                         <option value selected disabled>Select price type</option>
                         <option v-for="type in priceTypes" :value="type" :key="type">{{ type }}</option>
                       </select>
-                    </td>
+                    </td> -->
                     <td>
                       <a
                         class="btn btn-danger btn-sm"
@@ -112,20 +112,20 @@
                         placeholder="Enter value name ..."
                       />
                     </td>
-                    <td>
+                    <!-- <td>
                       <input
                         type="number"
                         v-model="optionValue.price"
                         class="form-control"
                         placeholder="Enter amount price ..."
                       />
-                    </td>
-                    <td>
+                    </td> -->
+                    <!-- <td>
                       <select v-model="optionValue.price_type" class="form-control">
                         <option value selected disabled>Select price type</option>
                         <option v-for="type in priceTypes" :value="type" :key="type">{{ type }}</option>
                       </select>
-                    </td>
+                    </td> -->
                     <td></td>
                   </tr>
                 </tbody>
@@ -164,12 +164,12 @@ export default {
   data() {
     return {
       optionTypes: ["Dropdown", "Checkbox"],
-      priceTypes: ["Fixed", "Percentage"],
-      optionType: {
-        type: ""
-      },
+      // priceTypes: ["Fixed", "Percentage"],
+      // optionType: {
+      //   type: ""
+      // },
       optionValue: {
-        price_type: ""
+      //   price_type: ""
       }
     };
   },
@@ -187,24 +187,17 @@ export default {
       if (this.optionValue.value != undefined) {
         this.addSelectedOptionVal(this.optionValue);
         this.optionValue = {
-          price_type: ""
+        //   price_type: ""
         };
       }
     },
     removeValue(value) {
       this.REMOVE_OPTION_VALUE(value);
       this.optionValue = {
-        price_type: ""
+      //   price_type: ""
       };
     }
   },
-//   watch: {
-//     getStatus(val, oldVal) {
-//       if (val == "ok") {
-//         this.$router.push({ path: "/admin/options" });
-//       }
-//     }
-//   },
   created() {
     this.RESET_NEW_OPTION();
   },

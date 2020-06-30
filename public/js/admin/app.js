@@ -7465,12 +7465,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       optionTypes: ["Dropdown", "Checkbox"],
-      priceTypes: ["Fixed", "Percentage"],
-      optionType: {
-        type: ""
-      },
-      optionValue: {
-        price_type: ""
+      // priceTypes: ["Fixed", "Percentage"],
+      // optionType: {
+      //   type: ""
+      // },
+      optionValue: {//   price_type: ""
       }
     };
   },
@@ -7485,25 +7484,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addValue: function addValue() {
       if (this.optionValue.value != undefined) {
         this.addSelectedOptionVal(this.optionValue);
-        this.optionValue = {
-          price_type: ""
+        this.optionValue = {//   price_type: ""
         };
       }
     },
     removeValue: function removeValue(value) {
       this.REMOVE_OPTION_VALUE(value);
-      this.optionValue = {
-        price_type: ""
+      this.optionValue = {//   price_type: ""
       };
     }
   }),
-  //   watch: {
-  //     getStatus(val, oldVal) {
-  //       if (val == "ok") {
-  //         this.$router.push({ path: "/admin/options" });
-  //       }
-  //     }
-  //   },
   created: function created() {
     this.RESET_NEW_OPTION();
   },
@@ -49500,93 +49490,6 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: value.price,
-                                  expression: "value.price"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "inputPrice" + key,
-                                placeholder: "Enter Option name ..."
-                              },
-                              domProps: { value: value.price },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(value, "price", $event.target.value)
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: value.price_type,
-                                    expression: "value.price_type"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      value,
-                                      "price_type",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: {
-                                      value: "",
-                                      selected: "",
-                                      disabled: ""
-                                    }
-                                  },
-                                  [_vm._v("Select price type")]
-                                ),
-                                _vm._v(" "),
-                                _vm._l(_vm.priceTypes, function(type) {
-                                  return _c(
-                                    "option",
-                                    { key: type, domProps: { value: type } },
-                                    [_vm._v(_vm._s(type))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _c(
                               "a",
                               {
@@ -49637,91 +49540,6 @@ var render = function() {
                             }
                           }
                         })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.optionValue.price,
-                              expression: "optionValue.price"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "number",
-                            placeholder: "Enter amount price ..."
-                          },
-                          domProps: { value: _vm.optionValue.price },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.optionValue,
-                                "price",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.optionValue.price_type,
-                                expression: "optionValue.price_type"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.optionValue,
-                                  "price_type",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "option",
-                              {
-                                attrs: { value: "", selected: "", disabled: "" }
-                              },
-                              [_vm._v("Select price type")]
-                            ),
-                            _vm._v(" "),
-                            _vm._l(_vm.priceTypes, function(type) {
-                              return _c(
-                                "option",
-                                { key: type, domProps: { value: type } },
-                                [_vm._v(_vm._s(type))]
-                              )
-                            })
-                          ],
-                          2
-                        )
                       ]),
                       _vm._v(" "),
                       _c("td")
@@ -49777,15 +49595,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Label")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Price")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Price Type")]),
-        _vm._v(" "),
-        _c("th")
-      ])
+      _c("tr", [_c("th", [_vm._v("Label")]), _vm._v(" "), _c("th")])
     ])
   }
 ]

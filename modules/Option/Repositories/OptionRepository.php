@@ -36,7 +36,7 @@ class OptionRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        $data['key'] = Str::slug($data['name']);
+        $data['code'] = Str::slug($data['name']);
         $option = $this->model->create($data);
         $option->values()->createMany($data['values']);
         return $option;
@@ -50,7 +50,7 @@ class OptionRepository extends BaseRepository
      */
     public function update(array $data, $id)
     {
-        $data['key'] = Str::slug($data['name']);
+        $data['code'] = Str::slug($data['name']);
         $option = $this->model->find($id);
         $option->update($data);
 

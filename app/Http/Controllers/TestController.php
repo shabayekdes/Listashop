@@ -18,6 +18,7 @@ use ListaShop\Setting\Http\Resources\SettingGroupResource;
 use ListaShop\Option\Models\Option;
 use ListaShop\Option\Models\OptionValue;
 use ListaShop\Product\Models\ProductOption;
+use DB;
 
 class TestController extends Controller
 {
@@ -28,16 +29,40 @@ class TestController extends Controller
      */
     public function index()
     {
-        $product = Product::with(['options'])->first();
 
-        dd($product->options->first()->ProductOption->values);
+        $data = [
+            "name" => "Brennan Boyd",
+            "type" => "Dropdown",
+            "values" => [
+              [
+                "value" => "Kylee Mcintyre"
+              ],
+              [
+                "value" => "Irene Brock"
+              ],
+            ],
+            "code" => "brennan-boyd"
+        ];
+        $option = Option::create($data);
+
+        DB::connection()->enableQueryLog();
+
+        $product = Product::with(['options'])->first();
+        $values = $product->options->first()->ProductOption->values;
+        // $values->load('values');
+
+        $queries = DB::getQueryLog();
+        dd($queries, $values);
+
+
+
 
 
         // $product->values()->attach([1]);
 
         $productOption = ProductOption::find(1);
 
-        $productOption->values()->attach([2]);
+        $productOption->values()->attach([1,2,3]);
 
         dd($productOption);
 
