@@ -3,6 +3,7 @@ require("./bootstrap");
 import Vue from "vue";
 import store from "./store";
 import router from "./router";
+import swal from 'sweetalert2';
 
 Vue.component("not-found", require("@Admin/views/NotFound.vue"));
 
@@ -16,6 +17,17 @@ Vue.filter("slug", function(value) {
         .replace(/[^\w ]+/g, "")
         .replace(/ +/g, "-");
 });
+
+
+window.swal = swal;
+const toast = swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+window.toast = toast;
 
 Vue.mixin({
     methods: {
