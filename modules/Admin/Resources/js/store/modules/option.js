@@ -1,5 +1,6 @@
 import axios from "axios";
 import router from "@Admin/router";
+import swal from 'sweetalert2';
 
 const state = {
     options: [],
@@ -54,8 +55,7 @@ const actions = {
             // console.log(response.data.option);
             commit("PUT_OPTION", response.data.option);
             commit("RESET_NEW_OPTION");
-            rootState.editMode = false;
-            rootState.status = "ok";
+            router.push("/admin/options");
 
             commit("SET_ERRORS", {});
         } catch (e) {
@@ -63,9 +63,23 @@ const actions = {
         }
     },
     async showOption({ commit }, id) {
-        const response = await axios.get(`${urlApi}option/${id}`);
+        try {
+            const response = await axios.get(`${urlApi}option/${id}`);
 
-        commit("SET_OPTION", response.data);
+            commit("SET_OPTION", response.data);
+        } catch (e) {
+            router.push("/admin/404");
+        }
+    },
+    async deleteOptionValue({ commit }, value) {
+        await axios.delete(`${urlApi}option-value/${value.id}`);
+
+        swal.fire(
+            'Deleted!',
+            'Information has been deleted.',
+            'success'
+            )
+        commit("REMOVE_OPTION_VALUE", value);
     },
     addSelectedOptionVal({ commit }, value) {
         commit("NEW_SELECTED_OPTION_VAL", value);

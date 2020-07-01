@@ -57,8 +57,8 @@
                 <thead>
                   <tr>
                     <th>Label</th>
-                    <th>Price</th>
-                    <th>Price Type</th>
+                    <!-- <th>Price</th> -->
+                    <!-- <th>Price Type</th> -->
                     <th></th>
                   </tr>
                 </thead>
@@ -73,7 +73,7 @@
                         placeholder="Enter Option name ..."
                       />
                     </td>
-                    <td>
+                    <!-- <td>
                       <input
                         type="text"
                         :id="'inputPrice' + key"
@@ -81,13 +81,13 @@
                         class="form-control"
                         placeholder="Enter Option name ..."
                       />
-                    </td>
-                    <td>
+                    </td> -->
+                    <!-- <td>
                       <select class="form-control" v-model="value.price_type">
                         <option value selected disabled>Select price type</option>
                         <option v-for="type in priceTypes" :value="type" :key="type">{{ type }}</option>
                       </select>
-                    </td>
+                    </td> -->
                     <td>
                       <a
                         class="btn btn-danger btn-sm"
@@ -107,7 +107,7 @@
                         placeholder="Enter value name ..."
                       />
                     </td>
-                    <td>
+                    <!-- <td>
                       <input
                         type="number"
                         v-model="optionValue.price"
@@ -120,7 +120,7 @@
                         <option value selected disabled>Select price type</option>
                         <option v-for="type in priceTypes" :value="type" :key="type">{{ type }}</option>
                       </select>
-                    </td>
+                    </td> -->
                     <td></td>
                   </tr>
                 </tbody>
@@ -164,7 +164,7 @@ export default {
         type: ""
       },
       optionValue: {
-        price_type: ""
+        // price_type: ""
       }
     };
   },
@@ -174,6 +174,7 @@ export default {
       "updateOption",
       "showOption",
       "addSelectedOptionVal",
+      "deleteOptionValue",
       "setMode"
     ]),
     ...mapMutations(["RESET_NEW_OPTION", "REMOVE_OPTION_VALUE"]),
@@ -189,25 +190,39 @@ export default {
       if (this.optionValue.value != undefined) {
         this.addSelectedOptionVal(this.optionValue);
         this.optionValue = {
-          price_type: ""
+          // price_type: ""
         };
       }
     },
-    removeValue(value) {
-      this.REMOVE_OPTION_VALUE(value);
-      this.optionValue = {
-        price_type: ""
-      };
-    }
-  },
-  watch: {
-    getStatus(val, oldVal) {
-      if (val == "ok") {
-        this.$router.push({ path: "/admin/options" });
-      }
+    removeValue(optionVal) {
+		swal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+				// Send request to the server
+				if (result.value) {
+
+					this.deleteOptionValue(optionVal);
+					this.optionValue = {
+						// price_type: ""
+					};
+					// this.form.delete('api/user/'+id).then(()=>{
+
+					// 	Fire.$emit('AfterCreate');
+					// }).catch(()=> {
+					// 	swal("Failed!", "There was something wronge.", "warning");
+					// });
+				}
+			})
     }
   },
   created() {
+    this.RESET_NEW_OPTION();
     this.showOption(this.$route.params.id);
   },
   computed: mapGetters([
