@@ -168,6 +168,10 @@ const routes = [
     {
         path: "/admin/*",
         component: NotFound
+    },
+    {
+        path: "/admin/404",
+        component: NotFound
     }
 ];
 
