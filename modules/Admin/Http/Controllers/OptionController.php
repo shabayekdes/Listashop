@@ -48,7 +48,7 @@ class OptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Option  $option
      * @return \Illuminate\Http\Response
      */
     public function show(Option $option)
