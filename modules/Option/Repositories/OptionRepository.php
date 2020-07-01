@@ -3,6 +3,7 @@
 namespace ListaShop\Option\Repositories;
 
 use ListaShop\Option\Models\Option;
+use ListaShop\Option\Models\OptionValue;
 use Illuminate\Support\Str;
 use ListaShop\Core\Eloquent\BaseRepository;
 use Illuminate\Container\Container as App;
@@ -54,6 +55,25 @@ class OptionRepository extends BaseRepository
         $option = $this->model->find($id);
         $option->update($data);
 
+        $this->updateOrCreateValues($data['values']);
+
         return $option;
+    }
+    /**
+     * Update a new option record in the database with values.
+     *
+     * @param array $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function updateOrCreateValues($values)
+    {
+        foreach ($values as $value) {
+            OptionValue::updateOrCreate(
+                ['value' => $value['value'], 'option_id' => $value['option_id'] ],
+                ['value' => $value['value'] ]
+            );
+        }
+        return true;
     }
 }

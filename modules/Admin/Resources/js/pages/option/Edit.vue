@@ -164,7 +164,8 @@ export default {
         type: ""
       },
       optionValue: {
-        // price_type: ""
+			option_id: this.$route.params.id
+		// price_type: ""
       }
     };
   },
@@ -190,6 +191,7 @@ export default {
       if (this.optionValue.value != undefined) {
         this.addSelectedOptionVal(this.optionValue);
         this.optionValue = {
+			option_id: this.$route.params.id
           // price_type: ""
         };
       }

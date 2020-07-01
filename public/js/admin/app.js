@@ -7729,7 +7729,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       optionType: {
         type: ""
       },
-      optionValue: {// price_type: ""
+      optionValue: {
+        option_id: this.$route.params.id // price_type: ""
+
       }
     };
   },
@@ -7745,7 +7747,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addValue: function addValue() {
       if (this.optionValue.value != undefined) {
         this.addSelectedOptionVal(this.optionValue);
-        this.optionValue = {// price_type: ""
+        this.optionValue = {
+          option_id: this.$route.params.id // price_type: ""
+
         };
       }
     },
