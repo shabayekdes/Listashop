@@ -221,11 +221,39 @@
 									</a>
 								</td>
 							</tr>
-							<a href="" class="btn btn-primary btn-block mt-3">Add new value</a>
+							<a href="" class="btn btn-primary btn-block mt-3" data-toggle="modal" data-target="#addNewOptionValueModal">Add new value</a>
 						</tbody>
 						</table>
 					</div>
 					<!-- /.card-body -->
+					<!-- Modal -->
+					<div class="modal fade" id="addNewOptionValueModal" tabindex="-1" role="dialog" aria-labelledby="addNewOptionValueLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label for="exampleFormControlInput1">Label value</label>
+										<input
+											type="text"
+											v-model="newOptionValue"
+											class="form-control"
+											placeholder="Enter value name ..."
+										/>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<a href="javascript:void(0)" class="btn btn-primary" @click.prevent="addOptionValue(selectedOption.id)">Save changes</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div class="card">
@@ -254,7 +282,6 @@
 				<!-- /.card -->
 			</div>
 		</div>
-		<!-- <product-variation /> -->
 	</div>
 </div>
 </template>
@@ -275,6 +302,7 @@ export default {
   data() {
     return {
 	  selectOption: "",
+	  newOptionValue: "",
       selected: null,
         options: ['list', 'of', 'options']
     };
@@ -284,6 +312,7 @@ export default {
 		"removeSelectedAttr", 
 		"fetchListOptions",
 		"addSelectedOptions",
+		"storeOptionValue",
 		"removeSelectedOption",
 		"removeSelectedOptionValue",
 		"setError"
@@ -308,6 +337,12 @@ export default {
 	addSelectedOption(){
 		this.addSelectedOptions(this.selectOption)
 		this.selectOption = ""
+	},
+	addOptionValue(id){
+		this.storeOptionValue({
+			option_id: id,
+			value: this.newOptionValue
+		})
 	}
   },
   watch: {

@@ -24,9 +24,10 @@ class OptionValueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OptionRequest $request)
+    public function store(Request $request)
     {
-        //
+        $value = OptionValue::create($request->all());
+        return $value;
     }
 
     /**

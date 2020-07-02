@@ -32,7 +32,7 @@ const actions = {
         }
         commit("SHOW_LIST_OPTIONS", response.data);
     },
-    async storeOption({ commit, rootState }, data) {
+    async storeOption({ commit }, data) {
         try {
             const response = await axios.post(`${urlApi}option`, data);
 
@@ -44,6 +44,17 @@ const actions = {
             router.push("/admin/options");
 
             // rootState.status = "ok";
+        } catch (e) {
+            commit("SET_ERRORS", e.response.data.errors);
+        }
+    },
+    async storeOptionValue({ commit }, data) {
+        try {
+            const response = await axios.post(`${urlApi}option-value`, data);
+
+            commit("NEW_OPTION_VALUE", response.data);
+            commit("SET_ERRORS", {});
+            $("#addNewOptionValueModal").modal("hide");
         } catch (e) {
             commit("SET_ERRORS", e.response.data.errors);
         }
@@ -103,6 +114,15 @@ const mutations = {
     },
     NEW_OPTION: (state, data) => {
         state.options.unshift(data);
+
+    },
+    NEW_OPTION_VALUE: (state, data) => {
+        
+        state.selectedOptions.map(option => {
+            if(option.id === data.option_id){
+                option.values.unshift(data);
+            }
+        });
     },
     PUT_OPTION: (state, data) => {
         // console.log(data);

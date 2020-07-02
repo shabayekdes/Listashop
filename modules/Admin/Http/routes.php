@@ -34,5 +34,7 @@ Route::group([
         Route::delete('attribute-options/{id}', 'AttributeController@destroyOption');
 
         Route::delete('option-value/{optionValue}', 'OptionValueController@destroy');
+        Route::post('option-value', 'OptionValueController@store');
+
     });
 });

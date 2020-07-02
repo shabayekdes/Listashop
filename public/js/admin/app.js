@@ -3041,12 +3041,12 @@ var actions = {
   },
   storeOption: function storeOption(_ref2, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var commit, rootState, response;
+      var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              commit = _ref2.commit, rootState = _ref2.rootState;
+              commit = _ref2.commit;
               _context2.prev = 1;
               _context2.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "option"), data);
@@ -3075,81 +3075,114 @@ var actions = {
       }, _callee2, null, [[1, 12]]);
     }))();
   },
-  updateOption: function updateOption(_ref3, data) {
+  storeOptionValue: function storeOptionValue(_ref3, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var commit, rootState, response;
+      var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              commit = _ref3.commit, rootState = _ref3.rootState;
+              commit = _ref3.commit;
               _context3.prev = 1;
               _context3.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "option/").concat(data.id), data);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("".concat(urlApi, "option-value"), data);
 
             case 4:
               response = _context3.sent;
+              commit("NEW_OPTION_VALUE", response.data);
+              commit("SET_ERRORS", {});
+              $("#addNewOptionValueModal").modal("hide");
+              _context3.next = 13;
+              break;
+
+            case 10:
+              _context3.prev = 10;
+              _context3.t0 = _context3["catch"](1);
+              commit("SET_ERRORS", _context3.t0.response.data.errors);
+
+            case 13:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 10]]);
+    }))();
+  },
+  updateOption: function updateOption(_ref4, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var commit, rootState, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit, rootState = _ref4.rootState;
+              _context4.prev = 1;
+              _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(urlApi, "option/").concat(data.id), data);
+
+            case 4:
+              response = _context4.sent;
               // console.log(response.data.option);
               commit("PUT_OPTION", response.data.option);
               commit("RESET_NEW_OPTION");
               _Admin_router__WEBPACK_IMPORTED_MODULE_2__["default"].push("/admin/options");
               commit("SET_ERRORS", {});
-              _context3.next = 14;
+              _context4.next = 14;
               break;
 
             case 11:
-              _context3.prev = 11;
-              _context3.t0 = _context3["catch"](1);
-              commit("SET_ERRORS", _context3.t0.response.data.errors);
+              _context4.prev = 11;
+              _context4.t0 = _context4["catch"](1);
+              commit("SET_ERRORS", _context4.t0.response.data.errors);
 
             case 14:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3, null, [[1, 11]]);
-    }))();
-  },
-  showOption: function showOption(_ref4, id) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var commit, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              commit = _ref4.commit;
-              _context4.prev = 1;
-              _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat(urlApi, "option/").concat(id));
-
-            case 4:
-              response = _context4.sent;
-              commit("SET_OPTION", response.data.data);
-              _context4.next = 11;
-              break;
-
-            case 8:
-              _context4.prev = 8;
-              _context4.t0 = _context4["catch"](1);
-              _Admin_router__WEBPACK_IMPORTED_MODULE_2__["default"].push("/admin/404");
-
-            case 11:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[1, 8]]);
+      }, _callee4, null, [[1, 11]]);
     }))();
   },
-  deleteOptionValue: function deleteOptionValue(_ref5, value) {
+  showOption: function showOption(_ref5, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-      var commit;
+      var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
               commit = _ref5.commit;
-              _context5.next = 3;
+              _context5.prev = 1;
+              _context5.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat(urlApi, "option/").concat(id));
+
+            case 4:
+              response = _context5.sent;
+              commit("SET_OPTION", response.data.data);
+              _context5.next = 11;
+              break;
+
+            case 8:
+              _context5.prev = 8;
+              _context5.t0 = _context5["catch"](1);
+              _Admin_router__WEBPACK_IMPORTED_MODULE_2__["default"].push("/admin/404");
+
+            case 11:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 8]]);
+    }))();
+  },
+  deleteOptionValue: function deleteOptionValue(_ref6, value) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              commit = _ref6.commit;
+              _context6.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("".concat(urlApi, "option-value/").concat(value.id));
 
             case 3:
@@ -3158,26 +3191,26 @@ var actions = {
 
             case 5:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5);
+      }, _callee6);
     }))();
   },
-  addSelectedOptions: function addSelectedOptions(_ref6, value) {
-    var commit = _ref6.commit;
+  addSelectedOptions: function addSelectedOptions(_ref7, value) {
+    var commit = _ref7.commit;
     commit("NEW_SELECTED_OPTIONS", value);
   },
-  removeSelectedOption: function removeSelectedOption(_ref7, option) {
-    var commit = _ref7.commit;
+  removeSelectedOption: function removeSelectedOption(_ref8, option) {
+    var commit = _ref8.commit;
     commit("REMOVE_SELECTED_OPTION", option);
   },
-  removeSelectedOptionValue: function removeSelectedOptionValue(_ref8, value) {
-    var commit = _ref8.commit;
+  removeSelectedOptionValue: function removeSelectedOptionValue(_ref9, value) {
+    var commit = _ref9.commit;
     commit("REMOVE_SELECTED_OPTION_VALUE", value);
   },
-  addOptionVal: function addOptionVal(_ref9, value) {
-    var commit = _ref9.commit;
+  addOptionVal: function addOptionVal(_ref10, value) {
+    var commit = _ref10.commit;
     commit("NEW_OPTION_VAL", value);
   }
 };
@@ -3187,6 +3220,13 @@ var mutations = {
   },
   NEW_OPTION: function NEW_OPTION(state, data) {
     state.options.unshift(data);
+  },
+  NEW_OPTION_VALUE: function NEW_OPTION_VALUE(state, data) {
+    state.selectedOptions.map(function (option) {
+      if (option.id === data.option_id) {
+        option.values.unshift(data);
+      }
+    });
   },
   PUT_OPTION: function PUT_OPTION(state, data) {
     // console.log(data);
@@ -9792,6 +9832,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9806,11 +9873,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       selectOption: "",
+      newOptionValue: "",
       selected: null,
       options: ['list', 'of', 'options']
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["removeSelectedAttr", "fetchListOptions", "addSelectedOptions", "removeSelectedOption", "removeSelectedOptionValue", "setError"])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["removeSelectedAttr", "fetchListOptions", "addSelectedOptions", "storeOptionValue", "removeSelectedOption", "removeSelectedOptionValue", "setError"])), {}, {
     // ...mapMutations(["REMOVE_VARIATION", "SET_VARIATION", "RESET_OPTIONS"]),
     cartesian: function cartesian() {
       var r = [],
@@ -9835,6 +9903,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addSelectedOption: function addSelectedOption() {
       this.addSelectedOptions(this.selectOption);
       this.selectOption = "";
+    },
+    addOptionValue: function addOptionValue(id) {
+      this.storeOptionValue({
+        option_id: id,
+        value: this.newOptionValue
+      });
     }
   }),
   watch: {// getSelectedAttr(val, oldVal) {
@@ -56940,7 +57014,11 @@ var render = function() {
                                 "a",
                                 {
                                   staticClass: "btn btn-primary btn-block mt-3",
-                                  attrs: { href: "" }
+                                  attrs: {
+                                    href: "",
+                                    "data-toggle": "modal",
+                                    "data-target": "#addNewOptionValueModal"
+                                  }
                                 },
                                 [_vm._v("Add new value")]
                               )
@@ -56948,6 +57026,102 @@ var render = function() {
                             2
                           )
                         ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal fade",
+                        attrs: {
+                          id: "addNewOptionValueModal",
+                          tabindex: "-1",
+                          role: "dialog",
+                          "aria-labelledby": "addNewOptionValueLabel",
+                          "aria-hidden": "true"
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "modal-dialog",
+                            attrs: { role: "document" }
+                          },
+                          [
+                            _c("div", { staticClass: "modal-content" }, [
+                              _vm._m(4, true),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "modal-body" }, [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      attrs: { for: "exampleFormControlInput1" }
+                                    },
+                                    [_vm._v("Label value")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.newOptionValue,
+                                        expression: "newOptionValue"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Enter value name ..."
+                                    },
+                                    domProps: { value: _vm.newOptionValue },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.newOptionValue = $event.target.value
+                                      }
+                                    }
+                                  })
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "modal-footer" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-secondary",
+                                    attrs: {
+                                      type: "button",
+                                      "data-dismiss": "modal"
+                                    }
+                                  },
+                                  [_vm._v("Close")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-primary",
+                                    attrs: { href: "javascript:void(0)" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.addOptionValue(
+                                          selectedOption.id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Save changes")]
+                                )
+                              ])
+                            ])
+                          ]
+                        )
                       ]
                     )
                   ]
@@ -56957,7 +57131,7 @@ var render = function() {
               _c("div", { staticClass: "card" }, [
                 _c("div", { staticClass: "card-body" }, [
                   _c("div", { staticClass: "d-flex bd-highlight mb-3" }, [
-                    _vm._m(4),
+                    _vm._m(5),
                     _vm._v(" "),
                     _c("div", { staticClass: "p-2 bd-highlight" }, [
                       _c(
@@ -57162,6 +57336,31 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Modal title")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   },
   function() {
