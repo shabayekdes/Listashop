@@ -9,13 +9,15 @@ const state = {
         name: "",
         type: ""
     },
-    optionValues: []
+    optionValues: [],
+    selectedOptions: []
 };
 
 const getters = {
     getAllOptions: state => state.options,
     getSingleOption: state => state.option,
-    getAllOptionValues: state => state.optionValues
+    getAllOptionValues: state => state.optionValues,
+    getSelectedOptions: state => state.selectedOptions
 };
 
 const actions = {
@@ -66,7 +68,7 @@ const actions = {
         try {
             const response = await axios.get(`${urlApi}option/${id}`);
 
-            commit("SET_OPTION", response.data);
+            commit("SET_OPTION", response.data.data);
         } catch (e) {
             router.push("/admin/404");
         }
@@ -81,8 +83,17 @@ const actions = {
             )
         commit("REMOVE_OPTION_VALUE", value);
     },
-    addSelectedOptionVal({ commit }, value) {
-        commit("NEW_SELECTED_OPTION_VAL", value);
+    addSelectedOptions({ commit }, value) {
+        commit("NEW_SELECTED_OPTIONS", value);
+    },
+    removeSelectedOption({ commit }, option) {
+        commit("REMOVE_SELECTED_OPTION", option);
+    },
+    removeSelectedOptionValue({ commit }, value) {
+        commit("REMOVE_SELECTED_OPTION_VALUE", value);
+    },
+    addOptionVal({ commit }, value) {
+        commit("NEW_OPTION_VAL", value);
     }
 };
 
@@ -100,9 +111,9 @@ const mutations = {
             state.options.splice(index, 1, data);
         }
     },
-    SET_OPTION: (state, old) => {
-        state.option = old.option;
-        state.optionValues = old.values;
+    SET_OPTION: (state, data) => {
+        state.option = data;
+        state.optionValues = data.values;
     },
     RESET_NEW_OPTION: state => {
         state.option = {
@@ -112,11 +123,28 @@ const mutations = {
         };
         state.optionValues = [];
     },
-    NEW_SELECTED_OPTION_VAL: (state, value) => {
+    NEW_SELECTED_OPTIONS: (state, value) => {
+        state.selectedOptions.unshift(value);
+    },
+    NEW_OPTION_VAL: (state, value) => {
         state.optionValues.unshift(value);
     },
     REMOVE_OPTION_VALUE: (state, value) => {
         state.optionValues.splice(state.optionValues.indexOf(value), 1);
+    },
+    REMOVE_SELECTED_OPTION_VALUE: (state, data) => {
+
+        state.selectedOptions = state.selectedOptions.filter(option => {
+            let index = option.values.findIndex(value => value.id === data.id);
+            if (index !== -1) {
+                option.values.splice(index, 1);
+                
+            }
+            return true;
+        });
+    },
+    REMOVE_SELECTED_OPTION: (state, value) => {
+        state.selectedOptions.splice(state.selectedOptions.indexOf(value), 1);
     }
 };
 

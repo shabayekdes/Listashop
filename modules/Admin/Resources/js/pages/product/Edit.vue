@@ -40,7 +40,7 @@
           <!-- /.card-body -->
         </div>
 
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Details</h3>
           </div>
@@ -78,7 +78,7 @@
       </div>
 
       <div class="col-md-3">
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Publish</h3>
 
@@ -100,7 +100,7 @@
           <!-- /.card-body -->
         </div>
 
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Categories</h3>
 
@@ -134,7 +134,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Upload Thumbnail</h3>
 
@@ -178,7 +178,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Upload Galley</h3>
 
@@ -288,13 +288,13 @@ export default {
   },
   methods: {
     ...mapActions([
-      "updateProduct",
-      "setProduct",
-      "showProduct",
-      "fetchListCategories",
-      //   "fetchListAttributes",
-      "addThumb",
-      "setError"
+		"updateProduct",
+		"setProduct",
+		"showProduct",
+		"fetchListCategories",
+		"fetchListOptions",
+		"addThumb",
+		"setError"
     ]),
     ...mapMutations(["SET_STATUS", "SET_LOADING"]),
     patchProduct() {
@@ -327,6 +327,7 @@ export default {
     this.showProduct(this.$route.params.id);
     // this.SET_STATUS("");
     this.fetchListCategories("all");
+    this.fetchListOptions("all");
   },
   computed: mapGetters([
     "getSingleProduct",

@@ -4,14 +4,7 @@ import router from "@Admin/router";
 const state = {
     products: [],
     product: {
-        id: "",
-        name: "",
-        sku: "",
-        slug: "",
-        price: "",
-        cost: "",
-        type: "simple",
-        category_id: ""
+        type: "configurable"
     }
 };
 const getters = {
@@ -121,14 +114,7 @@ const mutations = {
     },
     RESET_NEW_PRODUCT: state => {
         state.product = {
-            id: "",
-            name: "",
-            sku: "",
-            slug: "",
-            price: "",
-            cost: "",
-            type: "simple",
-            category_id: ""
+            type: "configurable"
         };
     }
 };

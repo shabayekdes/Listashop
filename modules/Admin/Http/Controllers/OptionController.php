@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use ListaShop\Option\Http\Requests\OptionRequest;
 use ListaShop\Option\Repositories\OptionRepository;
-use ListaShop\Option\Http\Resources\OptionCollection;
+use ListaShop\Option\Http\Resources\OptionResource;
 
 
 class OptionController extends Controller
@@ -31,7 +31,10 @@ class OptionController extends Controller
      */
     public function index()
     {
-        return new OptionCollection($this->option->paginate());
+        if (request('show')) {
+            return OptionResource::collection($this->option->all());
+        }
+        return OptionResource::collection($this->option->paginate());
     }
 
     /**
@@ -53,8 +56,8 @@ class OptionController extends Controller
      */
     public function show(Option $option)
     {
-        return response()->json(["option" => $option, "values" => $option->values()->get()]);
-        // return new OptionResource($option);
+        // return response()->json(["option" => $option, "values" => $option->values()->get()]);
+        return new OptionResource($option);
     }
 
     /**

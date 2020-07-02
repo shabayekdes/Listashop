@@ -40,17 +40,33 @@
           <!-- /.card-body -->
         </div>
 
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Details</h3>
           </div>
           <!-- /.card-header -->
-          <product-simple />
+		<div class="card-body">
+			<div class="form-group row">
+				<label for="inputProductType" class="col-sm-2 col-form-label">Product Type</label>
+				<div class="col-sm-6">
+					<select
+						class="form-control"
+						v-model="getSingleProduct.type"
+						id="inputProductType"
+						>
+						<option value="simple">Simple product</option>
+						<option value="configurable">Attribute product</option>
+					</select>
+				</div>
+			</div>
+			<product-simple v-if="getSingleProduct.type == 'simple'" />
+          	<product-attribute v-else />
+		</div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
         <!-- Description -->
-        <div class="card card-primary collapsed-card">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Description</h3>
             <div class="card-tools">
@@ -101,7 +117,7 @@
           <!-- /.card-body -->
         </div>
         <!-- Select Category -->
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Categories</h3>
 
@@ -136,7 +152,7 @@
           <!-- /.card-body -->
         </div>
         <!-- Upload Thumbnail -->
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Upload Thumbnail</h3>
 
@@ -181,7 +197,7 @@
           <!-- /.card-body -->
         </div>
         <!-- Upload Galley -->
-        <div class="card card-outline card-primary">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Upload Galley</h3>
 
@@ -276,14 +292,16 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
 import ProductSimple from "@Admin/pages/product/views/ProductSimple";
+import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
 import model from "@Admin/components/Model.vue";
 import HasError from "@Admin/components/HasError.vue";
 import Multiselect from "vue-multiselect";
 export default {
-  name: "ProductEdit",
+  name: "ProductCreate",
   components: {
     ImageUploader,
-    ProductSimple,
+	ProductSimple,
+	ProductAttribute,
     model,
     Multiselect,
     HasError
@@ -296,14 +314,15 @@ export default {
   },
   methods: {
     ...mapActions([
-      "storeProduct",
-      "setProduct",
-      "showProduct",
-      "fetchListCategories",
-      "addThumb",
-      "resetImages",
-      "resetProduct",
-      "setError"
+		"storeProduct",
+		"setProduct",
+		"showProduct",
+		"fetchListCategories",
+		"fetchListOptions",
+		"addThumb",
+		"resetImages",
+		"resetProduct",
+		"setError"
     ]),
     ...mapMutations(["SET_STATUS", "SET_LOADING"]),
     createProduct() {
@@ -350,11 +369,13 @@ export default {
     // }
     // }
     // this.SET_STATUS("");
-    this.fetchListCategories("all");
+		this.fetchListCategories("all");
+		this.fetchListOptions("all");
   },
   computed: mapGetters([
     "getSingleProduct",
-    "getAllCategories",
+	"getAllCategories",
+	"getAllOptions",
     // "getVariations",
     // "getSelectedAttr",
     "getFiles",

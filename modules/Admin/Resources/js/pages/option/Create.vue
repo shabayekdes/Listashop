@@ -174,7 +174,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["storeOption", "addSelectedOptionVal", "setMode"]),
+    ...mapActions(["storeOption", "addOptionVal", "setMode"]),
     ...mapMutations(["RESET_NEW_OPTION", "REMOVE_OPTION_VALUE"]),
     createOption() {
       this.storeOption({
@@ -185,7 +185,7 @@ export default {
     },
     addValue() {
       if (this.optionValue.value != undefined) {
-        this.addSelectedOptionVal(this.optionValue);
+        this.addOptionVal(this.optionValue);
         this.optionValue = {
         //   price_type: ""
         };
