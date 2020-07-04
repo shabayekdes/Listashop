@@ -30,7 +30,8 @@ class ProductRequest extends FormRequest
         return [
             'slug' => 'required|unique:products',
             'type' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'options' => 'json'
         ];
     }
 

@@ -3212,6 +3212,10 @@ var actions = {
   addOptionVal: function addOptionVal(_ref10, value) {
     var commit = _ref10.commit;
     commit("NEW_OPTION_VAL", value);
+  },
+  resetOption: function resetOption(_ref11) {
+    var commit = _ref11.commit;
+    commit("RESET_NEW_OPTION");
   }
 };
 var mutations = {
@@ -3249,6 +3253,7 @@ var mutations = {
       type: ""
     };
     state.optionValues = [];
+    state.selectedOptions = [];
   },
   NEW_SELECTED_OPTIONS: function NEW_SELECTED_OPTIONS(state, value) {
     state.selectedOptions.unshift(value);
@@ -8924,6 +8929,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         formData.append(key, value);
       }
 
+      formData.append("options", JSON.stringify(this.getSelectedOptions));
       this.getFiles.forEach(function (file) {
         formData.append("images[]", file, file.name);
       });
@@ -8963,8 +8969,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.fetchListOptions("all");
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", "getAllOptions", // "getVariations",
-  // "getSelectedAttr",
-  "getFiles", "getImages", "getThumb", "hasError"])
+  "getSelectedOptions", "getFiles", "getImages", "getThumb", "hasError"])
 });
 
 /***/ }),
@@ -56799,27 +56804,27 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: selectedOption.is_require,
+                                              value: selectedOption.is_required,
                                               expression:
-                                                "selectedOption.is_require"
+                                                "selectedOption.is_required"
                                             }
                                           ],
                                           staticClass: "form-check-input",
                                           attrs: { type: "checkbox" },
                                           domProps: {
                                             checked: Array.isArray(
-                                              selectedOption.is_require
+                                              selectedOption.is_required
                                             )
                                               ? _vm._i(
-                                                  selectedOption.is_require,
+                                                  selectedOption.is_required,
                                                   null
                                                 ) > -1
-                                              : selectedOption.is_require
+                                              : selectedOption.is_required
                                           },
                                           on: {
                                             change: function($event) {
                                               var $$a =
-                                                  selectedOption.is_require,
+                                                  selectedOption.is_required,
                                                 $$el = $event.target,
                                                 $$c = $$el.checked
                                                   ? true
@@ -56831,14 +56836,14 @@ var render = function() {
                                                   $$i < 0 &&
                                                     _vm.$set(
                                                       selectedOption,
-                                                      "is_require",
+                                                      "is_required",
                                                       $$a.concat([$$v])
                                                     )
                                                 } else {
                                                   $$i > -1 &&
                                                     _vm.$set(
                                                       selectedOption,
-                                                      "is_require",
+                                                      "is_required",
                                                       $$a
                                                         .slice(0, $$i)
                                                         .concat(
@@ -56849,7 +56854,7 @@ var render = function() {
                                               } else {
                                                 _vm.$set(
                                                   selectedOption,
-                                                  "is_require",
+                                                  "is_required",
                                                   $$c
                                                 )
                                               }

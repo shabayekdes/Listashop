@@ -329,7 +329,10 @@ export default {
       const formData = new FormData();
       for (const [key, value] of Object.entries(this.getSingleProduct)) {
         formData.append(key, value);
-      }
+	  }
+
+		formData.append(`options`, JSON.stringify(this.getSelectedOptions));
+
       this.getFiles.forEach(file => {
         formData.append("images[]", file, file.name);
       });
@@ -377,7 +380,7 @@ export default {
 	"getAllCategories",
 	"getAllOptions",
     // "getVariations",
-    // "getSelectedAttr",
+    "getSelectedOptions",
     "getFiles",
     "getImages",
     "getThumb",

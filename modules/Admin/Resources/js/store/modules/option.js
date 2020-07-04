@@ -105,6 +105,9 @@ const actions = {
     },
     addOptionVal({ commit }, value) {
         commit("NEW_OPTION_VAL", value);
+    },
+    resetOption({ commit }) {
+        commit("RESET_NEW_OPTION");
     }
 };
 
@@ -142,6 +145,7 @@ const mutations = {
             type: ""
         };
         state.optionValues = [];
+        state.selectedOptions = [];
     },
     NEW_SELECTED_OPTIONS: (state, value) => {
         state.selectedOptions.unshift(value);

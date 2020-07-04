@@ -5,6 +5,7 @@ namespace ListaShop\Product\Repositories;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use ListaShop\Product\Models\Product;
+use ListaShop\Product\Models\ProductOption;
 use ListaShop\Core\Eloquent\BaseRepository;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -43,14 +44,25 @@ class ProductRepository extends BaseRepository
         $product = $this->model->create($data);
         $this->uploadImages($product);
 
-        // $variations = json_decode($data['variations'], true);
+        if($data['type'] == 'configurable'){
+            $options = json_decode($data['options'], true);
 
-        // if($data['type'] == 'configurable'){
-        //     $product->attributes()->attach($data['attributes']);
-        //     foreach ($variations as $variant) {
-        //         $this->createVariant($variant, $product, $data);
-        //     }
-        // }
+            foreach ($options as $option) {
+
+                $productOption = ProductOption::create([
+                    'option_id' => $option['id'],
+                    'product_id' =>$product->id,
+                    'is_required' => Arr::has($option, 'is_required') ? $option['is_required'] : false
+                ]);
+
+                $keyed = collect($option['values'])->mapWithKeys(function ($item) {
+                    return [$item['id'] => [ 'price' => $item['price'], 'price_type' => $item['price_type'] ]];
+                })->all();
+
+                $productOption->values()->attach($keyed);
+            }
+
+        }
 
         return $product;
     }

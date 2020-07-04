@@ -21,6 +21,13 @@ class ProductOption extends Pivot
     public $timestamps = false;
 
     /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
      * The attributes that aren't mass assignable.
      *
      * @var array

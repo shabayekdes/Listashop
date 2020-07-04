@@ -181,7 +181,7 @@
 							</div>
 							<div class="align-self-center p-2 bd-highlight">
 								<div class="form-check">
-								<input class="form-check-input" type="checkbox" v-model="selectedOption.is_require" />
+								<input class="form-check-input" type="checkbox" v-model="selectedOption.is_required" />
 								<label class="form-check-label">Required</label>
 								</div>
 							</div>

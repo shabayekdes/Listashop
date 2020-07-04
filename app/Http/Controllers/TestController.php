@@ -30,29 +30,29 @@ class TestController extends Controller
     public function index()
     {
 
-        $data = [
-            "name" => "Brennan Boyd",
-            "type" => "Dropdown",
-            "values" => [
-              [
-                "value" => "Kylee Mcintyre"
-              ],
-              [
-                "value" => "Irene Brock"
-              ],
-            ],
-            "code" => "brennan-boyd"
-        ];
-        $option = Option::create($data);
+        // $data = [
+        //     "name" => "Brennan Boyd",
+        //     "type" => "Dropdown",
+        //     "values" => [
+        //       [
+        //         "value" => "Kylee Mcintyre"
+        //       ],
+        //       [
+        //         "value" => "Irene Brock"
+        //       ],
+        //     ],
+        //     "code" => "brennan-boyd"
+        // ];
+        // $option = Option::create($data);
 
-        DB::connection()->enableQueryLog();
+        // DB::connection()->enableQueryLog();
 
-        $product = Product::with(['options'])->first();
-        $values = $product->options->first()->ProductOption->values;
-        // $values->load('values');
+        // $product = Product::with(['options'])->first();
+        // $values = $product->options->first()->ProductOption->values;
+        // // $values->load('values');
 
-        $queries = DB::getQueryLog();
-        dd($queries, $values);
+        // $queries = DB::getQueryLog();
+        // dd($queries, $values);
 
 
 
@@ -60,9 +60,38 @@ class TestController extends Controller
 
         // $product->values()->attach([1]);
 
-        $productOption = ProductOption::find(1);
+        // $productOption = ProductOption::find(2);
 
-        $productOption->values()->attach([1,2,3]);
+        $productOption = ProductOption::create([
+            'option_id' => 1,
+            'product_id' =>13,
+            'is_required' => false
+        ]);
+
+        $data = [
+            5 => [
+              "price" => "97",
+              "price_type" => "percent"
+            ],
+            39 =>[
+              "price" => "9",
+              "price_type" => "percent"
+            ],
+            40 =>[
+              "price" => "30",
+              "price_type" => "percent"
+            ],
+            41 =>[
+              "price" => "58",
+              "price_type" => "percent"
+            ],
+            42 =>[
+              "price" => "4",
+              "price_type" => "percent"
+            ]
+        ];
+
+        $productOption->values()->attach($data);
 
         dd($productOption);
 
