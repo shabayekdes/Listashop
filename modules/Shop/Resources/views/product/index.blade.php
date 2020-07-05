@@ -63,14 +63,14 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="clearfix" style="z-index: 1000;">
+                            <div class="clearfix" style="z-index: 1000;">
 
                                 <!-- Product Color -->
 
                                 @foreach ($product->options as $option)
-                                @includeIf("shop::product.partials.options.{$option->option->type}")
+                                @includeIf("shop::product.partials.options.{$option->type}")
                                 @endforeach
-                            </div> --}}
+                            </div>
 
                             <div class="product_price">{{ presentPrice($product->price) }}</div>
                             <div class="button_container">

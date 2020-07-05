@@ -45,14 +45,14 @@ class TestController extends Controller
         // ];
         // $option = Option::create($data);
 
-        // DB::connection()->enableQueryLog();
+        DB::connection()->enableQueryLog();
 
-        // $product = Product::with(['options'])->first();
-        // $values = $product->options->first()->ProductOption->values;
-        // // $values->load('values');
+        $product = Product::with(['images','options'])->first();
+        $values = $product->options->first()->ProductOption->values;
+        // $values->load('values');
 
-        // $queries = DB::getQueryLog();
-        // dd($queries, $values);
+        $queries = DB::getQueryLog();
+        dd($queries, $product, $values);
 
 
 
@@ -62,38 +62,38 @@ class TestController extends Controller
 
         // $productOption = ProductOption::find(2);
 
-        $productOption = ProductOption::create([
-            'option_id' => 1,
-            'product_id' =>13,
-            'is_required' => false
-        ]);
+        // $productOption = ProductOption::create([
+        //     'option_id' => 1,
+        //     'product_id' =>13,
+        //     'is_required' => false
+        // ]);
 
-        $data = [
-            5 => [
-              "price" => "97",
-              "price_type" => "percent"
-            ],
-            39 =>[
-              "price" => "9",
-              "price_type" => "percent"
-            ],
-            40 =>[
-              "price" => "30",
-              "price_type" => "percent"
-            ],
-            41 =>[
-              "price" => "58",
-              "price_type" => "percent"
-            ],
-            42 =>[
-              "price" => "4",
-              "price_type" => "percent"
-            ]
-        ];
+        // $data = [
+        //     5 => [
+        //       "price" => "97",
+        //       "price_type" => "percent"
+        //     ],
+        //     39 =>[
+        //       "price" => "9",
+        //       "price_type" => "percent"
+        //     ],
+        //     40 =>[
+        //       "price" => "30",
+        //       "price_type" => "percent"
+        //     ],
+        //     41 =>[
+        //       "price" => "58",
+        //       "price_type" => "percent"
+        //     ],
+        //     42 =>[
+        //       "price" => "4",
+        //       "price_type" => "percent"
+        //     ]
+        // ];
 
-        $productOption->values()->attach($data);
+        // $productOption->values()->attach($data);
 
-        dd($productOption);
+        // dd($productOption);
 
 
         $product = Product::find(1);

@@ -72,8 +72,8 @@ class CategoryController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::with('images', 'options.option', 'options.values')->where('slug', $slug)->firstOrFail();
-        // dd($product);
+
+        $product = Product::with(['images','options'])->where('slug', $slug)->firstOrFail();
         $mightAlsoLike = Product::with('images')->where('slug', '!=', $slug)->get();
         return view('shop::product.index')->with([
             'product' => $product,

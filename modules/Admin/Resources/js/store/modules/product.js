@@ -89,6 +89,7 @@ const actions = {
     resetProduct({ commit, dispatch }) {
         commit("RESET_NEW_PRODUCT");
         dispatch("resetImages", { root: true });
+        dispatch("resetOption", { root: true });
     }
 };
 

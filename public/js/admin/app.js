@@ -3662,6 +3662,9 @@ var actions = {
     dispatch("resetImages", {
       root: true
     });
+    dispatch("resetOption", {
+      root: true
+    });
   }
 };
 var mutations = {
