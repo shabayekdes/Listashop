@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function __construct(CategoryRepository $category, ProductRepository $product)
     {
-        $this->middleware('auth:api-customer');
+        // $this->middleware('auth:api-customer');
         $this->category = $category;
         $this->product = $product;
     }
