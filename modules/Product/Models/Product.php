@@ -52,7 +52,10 @@ class Product extends Model
      */
     protected $casts = [
         'featured' => 'boolean',
-        'new' => 'boolean'
+        'new' => 'boolean',
+        'price' => 'double',
+        'cost' => 'double',
+        'special_price' => 'double'
     ];
     /**
      * Get the product items record associated with the order.
