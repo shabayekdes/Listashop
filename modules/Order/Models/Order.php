@@ -123,7 +123,11 @@ class Order extends Model
      */
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity', 'total');
+        // return $this->hasMany(Product::class)->withPivot('quantity', 'total');
+        return $this->hasMany(OrderProduct::class);
+
+        // return $this->belongsToMany(Product::class,'order_product')->using(OrderProduct::class)->as('OrderProduct')->withPivot('id', 'quantity', 'total');
+
     }
     /**
      * Get the addresses for the order.
