@@ -9,6 +9,20 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class OrderProduct extends Pivot
 {
     protected $table = 'order_product';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
     /**
      * Get the order record associated with the order item.
      */

@@ -217,7 +217,9 @@
                         @endif
                         <div class="checkout-item-details">
                             <div class="checkout-table-item">{{ Str::words($item->model->name, 3, '') }}</div>
-                            <div class="checkout-table-description">15 inch, 1TB SSD, 32GB RAM</div>
+                            @foreach($item->options as $option)
+                            <div class="checkout-table-description">{{ Str::afterLast($option['option'], '|') }} : {{ Str::afterLast($option['option_value'], '|') }}</div>
+                            @endforeach
                             <div class="checkout-table-price">${{ $item->model->price }}</div>
                         </div>
                     </div> <!-- end checkout-table -->

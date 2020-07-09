@@ -47,16 +47,25 @@ class TestController extends Controller
 
         DB::connection()->enableQueryLog();
 
-        $order = Order::with(['products'])->find(10);
+//         $order = Order::find(9);
 
-        $values = $order->products->first()->values;
-        $options = $order->products->first()->options;
+//         $orderProduct = $order->products()->create([
+//             'quantity' => 1,
+//             'product_id' =>5,
+//             'total' => 12
+//         ]);
+//         $orderProduct->values()->attach(1, ['price' => 12, 'option_id' => 1]);
+// dd($orderProduct);
+//         $values = $order->products->first()->values;
+//         $options = $order->products->first()->options;
 
-        dd($order, $values, $options);
+//         dd($order, $values, $options);
 
-        // $product = Product::with(['images','options'])->first();
+        $product = Product::with(['images','options'])->first();
         // $values = $product->options->first()->ProductOption->values;
-        // $values->load('values');
+        $values = $product->options;
+
+        $values->load('values');
 
         $queries = DB::getQueryLog();
         dd($queries, $product, $values);

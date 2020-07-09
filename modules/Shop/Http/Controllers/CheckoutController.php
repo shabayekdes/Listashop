@@ -96,7 +96,12 @@ class CheckoutController extends Controller
 
         // Insert into order_product table
         foreach (Cart::content() as $item) {
-            $order->products()->attach($item->model->id, ['quantity' => $item->qty, 'total' => $item->subtotal]);
+            // $order->products()->attach($item->model->id, ['quantity' => $item->qty, 'total' => $item->subtotal]);
+            $orderProduct = $order->products()->create([
+                'quantity' => $item->qty,
+                'product_id' => $item->model->id,
+                'total' => $item->subtotal
+            ]);
         }
 
         return $order;
