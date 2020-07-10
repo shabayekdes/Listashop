@@ -3573,8 +3573,13 @@ var actions = {
               dispatch("setImage", thumb, {
                 root: true
               });
+              response.data.data.options.map(function (option) {
+                return dispatch("addSelectedOptions", option, {
+                  root: true
+                });
+              });
 
-            case 9:
+            case 10:
             case "end":
               return _context3.stop();
           }
@@ -8989,8 +8994,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _Admin_views_ImageUploader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @Admin/views/ImageUploader */ "./modules/admin/resources/js/views/ImageUploader.vue");
 /* harmony import */ var _Admin_pages_product_views_ProductSimple__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @Admin/pages/product/views/ProductSimple */ "./modules/admin/resources/js/pages/product/views/ProductSimple.vue");
-/* harmony import */ var _Admin_components_Model_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @Admin/components/Model.vue */ "./modules/admin/resources/js/components/Model.vue");
-/* harmony import */ var _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @Admin/components/HasError.vue */ "./modules/admin/resources/js/components/HasError.vue");
+/* harmony import */ var _Admin_pages_product_views_ProductAttribute__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @Admin/pages/product/views/ProductAttribute */ "./modules/admin/resources/js/pages/product/views/ProductAttribute.vue");
+/* harmony import */ var _Admin_components_Model_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @Admin/components/Model.vue */ "./modules/admin/resources/js/components/Model.vue");
+/* harmony import */ var _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @Admin/components/HasError.vue */ "./modules/admin/resources/js/components/HasError.vue");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -9280,9 +9286,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
- // import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
+
 
 
 
@@ -9291,9 +9314,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     ImageUploader: _Admin_views_ImageUploader__WEBPACK_IMPORTED_MODULE_1__["default"],
     ProductSimple: _Admin_pages_product_views_ProductSimple__WEBPACK_IMPORTED_MODULE_2__["default"],
-    // ProductAttribute,
-    model: _Admin_components_Model_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    HasError: _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    ProductAttribute: _Admin_pages_product_views_ProductAttribute__WEBPACK_IMPORTED_MODULE_3__["default"],
+    model: _Admin_components_Model_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    HasError: _Admin_components_HasError_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["updateProduct", "setProduct", "showProduct", "fetchListCategories", "fetchListOptions", "addThumb", "setError"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(["SET_STATUS", "SET_LOADING"])), {}, {
     patchProduct: function patchProduct() {
@@ -9310,6 +9333,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getFiles.forEach(function (file) {
         formData.append("images[]", file, file.name);
       });
+      formData.append("options", JSON.stringify(this.getSelectedOptions));
 
       if (this.getThumb.file) {
         formData.append("images[thumb]", this.getThumb.file);
@@ -9333,8 +9357,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.fetchListOptions("all");
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getSingleProduct", "getAllCategories", // "getVariations",
-  // "getSelectedAttr",
-  "getFiles", "getImages", "getThumb", // "getStatus",
+  "getSelectedOptions", "getFiles", "getImages", "getThumb", // "getStatus",
   "hasError"])
 });
 
@@ -55318,7 +55341,7 @@ var render = function() {
                 },
                 [
                   _c("i", { staticClass: "fas fa-cloud-upload-alt" }),
-                  _vm._v("\n              Upload\n            ")
+                  _vm._v("\n            Upload\n          ")
                 ]
               )
             ])
@@ -55632,12 +55655,77 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card" },
-            [_vm._m(1), _vm._v(" "), _c("product-simple")],
-            1
-          ),
+          _c("div", { staticClass: "card" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-sm-2 col-form-label",
+                      attrs: { for: "inputProductType" }
+                    },
+                    [_vm._v("Product Type")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.getSingleProduct.type,
+                            expression: "getSingleProduct.type"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "inputProductType" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.getSingleProduct,
+                              "type",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "simple" } }, [
+                          _vm._v("Simple product")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "configurable" } }, [
+                          _vm._v("Attribute product")
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm.getSingleProduct.type == "simple"
+                  ? _c("product-simple")
+                  : _c("product-attribute")
+              ],
+              1
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card card-primary collapsed-card" }, [
             _vm._m(2),

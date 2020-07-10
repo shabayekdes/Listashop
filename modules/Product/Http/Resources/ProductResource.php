@@ -4,6 +4,7 @@ namespace ListaShop\Product\Http\Resources;
 
 use ListaShop\Product\Http\Resources\ProductFlatResource as ProductFlat;
 use Illuminate\Http\Resources\Json\JsonResource;
+use ListaShop\Option\Http\Resources\OptionResource;
 
 class ProductResource extends JsonResource
 {
@@ -27,10 +28,13 @@ class ProductResource extends JsonResource
             'cost' => $this->cost,
             'status' => $this->is_active,
             'qty' => $this->qty,
+            'type' => $this->type,
             'description' => $this->description,
             'images' => $this->images,
 
-            // 'options' => $this->options->load('attribute')->first()->attribute
+            'options' => OptionResource::collection($this->options->load('values'))
+
+            // 'options' => $this->options->load('values')
         ];
     }
 }

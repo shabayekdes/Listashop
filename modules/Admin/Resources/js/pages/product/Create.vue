@@ -45,23 +45,23 @@
             <h3 class="card-title">Details</h3>
           </div>
           <!-- /.card-header -->
-		<div class="card-body">
-			<div class="form-group row">
-				<label for="inputProductType" class="col-sm-2 col-form-label">Product Type</label>
-				<div class="col-sm-6">
-					<select
-						class="form-control"
-						v-model="getSingleProduct.type"
-						id="inputProductType"
-						>
-						<option value="simple">Simple product</option>
-						<option value="configurable">Attribute product</option>
-					</select>
-				</div>
-			</div>
-			<product-simple v-if="getSingleProduct.type == 'simple'" />
-          	<product-attribute v-else />
-		</div>
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="inputProductType" class="col-sm-2 col-form-label">Product Type</label>
+              <div class="col-sm-6">
+                <select
+                  class="form-control"
+                  v-model="getSingleProduct.type"
+                  id="inputProductType"
+                  >
+                  <option value="simple">Simple product</option>
+                  <option value="configurable">Attribute product</option>
+                </select>
+              </div>
+            </div>
+            <product-simple v-if="getSingleProduct.type == 'simple'" />
+                  <product-attribute v-else />
+          </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -300,8 +300,8 @@ export default {
   name: "ProductCreate",
   components: {
     ImageUploader,
-	ProductSimple,
-	ProductAttribute,
+    ProductSimple,
+    ProductAttribute,
     model,
     Multiselect,
     HasError

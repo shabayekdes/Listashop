@@ -47,6 +47,8 @@ const actions = {
 
         commit("SET_PRODUCT", response.data.data);
         dispatch("setImage", thumb, { root: true });
+        response.data.data.options.map(option => dispatch("addSelectedOptions", option, { root: true }) )
+
     },
     async updateProduct({ commit, dispatch }, data) {
         try {

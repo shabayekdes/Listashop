@@ -45,10 +45,27 @@
             <h3 class="card-title">Details</h3>
           </div>
           <!-- /.card-header -->
-          <product-simple />
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="inputProductType" class="col-sm-2 col-form-label">Product Type</label>
+              <div class="col-sm-6">
+                <select
+                  class="form-control"
+                  v-model="getSingleProduct.type"
+                  id="inputProductType"
+                  >
+                  <option value="simple">Simple product</option>
+                  <option value="configurable">Attribute product</option>
+                </select>
+              </div>
+            </div>
+            <product-simple v-if="getSingleProduct.type == 'simple'" />
+                  <product-attribute v-else />
+          </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
+        <!-- Description -->
         <div class="card card-primary collapsed-card">
           <div class="card-header">
             <h3 class="card-title">Description</h3>
@@ -273,7 +290,7 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import ImageUploader from "@Admin/views/ImageUploader";
 import ProductSimple from "@Admin/pages/product/views/ProductSimple";
-// import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
+import ProductAttribute from "@Admin/pages/product/views/ProductAttribute";
 import model from "@Admin/components/Model.vue";
 import HasError from "@Admin/components/HasError.vue";
 
@@ -282,7 +299,7 @@ export default {
   components: {
     ImageUploader,
     ProductSimple,
-    // ProductAttribute,
+    ProductAttribute,
     model,
     HasError
   },
@@ -305,6 +322,7 @@ export default {
       this.getFiles.forEach(file => {
         formData.append("images[]", file, file.name);
       });
+      formData.append(`options`, JSON.stringify(this.getSelectedOptions));
       if (this.getThumb.file) {
         formData.append("images[thumb]", this.getThumb.file);
       }
@@ -333,7 +351,7 @@ export default {
     "getSingleProduct",
     "getAllCategories",
     // "getVariations",
-    // "getSelectedAttr",
+    "getSelectedOptions",
     "getFiles",
     "getImages",
     "getThumb",

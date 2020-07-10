@@ -78,6 +78,27 @@ class ProductRepository extends BaseRepository
         Arr::forget($data, 'thumbnail');
         $product->update($data);
         $this->uploadImages($product);
+
+        if($data['type'] == 'configurable'){
+            $options = json_decode($data['options'], true);
+
+            foreach ($options as $option) {
+
+                $productOption = ProductOption::firstOrCreate([
+                    'option_id' => $option['id'],
+                    'product_id' =>$product->id,
+                    'is_required' => Arr::has($option, 'is_required') ? $option['is_required'] : false
+                ]);
+
+                $keyed = collect($option['values'])->mapWithKeys(function ($item) {
+                    return [$item['id'] => [ 'price' => $item['price'], 'price_type' => $item['price_type'] ]];
+                })->all();
+
+                $productOption->values()->sync($keyed);
+            }
+
+        }
+
         return $product;
     }
     /**
@@ -113,7 +134,8 @@ class ProductRepository extends BaseRepository
     }
     private function uploadImages($product)
     {
-        if (request()->has('images')) {
+        if (request()->has('images') && !empty(request()->get('images'))) {
+
             foreach (request('images') as $key => $image) {
                 // Get filename with the extension
                 $filenameWithExt = $image->getClientOriginalName();
