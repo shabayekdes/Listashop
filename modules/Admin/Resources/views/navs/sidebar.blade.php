@@ -44,7 +44,7 @@
                 {{-- Product --}}
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-cart-arrow-down"></i>
+                        <i class="nav-icon fab fa-shopify"></i>
                         <p>
                             Product
                             <i class="right fas fa-angle-left"></i>
@@ -104,6 +104,16 @@
                             </router-link>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-header">SYSTEM MANAGMENT</li>
+                {{-- Settings --}}
+                <li class="nav-item">
+                    <router-link to="/admin/setting" class="nav-link">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Setting
+                            </p>
+                    </router-link>
                 </li>
                 {{-- Logout --}}
                 <li class="nav-item">

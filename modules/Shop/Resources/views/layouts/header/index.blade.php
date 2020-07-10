@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col d-flex flex-row">
                     <div class="top_bar_contact_item">
-                        <div class="top_bar_icon"><img src="/frontend/images/phone.png" alt=""></div>+38 068 005 3570
+                        <div class="top_bar_icon"><img src="/frontend/images/phone.png" alt=""></div>{{ settings()->get('store_phone_number') }}
                     </div>
                     <div class="top_bar_contact_item">
                         <div class="top_bar_icon"><img src="/frontend/images/mail.png" alt=""></div><a
-                            href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                            href="mailto:fastsales@gmail.com">{{ settings()->get('store_store_email') }}</a>
                     </div>
                     <div class="top_bar_content ml-auto">
                         <div class="top_bar_menu">
