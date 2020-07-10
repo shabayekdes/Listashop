@@ -36,14 +36,12 @@ class ProductController extends Controller
     {
         $product->load(['images', 'options']);
 
-        return response()->json(['status' => true, 'data' => new ProductResource($product)]);
-        dd($product);
-        $product = Product::with('images', 'options.option', 'options.values')->where('slug', $slug)->firstOrFail();
-        // dd($product);
-        $mightAlsoLike = Product::with('images')->where('slug', '!=', $slug)->get();
-        return view('shop::product.index')->with([
-            'product' => $product,
-            'mightAlsoLike' => $mightAlsoLike,
-        ]);
+        $data = [
+            'single_product' => new ProductResource($product),
+            'reviews' => [],
+            'related_products' => [],
+        ];
+
+        return response()->json(['status' => true, 'data' => $data]);
     }
 }
