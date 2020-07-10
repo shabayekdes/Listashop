@@ -43,13 +43,15 @@ class CategoryRepository extends BaseRepository
     }
 
     /**
-     * @param User  $user
+     * Update a new category record in the database
+     * 
+     * @param Category  $user
      * @param array $data
      *
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
-     * @return User
+     * @return Category
      */
     public function update(array $data, $category): Category
     {
@@ -58,6 +60,16 @@ class CategoryRepository extends BaseRepository
         }
         $category->update($this->storeImage($data));
         return $category;
+    }
+
+    /**
+     * Get popular categories
+     *
+     * @return Collection
+     */
+    public function getPopularCategories()
+    {
+        return  $this->model->popular()->get();
     }
 
     private function uploadThumb($category)

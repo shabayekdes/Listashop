@@ -193,6 +193,7 @@ return [
         ListaShop\Value\Providers\ValueServiceProvider::class,
         ListaShop\Payment\Providers\PaymentServiceProvider::class,
         ListaShop\Customer\Providers\CustomerServiceProvider::class,
+        ListaShop\Api\Providers\RouteServiceProvider::class,
         ListaShop\Setting\Providers\SettingServiceProvider::class,
     ],
 
