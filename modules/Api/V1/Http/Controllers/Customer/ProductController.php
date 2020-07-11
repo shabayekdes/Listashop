@@ -36,10 +36,12 @@ class ProductController extends Controller
     {
         $product->load(['images', 'options']);
 
+        $relatedProduct = Product::inRandomOrder()->limit(5)->get();
+
         $data = [
             'single_product' => new ProductResource($product),
             'reviews' => [],
-            'related_products' => new ProductResource($this->product->inRandomOrder()->limit(5)->get()),
+            'related_products' => ProductResource::collection($relatedProduct),
         ];
 
         return response()->json(['status' => true, 'data' => $data]);
