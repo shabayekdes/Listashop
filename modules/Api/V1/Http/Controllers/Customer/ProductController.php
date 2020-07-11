@@ -39,7 +39,7 @@ class ProductController extends Controller
         $data = [
             'single_product' => new ProductResource($product),
             'reviews' => [],
-            'related_products' => [],
+            'related_products' => new ProductResource($this->product->inRandomOrder()->limit(5)->get()),
         ];
 
         return response()->json(['status' => true, 'data' => $data]);
