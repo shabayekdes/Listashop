@@ -1,6 +1,6 @@
 import axios from "axios";
 import router from "@Admin/router";
-import swal from 'sweetalert2';
+import swal from "sweetalert2";
 
 const state = {
     options: [],
@@ -87,15 +87,12 @@ const actions = {
     async deleteOptionValue({ commit }, value) {
         await axios.delete(`${urlApi}option-value/${value.id}`);
 
-        swal.fire(
-            'Deleted!',
-            'Information has been deleted.',
-            'success'
-            )
+        swal.fire("Deleted!", "Information has been deleted.", "success");
         commit("REMOVE_OPTION_VALUE", value);
     },
     addSelectedOptions({ commit }, value) {
         commit("NEW_SELECTED_OPTIONS", value);
+        commit("REMOVE_OPTION", value.id);
     },
     removeSelectedOption({ commit }, option) {
         commit("REMOVE_SELECTED_OPTION", option);
@@ -117,12 +114,10 @@ const mutations = {
     },
     NEW_OPTION: (state, data) => {
         state.options.unshift(data);
-
     },
     NEW_OPTION_VALUE: (state, data) => {
-        
         state.selectedOptions.map(option => {
-            if(option.id === data.option_id){
+            if (option.id === data.option_id) {
                 option.values.unshift(data);
             }
         });
@@ -153,16 +148,17 @@ const mutations = {
     NEW_OPTION_VAL: (state, value) => {
         state.optionValues.unshift(value);
     },
+    REMOVE_OPTION: (state, id) => {
+        state.options = state.options.filter(option => option.id !== id);
+    },
     REMOVE_OPTION_VALUE: (state, value) => {
         state.optionValues.splice(state.optionValues.indexOf(value), 1);
     },
     REMOVE_SELECTED_OPTION_VALUE: (state, data) => {
-
         state.selectedOptions = state.selectedOptions.filter(option => {
             let index = option.values.findIndex(value => value.id === data.id);
             if (index !== -1) {
                 option.values.splice(index, 1);
-                
             }
             return true;
         });

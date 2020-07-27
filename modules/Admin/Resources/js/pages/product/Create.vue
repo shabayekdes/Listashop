@@ -49,18 +49,14 @@
             <div class="form-group row">
               <label for="inputProductType" class="col-sm-2 col-form-label">Product Type</label>
               <div class="col-sm-6">
-                <select
-                  class="form-control"
-                  v-model="getSingleProduct.type"
-                  id="inputProductType"
-                  >
+                <select class="form-control" v-model="getSingleProduct.type" id="inputProductType">
                   <option value="simple">Simple product</option>
                   <option value="configurable">Attribute product</option>
                 </select>
               </div>
             </div>
             <product-simple v-if="getSingleProduct.type == 'simple'" />
-                  <product-attribute v-else />
+            <product-attribute v-else />
           </div>
           <!-- /.card-body -->
         </div>
@@ -304,36 +300,36 @@ export default {
     ProductAttribute,
     model,
     Multiselect,
-    HasError
+    HasError,
   },
   data() {
     return {
       selected: null,
-      options: ["list", "of", "options"]
+      options: ["list", "of", "options"],
     };
   },
   methods: {
     ...mapActions([
-		"storeProduct",
-		"setProduct",
-		"showProduct",
-		"fetchListCategories",
-		"fetchListOptions",
-		"addThumb",
-		"resetImages",
-		"resetProduct",
-		"setError"
+      "storeProduct",
+      "setProduct",
+      "showProduct",
+      "fetchListCategories",
+      "fetchListOptions",
+      "addThumb",
+      "resetImages",
+      "resetProduct",
+      "setError",
     ]),
     ...mapMutations(["SET_STATUS", "SET_LOADING"]),
     createProduct() {
       const formData = new FormData();
       for (const [key, value] of Object.entries(this.getSingleProduct)) {
         formData.append(key, value);
-	  }
+      }
 
-		formData.append(`options`, JSON.stringify(this.getSelectedOptions));
+      formData.append(`options`, JSON.stringify(this.getSelectedOptions));
 
-      this.getFiles.forEach(file => {
+      this.getFiles.forEach((file) => {
         formData.append("images[]", file, file.name);
       });
       if (this.getThumb.file) {
@@ -357,7 +353,7 @@ export default {
         .toLowerCase()
         .replace(/[^\w ]+/g, "")
         .replace(/ +/g, "-");
-    }
+    },
   },
   created() {
     // this.fetchListAttributes("all");
@@ -372,20 +368,20 @@ export default {
     // }
     // }
     // this.SET_STATUS("");
-		this.fetchListCategories("all");
-		this.fetchListOptions("all");
+    this.fetchListCategories("all");
+    this.fetchListOptions("all");
   },
   computed: mapGetters([
     "getSingleProduct",
-	"getAllCategories",
-	"getAllOptions",
+    "getAllCategories",
+    "getAllOptions",
     // "getVariations",
     "getSelectedOptions",
     "getFiles",
     "getImages",
     "getThumb",
-    "hasError"
-  ])
+    "hasError",
+  ]),
 };
 </script>
 

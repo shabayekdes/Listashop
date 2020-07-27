@@ -41,14 +41,20 @@ const actions = {
     async showProduct({ commit, dispatch }, id) {
         const response = await axios.get(`${urlApi}product/${id}`);
 
-        let thumb = {};
-        thumb.url = response.data.data.thumbnail;
-        thumb.name = response.data.data.thumbnail.split(id + "/").pop();
+        let thumb = response.data.data.thumbnail;
+
+        if (thumb !== null) {
+            let thumbObj = {};
+            thumbObj.url = thumb;
+            thumbObj.name = thumb.split(id + "/").pop();
+            dispatch("setImage", thumbObj, { root: true });
+        }
 
         commit("SET_PRODUCT", response.data.data);
-        dispatch("setImage", thumb, { root: true });
-        response.data.data.options.map(option => dispatch("addSelectedOptions", option, { root: true }) )
 
+        response.data.data.options.map(option =>
+            dispatch("addSelectedOptions", option, { root: true })
+        );
     },
     async updateProduct({ commit, dispatch }, data) {
         try {
