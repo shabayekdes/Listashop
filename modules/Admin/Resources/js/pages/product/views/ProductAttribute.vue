@@ -207,10 +207,10 @@
 									{{ selectedOptionValue.value }}
 								</td>
 								<td>
-									<input class="form-control" v-model="selectedOptionValue.price" type="number" />
+									<input class="form-control" v-model="selectedOptionValue.price.price" type="number" />
 								</td>
 								<td>
-									<select class="form-control" v-model="selectedOptionValue.price_type" id="type">
+									<select class="form-control" v-model="selectedOptionValue.price.price_type" id="type">
 										<option value="fixed">Fixed</option>
 										<option value="percent">Percent</option>
 									</select>
