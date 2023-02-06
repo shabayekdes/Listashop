@@ -24,7 +24,7 @@ class PaymentServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerFacades();
-        $this->registerConfig();
+        // $this->registerConfig();
     }
 
     /**
